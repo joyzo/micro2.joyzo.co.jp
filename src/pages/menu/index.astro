@@ -1,0 +1,34 @@
+---
+import UnderPageLayout from "@layouts/UnderPageLayout.astro";
+import MenuTabs from "@components/pages/menu/MenuTabs.svelte";
+import { client } from "@libs/microcms";
+import type { Menu } from "src/types/microcms/menu";
+import { buildMenuObject } from "src/utils/buildMenuObject";
+
+const { totalCount } = await client.getList({
+  endpoint: "menu",
+  queries: { limit: 0 },
+});
+
+const menuList = (
+  await Promise.all(
+    Array.from({ length: Math.ceil(totalCount / 10) }).map(async (_, i) => {
+      const { contents } = await client.getList<Menu>({
+        endpoint: "menu",
+        queries: { limit: 10, offset: i * 10 },
+      });
+      return contents;
+    })
+  )
+).flat();
+
+const menuObject = buildMenuObject(menuList);
+---
+
+<UnderPageLayout mainLabel="MENU" subLabel="メニュー" title="メニュー">
+  <p>
+    RelaxCafeでは、「日常に彩りを添える」ことをテーマに、新鮮な食材を使用した手作りのメニューを提供しています。<br
+    />心地よい音楽と共に、美味しいお食事とドリンクをお楽しみください。
+  </p>
+  <MenuTabs client:load menu={menuObject} />
+</UnderPageLayout>
