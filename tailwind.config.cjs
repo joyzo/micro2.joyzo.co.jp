@@ -37,7 +37,10 @@ module.exports = {
     extend: {
       colors: {
         main: "#2B1205",
-        secondary: "#1F0C02",
+        // secondary: "#1F0C02",
+        // secondaryは深い青にする
+        secondary: "#073367",
+
       },
       fontFamily: {
         serif: ["Shippori Mincho", "serif"],
