@@ -36,15 +36,16 @@ module.exports = {
     },
     extend: {
       colors: {
-        main: "#2B1205",
-        // secondary: "#1F0C02",
-        // secondaryは深い青にする
-        secondary: "#073367",
-
+        main: "#001F3F", // より深い青
+        secondary: "#003366",
+        accent: "#FF6B35", // アクセントカラー
+        dark: "#1A1A1A",
+        light: "#F8F9FA",
       },
       fontFamily: {
-        serif: ["Shippori Mincho", "serif"],
-        english: ["Mulish", "sans-serif"],
+        serif: ["Murecho", "Noto Sans JP", "sans-serif"],
+        english: ["Murecho", "Noto Sans JP", "sans-serif"],
+        sans: ["Murecho", "Noto Sans JP", "sans-serif"],
       },
     },
   },

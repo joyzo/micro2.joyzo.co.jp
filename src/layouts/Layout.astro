@@ -16,10 +16,10 @@ export interface Props {
 
 const props = Astro.props;
 
-const BASE_TITLE = "RELAX CAFE";
+const BASE_TITLE = "株式会社ジョイゾー";
 const title = props.title ? `${props.title} | ${BASE_TITLE}` : BASE_TITLE;
 const BASE_DESCRIPTION =
-  "心地よい空間でくつろぎながら、美味しいコーヒーと軽食をお楽しみいただけるRELAX CAFEへようこそ。";
+  "ENJOY YOUR WORLD. 株式会社ジョイゾーは、DXと働き方の変化を通じて、お客様の世界をより楽しくすることを目指す企業です。";
 const description = props.description ?? BASE_DESCRIPTION;
 ---
 
@@ -50,8 +50,10 @@ const description = props.description ?? BASE_DESCRIPTION;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&display=swap" rel="stylesheet" /></noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Mulish:wght@500;800&family=Shippori+Mincho:wght@500;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -59,7 +61,7 @@ const description = props.description ?? BASE_DESCRIPTION;
   </head>
   <body class="font-serif leading-loose text-main">
     <Header />
-    <main class="mt-32 overflow-x-hidden sm:mt-40">
+    <main class="overflow-x-hidden">
       <slot />
     </main>
     <Footer />
@@ -68,6 +70,26 @@ const description = props.description ?? BASE_DESCRIPTION;
 
     <script>
       import "@global/smallDevice";
+      import "@global/smoothScroll";
+    </script>
+    
+    <!-- プリフェッチエラー対策 -->
+    <script>
+      // ネットワークエラーのハンドリング
+      window.addEventListener('error', (event) => {
+        if (event.message && event.message.includes('Cannot prefetch')) {
+          console.log('Prefetch error ignored - network conditions are poor');
+          event.preventDefault();
+        }
+      });
+      
+      // Promise rejection のハンドリング
+      window.addEventListener('unhandledrejection', (event) => {
+        if (event.reason && event.reason.message && event.reason.message.includes('Cannot prefetch')) {
+          console.log('Prefetch promise rejection ignored');
+          event.preventDefault();
+        }
+      });
     </script>
   </body>
 </html>
