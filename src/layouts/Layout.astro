@@ -70,7 +70,23 @@ const description = props.description ?? BASE_DESCRIPTION;
 
     <script>
       import "@global/smallDevice";
-      import "@global/smoothScroll";
+      // import "@global/smoothScroll"; // スクロール処理の競合を避けるため完全に無効化
+    </script>
+    
+    <!-- スクロール演出初期化 -->
+    <script type="module">
+      import { initScrollAnimations } from "@utils/scrollAnimations";
+      
+      // ページ読み込み完了後にスクロール演出を初期化
+      // より確実な初期化のため、loadイベントを使用
+      if (document.readyState === 'complete') {
+        initScrollAnimations();
+      } else {
+        window.addEventListener('load', () => {
+          // 少し遅延を入れて初期化（他の処理との競合を避ける）
+          setTimeout(() => initScrollAnimations(), 100);
+        });
+      }
     </script>
     
     <!-- プリフェッチエラー対策 -->

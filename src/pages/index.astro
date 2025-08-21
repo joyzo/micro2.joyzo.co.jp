@@ -1,24 +1,27 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import HeroAnimation from "@components/HeroAnimation.svelte";
-import AboutSection from "@components/AboutSection.svelte";
-import CompanySection from "@components/CompanySection.svelte";
-import CareersSection from "@components/CareersSection.svelte";
+import ScrollStorySection from "@components/ScrollStorySection.svelte";
+import CoreCopySection from "@components/CoreCopySection.svelte";
 import ContactSection from "@components/ContactSection.svelte";
+import { messages } from "../data/messages";
 ---
 
 <Layout>
   <!-- Hero Section -->
   <HeroAnimation client:load />
   
-  <!-- About Section -->
-  <AboutSection />
+  <!-- Story Sections (4つのメッセージセクション) -->
+  {messages.slice(0, 4).map((message, index) => (
+    <ScrollStorySection 
+      client:only="svelte" 
+      message={message} 
+      index={index} 
+    />
+  ))}
   
-  <!-- Company Section -->
-  <CompanySection />
-  
-  <!-- Careers Section -->
-  <CareersSection />
+  <!-- Core Copy Section (ENJOY YOUR WORLD.) -->
+  <CoreCopySection client:only="svelte" />
   
   <!-- Contact Section -->
   <ContactSection />

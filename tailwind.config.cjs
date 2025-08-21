@@ -33,6 +33,7 @@ module.exports = {
       xl: ".1em",
       "2xl": ".15em",
       "3xl": ".2em",
+      "tight": "-0.5em",
     },
     extend: {
       colors: {
