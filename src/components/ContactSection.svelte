@@ -31,14 +31,29 @@
 <section 
   bind:this={sectionElement}
   id="contact-section"
-  class="min-h-screen flex items-center bg-main py-20"
+  class="h-screen flex items-center bg-main"
+  style="z-index: 3;"
 >
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white font-english mb-6">
+      <h2 
+        class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white font-english mb-6 transform transition-all duration-1000 ease-out"
+        style="
+          transform: translateX({isVisible ? 0 : '-100vw'}) scale({isVisible ? 1 : 0.8});
+          opacity: {isVisible ? 1 : 0};
+        "
+      >
         CONTACT
       </h2>
-      <p class="text-lg sm:text-xl md:text-2xl text-gray-300">お問い合わせ</p>
+      <p 
+        class="text-lg sm:text-xl md:text-2xl text-gray-300 transform transition-all duration-1000 ease-out delay-300"
+        style="
+          transform: translateX({isVisible ? 0 : '-100vw'}) scale({isVisible ? 1 : 0.9});
+          opacity: {isVisible ? 1 : 0};
+        "
+      >
+        お問い合わせ
+      </p>
     </div>
     
     <div class="max-w-4xl mx-auto">

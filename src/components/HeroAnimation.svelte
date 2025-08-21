@@ -4,11 +4,13 @@
   // CMS管理を想定した単語リスト設定
   const wordSequence = {
     left: ['ENJOY', 'DX', '未来', '働き方', 'ENJOY'],
-    right: ['IT', 'TECH', 'LIFE', 'YOUR', 'WORLD']
+    right: ['IT', 'TECH', 'LIFE', '楽しめ', 'YOUR']
   } as const;
   
   // アニメーション状態管理
   let currentStep = 0;
+  let leftIndex = 0;
+  let rightIndex = 0;
   let isAnimating = false;
   let animationTimeout: ReturnType<typeof setTimeout> | undefined;
   
@@ -34,28 +36,60 @@
   let finalRightOpacity = 0;
   let showFinalText = false;
   
+  // 新しいアニメーション用の状態
+  let centerText = '?';
+  let centerTextBlink = false;
+  let leftContainerPosition = 'center'; // 'center' | 'left'
+  let centerTextPosition = 'right'; // 'center' | 'right'
+  
   function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   
   async function startInitialAnimation(): Promise<void> {
-    // Phase 1: 左右のコンテナが現れる
+    // Phase 1: 左のコンテナと中央のコンテナを画面中央に配置
     leftContainerOpacity = 1;
-    rightContainerOpacity = 1;
     centerXOpacity = 1;
+    leftContainerPosition = 'center';
+    centerTextPosition = 'right'; // スタート時点では右に3em移動
     await sleep(200);
     
     // Phase 2: 左側に「ENJOY」が現れる
     leftText = 'ENJOY';
     leftOpacity = 1;
+    await sleep(300);
+    
+    // Phase 3: 中央に「?」が現れる
+    centerText = '?';
+    centerXOpacity = 1;
     await sleep(200);
     
-    // Phase 3: 右側に「IT」が現れる
+    // Phase 4: クエスチョンマークを点滅させる
+    centerTextBlink = true;
+    await sleep(2000); // 2秒間点滅
+    
+    // Phase 5: 点滅を停止し、元の位置に移動
+    centerTextBlink = false;
+    centerXOpacity = 0;
+    leftOpacity = 0;
+    await sleep(200);
+    
+    // Phase 6: 元の位置に移動
+    leftContainerPosition = 'left';
+    centerTextPosition = 'center'; // Enjoyが左に移動するタイミングで中央に戻す
+    leftText = 'ENJOY';
+    leftOpacity = 1;
+    centerText = '×';
+    centerXOpacity = 1;
+    await sleep(300);
+    
+    // Phase 7: 右のコンテナを表示
+    rightContainerOpacity = 1;
     rightText = 'IT';
     rightOpacity = 1;
-    await sleep(400);
+    await sleep(200);
     
-    // Phase 4: 通常のアニメーション開始
+    // Phase 8: 通常のアニメーション開始
     startWordAnimation();
   }
   
@@ -99,40 +133,50 @@
   }
   
   async function animateStep(): Promise<void> {
-    if (currentStep >= wordSequence.left.length) {
-      // 最終段階：ENJOY YOUR WORLD
-      await showFinalAnimation();
-      return;
+    console.log('Current step:', currentStep, 'leftIndex:', leftIndex, 'rightIndex:', rightIndex);
+    
+    // 左右のテキストを同時に変更
+    const leftWord = wordSequence.left[leftIndex];
+    const rightWord = wordSequence.right[rightIndex];
+    
+    // 左側のテキストを変更
+    if (leftWord) {
+      console.log('Changing left word to:', leftWord);
+      await changeWord(leftWord, true, 'up');
     }
     
+    // 右側のテキストを変更
+    if (rightWord) {
+      console.log('Changing right word to:', rightWord);
+      await changeWord(rightWord, false, 'down');
+    }
+    
+    // インデックスを進める
+    leftIndex++;
+    rightIndex++;
     currentStep++;
     
-    // 右側を先に変更、その後左側を変更
-    if (currentStep % 2 === 1) {
-      // 奇数ステップ：右側を先に変更
-      const rightWord = wordSequence.right[currentStep];
-      if (rightWord) {
-        await changeWord(rightWord, false, 'down');
-      }
-    } else {
-      // 偶数ステップ：左側を変更
-      const leftWord = wordSequence.left[currentStep];
-      if (leftWord) {
-        await changeWord(leftWord, true, 'up');
-      }
-    }
+    // 次のステップがあるかチェック
+    const hasMoreLeft = leftIndex < wordSequence.left.length;
+    const hasMoreRight = rightIndex < wordSequence.right.length;
     
-    if (isAnimating && currentStep < wordSequence.left.length) {
+    if (isAnimating && (hasMoreLeft || hasMoreRight)) {
       // 緩急をつける：最初は早く、後半は少し遅く
       const delay = currentStep <= 2 ? 400 : 600;
       animationTimeout = setTimeout(animateStep, delay);
     } else {
       isAnimating = false;
+      // アニメーションが終了したら強制的にshowFinalAnimationを呼ぶ
+      if (!hasMoreLeft && !hasMoreRight) {
+        console.log('Animation ended, calling showFinalAnimation');
+        await showFinalAnimation();
+      }
     }
   }
   
   async function showFinalAnimation(): Promise<void> {
-    // 中央の✖をフェードアウト
+    console.log('showFinalAnimation started');
+    // 中央の×をフェードアウト
     centerXOpacity = 0;
     await sleep(200);
     
@@ -148,9 +192,9 @@
     
     // 最終テキストを3つの枠で表示
     showFinalText = true;
-    finalLeftText = 'ENJOY';
-    finalCenterText = 'YOUR';
-    finalRightText = 'WORLD';
+    finalLeftText = wordSequence.left[wordSequence.left.length - 1] || 'ENJOY';  // 最後のENJOY
+    finalCenterText = wordSequence.right[wordSequence.right.length - 1] || 'YOUR';  // 最後のYOUR
+    finalRightText = 'WORLD';  // 最終的なWORLDは固定
     finalLeftOpacity = 1;
     finalCenterOpacity = 1;
     finalRightOpacity = 1;
@@ -160,7 +204,9 @@
     if (isAnimating) return;
     
     isAnimating = true;
-    currentStep = 0;
+    currentStep = 0; // 0から開始して、交互に右側と左側を変更
+    leftIndex = 0; // 左側のインデックスをリセット
+    rightIndex = 0; // 右側のインデックスをリセット
     
     // 初期状態は既に設定されているので、そのまま開始
     animationTimeout = setTimeout(animateStep, 1000);
@@ -186,7 +232,7 @@
   });
   
   const scrollToNext = (): void => {
-    const nextSection = document.querySelector('#about-section');
+    const nextSection = document.querySelector('#inverted-section');
     if (nextSection) {
       nextSection.scrollIntoView({ 
         behavior: 'smooth',
@@ -196,20 +242,15 @@
   };
 </script>
 
-<section class="relative h-screen flex items-center justify-center bg-gradient-to-br from-main via-main to-secondary overflow-hidden">
-  <!-- 背景のグラデーション装飾 -->
-  <div class="absolute inset-0 opacity-20">
-    <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-white/5 to-transparent"></div>
+<section id="hero-section" class="relative h-screen flex items-center justify-center bg-blue-900 overflow-hidden" style="z-index: 3;">
+  <!-- 背景の装飾 -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-20 left-20 w-64 h-64 border border-white rounded-full"></div>
+    <div class="absolute bottom-20 right-20 w-32 h-32 border border-white transform rotate-45"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-white rounded-full opacity-30"></div>
   </div>
   
-  <!-- 背景の装飾要素 -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute top-20 left-20 w-32 h-32 border-2 border-white rounded-full"></div>
-    <div class="absolute bottom-20 right-20 w-24 h-24 border-2 border-white rounded-full"></div>
-    <div class="absolute top-1/2 left-1/4 w-16 h-16 border border-white rounded-full"></div>
-    <div class="absolute top-1/3 right-1/3 w-20 h-20 border border-white rounded-full"></div>
-  </div>
+
   
   <!-- メインテキスト -->
   <div class="relative z-10 text-center text-white w-full">
@@ -256,9 +297,13 @@
     <div class="relative flex items-center justify-center mb-8">
       <!-- 左側のテキストコンテナ（固定幅） -->
       <div 
-        class="w-[calc(50vw-2rem)] max-w-[550px] min-w-[330px] flex justify-end pr-4 md:pr-6 lg:pr-8 h-[calc(15vh+2rem)] transition-opacity duration-1000"
-        style="opacity: {leftContainerOpacity};"
+        class="w-[calc(50vw-2rem)] max-w-[550px] min-w-[330px] flex justify-end pr-6 md:pr-8 lg:pr-12 h-[calc(15vh+2rem)] transition-all duration-1000"
+        style="
+          opacity: {leftContainerOpacity};
+          transform: {leftContainerPosition === 'center' ? 'translateX(25%)' : 'translateX(0)'};
+        "
       >
+        <!-- 経線（赤）: border-2 border-red-500 -->
         <div class="overflow-hidden text-right w-full flex items-center justify-end">
           <div 
             class="font-bold font-english transition-all duration-300 ease-in-out w-full whitespace-nowrap"
@@ -275,22 +320,29 @@
         </div>
       </div>
       
-      <!-- 中央の✖マーク（固定位置） -->
+      <!-- 中央の×マーク（固定位置） -->
       <div 
-        class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-accent z-10 transition-opacity duration-1000"
+        class="absolute left-1/2 top-1/2 font-bold text-accent z-10 transition-all duration-1000"
         style="
-          font-size: clamp(1.65rem, 4.4vw, 6.6rem);
+          font-size: clamp(2.2rem, 8.8vw, 13.2rem);
           opacity: {centerXOpacity};
+          transform: {centerTextPosition === 'right' ? 'translateX(4em) translateY(-50%)' : 'translateX(-50%) translateY(-50%)'};
         "
       >
-        ✖
+        <!-- 経線（緑）: border-2 border-green-500 -->
+        {#if centerTextBlink}
+          <span class="animate-pulse">{centerText}</span>
+        {:else}
+          {centerText}
+        {/if}
       </div>
       
       <!-- 右側のテキストコンテナ（左側と同じ幅） -->
       <div 
-        class="w-[calc(50vw-2rem)] max-w-[550px] min-w-[330px] flex justify-start pl-4 md:pl-6 lg:pl-8 h-[calc(15vh+2rem)] transition-opacity duration-1000"
+        class="w-[calc(50vw-2rem)] max-w-[550px] min-w-[330px] flex justify-start pl-6 md:pl-8 lg:pl-12 h-[calc(15vh+2rem)] transition-opacity duration-1000"
         style="opacity: {rightContainerOpacity};"
       >
+        <!-- 経線（青）: border-2 border-blue-500 -->
         <div class="overflow-hidden text-left w-full flex items-center justify-start">
           <div 
             class="font-bold font-english transition-all duration-300 ease-in-out w-full whitespace-nowrap"
@@ -309,19 +361,19 @@
     </div>
     
     <!-- サブタイトル -->
-    <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light opacity-80 mb-12">
+    <!-- <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light opacity-80 mb-12">
       JOYZO
-    </div>
-    
-    <!-- スクロールボタン -->
-    <button 
-      on:click={scrollToNext}
-      class="group flex flex-col items-center space-y-2 text-white opacity-70 hover:opacity-100 transition-opacity duration-300"
-    >
-      <span class="text-sm font-english">SCROLL</span>
-      <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-        <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
-      </div>
-    </button>
+    </div> -->
   </div>
+  
+  <!-- スクロールボタン -->
+  <button 
+    on:click={scrollToNext}
+    class="group absolute bottom-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-1 text-white opacity-70 hover:opacity-100 transition-opacity duration-300"
+  >
+    <span class="text-xs font-english">SCROLL</span>
+    <div class="w-4 h-6 border border-white rounded-full flex justify-center">
+      <div class="w-0.5 h-2 bg-white rounded-full mt-1 animate-bounce"></div>
+    </div>
+  </button>
 </section>

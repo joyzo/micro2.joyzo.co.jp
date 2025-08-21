@@ -31,7 +31,8 @@
 <section 
   bind:this={sectionElement}
   id="careers-section"
-  class="min-h-screen flex items-center bg-gradient-to-br from-light to-white py-20"
+  class="py-20 flex items-center bg-gradient-to-br from-light to-white"
+  style="z-index: 3;"
 >
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
