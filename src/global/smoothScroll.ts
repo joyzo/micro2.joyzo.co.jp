@@ -7,25 +7,41 @@ document.addEventListener('DOMContentLoaded', () => {
     header.style.transform = 'translateY(-100%)';
   }
   
-  // スクロール位置に応じてヘッダーの表示/非表示を制御
-  let lastScrollTop = 0;
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > window.innerHeight * 0.5) {
-      // ファーストビューを過ぎたらヘッダーを表示
-      if (header) {
-        header.style.transform = 'translateY(0)';
+  // Lenisが有効な場合は、通常のスクロールイベントを無効化して競合を避ける
+  if ((window as any).lenis) {
+    // Lenisが有効な場合のヘッダー制御
+    (window as any).lenis.on('scroll', ({ scroll }: { scroll: number }) => {
+      if (scroll > window.innerHeight * 0.5) {
+        if (header) {
+          header.style.transform = 'translateY(0)';
+        }
+      } else {
+        if (header) {
+          header.style.transform = 'translateY(-100%)';
+        }
       }
-    } else {
-      // ファーストビューではヘッダーを非表示
-      if (header) {
-        header.style.transform = 'translateY(-100%)';
+    });
+  } else {
+    // Lenisが無効な場合のみ通常のスクロールイベントを使用
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > window.innerHeight * 0.5) {
+        // ファーストビューを過ぎたらヘッダーを表示
+        if (header) {
+          header.style.transform = 'translateY(0)';
+        }
+      } else {
+        // ファーストビューではヘッダーを非表示
+        if (header) {
+          header.style.transform = 'translateY(-100%)';
+        }
       }
-    }
-    
-    lastScrollTop = scrollTop;
-  });
+      
+      lastScrollTop = scrollTop;
+    });
+  }
   
   // ヘッダーのナビゲーションリンクにスムーズスクロールを追加
   const navLinks = document.querySelectorAll('a[href^="#"]');
@@ -42,112 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // ヘッダーの高さを考慮してスクロール位置を調整
       const headerHeight = header?.offsetHeight || 0;
-      const targetPosition = targetElement.offsetTop - headerHeight;
+      const targetPosition = (targetElement as HTMLElement).offsetTop - headerHeight;
       
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+      // Lenisが有効な場合はLenisを使用、そうでなければ通常のスムーススクロール
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(targetPosition, { duration: 1.2 });
+      } else {
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
-  });
-  
-  // ページ枠の縦幅ブロック毎にフィットしたスクロール着地
-  let isScrolling = false;
-  
-  window.addEventListener('wheel', (e) => {
-    if (isScrolling) return;
-    
-    e.preventDefault();
-    isScrolling = true;
-    
-    const sections = document.querySelectorAll('section[id]');
-    const currentScroll = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    
-    let targetSection = null;
-    
-    if (e.deltaY > 0) {
-      // 下スクロール
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i] as HTMLElement;
-        if (section.offsetTop > currentScroll + windowHeight / 2) {
-          targetSection = section;
-          break;
-        }
-      }
-    } else {
-      // 上スクロール
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i] as HTMLElement;
-        if (section.offsetTop < currentScroll - windowHeight / 2) {
-          targetSection = section;
-          break;
-        }
-      }
-    }
-    
-    if (targetSection) {
-      const headerHeight = header?.offsetHeight || 0;
-      const targetPosition = targetSection.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-    
-    // スクロール完了後にフラグをリセット
-    setTimeout(() => {
-      isScrolling = false;
-    }, 1000);
-  }, { passive: false });
-  
-  // キーボードナビゲーション
-  window.addEventListener('keydown', (e) => {
-    if (isScrolling) return;
-    
-    const sections = document.querySelectorAll('section[id]');
-    const currentScroll = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    
-    let targetSection = null;
-    
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-      e.preventDefault();
-      isScrolling = true;
-      
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i] as HTMLElement;
-        if (section.offsetTop > currentScroll + windowHeight / 2) {
-          targetSection = section;
-          break;
-        }
-      }
-    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault();
-      isScrolling = true;
-      
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i] as HTMLElement;
-        if (section.offsetTop < currentScroll - windowHeight / 2) {
-          targetSection = section;
-          break;
-        }
-      }
-    }
-    
-    if (targetSection) {
-      const headerHeight = header?.offsetHeight || 0;
-      const targetPosition = targetSection.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-    
-    setTimeout(() => {
-      isScrolling = false;
-    }, 1000);
   });
 }); 
