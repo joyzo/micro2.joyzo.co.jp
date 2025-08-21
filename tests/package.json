@@ -1,0 +1,14 @@
+{
+  "name": "microcms-tests",
+  "version": "1.0.0",
+  "description": "Micro CMS接続テスト用パッケージ",
+  "scripts": {
+    "test": "node --loader ts-node/esm tests/microcms-connection.test.ts",
+    "test:connection": "node --loader ts-node/esm tests/microcms-connection.test.ts",
+    "test:watch": "node --loader ts-node/esm --watch tests/microcms-connection.test.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
