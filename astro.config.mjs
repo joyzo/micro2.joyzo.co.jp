@@ -16,7 +16,13 @@ export default defineConfig({
     tailwind(),
     sitemap(),
     robotsTxt(),
-    prefetch(),
+    prefetch({
+      // プリフェッチの設定を調整
+      hover: false, // ホバー時のプリフェッチを無効
+      throttle: 1000, // プリフェッチの間隔を1秒に設定
+      // 開発環境ではプリフェッチを無効にする
+      ...(import.meta.env.DEV && { enabled: false }),
+    }),
     svelte({}),
     image(),
     partytown({

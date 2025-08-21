@@ -1,42 +1,57 @@
 ---
-import { Image } from "@astrojs/image/components";
 ---
 
 <header
-  class="fixed inset-x-0 top-0 z-10 flex h-32 items-center justify-start pl-5 sm:h-40 sm:justify-start"
+  class="fixed inset-x-0 top-0 z-10 flex h-16 items-center justify-between px-6 sm:h-20 sm:px-8 bg-white bg-opacity-95 backdrop-blur-sm transition-transform duration-500"
+  id="header"
 >
-  <nav
-    class="hidden w-1/2 sm:block sm:px-6 sm:pr-24 md:px-10 md:pr-28 lg:px-16 lg:pr-36 xl:px-20 xl:pr-40"
+  <!-- ロゴ -->
+  <a
+    href="/"
+    class="flex items-center transition-opacity duration-[0.4s] hover:opacity-70"
   >
-    <ul class="flex items-center justify-around text-sm">
+    <p class="font-english text-xl sm:text-2xl font-bold text-main">
+      JOYZO
+    </p>
+  </a>
+  
+  <!-- ナビゲーション -->
+  <nav class="hidden md:block">
+    <ul class="flex items-center space-x-8">
       <li>
-        <a href="/menu" class="flex flex-col items-center">
-          <span class="font-english text-xl">MENU</span>
-          <span class="mt-1 font-sans text-xs">メニュー</span>
+        <a href="/aboutus" class="flex flex-col items-center text-sm hover:text-main transition-colors">
+          <span class="font-english text-lg">ABOUT</span>
+          <span class="mt-1 text-xs">ジョイゾーとは</span>
         </a>
       </li>
       <li>
-        <a href="/shop" class="flex flex-col items-center">
-          <span class="font-english text-xl">SHOP</span>
-          <span class="mt-1 font-sans text-xs">店舗情報</span>
+        <a href="/company" class="flex flex-col items-center text-sm hover:text-main transition-colors">
+          <span class="font-english text-lg">COMPANY</span>
+          <span class="mt-1 text-xs">会社概要</span>
+        </a>
+      </li>
+      <li>
+        <a href="/recruit" class="flex flex-col items-center text-sm hover:text-main transition-colors">
+          <span class="font-english text-lg">RECRUIT</span>
+          <span class="mt-1 text-xs">採用情報</span>
+        </a>
+      </li>
+      <li>
+        <a href="/contact" class="flex flex-col items-center text-sm hover:text-main transition-colors">
+          <span class="font-english text-lg">CONTACT</span>
+          <span class="mt-1 text-xs">お問い合わせ</span>
         </a>
       </li>
     </ul>
   </nav>
-  <a
-    href="/"
-    class="flex flex-col items-center transition-opacity duration-[0.4s] sm:absolute sm:inset-x-0 sm:mx-auto sm:w-40 sm:hover:opacity-70"
+  
+  <!-- モバイルメニューボタン -->
+  <button
+    class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1"
+    id="mobile-menu-button"
   >
-    <Image
-      src={import("@images/logo.png")}
-      alt="ロゴ"
-      width={348}
-      height={319}
-      loading="eager"
-      class="w-16 sm:w-20"
-    />
-    <p class="ml-2 font-english text-xs sm:ml-0 sm:mt-2 sm:text-base">
-      RELAX CAFE
-    </p>
-  </a>
+    <span class="w-6 h-0.5 bg-main"></span>
+    <span class="w-6 h-0.5 bg-main"></span>
+    <span class="w-6 h-0.5 bg-main"></span>
+  </button>
 </header>

@@ -1,0 +1,166 @@
+---
+import UnderPageLayout from "@layouts/UnderPageLayout.astro";
+import CompanySection from "@components/CompanySection.svelte";
+---
+
+<UnderPageLayout 
+  title="会社概要"
+  description="株式会社ジョイゾーの会社概要、企業理念、事業内容、アクセス情報をご紹介します。"
+  mainLabel="COMPANY"
+  subLabel="会社概要"
+>
+  <div class="max-w-6xl mx-auto">
+    <!-- 企業理念セクション -->
+    <section class="mb-20">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-main font-english mb-6">PHILOSOPHY</h2>
+        <p class="text-xl text-gray-600">企業理念</p>
+      </div>
+      
+      <div class="bg-gradient-to-r from-main to-secondary p-12 rounded-3xl text-white text-center">
+        <h3 class="text-3xl font-bold mb-8">ENJOY YOUR WORLD.</h3>
+        <p class="text-lg leading-relaxed max-w-4xl mx-auto">
+          私たちは、DXと働き方の変化を通じて、お客様の世界をより楽しくすることを目指しています。
+          テクノロジーの力で、一人ひとりが自分の世界を楽しみ、充実した人生を送ることができる社会を創りたい。
+          それが私たちの願いです。
+        </p>
+      </div>
+    </section>
+
+    <!-- 会社概要セクション -->
+    <CompanySection client:only="svelte" />
+
+    <!-- 事業内容詳細セクション -->
+    <section class="mb-20">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-main font-english mb-6">SERVICES</h2>
+        <p class="text-xl text-gray-600">事業内容</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+          <div class="w-16 h-16 bg-main rounded-full flex items-center justify-center mb-6 mx-auto">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-main mb-4 text-center">システム開発</h3>
+          <p class="text-gray-600 text-center leading-relaxed">
+            お客様のニーズに合わせたカスタムシステムの開発から、既存システムの保守・運用まで、一貫したサービスを提供します。
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+          <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-6 mx-auto">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-main mb-4 text-center">DX支援</h3>
+          <p class="text-gray-600 text-center leading-relaxed">
+            デジタル変革の戦略立案から実装まで、お客様のDX推進を包括的にサポートします。
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+          <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-main mb-4 text-center">働き方改革</h3>
+          <p class="text-gray-600 text-center leading-relaxed">
+            自社での実践経験を活かし、お客様の働き方改革を支援します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- アクセス詳細セクション -->
+    <section class="mb-20">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-main font-english mb-6">ACCESS</h2>
+        <p class="text-xl text-gray-600">アクセス</p>
+      </div>
+      
+      <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-2xl font-bold text-main mb-6">所在地</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-6 h-6 bg-main rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">東京都渋谷区</p>
+                  <p class="text-gray-600 text-sm">詳細な住所はお問い合わせください</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-6 h-6 bg-secondary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">営業時間</p>
+                  <p class="text-gray-600 text-sm">平日 9:00〜18:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-2xl font-bold text-main mb-6">交通アクセス</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div class="w-6 h-6 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">最寄り駅</p>
+                  <p class="text-gray-600 text-sm">渋谷駅（各線）徒歩5分</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-6 h-6 bg-main rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">定休日</p>
+                  <p class="text-gray-600 text-sm">土日祝日</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section class="text-center">
+      <div class="bg-light p-12 rounded-3xl">
+        <h2 class="text-3xl font-bold text-main mb-6">お問い合わせ</h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          会社概要についての詳細情報や、サービスに関するご質問がございましたら、お気軽にお問い合わせください。
+        </p>
+        <a 
+          href="/contact" 
+          class="inline-block bg-main hover:bg-secondary text-white font-bold py-4 px-8 rounded-full transition-colors duration-300"
+        >
+          お問い合わせはこちら
+        </a>
+      </div>
+    </section>
+  </div>
+</UnderPageLayout>

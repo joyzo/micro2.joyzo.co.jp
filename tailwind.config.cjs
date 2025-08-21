@@ -33,15 +33,20 @@ module.exports = {
       xl: ".1em",
       "2xl": ".15em",
       "3xl": ".2em",
+      "tight": "-0.5em",
     },
     extend: {
       colors: {
-        main: "#2B1205",
-        secondary: "#1F0C02",
+        main: "#001F3F", // より深い青
+        secondary: "#003366",
+        accent: "#FF6B35", // アクセントカラー
+        dark: "#1A1A1A",
+        light: "#F8F9FA",
       },
       fontFamily: {
-        serif: ["Shippori Mincho", "serif"],
-        english: ["Mulish", "sans-serif"],
+        serif: ["Murecho", "Noto Sans JP", "sans-serif"],
+        english: ["Murecho", "Noto Sans JP", "sans-serif"],
+        sans: ["Murecho", "Noto Sans JP", "sans-serif"],
       },
     },
   },

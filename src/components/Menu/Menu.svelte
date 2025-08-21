@@ -16,26 +16,19 @@
 
   const links = [
     {
-      mainLabel: "MENU",
-      subLabel: "メニュー",
-      href: "/menu",
-      hiddenDesktop: true,
+      mainLabel: "ABOUT",
+      subLabel: "ジョイゾーとは",
+      href: "/aboutus",
     },
     {
-      mainLabel: "SHOP",
-      subLabel: "店舗情報",
-      href: "/shop",
-      hiddenDesktop: true,
+      mainLabel: "COMPANY",
+      subLabel: "会社概要",
+      href: "/company",
     },
     {
-      mainLabel: "NEWS",
-      subLabel: "お知らせ",
-      href: "/news/1",
-    },
-    {
-      mainLabel: "GALLERY",
-      subLabel: "ギャラリー",
-      href: "/gallery",
+      mainLabel: "RECRUIT",
+      subLabel: "採用情報",
+      href: "/recruit",
     },
     {
       mainLabel: "CONTACT",
