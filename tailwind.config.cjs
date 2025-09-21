@@ -33,20 +33,46 @@ module.exports = {
       xl: ".1em",
       "2xl": ".15em",
       "3xl": ".2em",
-      "tight": "-0.5em",
+      tight: "-0.5em",
     },
     extend: {
       colors: {
         main: "#001F3F", // より深い青
         secondary: "#003366",
-        accent: "#FF6B35", // アクセントカラー
+        accent: "#E63946", // より強く独特な赤オレンジ
         dark: "#1A1A1A",
         light: "#F8F9FA",
       },
+      borderRadius: {
+        subtle: "0.25rem", // 4px
+      },
       fontFamily: {
-        serif: ["Murecho", "Noto Sans JP", "sans-serif"],
-        english: ["Murecho", "Noto Sans JP", "sans-serif"],
-        sans: ["Murecho", "Noto Sans JP", "sans-serif"],
+        serif: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
+        english: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
+        sans: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
+        heading: [
+          "Inter",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+        ],
+      },
+      fontWeight: {
+        thin: "100",
+        extralight: "200",
+        light: "300",
+        normal: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+        extrabold: "800",
+        black: "900",
       },
     },
   },

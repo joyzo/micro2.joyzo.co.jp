@@ -1,181 +1,222 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  
+  import { onMount, onDestroy } from "svelte";
+
   export let message;
   export let index;
   export let isLast = false;
-  
+
   let sectionElement;
   let catchElement;
   let leadElement;
+  let imageElement;
 
-  
   onMount(async () => {
     // クライアントサイドでのみGSAPを読み込み
-    if (typeof window === 'undefined') return;
-    
-    const { default: gsap } = await import('gsap');
-    const { ScrollTrigger } = await import('gsap/ScrollTrigger.js');
-    
+    if (typeof window === "undefined") return;
+
+    const { default: gsap } = await import("gsap");
+    const { ScrollTrigger } = await import("gsap/ScrollTrigger.js");
+
     // GSAP ScrollTrigger プラグイン登録
     gsap.registerPlugin(ScrollTrigger);
-    
-    // グローバルなLenisインスタンスを使用（重複初期化を避ける）
-    // Lenisの初期化はLayout.astroで行われる
-    
+
     // 初期状態設定
-    gsap.set(catchElement, { 
-      opacity: 1, 
-      scale: 1, 
-      x: 0,
-      clipPath: "inset(0 100% 0 0)" // 右端から完全に隠す
+    gsap.set(catchElement, {
+      opacity: 0,
+      y: 30,
     });
-    gsap.set(leadElement, { 
-      opacity: 0, 
-      y: 50,
-      scale: 0.9
+    gsap.set(leadElement, {
+      opacity: 0,
+      y: 20,
     });
-    
+    if (imageElement) {
+      gsap.set(imageElement, {
+        opacity: 0,
+        scale: 0.95,
+      });
+    }
+
     // スクロールトリガー作成
     const tl = ScrollTrigger.create({
       trigger: sectionElement,
-      start: "top 70%", // 90%から70%に変更して、より画面に表示されてから開始
-      end: "bottom 10%",
-      scrub: 1.0, // 2.0から1.0に変更して、より軽量に
+      start: "top 75%",
+      end: "bottom 15%",
+      scrub: 1.5,
       onEnter: () => {
-        // キャッチフレーズ：clipPathで左から右へ文字を現す
-        gsap.to(catchElement, { 
-          clipPath: "inset(0 0% 0 0)", // 完全に表示
-          duration: 0.4, // 0.6から0.4に短縮
-          ease: "power2.out" 
+        // キャッチフレーズ：シンプルなフェードイン
+        gsap.to(catchElement, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
         });
-        
-        // リード文：0.1s遅延で下からフェードイン（0.2sから0.1sに短縮）
-        gsap.to(leadElement, { 
-          opacity: 1, 
-          y: 0, 
-          scale: 1,
-          duration: 0.3, // 0.4から0.3に短縮
-          ease: "power3.out", 
-          delay: 0.1 
+
+        // リード文：少し遅延でフェードイン
+        gsap.to(leadElement, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.2,
         });
+
+        // 画像：さらに遅延でフェードイン
+        if (imageElement) {
+          gsap.to(imageElement, {
+            opacity: 1,
+            scale: 1,
+            duration: 1.0,
+            ease: "power2.out",
+            delay: 0.4,
+          });
+        }
       },
       onLeave: () => {
-        // キャッチフレーズ：clipPathで右から左へ文字を隠す
-        gsap.to(catchElement, { 
-          clipPath: "inset(0 0% 0 100%)", // 左端から隠す
-          duration: 0.3, 
-          ease: "power2.inOut" 
-        });
-        
-        // リード文：下方向にスケールダウン
-        gsap.to(leadElement, { 
-          opacity: 0, 
-          y: 30, 
-          scale: 0.8,
-          duration: 0.2, 
-          ease: "power2.inOut" 
+        // 要素を少し薄くする（完全に消さない）
+        gsap.to([catchElement, leadElement, imageElement], {
+          opacity: 0.3,
+          duration: 0.5,
+          ease: "power2.inOut",
         });
       },
       onEnterBack: () => {
         // 戻ってきた時の再表示
-        gsap.to(catchElement, { 
-          clipPath: "inset(0 0% 0 0)", // 完全に表示
-          duration: 0.6, 
-          ease: "power2.out" 
+        gsap.to(catchElement, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
         });
-        gsap.to(leadElement, { 
-          opacity: 1, 
-          y: 0, 
-          scale: 1,
-          duration: 0.6, 
-          ease: "power3.out" 
+        gsap.to(leadElement, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          delay: 0.1,
         });
-      }
+        if (imageElement) {
+          gsap.to(imageElement, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.2,
+          });
+        }
+      },
     });
-    
+
     // prefers-reduced-motion対応
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set([catchElement, leadElement], { 
-        opacity: 1, 
-        scale: 1, 
-        clipPath: "inset(0 0% 0 0)",
-        y: 0 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set([catchElement, leadElement, imageElement], {
+        opacity: 1,
+        y: 0,
+        scale: 1,
       });
       tl.disable();
     }
-    
+
     return () => {
       tl.kill();
     };
   });
-  
+
   onDestroy(() => {
     // Lenisの破棄はLayout.astroで行われる
   });
 </script>
 
-<section 
+<section
   bind:this={sectionElement}
-  class="min-h-screen flex items-center justify-center relative"
+  class="relative flex min-h-screen items-center justify-center overflow-hidden"
   class:bg-white={index % 2 === 0}
-  class:bg-blue-900={index % 2 === 1}
+  class:bg-blue-50={index % 2 === 1}
   aria-labelledby="story-heading-{index}"
 >
-  <!-- 背景装飾 -->
-  <div class="absolute inset-0 -z-10 opacity-5">
-    <div class="absolute top-20 left-20 w-64 h-64 border border-current rounded-full"></div>
-    <div class="absolute bottom-20 right-20 w-32 h-32 border border-current transform rotate-45"></div>
+  <!-- 背景装飾（より控えめに） -->
+  <div class="opacity-3 absolute inset-0 -z-10">
+    <div
+      class="absolute left-32 top-32 h-48 w-48 rounded-full border border-current opacity-20"
+    />
+    <div
+      class="absolute bottom-32 right-32 h-24 w-24 rotate-45 transform border border-current opacity-20"
+    />
   </div>
-  
-  <div class="container mx-auto px-8 md:px-16 text-left max-w-7xl">
-    <!-- キャッチフレーズ -->
-    <div 
-      bind:this={catchElement}
-      class="mb-8 md:mb-12 w-full relative overflow-hidden text-left"
-    >
-      <!-- テキスト（clipPathでマスク効果を適用） -->
-      <h2 
-        id="story-heading-{index}"
-        class="text-6xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black leading-none"
-        class:text-blue-900={index % 2 === 0}
-        class:text-white={index % 2 === 1}
-        style="letter-spacing: 0.02em;"
-      >
-        {#each message.catch.split('、') as part, i}
-          {part}{i < message.catch.split('、').length - 1 ? '' : ''}
-          {#if i < message.catch.split('、').length - 1}
-            <br />
-          {/if}
-        {/each}
-      </h2>
+
+  <div class="container mx-auto max-w-7xl px-8 text-center md:px-16">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- 左側：テキストコンテンツ -->
+      <div class="order-2 lg:order-1">
+        <!-- キャッチフレーズ -->
+        <div bind:this={catchElement} class="relative mb-8 w-full">
+          <h2
+            id="story-heading-{index}"
+            class="md:text-7xl lg:text-8xl xl:text-9xl font-heading text-5xl font-bold leading-tight"
+            class:text-blue-900={index % 2 === 0}
+            class:text-blue-800={index % 2 === 1}
+            style="letter-spacing: 0.02em;"
+          >
+            {message.catch}
+          </h2>
+        </div>
+
+        <!-- リード文 -->
+        <div bind:this={leadElement} class="mx-auto mt-8 max-w-2xl lg:mx-0">
+          {#each message.body as paragraph}
+            <p
+              class="mb-4 text-lg leading-relaxed text-gray-700 last:mb-0 md:text-xl"
+            >
+              {paragraph}
+            </p>
+          {/each}
+
+          <!-- タグライン -->
+          <div class="mt-8">
+            <span
+              class="tracking-wider inline-block rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white"
+            >
+              {message.tagline}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側：画像 -->
+      {#if message.image}
+        <div class="order-1 lg:order-2">
+          <div bind:this={imageElement} class="group relative">
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src={message.image}
+                alt={message.imageAlt || ""}
+                class="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <!-- オーバーレイ効果 -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+            </div>
+
+            <!-- 装飾的な要素 -->
+            <div
+              class="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-blue-500 opacity-60"
+            />
+            <div
+              class="absolute -bottom-4 -left-4 h-6 w-6 rounded-full bg-blue-300 opacity-40"
+            />
+          </div>
+        </div>
+      {/if}
     </div>
-    
-    <!-- リード文 -->
-    <div 
-      bind:this={leadElement}
-      class="mt-8 md:mt-12 max-w-4xl text-left"
-    >
-      {#each message.body as paragraph}
-        <p 
-          class="text-base md:text-xl leading-relaxed mb-4 last:mb-0 opacity-80"
-          class:text-gray-800={index % 2 === 0}
-          class:text-white={index % 2 === 1}
-        >
-          {paragraph}
-        </p>
-      {/each}
-    </div>
-    
+
     <!-- 最後のセクション用の特別な表示 -->
     {#if isLast}
-      <div class="mt-16">
-        <div class="inline-block px-8 py-4 border-2 rounded-full border-current opacity-60">
-          <span 
-            class="text-lg font-bold tracking-wider"
-            class:text-blue-900={index % 2 === 0}
-            class:text-white={index % 2 === 1}
-          >
+      <div class="mt-20 text-center">
+        <div
+          class="inline-block rounded-full border-2 border-blue-600 px-10 py-5"
+        >
+          <span class="tracking-wider text-xl font-bold text-blue-600">
             JOYZO
           </span>
         </div>
@@ -190,11 +231,16 @@
     will-change: transform, opacity;
     transform: translateZ(0);
   }
-  
+
   /* スムーズなアニメーション */
   * {
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 画像のホバー効果 */
+  img {
+    will-change: transform;
   }
 </style>

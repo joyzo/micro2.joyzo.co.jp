@@ -1,107 +1,133 @@
 <script>
-  import { onMount } from 'svelte';
-  
-  let isVisible = false;
-  let sectionElement;
-  
-  onMount(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            isVisible = true;
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-    
-    if (sectionElement) {
-      observer.observe(sectionElement);
-    }
-    
-    return () => {
-      if (sectionElement) {
-        observer.unobserve(sectionElement);
-      }
-    };
-  });
+  import ScrollAnimation from "./ScrollAnimation.svelte";
 </script>
 
-<section 
-  bind:this={sectionElement}
-  id="about-section"
-  class="py-20 flex items-center bg-main"
-  style="z-index: 3;"
+<ScrollAnimation
+  trigger="top 85%"
+  duration={0.8}
+  stagger={0.15}
+  y={40}
+  opacity={0}
 >
-  <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <!-- 左側: ビジュアル要素（左右反転） -->
-      <div class="relative order-1">
-        <div class="relative z-10">
-          <!-- メインの円形要素（写真を配置） -->
-          <div class="w-80 h-80 md:w-96 md:h-96 bg-gradient-to-br from-white to-gray-200 rounded-full flex items-center justify-center mx-auto overflow-hidden">
-            <img 
-              src="/src/images/top/recruit_001.jpg" 
-              alt="私たちのミッション" 
-              class="w-full h-full object-cover rounded-full"
-            />
-          </div>
-          
-
-        </div>
-        
-        <!-- 背景の装飾線 -->
-        <div class="absolute inset-0 -z-10">
-          <div class="absolute top-20 left-10 w-32 h-0.5 bg-white opacity-30"></div>
-          <div class="absolute bottom-32 right-10 w-24 h-0.5 bg-white opacity-30"></div>
-          <div class="absolute top-1/2 left-1/4 w-16 h-0.5 bg-white opacity-20"></div>
-        </div>
+  <section id="about-section" class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="mb-16 text-center">
+        <h2
+          class="md:text-8xl lg:text-9xl mb-6 font-english text-5xl font-bold text-main sm:text-6xl"
+          data-scroll-animate
+        >
+          WORLDVIEW
+        </h2>
+        <p
+          class="mb-8 text-lg text-gray-600 sm:text-xl md:text-2xl"
+          data-scroll-animate
+        >
+          ジョイゾーの世界観
+        </p>
+        <div
+          class="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-main to-secondary"
+          data-scroll-animate
+        />
       </div>
-      
-      <!-- 右側: テキストコンテンツ（左右反転） -->
-      <div class="space-y-8 order-2">
-        <div class="space-y-4">
-          <h1 class="font-bold text-white leading-tight tracking-tight" style="font-size: clamp(3rem, 8vw, 7.5rem);">
-            <span class="whitespace-nowrap">私たちの</span><br />
-            <span class="whitespace-nowrap">ミッション</span>
-          </h1>
-          <p class="font-light text-gray-200 leading-relaxed font-english" style="font-size: clamp(1.5rem, 4vw, 3.75rem);">
-            <span class="whitespace-nowrap">ENJOY YOUR WORLD.</span>
-          </p>
+
+      <div class="mx-auto max-w-4xl space-y-8">
+        <!-- 私たちのビジョン -->
+        <div
+          class="transform rounded-subtle bg-light p-8 transition-all duration-500 hover:scale-105 hover:shadow-xl"
+          data-scroll-animate
+        >
+          <h3 class="mb-6 text-2xl font-bold text-main">私たちのビジョン</h3>
+          <div class="space-y-4">
+            <p class="leading-relaxed text-gray-700">
+              「新しい世界の新しい波を、楽しもう。」この言葉に込められた想いは、私たちが目指す未来そのものです。
+              テクノロジーの進化は、私たちの働き方や生活を大きく変えています。
+              この変化を「楽しむ」ことで、より豊かで充実した社会を創りたいと考えています。
+            </p>
+            <p class="leading-relaxed text-gray-700">
+              私たちは、単なるシステム開発会社ではありません。
+              お客様の業務効率化を通じて、創造的な仕事に集中できる環境を提供し、
+              結果として「楽しさ」を生み出すことを目指しています。
+            </p>
+          </div>
         </div>
-        
-        <div class="space-y-6 text-gray-200 leading-relaxed">
-          <p class="text-base md:text-lg">
-            株式会社ジョイゾーは、DXと働き方の変化を通じて、お客様の世界をより楽しくすることを目指す企業です。
-          </p>
-          
-          <p class="text-base md:text-lg">
-            「ENJOY YOUR WORLD.」というキャッチコピーには、私たちの想いが込められています。
-            テクノロジーの力で、一人ひとりが自分の世界を楽しみ、充実した人生を送ることができる社会を創りたい。
-            それが私たちの願いです。
-          </p>
-          
-          <p class="text-base md:text-lg">
-            システム39をはじめとする私たちのサービスは、単なるツールではありません。
-            お客様の業務効率化を支援し、より創造的な仕事に集中できる環境を提供することで、
-            結果として「楽しさ」を生み出すことを目指しています。
-          </p>
+
+        <!-- 私たちのアプローチ -->
+        <div
+          class="transform rounded-subtle bg-gradient-to-br from-main to-secondary p-8 text-white transition-all duration-500 hover:scale-105 hover:shadow-xl"
+          data-scroll-animate
+        >
+          <h3 class="mb-6 text-2xl font-bold">私たちのアプローチ</h3>
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div
+                class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white bg-opacity-20"
+              >
+                <span class="text-sm font-bold">1</span>
+              </div>
+              <div>
+                <h4 class="mb-2 font-bold">お客様中心の思考</h4>
+                <p class="text-sm opacity-90">
+                  技術ありきではなく、お客様の課題解決を最優先に考え、最適なソリューションを提供します。
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white bg-opacity-20"
+              >
+                <span class="text-sm font-bold">2</span>
+              </div>
+              <div>
+                <h4 class="mb-2 font-bold">継続的なパートナーシップ</h4>
+                <p class="text-sm opacity-90">
+                  一度きりの取引ではなく、長期的な関係性を築き、お客様の成長を継続的にサポートします。
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div
+                class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white bg-opacity-20"
+              >
+                <span class="text-sm font-bold">3</span>
+              </div>
+              <div>
+                <h4 class="mb-2 font-bold">イノベーションの追求</h4>
+                <p class="text-sm opacity-90">
+                  最新技術を活用しながらも、使いやすさと実用性を重視したソリューションを提供します。
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <!-- CTAボタン -->
-        <div class="pt-8">
-          <a 
-            href="/company" 
-            class="inline-flex items-center px-8 py-4 bg-white text-main font-bold rounded-lg hover:bg-gray-100 transition-colors duration-300 group"
-          >
-            <span>会社概要を見る</span>
-            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </a>
+
+        <!-- 私たちが大切にすること -->
+        <div
+          class="transform rounded-subtle bg-accent p-8 text-white transition-all duration-500 hover:scale-105 hover:shadow-xl"
+          data-scroll-animate
+        >
+          <h3 class="mb-6 text-2xl font-bold">私たちが大切にすること</h3>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <h4 class="mb-3 text-lg font-bold">人とのつながり</h4>
+              <p class="text-sm leading-relaxed opacity-90">
+                技術は手段であり、目的ではありません。
+                私たちは人と人とのつながりを大切にし、
+                テクノロジーを通じてより良い関係性を築くことを目指しています。
+              </p>
+            </div>
+            <div>
+              <h4 class="mb-3 text-lg font-bold">持続可能な成長</h4>
+              <p class="text-sm leading-relaxed opacity-90">
+                短期的な利益よりも、長期的な価値創造を重視します。
+                お客様、パートナー、社会全体が持続的に成長できる
+                エコシステムの構築を目指しています。
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section> 
+  </section>
+</ScrollAnimation>

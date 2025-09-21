@@ -13,12 +13,15 @@ export interface Props {
 }
 
 const { mainLabel, subLabel, ...props } = Astro.props;
+
+// 画像ファイル名を生成（スペースを削除して小文字に）
+const imageFileName = mainLabel.toLowerCase().replace(/\s+/g, "");
 ---
 
 <Layout {...props}>
   <div class="relative h-80">
     <Picture
-      src={import(`../images/${mainLabel.toLowerCase()}.png`)}
+      src={import(`../images/${imageFileName}.png`)}
       widths={[400, 800, 1200, 1600, 2000]}
       sizes="100vw"
       loading="eager"

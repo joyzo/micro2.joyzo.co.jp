@@ -1,10 +1,13 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import CareersSection from "@components/CareersSection.svelte";
+import RecruitSection from "@components/RecruitSection.svelte";
 ---
 
-<Layout title="採用情報 | JOYZO" description="JOYZOの採用情報をご覧いただけます。私たちと一緒に、お客様の世界をより楽しくしませんか？">
+<Layout
+  title="採用情報 | JOYZO"
+  description="あらゆる人がITの恩恵を受け、楽しく働ける社会をつくるために。JOYZOと一緒に働きませんか？"
+>
   <main>
-    <CareersSection />
+    <RecruitSection client:load />
   </main>
 </Layout>

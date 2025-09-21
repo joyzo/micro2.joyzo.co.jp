@@ -2,56 +2,54 @@
 ---
 
 <header
-  class="fixed inset-x-0 top-0 z-10 flex h-16 items-center justify-between px-6 sm:h-20 sm:px-8 bg-white bg-opacity-95 backdrop-blur-sm transition-transform duration-500"
+  class="fixed inset-x-0 top-0 z-50 flex h-20 items-center justify-between border-b border-gray-700 bg-black px-8"
   id="header"
 >
   <!-- ロゴ -->
   <a
     href="/"
-    class="flex items-center transition-opacity duration-[0.4s] hover:opacity-70"
+    class="flex items-center transition-opacity duration-300 hover:opacity-70"
   >
-    <p class="font-english text-xl sm:text-2xl font-bold text-main">
+    <p class="tracking-tighter font-heading text-2xl font-bold text-white">
       JOYZO
     </p>
   </a>
-  
+
   <!-- ナビゲーション -->
   <nav class="hidden md:block">
-    <ul class="flex items-center space-x-8">
+    <ul class="flex items-center space-x-12">
       <li>
-        <a href="/aboutus" class="flex flex-col items-center text-sm hover:text-main transition-colors">
-          <span class="font-english text-lg">ABOUT</span>
-          <span class="mt-1 text-xs">ジョイゾーとは</span>
+        <a
+          href="/aboutus"
+          class="font-heading text-lg font-medium text-white transition-colors duration-300 hover:text-gray-300"
+        >
+          ABOUT
         </a>
       </li>
       <li>
-        <a href="/company" class="flex flex-col items-center text-sm hover:text-main transition-colors">
-          <span class="font-english text-lg">COMPANY</span>
-          <span class="mt-1 text-xs">会社概要</span>
+        <a
+          href="/company"
+          class="font-heading text-lg font-medium text-white transition-colors duration-300 hover:text-gray-300"
+        >
+          COMPANY
         </a>
       </li>
       <li>
-        <a href="/recruit" class="flex flex-col items-center text-sm hover:text-main transition-colors">
-          <span class="font-english text-lg">RECRUIT</span>
-          <span class="mt-1 text-xs">採用情報</span>
+        <a
+          href="/recruit"
+          class="font-heading text-lg font-medium text-white transition-colors duration-300 hover:text-gray-300"
+        >
+          RECRUIT
         </a>
       </li>
       <li>
-        <a href="/contact" class="flex flex-col items-center text-sm hover:text-main transition-colors">
-          <span class="font-english text-lg">CONTACT</span>
-          <span class="mt-1 text-xs">お問い合わせ</span>
+        <a
+          href="/contact"
+          class="font-heading text-lg font-medium text-white transition-colors duration-300 hover:text-gray-300"
+        >
+          CONTACT
         </a>
       </li>
     </ul>
   </nav>
-  
-  <!-- モバイルメニューボタン -->
-  <button
-    class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1"
-    id="mobile-menu-button"
-  >
-    <span class="w-6 h-0.5 bg-main"></span>
-    <span class="w-6 h-0.5 bg-main"></span>
-    <span class="w-6 h-0.5 bg-main"></span>
-  </button>
 </header>
