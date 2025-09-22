@@ -103,8 +103,8 @@
         style="width: 40%;"
       >
         <div
-          class="tracking-tighter font-heading text-[2.5rem] font-black text-black transition-all duration-300 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftChanging
-            ? 'animate-rollup-left'
+          class="tracking-tighter font-heading text-[2.5rem] font-black text-black transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftChanging
+            ? 'animate-slot-rollup-left'
             : ''} {openingPhase === 3 ? 'animate-fade-out' : ''}"
           style="opacity: {isFadedOut ? 0 : 1};"
         >
@@ -145,10 +145,10 @@
         style="width: 40%;"
       >
         <div
-          class="tracking-tighter font-heading text-[2.5rem] font-black text-gray-600 transition-all duration-300 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
+          class="tracking-tighter font-heading text-[2.5rem] font-black text-gray-600 transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
             ? 'opacity-100'
             : 'opacity-0'} {isRightChanging
-            ? 'animate-rollup-right'
+            ? 'animate-slot-rollup-right'
             : ''} {openingPhase === 3 ? 'animate-fade-out' : ''}"
           style="opacity: {isFadedOut ? 0 : rightWord ? 1 : 0};"
         >
@@ -165,40 +165,36 @@
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 左側：ENJOY YOUR WORLD -->
         <div class="order-2 lg:order-1">
-        <div class="mb-8 overflow-hidden">
-          <div class="hero-text-container">
-            <h1
-              class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                ? 'animate-final-rollup-1'
-                : 'opacity-0'}"
-            >
-              ENJOY
-            </h1>
-            <h1
-              class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                ? 'animate-final-rollup-2'
-                : 'opacity-0'}"
-            >
-              <span class="font-heading text-black">YOUR</span>
-            </h1>
-            <h1
-              class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                ? 'animate-final-rollup-3'
-                : 'opacity-0'}"
-            >
-              WORLD.
-            </h1>
-          </div>
-        </div>
+           <div class="mb-8 overflow-hidden">
+             <div class="hero-text-container">
+               <h1
+                 class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                   ? 'animate-slot-final-1'
+                   : 'opacity-0'}"
+               >
+                 ENJOY
+               </h1>
+               <h1
+                 class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                   ? 'animate-slot-final-2'
+                   : 'opacity-0'}"
+               >
+                 <span class="font-heading text-black">YOUR</span>
+               </h1>
+               <h1
+                 class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                   ? 'animate-slot-final-3'
+                   : 'opacity-0'}"
+               >
+                 WORLD.
+               </h1>
+             </div>
+           </div>
         </div>
 
         <!-- 右側：説明文とボタン -->
         <div class="order-1 lg:order-2">
-          <div
-            class="mb-8 {isVisible
-              ? 'opacity-100'
-              : 'opacity-0'}"
-          >
+          <div class="mb-8 {isVisible ? 'opacity-100' : 'opacity-0'}">
             <p
               class="text-lg font-medium leading-relaxed text-gray-600 md:text-xl"
             >
@@ -206,11 +202,7 @@
             </p>
           </div>
 
-          <div
-            class="mb-8 {isVisible
-              ? 'opacity-100'
-              : 'opacity-0'}"
-          >
+          <div class="mb-8 {isVisible ? 'opacity-100' : 'opacity-0'}">
             <div
               class="mb-8 flex flex-col items-start justify-start gap-4 sm:flex-row"
             >
@@ -231,11 +223,7 @@
             </div>
           </div>
 
-          <div
-            class="{isVisible
-              ? 'opacity-100'
-              : 'opacity-0'}"
-          >
+          <div class={isVisible ? "opacity-100" : "opacity-0"}>
             <a
               href="/aboutus"
               class="inline-block text-lg text-gray-500 transition-colors duration-300 hover:text-black"
@@ -250,12 +238,46 @@
 {/if}
 
 <style>
-  @keyframes rollup-left {
+  @keyframes slot-rollup-left {
     0% {
       transform: translateY(100%);
       opacity: 0;
     }
-    50% {
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slot-rollup-right {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slot-final-1 {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    20% {
       opacity: 1;
     }
     100% {
@@ -264,12 +286,12 @@
     }
   }
 
-  @keyframes rollup-right {
+  @keyframes slot-final-2 {
     0% {
       transform: translateY(100%);
       opacity: 0;
     }
-    50% {
+    20% {
       opacity: 1;
     }
     100% {
@@ -278,32 +300,13 @@
     }
   }
 
-  @keyframes final-rollup-1 {
+  @keyframes slot-final-3 {
     0% {
       transform: translateY(100%);
       opacity: 0;
     }
-    100% {
-      transform: translateY(0);
+    20% {
       opacity: 1;
-    }
-  }
-
-  @keyframes final-rollup-2 {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes final-rollup-3 {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
     }
     100% {
       transform: translateY(0);
@@ -319,7 +322,6 @@
       opacity: 0;
     }
   }
-
 
   @keyframes wave-slide-in {
     0% {
@@ -343,32 +345,31 @@
     }
   }
 
-  .animate-rollup-left {
-    animation: rollup-left 0.4s ease-out;
+  .animate-slot-rollup-left {
+    animation: slot-rollup-left 0.6s ease-out;
   }
 
-  .animate-rollup-right {
-    animation: rollup-right 0.4s ease-out;
+  .animate-slot-rollup-right {
+    animation: slot-rollup-right 0.6s ease-out;
   }
 
-  .animate-final-rollup-1 {
-    animation: final-rollup-1 0.5s ease-out;
+  .animate-slot-final-1 {
+    animation: slot-final-1 0.6s ease-out;
   }
 
-  .animate-final-rollup-2 {
-    animation: final-rollup-2 0.5s ease-out;
+  .animate-slot-final-2 {
+    animation: slot-final-2 0.6s ease-out;
     animation-delay: 0.1s;
   }
 
-  .animate-final-rollup-3 {
-    animation: final-rollup-3 0.5s ease-out;
+  .animate-slot-final-3 {
+    animation: slot-final-3 0.6s ease-out;
     animation-delay: 0.2s;
   }
 
   .animate-fade-out {
     animation: fade-out 0.5s ease-out;
   }
-
 
   .hero-text-container h1 {
     margin-bottom: 1rem;
