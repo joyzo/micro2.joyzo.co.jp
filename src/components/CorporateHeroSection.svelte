@@ -92,7 +92,7 @@
 </script>
 
 {#if showOpening}
-  <div class="flex min-h-screen items-center justify-center bg-black px-4">
+  <div class="flex min-h-screen items-center justify-center bg-white px-4">
     <div
       class="relative flex h-32 w-full max-w-4xl items-center justify-center"
     >
@@ -102,7 +102,7 @@
         style="width: 40%;"
       >
         <div
-          class="tracking-tighter font-heading text-[2.5rem] font-black text-white transition-all duration-300 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftChanging
+          class="tracking-tighter font-heading text-[2.5rem] font-black text-black transition-all duration-300 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftChanging
             ? 'animate-slide-down'
             : ''} {openingPhase === 3 ? 'animate-fade-out' : ''}"
           style="opacity: {isFadedOut ? 0 : 1};"
@@ -113,7 +113,7 @@
 
       <!-- 中央のシンボル -->
       <div
-        class="absolute left-1/2 -translate-x-1/2 transform text-[2.5rem] font-black text-blue-400 transition-all duration-500 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {openingPhase ===
+        class="absolute left-1/2 -translate-x-1/2 transform text-[2.5rem] font-black text-gray-600 transition-all duration-500 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {openingPhase ===
         3
           ? 'animate-fade-out'
           : ''}"
@@ -144,7 +144,7 @@
         style="width: 40%;"
       >
         <div
-          class="tracking-tighter font-heading text-[2.5rem] font-black text-blue-400 transition-all duration-300 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
+          class="tracking-tighter font-heading text-[2.5rem] font-black text-gray-600 transition-all duration-300 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
             ? 'opacity-100'
             : 'opacity-0'} {isRightChanging
             ? 'animate-slide-up'
@@ -158,107 +158,89 @@
   </div>
 {:else}
   <section
-    class="relative flex h-screen items-center justify-center overflow-hidden bg-black"
+    class="relative flex min-h-screen items-center justify-center bg-white"
   >
-    <div class="absolute inset-0">
-      <img
-        src="/src/images/top/image_001.jpg"
-        alt="JOYZOの社員たち"
-        class="h-full w-full object-cover opacity-30"
-      />
-    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <!-- 左側：ENJOY YOUR WORLD -->
+        <div class="order-2 lg:order-1">
+          <div class="mb-8">
+            <h1
+              class="tracking-tighter duration-600 mb-4 font-heading text-[3rem] font-black leading-[0.9] text-black transition-all md:text-[4rem] lg:text-[5rem] xl:text-[6rem] {isVisible
+                ? 'animate-hero-slide-stagger-1 translate-x-0 opacity-100'
+                : '-translate-x-full opacity-0'}"
+            >
+              ENJOY
+            </h1>
+            <h1
+              class="tracking-tighter duration-600 mb-4 font-heading text-[3rem] font-black leading-[0.9] transition-all md:text-[4rem] lg:text-[5rem] xl:text-[6rem] {isVisible
+                ? 'animate-hero-slide-stagger-2 translate-x-0 opacity-100'
+                : 'translate-x-full opacity-0'}"
+            >
+              <span class="font-heading text-black">YOUR</span>
+            </h1>
+            <h1
+              class="tracking-tighter duration-600 mb-8 font-heading text-[3rem] font-black leading-[0.9] text-gray-600 transition-all md:text-[4rem] lg:text-[5rem] xl:text-[6rem] {isVisible
+                ? 'animate-hero-slide-stagger-3 translate-x-0 opacity-100'
+                : '-translate-x-full opacity-0'}"
+            >
+              WORLD.
+            </h1>
+          </div>
+        </div>
 
-    <div class="relative z-10 mx-auto max-w-6xl px-4 text-center text-white">
-      <div class="mb-12">
-        <h1
-          class="tracking-tighter duration-600 mb-4 font-heading text-[6rem] font-black leading-[0.8] text-white transition-all md:text-[8rem] lg:text-[12rem] xl:text-[14rem] {isVisible
-            ? 'animate-hero-slide-stagger-1 translate-x-0 opacity-100'
-            : '-translate-x-full opacity-0'}"
-        >
-          ENJOY
-        </h1>
-        <h1
-          class="tracking-tighter duration-600 mb-4 font-heading text-[6rem] font-black leading-[0.8] transition-all md:text-[8rem] lg:text-[12rem] xl:text-[14rem] {isVisible
-            ? 'animate-hero-slide-stagger-2 translate-x-0 opacity-100'
-            : 'translate-x-full opacity-0'}"
-        >
-          <span class="font-heading text-white">YOUR</span>
-        </h1>
-        <h1
-          class="tracking-tighter duration-600 mb-12 font-heading text-[6rem] font-black leading-[0.8] text-blue-400 transition-all md:text-[8rem] lg:text-[12rem] xl:text-[14rem] {isVisible
-            ? 'animate-hero-slide-stagger-3 translate-x-0 opacity-100'
-            : '-translate-x-full opacity-0'}"
-        >
-          WORLD.
-        </h1>
-      </div>
-
-      <div
-        class="duration-600 mb-12 max-w-3xl transition-all {isVisible
-          ? 'animate-wave-slide-in animate-delay-800 translate-y-0 opacity-100'
-          : 'translate-y-8 opacity-0'}"
-      >
-        <p class="text-lg font-medium leading-relaxed text-gray-300 md:text-xl">
-          革新的なテクノロジーと創造性で新しい価値を生み出し続ける
-        </p>
-      </div>
-
-      <div
-        class="duration-600 transition-all {isVisible
-          ? 'animate-scale-in animate-delay-1000 translate-y-0 opacity-100'
-          : 'translate-y-8 opacity-0'}"
-      >
-        <div
-          class="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row"
-        >
-          <a
-            href="/company"
-            class="rounded-none border-2 border-white px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-black"
+        <!-- 右側：説明文とボタン -->
+        <div class="order-1 lg:order-2">
+          <div
+            class="duration-600 mb-8 transition-all {isVisible
+              ? 'animate-wave-slide-in animate-delay-800 translate-y-0 opacity-100'
+              : 'translate-y-8 opacity-0'}"
           >
-            会社概要を見る
-          </a>
-          <a
-            href="https://joyzo.co.jp"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rounded-none bg-gray-800 px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+            <p class="text-lg font-medium leading-relaxed text-gray-600 md:text-xl">
+              革新的なテクノロジーと創造性で新しい価値を生み出し続ける
+            </p>
+          </div>
+
+          <div
+            class="duration-600 transition-all {isVisible
+              ? 'animate-scale-in animate-delay-1000 translate-y-0 opacity-100'
+              : 'translate-y-8 opacity-0'}"
           >
-            サービスを見る
-          </a>
+            <div
+              class="mb-8 flex flex-col items-start justify-start gap-4 sm:flex-row"
+            >
+              <a
+                href="/company"
+                class="rounded-none border-2 border-black px-8 py-4 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
+              >
+                会社概要を見る
+              </a>
+              <a
+                href="https://joyzo.co.jp"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-none bg-gray-800 px-8 py-4 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+              >
+                サービスを見る
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="opacity-0 transition-all delay-700 duration-1000"
+            class:opacity-100={isVisible}
+            class:translate-y-0={isVisible}
+            class:translate-y-8={!isVisible}
+          >
+            <a
+              href="/aboutus"
+              class="inline-block text-lg text-gray-500 transition-colors duration-300 hover:text-black"
+            >
+              JOYZO Manifesto をもっと見る →
+            </a>
+          </div>
         </div>
       </div>
-
-      <div
-        class="opacity-0 transition-all delay-700 duration-1000"
-        class:opacity-100={isVisible}
-        class:translate-y-0={isVisible}
-        class:translate-y-8={!isVisible}
-      >
-        <a
-          href="/aboutus"
-          class="inline-block text-xl text-gray-300 transition-colors duration-300 hover:text-white"
-        >
-          JOYZO Manifesto をもっと見る →
-        </a>
-      </div>
-    </div>
-
-    <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce"
-    >
-      <svg
-        class="h-8 w-8 text-gray-400"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-        />
-      </svg>
     </div>
   </section>
 {/if}
