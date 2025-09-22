@@ -164,28 +164,30 @@
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 左側：ENJOY YOUR WORLD -->
         <div class="order-2 lg:order-1">
-          <div class="mb-8">
-            <h1
-              class="tracking-tighter duration-600 mb-4 font-heading text-[4rem] font-black leading-[0.9] text-black transition-all md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                ? 'animate-hero-rollup-stagger-1 translate-y-0 opacity-100'
-                : 'translate-y-full opacity-0'}"
-            >
-              ENJOY
-            </h1>
-            <h1
-              class="tracking-tighter duration-600 mb-4 font-heading text-[4rem] font-black leading-[0.9] transition-all md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                ? 'animate-hero-rollup-stagger-2 translate-y-0 opacity-100'
-                : 'translate-y-full opacity-0'}"
-            >
-              <span class="font-heading text-black">YOUR</span>
-            </h1>
-            <h1
-              class="tracking-tighter duration-600 mb-8 font-heading text-[4rem] font-black leading-[0.9] text-gray-600 transition-all md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                ? 'animate-hero-rollup-stagger-3 translate-y-0 opacity-100'
-                : 'translate-y-full opacity-0'}"
-            >
-              WORLD.
-            </h1>
+          <div class="mb-8 overflow-hidden">
+            <div class="hero-text-container">
+              <h1
+                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                  ? 'animate-text-rollup-1'
+                  : 'opacity-0'}"
+              >
+                ENJOY
+              </h1>
+              <h1
+                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                  ? 'animate-text-rollup-2'
+                  : 'opacity-0'}"
+              >
+                <span class="font-heading text-black">YOUR</span>
+              </h1>
+              <h1
+                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                  ? 'animate-text-rollup-3'
+                  : 'opacity-0'}"
+              >
+                WORLD.
+              </h1>
+            </div>
           </div>
         </div>
 
@@ -285,7 +287,7 @@
     }
   }
 
-  @keyframes hero-rollup-stagger-1 {
+  @keyframes text-rollup-1 {
     0% {
       opacity: 0;
       transform: translateY(100%);
@@ -296,7 +298,7 @@
     }
   }
 
-  @keyframes hero-rollup-stagger-2 {
+  @keyframes text-rollup-2 {
     0% {
       opacity: 0;
       transform: translateY(100%);
@@ -307,7 +309,7 @@
     }
   }
 
-  @keyframes hero-rollup-stagger-3 {
+  @keyframes text-rollup-3 {
     0% {
       opacity: 0;
       transform: translateY(100%);
@@ -352,18 +354,22 @@
     animation: fade-out 0.5s ease-out;
   }
 
-  .animate-hero-rollup-stagger-1 {
-    animation: hero-rollup-stagger-1 0.8s ease-out;
+  .animate-text-rollup-1 {
+    animation: text-rollup-1 0.8s ease-out;
   }
 
-  .animate-hero-rollup-stagger-2 {
-    animation: hero-rollup-stagger-2 0.8s ease-out;
+  .animate-text-rollup-2 {
+    animation: text-rollup-2 0.8s ease-out;
     animation-delay: 0.2s;
   }
 
-  .animate-hero-rollup-stagger-3 {
-    animation: hero-rollup-stagger-3 0.8s ease-out;
+  .animate-text-rollup-3 {
+    animation: text-rollup-3 0.8s ease-out;
     animation-delay: 0.4s;
+  }
+
+  .hero-text-container h1 {
+    margin-bottom: 1rem;
   }
 
   .animate-wave-slide-in {
