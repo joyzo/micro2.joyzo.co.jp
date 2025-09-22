@@ -165,31 +165,31 @@
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 左側：ENJOY YOUR WORLD -->
         <div class="order-2 lg:order-1">
-           <div class="mb-8 overflow-hidden">
-             <div class="hero-text-container">
-               <h1
-                 class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                   ? 'animate-slot-final-1'
-                   : 'opacity-0'}"
-               >
-                 ENJOY
-               </h1>
-               <h1
-                 class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                   ? 'animate-slot-final-2'
-                   : 'opacity-0'}"
-               >
-                 <span class="font-heading text-black">YOUR</span>
-               </h1>
-               <h1
-                 class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
-                   ? 'animate-slot-final-3'
-                   : 'opacity-0'}"
-               >
-                 WORLD.
-               </h1>
-             </div>
-           </div>
+          <div class="mb-8 overflow-hidden">
+            <div class="hero-text-container">
+              <h1
+                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                  ? 'animate-slot-final-1'
+                  : 'opacity-0'}"
+              >
+                ENJOY
+              </h1>
+              <h1
+                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                  ? 'animate-slot-final-2'
+                  : 'opacity-0'}"
+              >
+                <span class="font-heading text-black">YOUR</span>
+              </h1>
+              <h1
+                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                  ? 'animate-slot-final-3'
+                  : 'opacity-0'}"
+              >
+                WORLD.
+              </h1>
+            </div>
+          </div>
         </div>
 
         <!-- 右側：説明文とボタン -->
@@ -198,7 +198,7 @@
             <p
               class="text-lg font-medium leading-relaxed text-gray-600 md:text-xl"
             >
-              革新的なテクノロジーと創造性で新しい価値を生み出し続ける
+              ジョイゾーは、革新的なテクノロジーと創造性で新しい価値を生み出し続けます
             </p>
           </div>
 
