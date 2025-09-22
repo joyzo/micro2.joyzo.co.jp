@@ -182,7 +182,7 @@
             ? 'animate-hero-slide-stagger-2 translate-x-0 opacity-100'
             : 'translate-x-full opacity-0'}"
         >
-          <span class="text-white">YOUR</span>
+          <span class="text-white font-heading">YOUR</span>
         </h1>
         <h1
           class="tracking-tighter duration-600 mb-12 font-heading text-[6rem] font-black leading-[0.8] text-blue-400 transition-all md:text-[8rem] lg:text-[12rem] xl:text-[14rem] {isVisible
