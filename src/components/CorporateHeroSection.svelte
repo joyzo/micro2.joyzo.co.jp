@@ -166,23 +166,23 @@
         <div class="order-2 lg:order-1">
           <div class="mb-8">
             <h1
-              class="tracking-tighter duration-600 mb-4 font-heading text-[3rem] font-black leading-[0.9] text-black transition-all md:text-[4rem] lg:text-[5rem] xl:text-[6rem] {isVisible
-                ? 'animate-hero-slide-stagger-1 translate-x-0 opacity-100'
-                : '-translate-x-full opacity-0'}"
+              class="tracking-tighter duration-600 mb-4 font-heading text-[4rem] font-black leading-[0.9] text-black transition-all md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                ? 'animate-hero-rollup-stagger-1 translate-y-0 opacity-100'
+                : 'translate-y-full opacity-0'}"
             >
               ENJOY
             </h1>
             <h1
-              class="tracking-tighter duration-600 mb-4 font-heading text-[3rem] font-black leading-[0.9] transition-all md:text-[4rem] lg:text-[5rem] xl:text-[6rem] {isVisible
-                ? 'animate-hero-slide-stagger-2 translate-x-0 opacity-100'
-                : 'translate-x-full opacity-0'}"
+              class="tracking-tighter duration-600 mb-4 font-heading text-[4rem] font-black leading-[0.9] transition-all md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                ? 'animate-hero-rollup-stagger-2 translate-y-0 opacity-100'
+                : 'translate-y-full opacity-0'}"
             >
               <span class="font-heading text-black">YOUR</span>
             </h1>
             <h1
-              class="tracking-tighter duration-600 mb-8 font-heading text-[3rem] font-black leading-[0.9] text-gray-600 transition-all md:text-[4rem] lg:text-[5rem] xl:text-[6rem] {isVisible
-                ? 'animate-hero-slide-stagger-3 translate-x-0 opacity-100'
-                : '-translate-x-full opacity-0'}"
+              class="tracking-tighter duration-600 mb-8 font-heading text-[4rem] font-black leading-[0.9] text-gray-600 transition-all md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                ? 'animate-hero-rollup-stagger-3 translate-y-0 opacity-100'
+                : 'translate-y-full opacity-0'}"
             >
               WORLD.
             </h1>
@@ -285,36 +285,36 @@
     }
   }
 
-  @keyframes hero-slide-stagger-1 {
+  @keyframes hero-rollup-stagger-1 {
     0% {
       opacity: 0;
-      transform: translateX(-100%);
+      transform: translateY(100%);
     }
     100% {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
-  @keyframes hero-slide-stagger-2 {
+  @keyframes hero-rollup-stagger-2 {
     0% {
       opacity: 0;
-      transform: translateX(100%);
+      transform: translateY(100%);
     }
     100% {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
-  @keyframes hero-slide-stagger-3 {
+  @keyframes hero-rollup-stagger-3 {
     0% {
       opacity: 0;
-      transform: translateX(-100%);
+      transform: translateY(100%);
     }
     100% {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
@@ -352,16 +352,18 @@
     animation: fade-out 0.5s ease-out;
   }
 
-  .animate-hero-slide-stagger-1 {
-    animation: hero-slide-stagger-1 0.6s ease-out;
+  .animate-hero-rollup-stagger-1 {
+    animation: hero-rollup-stagger-1 0.8s ease-out;
   }
 
-  .animate-hero-slide-stagger-2 {
-    animation: hero-slide-stagger-2 0.6s ease-out;
+  .animate-hero-rollup-stagger-2 {
+    animation: hero-rollup-stagger-2 0.8s ease-out;
+    animation-delay: 0.2s;
   }
 
-  .animate-hero-slide-stagger-3 {
-    animation: hero-slide-stagger-3 0.6s ease-out;
+  .animate-hero-rollup-stagger-3 {
+    animation: hero-rollup-stagger-3 0.8s ease-out;
+    animation-delay: 0.4s;
   }
 
   .animate-wave-slide-in {
