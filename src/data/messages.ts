@@ -2,40 +2,51 @@ export interface Message {
   catch: string;
   body: string[];
   tagline: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export const messages: Message[] = [
   {
-    catch: "退屈に慣れるな",
+    catch: "変わることを楽しもう。",
     body: [
-      "古い仕組みに縛られても、何も変わらない。",
-      "現場も、自分自身も、もっと面白くできるはずだ。"
+      "同じ毎日を繰り返すだけじゃなく、",
+      "新しい工夫や挑戦を取り入れていく。",
+      "その変化を楽しめることが、次の一歩を生む。"
     ],
-    tagline: "BREAK FREE"
+    tagline: "ENJOY CHANGE",
+    image: "/src/images/top/team-collaboration.jpg",
+    imageAlt: "チームで協力して働く様子"
   },
   {
-    catch: "正解なんて、まだない",
+    catch: "進みながら見つけていこう。",
     body: [
-      "DXも業務改善も、答えはひとつじゃない。",
-      "試し、間違え、やり直す。そこから進化は生まれる。"
+      "正解はひとつじゃない。",
+      "試行錯誤の先にこそ、本当に役立つ答えがある。"
     ],
-    tagline: "KEEP TRYING"
+    tagline: "FIND THE WAY",
+    image: "/src/images/top/business-meeting.jpg",
+    imageAlt: "打ち合わせの様子"
   },
   {
-    catch: "技術は、楽しむ、ためにある",
+    catch: "便利だけじゃ、つまらない。",
     body: [
-      "ただ効率化するだけじゃ足りない。",
-      "楽しさがあるから、人も組織も進化を続けられる。"
+      "システムは効率化のためだけにあるんじゃない。",
+      "そこにワクワクがあるからこそ、人も現場も前に進める。"
     ],
-    tagline: "ENJOY TECH"
+    tagline: "FIND EXCITEMENT",
+    image: "/src/images/top/team-laughing.jpg",
+    imageAlt: "チームで談笑している様子"
   },
   {
-    catch: "世界を面白くするのは、あなた自身だ",
+    catch: "楽しむ人から、世界は変わる。",
     body: [
-      "会社でも、現場でも、未来を変えるのは結局ひとりの行動。",
-      "その一歩が、周りを動かし、世界を変える。"
+      "小さな一歩でも、楽しんで取り組めば、",
+      "それがやがて大きな変化をつくり出す。"
     ],
-    tagline: "BE THE CHANGE"
+    tagline: "BE THE CHANGE",
+    image: "/src/images/top/learning-session.jpg",
+    imageAlt: "学習セッションの様子"
   },
   {
     catch: "ENJOY YOUR WORLD",
@@ -44,6 +55,8 @@ export const messages: Message[] = [
       "自分でつくり、自分で変える。",
       "その挑戦を、私たちは支え続ける。"
     ],
-    tagline: "JOYZO"
+    tagline: "JOYZO",
+    image: "/src/images/top/company-culture.jpg",
+    imageAlt: "会社の文化を表す写真"
   }
 ];

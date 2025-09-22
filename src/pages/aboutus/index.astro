@@ -1,10 +1,263 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import AboutSection from "@components/AboutSection.svelte";
 ---
 
-<Layout title="ジョイゾーとは | JOYZO" description="ENJOY YOUR WORLD. ジョイゾーは、DXと働き方の変化を通じて、お客様の世界をより楽しくすることを目指す企業です。">
-  <main>
-    <AboutSection />
-  </main>
-</Layout>
+<UnderPageLayout
+  title="ジョイゾーとは"
+  description="ENJOY YOUR WORLD. ジョイゾーは、DXと働き方の変化を通じて、お客様の世界をより楽しくすることを目指す企業です。"
+  mainLabel="ABOUT US"
+  subLabel="ジョイゾーとは"
+>
+  <div class="mx-auto max-w-6xl space-y-20">
+    <!-- ミッションセクション -->
+    <section>
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-english text-4xl font-bold text-main">MISSION</h2>
+        <p class="text-xl text-gray-600">私たちのミッション</p>
+      </div>
+
+      <div
+        class="rounded-subtle bg-gradient-to-r from-main to-secondary p-12 text-center text-white"
+      >
+        <h3 class="mb-8 text-3xl font-bold">ENJOY YOUR WORLD.</h3>
+        <p class="mx-auto max-w-4xl text-lg leading-relaxed">
+          人生を楽しくしたいと願っている人のために、その手段としてのエンジニアリングの可能性を示唆し、価値観の変化によって社会に新しい波を広げる。
+        </p>
+      </div>
+    </section>
+
+    <!-- ジョイゾーの世界観セクション -->
+    <AboutSection client:only="svelte" />
+
+    <!-- 私たちの価値観セクション -->
+    <section>
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-english text-4xl font-bold text-main">VALUES</h2>
+        <p class="text-xl text-gray-600">私たちの価値観</p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <div
+          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
+        >
+          <div
+            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-main"
+          >
+            <svg
+              class="h-8 w-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-4 text-center text-xl font-bold text-main">
+            パッション
+          </h3>
+          <p class="text-center leading-relaxed text-gray-600">
+            私たちは技術への情熱と、お客様の成功への情熱を持って、常に最高のソリューションを提供します。
+          </p>
+        </div>
+
+        <div
+          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
+        >
+          <div
+            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary"
+          >
+            <svg
+              class="h-8 w-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="mb-4 text-center text-xl font-bold text-main">
+            イノベーション
+          </h3>
+          <p class="text-center leading-relaxed text-gray-600">
+            既存の枠にとらわれず、常に新しいアプローチでお客様の課題解決に取り組みます。
+          </p>
+        </div>
+
+        <div
+          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
+        >
+          <div
+            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent"
+          >
+            <svg
+              class="h-8 w-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="mb-4 text-center text-xl font-bold text-main">
+            コラボレーション
+          </h3>
+          <p class="text-center leading-relaxed text-gray-600">
+            お客様との協働を大切にし、共に成長していくパートナーシップを築きます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 私たちのストーリーセクション -->
+    <section>
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-english text-4xl font-bold text-main">STORY</h2>
+        <p class="text-xl text-gray-600">私たちのストーリー</p>
+      </div>
+
+      <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+        <div class="grid gap-8 md:grid-cols-2">
+          <div>
+            <h3 class="mb-6 text-2xl font-bold text-main">2010年の創業</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-main"
+                >
+                  <svg
+                    class="h-4 w-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">kintoneリリース当初から</p>
+                  <p class="text-sm text-gray-600">
+                    kintoneを専門に取り扱うSIerとして活動開始
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary"
+                >
+                  <svg
+                    class="h-4 w-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">cybozu公認SIパートナー</p>
+                  <p class="text-sm text-gray-600">
+                    サイボウズ社から正式に認定
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-6 text-2xl font-bold text-main">現在の実績</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-accent"
+                >
+                  <svg
+                    class="h-4 w-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">1500社を超える実績</p>
+                  <p class="text-sm text-gray-600">
+                    「システム39」を通じて多くのお客様の課題解決
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-main"
+                >
+                  <svg
+                    class="h-4 w-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium">40名を超える認定資格取得者</p>
+                  <p class="text-sm text-gray-600">kintoneスペシャリスト集団</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- お問い合わせセクション -->
+    <section class="text-center">
+      <div class="rounded-subtle bg-light p-12">
+        <h2 class="mb-6 text-3xl font-bold text-main">お問い合わせ</h2>
+        <p class="mx-auto mb-8 max-w-2xl text-lg text-gray-600">
+          ジョイゾーについての詳細情報や、サービスに関するご質問がございましたら、お気軽にお問い合わせください。
+        </p>
+        <a
+          href="/contact"
+          class="inline-block rounded-full bg-main px-8 py-4 font-bold text-white transition-colors duration-300 hover:bg-secondary"
+        >
+          お問い合わせはこちら
+        </a>
+      </div>
+    </section>
+  </div>
+</UnderPageLayout>

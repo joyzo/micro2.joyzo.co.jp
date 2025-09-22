@@ -1,28 +1,33 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import HeroAnimation from "@components/HeroAnimation.svelte";
-import ScrollStorySection from "@components/ScrollStorySection.svelte";
-import CoreCopySection from "@components/CoreCopySection.svelte";
+import CorporateHeroSection from "@components/CorporateHeroSection.svelte";
+import VisionSection from "@components/VisionSection.svelte";
+import ManifestoSection from "@components/ManifestoSection.svelte";
+import PartnersSection from "@components/PartnersSection.svelte";
+import RecruitSection from "@components/RecruitSection.svelte";
+import StoryMediaSection from "@components/StoryMediaSection.svelte";
 import ContactSection from "@components/ContactSection.svelte";
-import { messages } from "../data/messages";
 ---
 
 <Layout>
-  <!-- Hero Section -->
-  <HeroAnimation client:load />
+  <!-- 1. コーポレートヒーローセクション -->
+  <CorporateHeroSection client:load />
   
-  <!-- Story Sections (4つのメッセージセクション) -->
-  {messages.slice(0, 4).map((message, index) => (
-    <ScrollStorySection 
-      client:only="svelte" 
-      message={message} 
-      index={index} 
-    />
-  ))}
+  <!-- 2. 会社ビジョンセクション -->
+  <VisionSection client:load />
   
-  <!-- Core Copy Section (ENJOY YOUR WORLD.) -->
-  <CoreCopySection client:only="svelte" />
+  <!-- 3. マニフェスト一覧セクション -->
+  <ManifestoSection client:load />
   
-  <!-- Contact Section -->
-  <ContactSection />
+  <!-- 4. 実績・パートナーセクション -->
+  <PartnersSection client:load />
+  
+  <!-- 5. 採用セクション -->
+  <RecruitSection client:load />
+  
+  <!-- 6. ストーリー・メディアセクション -->
+  <StoryMediaSection client:load />
+  
+  <!-- 7. お問い合わせセクション -->
+  <ContactSection client:load />
 </Layout>

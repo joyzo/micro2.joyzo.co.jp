@@ -86,13 +86,22 @@ npm run build
 
 ## 主要コンポーネント
 
-- `HeroAnimation.svelte` - トップページのヒーローアニメーション
+### トップページ（新デザイン）
+- `NewHeroSection.svelte` - ヒーローセクション（マニフェストコピーのループ表示）
+- `VisionSection.svelte` - 会社ビジョンセクション
+- `ManifestoSection.svelte` - マニフェスト一覧セクション（カードUI、モバイルスワイプ対応）
+- `PartnersSection.svelte` - 実績・パートナーセクション
+- `RecruitSection.svelte` - 採用セクション（SNSリンク付き）
+- `StoryMediaSection.svelte` - ストーリー・メディアセクション（note、SNS、ダウンロード）
+- `ContactSection.svelte` - お問い合わせセクション（フォームブリッジ連携）
+
+### 既存コンポーネント
+- `HeroAnimation.svelte` - 旧トップページのヒーローアニメーション
 - `ScrollStorySection.svelte` - スクロールストーリーセクション
 - `CoreCopySection.svelte` - コアコピーセクション
 - `AboutSection.svelte` - ジョイゾーとはセクション
 - `CompanySection.svelte` - 会社概要セクション
 - `CareersSection.svelte` - 採用情報セクション
-- `ContactSection.svelte` - お問い合わせセクション
 
 ## Vercel へのデプロイ
 
