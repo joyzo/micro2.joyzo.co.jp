@@ -10,11 +10,12 @@
   let isRightChanging = false;
   let isVisible = false;
   let isFadedOut = false; // フェイドアウト完了フラグ
+  let isRotating = false; // ?から×への回転アニメーション用
 
   const keywordPairs = [
-    { left: "ENJOY", right: "IT" },
-    { left: "DX", right: "TECH" },
-    { left: "AI", right: "WORK" },
+    { left: "DX", right: "CREATIVE" },
+    { left: "AI", right: "IT" },
+    { left: "TECH", right: "WORK" },
     { left: "ENJOY", right: "YOUR" },
   ];
 
@@ -27,8 +28,13 @@
       setTimeout(() => {
         openingPhase = 1; // 移行フェーズ開始
         setTimeout(() => {
+          isRotating = true;
           centerSymbol = "×";
           rightWord = "IT";
+          // 回転アニメーション終了
+          setTimeout(() => {
+            isRotating = false;
+          }, 500);
         }, 300);
       }, 1500);
 
@@ -100,7 +106,7 @@
       <!-- 左側のテキスト -->
       <div
         class="absolute left-0 flex items-center justify-end overflow-hidden"
-        style="width: 40%;"
+        style="width: 45%;"
       >
         <div
           class="tracking-tighter font-heading text-[2.5rem] font-black text-black transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftChanging
@@ -117,7 +123,7 @@
         class="absolute left-1/2 -translate-x-1/2 transform text-[2.5rem] font-black text-gray-600 transition-all duration-500 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {openingPhase ===
         3
           ? 'animate-fade-out'
-          : ''}"
+          : ''} {isRotating ? 'animate-rotate-symbol' : ''}"
         style="opacity: {isFadedOut ? 0 : 1};"
       >
         {#if centerSymbol === "?"}
@@ -142,7 +148,7 @@
       <!-- 右側のテキスト -->
       <div
         class="absolute right-0 flex items-center justify-start overflow-hidden"
-        style="width: 40%;"
+        style="width: 45%;"
       >
         <div
           class="tracking-tighter font-heading text-[2.5rem] font-black text-gray-600 transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
@@ -164,7 +170,7 @@
     <div class="relative z-10 mx-auto max-w-7xl px-4">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 左側：ENJOY YOUR WORLD -->
-        <div class="order-2 lg:order-1">
+        <div class="order-1 lg:order-1">
           <div class="mb-8 overflow-hidden">
             <div class="hero-text-container">
               <h1
@@ -193,12 +199,12 @@
         </div>
 
         <!-- 右側：説明文とボタン -->
-        <div class="order-1 lg:order-2">
+        <div class="order-2 lg:order-2">
           <div class="mb-8 {isVisible ? 'opacity-100' : 'opacity-0'}">
             <p
               class="text-lg font-medium leading-relaxed text-gray-600 md:text-xl"
             >
-              ジョイゾーは、革新的なテクノロジーと創造性で新しい価値を生み出し続けます
+              ジョイゾーのジョイはエンジョイのジョイ。
             </p>
           </div>
 
@@ -345,6 +351,15 @@
     }
   }
 
+  @keyframes rotate-symbol {
+    0% {
+      transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) rotate(180deg);
+    }
+  }
+
   .animate-slot-rollup-left {
     animation: slot-rollup-left 0.6s ease-out;
   }
@@ -381,6 +396,10 @@
 
   .animate-scale-in {
     animation: scale-in 0.6s ease-out;
+  }
+
+  .animate-rotate-symbol {
+    animation: rotate-symbol 0.5s ease-in-out;
   }
 
   .animate-delay-800 {

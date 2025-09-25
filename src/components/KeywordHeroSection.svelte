@@ -1,47 +1,72 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  // キーワードの配列
-  const keywords = [
-    "ハローワールド",
-    "メタメセン",
-    "フッカラー",
-    "モクテキーパー",
-    "リスペリレー",
-    "ギブレルヤツ",
-    "ジブンジク",
-    "カラダシホン",
-    "アイテメガネ",
-    "ENJOY YOUR WORLD",
-  ];
+  // 左側のキーワード（ENJOYから始まって?が×に変わる）
+  const leftKeywords = ["ENJOY", "?", "×"];
 
-  let currentKeyword = "";
-  let keywordIndex = 0;
-  let isVisible = false;
+  // 右側のキーワード（IT以外から始まる）
+  const rightKeywords = ["CREATIVE", "IT", "DESIGN", "TECH", "INNOVATION"];
+
   let showContent = false;
+
+  // 左側と右側のキーワード制御
+  let leftKeyword = "";
+  let rightKeyword = "";
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let leftVisible = false;
+  let rightVisible = false;
+  let isRotating = false; // ?から×への回転アニメーション用
 
   onMount(() => {
     // 初期表示
-    currentKeyword = keywords[0] || "";
-    isVisible = true;
+    leftKeyword = leftKeywords[0] || "";
+    rightKeyword = rightKeywords[0] || "";
+    leftVisible = true;
+    rightVisible = true;
 
     // コンテンツ表示の遅延
     setTimeout(() => {
       showContent = true;
     }, 500);
 
-    // 2秒ごとにキーワードを切り替え
-    const interval = setInterval(() => {
-      keywordIndex = (keywordIndex + 1) % keywords.length;
-      isVisible = false;
-
+    // 左側のアニメーション（ENJOY -> ? -> ×）
+    setTimeout(() => {
+      leftIndex = 1;
+      leftVisible = false;
       setTimeout(() => {
-        currentKeyword = keywords[keywordIndex] || "";
-        isVisible = true;
+        leftKeyword = leftKeywords[leftIndex] || "";
+        leftVisible = true;
       }, 300);
     }, 2000);
 
-    return () => clearInterval(interval);
+    // ?から×への変化（回転アニメーション付き）
+    setTimeout(() => {
+      leftIndex = 2;
+      isRotating = true;
+      leftVisible = false;
+      setTimeout(() => {
+        leftKeyword = leftKeywords[leftIndex] || "";
+        leftVisible = true;
+        // 回転アニメーション終了
+        setTimeout(() => {
+          isRotating = false;
+        }, 500);
+      }, 300);
+    }, 4000);
+
+    // 右側のアニメーション（2秒ごとに切り替え）
+    const rightInterval = setInterval(() => {
+      rightIndex = (rightIndex + 1) % rightKeywords.length;
+      rightVisible = false;
+
+      setTimeout(() => {
+        rightKeyword = rightKeywords[rightIndex] || "";
+        rightVisible = true;
+      }, 300);
+    }, 2000);
+
+    return () => clearInterval(rightInterval);
   });
 </script>
 
@@ -55,15 +80,30 @@
       <h1
         class="md:text-8xl lg:text-9xl tracking-tighter font-heading text-6xl font-black leading-tight"
       >
-        <span
-          class="transition-all duration-500"
-          class:opacity-100={isVisible}
-          class:opacity-0={!isVisible}
-          class:translate-y-0={isVisible}
-          class:translate-y-8={!isVisible}
-        >
-          {currentKeyword}
-        </span>
+        <div class="flex items-center justify-center gap-8">
+          <!-- 左側のキーワード -->
+          <span
+            class="transition-all duration-500"
+            class:opacity-100={leftVisible}
+            class:opacity-0={!leftVisible}
+            class:translate-y-0={leftVisible}
+            class:translate-y-8={!leftVisible}
+            class:rotate-180={isRotating}
+          >
+            {leftKeyword}
+          </span>
+
+          <!-- 右側のキーワード -->
+          <span
+            class="transition-all duration-500"
+            class:opacity-100={rightVisible}
+            class:opacity-0={!rightVisible}
+            class:translate-y-0={rightVisible}
+            class:translate-y-8={!rightVisible}
+          >
+            {rightKeyword}
+          </span>
+        </div>
       </h1>
     </div>
 
@@ -141,5 +181,11 @@
 <style>
   .hero-section {
     background: #ffffff;
+  }
+
+  /* 回転アニメーション用のスタイル */
+  .rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.5s ease-in-out;
   }
 </style>
