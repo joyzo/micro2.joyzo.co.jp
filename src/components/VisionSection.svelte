@@ -13,14 +13,12 @@
           >
             ENJOY YOUR WORLD.
           </h2>
-          <p class="text-2xl text-gray-600">
-            それは、私たちが届けたい体験です。
-          </p>
+          <p class="text-2xl text-gray-600">仕事を、生活を、未来を、楽しめ。</p>
         </div>
 
         <p class="text-lg leading-relaxed text-gray-700">
-          kintoneをはじめとするサービスで、<br />
-          お客様の世界をもっと快適に、もっと創造的にしていきます。
+          きっと、楽しいはずのこと。<br />
+          世界をもっと快適に、もっと創造的に。
         </p>
 
         <div class="flex flex-col gap-4 pt-6 sm:flex-row">
