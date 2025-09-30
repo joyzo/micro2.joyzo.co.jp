@@ -7,6 +7,7 @@ import Menu from "@components/Menu/Menu.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import GA4 from "@components/GA4.astro";
+import SurferDecoration from "@components/SurferDecoration.svelte";
 
 export interface Props {
   title?: string;
@@ -63,21 +64,15 @@ const description = props.description ?? BASE_DESCRIPTION;
     <Footer />
 
     <Menu />
+    
+    <!-- サーファー装飾コンポーネント -->
+    <SurferDecoration client:load />
 
     <script>
       import "@global/smallDevice";
       // import "@global/smoothScroll"; // スクロール処理の競合を避けるため完全に無効化
     </script>
     
-    <!-- スクロール演出初期化 -->
-    <script type="module">
-      import { initScrollAnimations } from "@utils/scrollAnimations";
-      
-      // ページ読み込み完了後にスクロール演出を初期化
-      window.addEventListener('load', () => {
-        initScrollAnimations();
-      });
-    </script>
     
     <!-- プリフェッチエラー対策 -->
     <script>
