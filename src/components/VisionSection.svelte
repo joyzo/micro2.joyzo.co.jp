@@ -56,7 +56,7 @@
       <div class="relative">
         <div class="relative overflow-hidden rounded-2xl shadow-xl">
           <img
-            src="/src/images/top/about.png"
+            src="/images/top/about.png"
             alt="社員・顧客・チームの雰囲気"
             class="h-96 w-full object-cover"
           />

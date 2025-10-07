@@ -22,7 +22,7 @@
   <!-- 背景画像 -->
   <div class="absolute inset-0">
     <img
-      src="/src/images/top/image_001.jpg"
+      src="/images/top/image_001.jpg"
       alt="JOYZOの社員たち"
       class="h-full w-full object-cover opacity-40"
     />
@@ -165,7 +165,7 @@
         <div class="relative">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="/src/images/company.jpg"
+              src="/images/company.jpg"
               alt="JOYZOのオフィス"
               class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
               loading="lazy"
@@ -193,7 +193,7 @@
         <div class="relative order-2 lg:order-1">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="/src/images/aboutus.png"
+              src="/images/aboutus.png"
               alt="JOYZOの働き方"
               class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
               loading="lazy"

@@ -135,7 +135,7 @@
               class:shape-5={currentShapeIndex === 4}
             >
               <img
-                src="/src/images/top/recruit_001.jpg"
+                src="/images/top/recruit_001.jpg"
                 alt="私たちのミッション"
                 class="h-full w-full object-cover"
               />

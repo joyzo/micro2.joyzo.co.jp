@@ -15,7 +15,7 @@ export const messages: Message[] = [
       "その変化を楽しめることが、次の一歩を生む。"
     ],
     tagline: "ENJOY CHANGE",
-    image: "/src/images/top/team-collaboration.jpg",
+    image: "/images/top/team-collaboration.jpg",
     imageAlt: "チームで協力して働く様子"
   },
   {
@@ -25,7 +25,7 @@ export const messages: Message[] = [
       "試行錯誤の先にこそ、本当に役立つ答えがある。"
     ],
     tagline: "FIND THE WAY",
-    image: "/src/images/top/business-meeting.jpg",
+    image: "/images/top/business-meeting.jpg",
     imageAlt: "打ち合わせの様子"
   },
   {
@@ -35,7 +35,7 @@ export const messages: Message[] = [
       "そこにワクワクがあるからこそ、人も現場も前に進める。"
     ],
     tagline: "FIND EXCITEMENT",
-    image: "/src/images/top/team-laughing.jpg",
+    image: "/images/top/team-laughing.jpg",
     imageAlt: "チームで談笑している様子"
   },
   {
@@ -45,7 +45,7 @@ export const messages: Message[] = [
       "それがやがて大きな変化をつくり出す。"
     ],
     tagline: "BE THE CHANGE",
-    image: "/src/images/top/learning-session.jpg",
+    image: "/images/top/learning-session.jpg",
     imageAlt: "学習セッションの様子"
   },
   {
@@ -56,7 +56,7 @@ export const messages: Message[] = [
       "その挑戦を、私たちは支え続ける。"
     ],
     tagline: "JOYZO",
-    image: "/src/images/top/company-culture.jpg",
+    image: "/images/top/company-culture.jpg",
     imageAlt: "会社の文化を表す写真"
   }
 ];
