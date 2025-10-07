@@ -381,10 +381,10 @@
                   <!-- 基本情報（常に表示） -->
                   <div class="basic-info">
                     <div class="mb-4 text-center">
-                      <div class="text-2xl font-bold text-gray-800 mb-2" style="letter-spacing: -0.06em; white-space: nowrap;">
+                      <div class="text-2xl font-bold text-white mb-2" style="letter-spacing: -0.06em; white-space: nowrap;">
                         {face.item.title}
                       </div>
-                      <div class="font-english text-lg font-black text-gray-600 tracking-wider">
+                      <div class="font-english text-lg font-black text-gray-200 tracking-wider">
                         {face.item.alphabet}
                       </div>
                     </div>
