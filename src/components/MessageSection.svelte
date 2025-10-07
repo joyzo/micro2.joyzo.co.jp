@@ -73,12 +73,12 @@
       {/each}
     </div>
 
-    <div class="container relative z-10 mx-auto px-4">
+    <div class="container relative z-10 mx-auto px-6 md:px-4">
       <div class="mx-auto max-w-6xl">
         <!-- キャッチフレーズ（1行目） -->
         <div class="animate-on-scroll mb-16 text-center">
           <h2
-            class="tracking-tighter font-heading font-bold leading-tight"
+            class="tracking-tighter font-heading font-bold leading-[0.85] md:leading-tight"
             style="font-size: clamp(4rem, 10vw, 12rem); letter-spacing: -0.05em;"
             class:text-white={isAlternate}
             class:text-blue-900={!isAlternate}

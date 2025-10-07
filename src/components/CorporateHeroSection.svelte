@@ -13,7 +13,7 @@
   let isRotating = false; // ?から×への回転アニメーション用
 
   const keywordPairs = [
-    { left: "DX", right: "CREATIVE" },
+    { left: "DX", right: "CREATE" },
     { left: "AI", right: "IT" },
     { left: "TECH", right: "WORK" },
     { left: "ENJOY", right: "YOUR" },
@@ -165,30 +165,30 @@
   </div>
 {:else}
   <section
-    class="relative flex min-h-screen items-center justify-center bg-white"
+    class="relative flex min-h-screen items-center justify-center bg-white pt-16 md:pt-20"
   >
-    <div class="relative z-10 mx-auto max-w-7xl px-4">
-      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-4">
+      <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 左側：ENJOY YOUR WORLD -->
         <div class="order-1 lg:order-1">
-          <div class="mb-8 overflow-hidden">
+          <div class="mb-4 md:mb-8 overflow-hidden">
             <div class="hero-text-container">
               <h1
-                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                class="tracking-tighter font-heading text-[3.5rem] font-black leading-[0.85] text-black md:text-[5rem] lg:text-[7rem] xl:text-[8rem] md:leading-[0.9] {isVisible
                   ? 'animate-slot-final-1'
                   : 'opacity-0'}"
               >
                 ENJOY
               </h1>
               <h1
-                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                class="tracking-tighter font-heading text-[3.5rem] font-black leading-[0.85] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] md:leading-[0.9] {isVisible
                   ? 'animate-slot-final-2'
                   : 'opacity-0'}"
               >
                 <span class="font-heading text-black">YOUR</span>
               </h1>
               <h1
-                class="tracking-tighter font-heading text-[4rem] font-black leading-[0.9] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] {isVisible
+                class="tracking-tighter font-heading text-[3.5rem] font-black leading-[0.85] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] md:leading-[0.9] {isVisible
                   ? 'animate-slot-final-3'
                   : 'opacity-0'}"
               >
@@ -204,7 +204,7 @@
             <p
               class="text-lg font-medium leading-relaxed text-gray-600 md:text-xl"
             >
-              ジョイゾーのジョイはエンジョイのジョイ。
+              世界の隅々まで、エンジニアリングの楽しさを届ける。
             </p>
           </div>
 

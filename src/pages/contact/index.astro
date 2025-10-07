@@ -7,46 +7,60 @@ import UnderPageLayout from "@layouts/UnderPageLayout.astro";
   subLabel="お問い合わせ"
   title="お問い合わせ"
 >
-  <form
-    method="post"
-    action={import.meta.env.PUBLIC_FORM_URL}
-    class="mx-auto max-w-3xl space-y-6"
-  >
-    <div class="space-y-2">
-      <label for="name" class="block text-xl">お名前</label>
-      <input
-        class="w-full border border-gray-300 p-2"
-        id="name"
-        type="text"
-        name="お名前"
-        placeholder="例）山田太郎"
-        required
-      />
+  <div class="mx-auto max-w-4xl space-y-8">
+    <!-- 開発中の注意書き -->
+    <div class="rounded-lg border-2 border-red-500 bg-red-50 p-4">
+      <p class="text-center text-lg font-bold text-red-600">
+        ⚠️ 本番のフォームブリッジと接続してあります
+      </p>
     </div>
-    <div class="space-y-2">
-      <label for="email" class="block text-xl">メールアドレス</label>
-      <input
-        class="w-full border border-gray-300 p-2"
-        id="email"
-        type="email"
-        name="email"
-        placeholder="例）example@example.com"
-        required
-      />
+
+    <!-- お問い合わせフォーム -->
+    <div class="rounded-subtle border border-gray-100 bg-white p-6 md:p-8 shadow-lg -mx-6 md:mx-0">
+      <div class="mb-6 text-center">
+        <h2 class="mb-4 text-2xl font-bold text-main leading-[0.9] md:leading-[0.95]">お問い合わせフォーム</h2>
+        <p class="text-gray-600">
+          ご質問やご相談がございましたら、お気軽にお問い合わせください。
+        </p>
+      </div>
+      
+      <!-- iframeでフォームを埋め込み -->
+      <div class="w-full">
+        <iframe
+          src="https://form.kintoneapp.com/public/form/show/ba7a58bafdceba501085baf309cef904c5c2212cb31ae1c27507c2d26948e2ed?iframe=true"
+          width="100%"
+          height="800"
+          frameborder="0"
+          class="rounded-lg border border-gray-200"
+          title="お問い合わせフォーム"
+        >
+          お使いのブラウザはiframeをサポートしていません。
+          <a href="https://form.kintoneapp.com/public/form/show/ba7a58bafdceba501085baf309cef904c5c2212cb31ae1c27507c2d26948e2ed" target="_blank" rel="noopener noreferrer">
+            こちらからお問い合わせください
+          </a>
+        </iframe>
+      </div>
     </div>
-    <div class="space-y-2">
-      <label for="body" class="block text-xl">お問い合わせ内容</label>
-      <textarea
-        id="body"
-        name="お問い合わせ内容"
-        class="h-48 w-full border border-gray-300 p-2"
-        required></textarea>
+
+    <!-- その他の連絡方法 -->
+    <div class="rounded-subtle border border-gray-100 bg-white p-6 md:p-8 shadow-lg -mx-6 md:mx-0">
+      <h3 class="mb-6 text-xl font-bold text-main leading-[0.9] md:leading-[0.95]">その他の連絡方法</h3>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div>
+          <h4 class="mb-3 font-bold text-gray-800">電話でのお問い合わせ</h4>
+          <p class="text-gray-600">
+            平日 9:00〜18:00<br />
+            TEL: 03-1234-5678
+          </p>
+        </div>
+        <div>
+          <h4 class="mb-3 font-bold text-gray-800">メールでのお問い合わせ</h4>
+          <p class="text-gray-600">
+            info@joyzo.co.jp<br />
+            24時間受付（返信は平日営業時間内）
+          </p>
+        </div>
+      </div>
     </div>
-    <button
-      type="submit"
-      class="w-full bg-main px-4 py-3 text-lg font-bold text-white"
-    >
-      送信
-    </button>
-  </form>
+  </div>
 </UnderPageLayout>

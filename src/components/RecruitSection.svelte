@@ -29,11 +29,11 @@
   </div>
 
   <!-- メインコンテンツ -->
-  <div class="relative z-10 mx-auto max-w-6xl px-4 text-center text-white">
+  <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-4 text-center text-white">
     <!-- メインタイトル -->
     <div class="mb-16">
       <h1
-        class="tracking-tighter md:text-8xl lg:text-9xl mb-8 font-heading text-6xl font-black leading-tight"
+        class="tracking-tighter md:text-8xl lg:text-9xl mb-8 font-heading text-6xl font-black leading-[0.9] md:leading-tight"
       >
         <span
           class="transition-all duration-500"
@@ -57,9 +57,7 @@
             class:translate-y-0={showContent}
             class:translate-y-8={!showContent}
           >
-            あらゆる人がITの恩恵を受け、<br />
-            楽しく働ける社会をつくるためにーー。<br />
-            わたしたちと一緒に働きませんか？
+            お客様と共に『価値』を創るプロフェッショナルへ。
           </span>
         </h2>
       </div>
@@ -74,8 +72,8 @@
           class:translate-y-0={showContent}
           class:translate-y-8={!showContent}
         >
-          JOYZOはシステムエンジニアリングの力で、<br />
-          様々なお客様の業務改善のお手伝いをしています。
+          仕事を楽しむ姿でチームを活気づけ、社会を変える。<br />
+          そんな働き方をしてみませんか？
         </span>
       </p>
     </div>
@@ -84,7 +82,7 @@
 
 <!-- メインコンテンツセクション -->
 <section class="bg-white py-20">
-  <div class="mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-6xl px-6 md:px-4">
     <!-- 会社紹介セクション -->
     <div class="mb-20">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -158,7 +156,7 @@
               class:translate-y-0={showContent}
               class:translate-y-8={!showContent}
             >
-              ジョイゾーの代表的な開発サービス「システム39」は、kintoneを使用したお客様の目の前で業務システムを作り上げていく「対面開発」という手法をどこよりも先に取り入れ、これまで1,500件以上の豊富な対応経験を持っているトップベンダーとして活動しています。
+              ジョイゾーの代表的な開発サービス「システム39」は、kintoneを使用したお客様の目の前で業務システムを作り上げていく「対面開発」という手法をどこよりも先に取り入れ、これまで1,750件以上の豊富な対応経験を持っているトップベンダーとして活動しています。
             </p>
           </div>
         </div>

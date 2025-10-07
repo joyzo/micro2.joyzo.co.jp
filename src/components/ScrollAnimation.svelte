@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy, tick } from 'svelte';
   
   export let trigger = "top 80%";
   export let end = "bottom 20%";
@@ -41,7 +41,7 @@
       
       // 初期状態を設定
       gsap.set(animationElements, {
-        opacity: opacity === 1 ? 0 : opacity,
+        opacity: 0,
         y: y,
         x: x,
         scale: scale,
@@ -59,7 +59,7 @@
       });
       
       tl.to(animationElements, {
-        opacity: opacity,
+        opacity: 1,
         y: 0,
         x: 0,
         scale: 1,
@@ -75,7 +75,7 @@
       // prefers-reduced-motion対応
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         gsap.set(animationElements, {
-          opacity: opacity,
+          opacity: 1,
           y: 0,
           x: 0,
           scale: 1,

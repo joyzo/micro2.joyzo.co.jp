@@ -1,6 +1,7 @@
 ---
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import AboutSection from "@components/AboutSection.svelte";
+import ProfessionalismSection from "@components/ProfessionalismSection.svelte";
 ---
 
 <UnderPageLayout
@@ -10,7 +11,24 @@ import AboutSection from "@components/AboutSection.svelte";
   subLabel="ジョイゾーとは"
 >
   <div class="mx-auto max-w-6xl space-y-20">
-    <!-- ミッションセクション -->
+    <!-- VISIONセクション -->
+    <section>
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-english text-4xl font-bold text-main leading-[0.9] md:leading-[0.95]">VISION</h2>
+        <p class="text-xl text-gray-600">私たちのビジョン</p>
+      </div>
+
+      <div
+        class="rounded-subtle bg-gradient-to-r from-main to-secondary p-6 md:p-12 text-center text-white -mx-6 md:mx-0"
+      >
+        <h3 class="mb-8 text-3xl font-bold">世界の隅々まで、エンジニアリングの楽しさを届ける。</h3>
+        <p class="mx-auto max-w-4xl text-lg leading-relaxed">
+          私たちは、エンジニアリングの楽しさを世界の隅々まで届けることを目指しています。システム開発は単なる作業ではなく、お客様と共に創り上げる過程そのものを楽しむことが、真の価値創造につながると信じています。
+        </p>
+      </div>
+    </section>
+
+    <!-- MISSIONセクション -->
     <section>
       <div class="mb-16 text-center">
         <h2 class="mb-6 font-english text-4xl font-bold text-main">MISSION</h2>
@@ -18,228 +36,329 @@ import AboutSection from "@components/AboutSection.svelte";
       </div>
 
       <div
-        class="rounded-subtle bg-gradient-to-r from-main to-secondary p-12 text-center text-white"
+        class="rounded-subtle bg-gradient-to-r from-secondary to-accent p-6 md:p-12 text-center text-white -mx-6 md:mx-0"
       >
         <h3 class="mb-8 text-3xl font-bold">ENJOY YOUR WORLD.</h3>
-        <p class="mx-auto max-w-4xl text-lg leading-relaxed">
+        <p class="mx-auto max-w-4xl text-lg leading-relaxed mb-6">
           人生を楽しくしたいと願っている人のために、その手段としてのエンジニアリングの可能性を示唆し、価値観の変化によって社会に新しい波を広げる。
         </p>
+        <div class="mx-auto max-w-4xl text-base leading-relaxed opacity-90">
+          <p class="mb-4">
+            私たちの企業理念「ENJOY YOUR WORLD.」は、「世界の隅々まで、エンジニアリングの楽しさを届ける」ことを追求することで、お客様だけでなく、私たち自身の業務改善も加速させるという強い思いが込められています。
+          </p>
+          <p>
+            システムは単に作ることが目的ではなく、お客様がそのシステムを有効活用し、働く人々の手助けとなることが真の目的です。私たちは、お客様と「一つのチーム」としてシステムを作り上げ、その過程すらも共に楽しむ関係性を大切にしています。
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- ジョイゾーの世界観セクション -->
     <AboutSection client:only="svelte" />
 
-    <!-- 私たちの価値観セクション -->
+    <!-- JOYZOのプロフェッショナリズムセクション -->
+    <ProfessionalismSection client:only="svelte" />
+
+
+
+    <!-- 地域/社会貢献セクション -->
     <section>
       <div class="mb-16 text-center">
-        <h2 class="mb-6 font-english text-4xl font-bold text-main">VALUES</h2>
-        <p class="text-xl text-gray-600">私たちの価値観</p>
+        <h2 class="mb-6 font-english text-4xl font-bold text-main">SOCIAL IMPACT</h2>
+        <p class="text-xl text-gray-600">地域・社会への貢献</p>
       </div>
 
-      <div class="grid gap-8 md:grid-cols-3">
-        <div
-          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
-        >
-          <div
-            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-main"
-          >
-            <svg
-              class="h-8 w-8 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              ></path>
-            </svg>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+          <div class="mb-6 flex items-center space-x-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-main">
+              <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-main">地域クラウド交流会</h3>
           </div>
-          <h3 class="mb-4 text-center text-xl font-bold text-main">
-            パッション
-          </h3>
-          <p class="text-center leading-relaxed text-gray-600">
-            私たちは技術への情熱と、お客様の成功への情熱を持って、常に最高のソリューションを提供します。
+          <p class="text-gray-700">
+            全国各地で地域クラウド交流会を開催し、300社を超える企業・団体とのネットワークを構築。地域のDX推進と情報共有の場を提供しています。
           </p>
         </div>
 
-        <div
-          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
-        >
-          <div
-            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary"
-          >
-            <svg
-              class="h-8 w-8 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
+        <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+          <div class="mb-6 flex items-center space-x-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-secondary">
+              <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-main">自治体へのアドバイザー</h3>
           </div>
-          <h3 class="mb-4 text-center text-xl font-bold text-main">
-            イノベーション
-          </h3>
-          <p class="text-center leading-relaxed text-gray-600">
-            既存の枠にとらわれず、常に新しいアプローチでお客様の課題解決に取り組みます。
+          <p class="text-gray-700">
+            200を超える自治体にDXアドバイザーとして参画。行政のデジタル化推進と業務効率化を支援し、住民サービスの向上に貢献しています。
           </p>
         </div>
 
-        <div
-          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
-        >
-          <div
-            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent"
-          >
-            <svg
-              class="h-8 w-8 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              ></path>
-            </svg>
+        <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+          <div class="mb-6 flex items-center space-x-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-accent">
+              <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-main">児童福祉施設への支援</h3>
           </div>
-          <h3 class="mb-4 text-center text-xl font-bold text-main">
-            コラボレーション
-          </h3>
-          <p class="text-center leading-relaxed text-gray-600">
-            お客様との協働を大切にし、共に成長していくパートナーシップを築きます。
+          <p class="text-gray-700">
+            200を超える児童福祉施設にシステム導入支援を提供。子どもたちの成長を支える施設の業務効率化と、職員の働きやすさ向上に取り組んでいます。
+          </p>
+        </div>
+
+        <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+          <div class="mb-6 flex items-center space-x-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-main">
+              <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-main">学校教育へのサポート</h3>
+          </div>
+          <p class="text-gray-700">
+            300を超える教育機関にIT教育支援を提供。日本大学やキッズプログラミング教室など、次世代の人材育成と教育のデジタル化を支援しています。
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 私たちのストーリーセクション -->
+    <!-- 会社の歴史セクション -->
     <section>
       <div class="mb-16 text-center">
-        <h2 class="mb-6 font-english text-4xl font-bold text-main">STORY</h2>
-        <p class="text-xl text-gray-600">私たちのストーリー</p>
+        <h2 class="mb-6 font-english text-4xl font-bold text-main leading-[0.9] md:leading-[0.95]">HISTORY</h2>
+        <p class="text-xl text-gray-600">kintoneとともに歩んできた</p>
       </div>
 
-      <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
-        <div class="grid gap-8 md:grid-cols-2">
-          <div>
-            <h3 class="mb-6 text-2xl font-bold text-main">2010年の創業</h3>
-            <div class="space-y-4">
-              <div class="flex items-start space-x-4">
-                <div
-                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-main"
-                >
-                  <svg
-                    class="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+      <div class="rounded-subtle border border-gray-100 bg-white p-6 md:p-8 shadow-lg -mx-6 md:mx-0">
+        <div class="mx-auto max-w-5xl">
+          <!-- 年表ルーラー -->
+          <div class="relative">
+            <!-- デスクトップ用：中央の線 -->
+            <div class="absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 bg-gradient-to-b from-main via-secondary to-accent md:block"></div>
+            
+            <!-- モバイル用：左側の線 -->
+            <div class="absolute left-8 top-0 h-full w-1 bg-gradient-to-b from-main via-secondary to-accent md:hidden"></div>
+            
+            <!-- 年表項目 -->
+            <div class="space-y-12">
+              <!-- 2010年 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左右交互配置 -->
+                <div class="hidden flex-1 pr-8 text-right md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">株式会社ジョイゾー設立</h3>
+                    <p class="text-gray-700">
+                      「仕事は人生を楽しくイキイキさせるもの」という理念のもと、ジョイゾーを設立。ITを導入することで働く人を楽しくさせるという信念からスタートしました。
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p class="font-medium">kintoneリリース当初から</p>
-                  <p class="text-sm text-gray-600">
-                    kintoneを専門に取り扱うSIerとして活動開始
-                  </p>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-main text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">2010</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block"></div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">株式会社ジョイゾー設立</h3>
+                    <p class="text-gray-700 text-sm">
+                      「仕事は人生を楽しくイキイキさせるもの」という理念のもと、ジョイゾーを設立。ITを導入することで働く人を楽しくさせるという信念からスタートしました。
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div
-                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary"
-                >
-                  <svg
-                    class="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+              <!-- 2011年 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左側 -->
+                <div class="hidden flex-1 pr-8 md:block"></div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">2011</span>
                 </div>
-                <div>
-                  <p class="font-medium">cybozu公認SIパートナー</p>
-                  <p class="text-sm text-gray-600">
-                    サイボウズ社から正式に認定
-                  </p>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">kintoneとの出会い</h3>
+                    <p class="text-gray-700">
+                      サイボウズの「kintone」に出会い、SIerビジネスを根本から変えられる可能性に懸け、リリースと同時にkintone専業SIを事業として開始。
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">kintoneとの出会い</h3>
+                    <p class="text-gray-700 text-sm">
+                      サイボウズの「kintone」に出会い、SIerビジネスを根本から変えられる可能性に懸け、リリースと同時にkintone専業SIを事業として開始。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2014年 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左側 -->
+                <div class="hidden flex-1 pr-8 text-right md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">システム39のリリース</h3>
+                    <p class="text-gray-700">
+                      お客様の目の前で業務システムを作り上げていく「対面開発」という手法を、どこよりも先駆けて取り入れました。
+                    </p>
+                  </div>
+                </div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">2014</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block"></div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">システム39のリリース</h3>
+                    <p class="text-gray-700 text-sm">
+                      お客様の目の前で業務システムを作り上げていく「対面開発」という手法を、どこよりも先駆けて取り入れました。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 現在 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左側 -->
+                <div class="hidden flex-1 pr-8 md:block"></div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-main text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">現在</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">1750社を超える実績</h3>
+                    <p class="text-gray-700">
+                      cybozu公認SIパートナーとして、kintone認定資格取得者40名を超えるスペシャリスト集団に成長。「システム39」を通じて1750を超えるお客様の課題解決に取り組み、新しいSIの形を世に広げています。
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">1750社を超える実績</h3>
+                    <p class="text-gray-700 text-sm">
+                      cybozu公認SIパートナーとして、kintone認定資格取得者40名を超えるスペシャリスト集団に成長。「システム39」を通じて1750を超えるお客様の課題解決に取り組み、新しいSIの形を世に広げています。
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div>
-            <h3 class="mb-6 text-2xl font-bold text-main">現在の実績</h3>
-            <div class="space-y-4">
-              <div class="flex items-start space-x-4">
-                <div
-                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-accent"
-                >
-                  <svg
-                    class="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-medium">1500社を超える実績</p>
-                  <p class="text-sm text-gray-600">
-                    「システム39」を通じて多くのお客様の課題解決
-                  </p>
-                </div>
-              </div>
+    <!-- ジョイゾーのストーリーセクション -->
+    <section>
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-english text-4xl font-bold text-main leading-[0.9] md:leading-[0.95]">STORY</h2>
+        <p class="text-xl text-gray-600">ジョイゾーの想いや活動を様々なメディアでお届けしています</p>
+      </div>
 
-              <div class="flex items-start space-x-4">
-                <div
-                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-main"
-                >
-                  <svg
-                    class="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-medium">40名を超える認定資格取得者</p>
-                  <p class="text-sm text-gray-600">kintoneスペシャリスト集団</p>
-                </div>
-              </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- note -->
+        <div class="rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-4 flex items-center space-x-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
             </div>
+            <h3 class="text-lg font-bold text-main">note</h3>
           </div>
+          <p class="text-gray-600 text-sm">
+            ジョイゾー全体のPR媒体として、会社の想いや活動を発信しています。
+          </p>
+        </div>
+
+        <!-- SNS -->
+        <div class="rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-4 flex items-center space-x-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-main">SNS</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            XアカウントやInstagramで、日々の活動や想いをリアルタイムで発信しています。
+          </p>
+        </div>
+
+        <!-- キントマニア -->
+        <div class="rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-4 flex items-center space-x-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-main">キントマニア</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            kintone系のテックブログとして、技術的な知見やノウハウを共有しています。
+          </p>
+        </div>
+
+        <!-- メディアキット -->
+        <div class="rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-4 flex items-center space-x-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-main">メディアキット</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            ロゴダウンロードページなど、メディア向けの資料を提供しています。
+          </p>
+        </div>
+
+        <!-- wantedly -->
+        <div class="rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-4 flex items-center space-x-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-main">Wantedly</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            採用情報や会社の雰囲気を、求職者の方に向けて発信しています。
+          </p>
+        </div>
+
+        <!-- サービスサイト -->
+        <div class="rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="mb-4 flex items-center space-x-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+              <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-main">サービスサイト</h3>
+          </div>
+          <p class="text-gray-600 text-sm">
+            サービスアピール系のブログで、具体的なサービス内容や事例を紹介しています。
+          </p>
         </div>
       </div>
     </section>
