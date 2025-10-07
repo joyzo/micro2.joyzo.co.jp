@@ -76,7 +76,7 @@
 
 <Portal>
   <button
-    class="fixed right-6 top-6 z-50 flex h-14 w-14 flex-col items-center justify-center gap-1 text-white md:hidden"
+    class="fixed right-4 top-2 z-50 flex h-12 w-12 flex-col items-center justify-center gap-1 text-white md:hidden"
     on:click={toggle}
   >
     <span

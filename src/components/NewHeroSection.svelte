@@ -50,7 +50,7 @@
   class="hero-section relative flex min-h-screen items-center justify-center bg-white"
 >
   <!-- メインコンテンツ -->
-  <div class="relative z-10 mx-auto max-w-6xl px-4 text-center text-black">
+  <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-4 text-center text-black">
     <!-- メインコピー -->
     <div class="mb-16">
       <AnimatedText

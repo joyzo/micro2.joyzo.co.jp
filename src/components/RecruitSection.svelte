@@ -29,11 +29,11 @@
   </div>
 
   <!-- メインコンテンツ -->
-  <div class="relative z-10 mx-auto max-w-6xl px-4 text-center text-white">
+  <div class="relative z-10 mx-auto max-w-6xl px-6 md:px-4 text-center text-white">
     <!-- メインタイトル -->
     <div class="mb-16">
       <h1
-        class="tracking-tighter md:text-8xl lg:text-9xl mb-8 font-heading text-6xl font-black leading-tight"
+        class="tracking-tighter md:text-8xl lg:text-9xl mb-8 font-heading text-6xl font-black leading-[0.9] md:leading-tight"
       >
         <span
           class="transition-all duration-500"
@@ -82,7 +82,7 @@
 
 <!-- メインコンテンツセクション -->
 <section class="bg-white py-20">
-  <div class="mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-6xl px-6 md:px-4">
     <!-- 会社紹介セクション -->
     <div class="mb-20">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">

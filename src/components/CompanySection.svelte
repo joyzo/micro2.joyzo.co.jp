@@ -10,10 +10,10 @@
   opacity={0}
 >
   <section id="company-section" class="company-section py-20">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-6 md:px-4">
       <div class="mb-16 text-center">
         <h2
-          class="md:text-8xl lg:text-9xl mb-6 font-english text-5xl font-bold text-main sm:text-6xl"
+          class="md:text-8xl lg:text-9xl mb-6 font-english text-5xl font-bold text-main sm:text-6xl leading-[0.9] md:leading-[0.95]"
           data-scroll-animate
         >
           COMPANY
@@ -39,34 +39,34 @@
           <h3 class="mb-6 text-2xl font-bold text-main">基本情報</h3>
           <div class="space-y-4">
             <div
-              class="flex items-start justify-between border-b border-gray-200 pb-3"
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
             >
-              <span class="font-medium text-gray-700">社名</span>
-              <span class="text-right">株式会社ジョイゾー</span>
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">社名</span>
+              <span class="md:text-right">株式会社ジョイゾー</span>
             </div>
             <div
-              class="flex items-start justify-between border-b border-gray-200 pb-3"
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
             >
-              <span class="font-medium text-gray-700">設立</span>
-              <span class="text-right">2010年12月</span>
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">設立</span>
+              <span class="md:text-right">2010年12月</span>
             </div>
             <div
-              class="flex items-start justify-between border-b border-gray-200 pb-3"
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
             >
-              <span class="font-medium text-gray-700">資本金</span>
-              <span class="text-right">2,000,000円</span>
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">資本金</span>
+              <span class="md:text-right">2,000,000円</span>
             </div>
             <div
-              class="flex items-start justify-between border-b border-gray-200 pb-3"
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
             >
-              <span class="font-medium text-gray-700">代表者</span>
-              <span class="text-right">代表取締役社長 四宮 靖隆</span>
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">代表者</span>
+              <span class="md:text-right">代表取締役社長 四宮 靖隆</span>
             </div>
             <div
-              class="flex items-start justify-between border-b border-gray-200 pb-3"
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
             >
-              <span class="font-medium text-gray-700">事業内容</span>
-              <span class="text-right"
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">事業内容</span>
+              <span class="md:text-right"
                 >サイボウズ製品に対するコンサルティング・システム開発、<br />kintoneプラグインの開発/販売</span
               >
             </div>
@@ -81,16 +81,16 @@
           <h3 class="mb-6 text-2xl font-bold text-main">アクセス</h3>
           <div class="space-y-4">
             <div
-              class="flex items-start justify-between border-b border-gray-200 pb-3"
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
             >
-              <span class="font-medium text-gray-700">所在地</span>
-              <span class="text-right"
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">所在地</span>
+              <span class="md:text-right"
                 >〒135-0016<br />東京都江東区東陽4-10-4<br />東陽町SHビル7階</span
               >
             </div>
-            <div class="flex items-start justify-between">
-              <span class="font-medium text-gray-700">最寄り駅</span>
-              <span class="text-right"
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between">
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">最寄り駅</span>
+              <span class="md:text-right"
                 >東京メトロ東西線<br />東陽町駅 徒歩3分</span
               >
             </div>

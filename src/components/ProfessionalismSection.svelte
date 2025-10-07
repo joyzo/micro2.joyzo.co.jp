@@ -345,10 +345,10 @@
 </script>
 
 <section class="professionalism-section py-24 bg-gray-50">
-  <div class="container mx-auto max-w-7xl px-4">
+  <div class="container mx-auto max-w-7xl px-6 md:px-4">
     <!-- セクションヘッダー -->
     <div class="mb-20 text-center">
-      <h2 class="mb-6 font-english text-5xl font-black text-gray-900 md:text-6xl">
+      <h2 class="mb-6 font-english text-5xl font-black text-gray-900 md:text-6xl leading-[0.9] md:leading-[0.95]">
         PROFESSIONALISM
       </h2>
       <p class="text-xl text-gray-600">JOYZOのメンバーが大切にする価値観</p>
