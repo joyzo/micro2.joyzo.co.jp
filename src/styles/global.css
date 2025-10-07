@@ -11,6 +11,10 @@
   letter-spacing: -0.025em !important;
 }
 
+body {
+  background: #fafafa;
+}
+
 img {
   @apply w-full;
 }

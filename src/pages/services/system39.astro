@@ -1,0 +1,248 @@
+---
+import UnderPageLayout from "@layouts/UnderPageLayout.astro";
+import ScrollAnimation from "@components/ScrollAnimation.svelte";
+---
+
+<UnderPageLayout
+  title="システム39 | JOYZO"
+  description="お客様の目の前で業務システムを作り上げる「対面開発」サービス。3回のお打ち合わせで39万円（税別）の透明性の高い定額制システム開発。"
+  mainLabel="SERVICES"
+  subLabel="システム39"
+>
+  <div class="mx-auto max-w-6xl space-y-20">
+    <!-- ヒーローセクション -->
+    <section class="text-center">
+      <div class="mb-16">
+        <h1 class="mb-8 font-english text-5xl font-bold text-main md:text-6xl">SYSTEM 39</h1>
+        <p class="mx-auto max-w-4xl text-xl text-gray-600 md:text-2xl">
+          お客様の目の前で業務システムを作り上げる<br />
+          「対面開発」という新しいシステム開発手法
+        </p>
+      </div>
+      
+      <div class="rounded-subtle bg-gradient-to-r from-main to-secondary p-12 text-white">
+        <h2 class="mb-6 text-3xl font-bold">3回のお打ち合わせで39万円（税別）</h2>
+        <p class="text-lg opacity-90">
+          透明性の高い定額制で、お客様と一緒に価値あるシステムを創り上げます
+        </p>
+      </div>
+    </section>
+
+    <!-- システム39とは -->
+    <ScrollAnimation
+      trigger="top 85%"
+      duration={0.8}
+      stagger={0.15}
+      y={40}
+      opacity={0}
+    >
+      <section>
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 font-english text-4xl font-bold text-main">WHAT IS SYSTEM 39</h2>
+          <p class="text-xl text-gray-600">システム39とは</p>
+        </div>
+
+        <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+          <div class="mx-auto max-w-4xl">
+            <p class="mb-6 text-lg leading-relaxed text-gray-700">
+              ジョイゾーの代表的な開発サービスである「システム39」は、従来の受託開発の常識を覆す画期的な試みとして、2014年にリリースされました。このサービスは、お客様の目の前で、お客様と一緒に業務システムを作り上げていく「対面開発」という手法を、どこよりも先駆けて取り入れたものです。
+            </p>
+            
+            <div class="grid gap-8 md:grid-cols-2">
+              <div>
+                <h3 class="mb-4 text-xl font-bold text-main">従来の開発方式</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 要件定義 → 設計 → 開発 → テスト → 納品</li>
+                  <li>• ウォーターフォール型の一方向的な流れ</li>
+                  <li>• お客様との認識のずれが発生しやすい</li>
+                  <li>• ブラックボックス化しがち</li>
+                  <li>• 人月計算による不透明な料金体系</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 class="mb-4 text-xl font-bold text-main">システム39の開発方式</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 2週間単位でのアジャイル型開発</li>
+                  <li>• お客様の目の前でリアルタイム開発</li>
+                  <li>• 認識のずれを即座に解消</li>
+                  <li>• 透明性の高い開発プロセス</li>
+                  <li>• 定額制による明確な料金体系</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimation>
+
+    <!-- 開発フロー -->
+    <ScrollAnimation
+      trigger="top 85%"
+      duration={0.8}
+      stagger={0.15}
+      y={40}
+      opacity={0}
+    >
+      <section>
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 font-english text-4xl font-bold text-main">DEVELOPMENT FLOW</h2>
+          <p class="text-xl text-gray-600">開発フロー</p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="flex items-center space-x-6 rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+            <div class="flex-shrink-0">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-main text-white font-bold text-xl">
+                1
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="mb-2 text-xl font-bold text-main">初回無償相談（2時間）</h3>
+              <p class="text-gray-700">
+                お客様の課題をヒアリングし、その場で実際に動作するシステムを開発します。このシステムが本当に課題解決に役立つかを直接確認していただけます。
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-6 rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+            <div class="flex-shrink-0">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary text-white font-bold text-xl">
+                2
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="mb-2 text-xl font-bold text-main">2回目：機能拡張・改善</h3>
+              <p class="text-gray-700">
+                初回で作成したシステムをベースに、追加機能の実装や改善を行います。お客様のフィードバックを反映しながら、より実用的なシステムに仕上げていきます。
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-6 rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
+            <div class="flex-shrink-0">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-white font-bold text-xl">
+                3
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="mb-2 text-xl font-bold text-main">3回目：最終調整・納品</h3>
+              <p class="text-gray-700">
+                最終的な調整を行い、お客様の業務に最適化されたシステムを完成させます。運用方法の説明や今後のサポートについてもご相談いただけます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimation>
+
+    <!-- システム39の特徴 -->
+    <ScrollAnimation
+      trigger="top 85%"
+      duration={0.8}
+      stagger={0.15}
+      y={40}
+      opacity={0}
+    >
+      <section>
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 font-english text-4xl font-bold text-main">FEATURES</h2>
+          <p class="text-xl text-gray-600">システム39の特徴</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-3">
+          <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-main">
+              <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="mb-4 text-xl font-bold text-main">対面開発</h3>
+            <p class="text-gray-700">
+              お客様の目の前でリアルタイムにシステムを構築。認識のずれを防ぎ、確実にご要望通りのシステムを完成させます。
+            </p>
+          </div>
+
+          <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
+              <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="mb-4 text-xl font-bold text-main">定額制料金</h3>
+            <p class="text-gray-700">
+              3回のお打ち合わせで39万円（税別）の透明性の高い定額制。人月計算ではない明確な料金体系で安心してご利用いただけます。
+            </p>
+          </div>
+
+          <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent">
+              <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mb-4 text-xl font-bold text-main">共創パートナー</h3>
+            <p class="text-gray-700">
+              お客様が業務のプロ、私たちがITのプロとして、一つのチームとなって価値あるシステムを共創します。
+            </p>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimation>
+
+    <!-- 実績 -->
+    <ScrollAnimation
+      trigger="top 85%"
+      duration={0.8}
+      stagger={0.15}
+      y={40}
+      opacity={0}
+    >
+      <section>
+        <div class="mb-16 text-center">
+          <h2 class="mb-6 font-english text-4xl font-bold text-main">ACHIEVEMENTS</h2>
+          <p class="text-xl text-gray-600">実績</p>
+        </div>
+
+        <div class="rounded-subtle bg-gradient-to-r from-main to-secondary p-12 text-center text-white">
+          <div class="mx-auto max-w-4xl">
+            <h3 class="mb-8 text-3xl font-bold">1750社を超える実績</h3>
+            <p class="mb-6 text-lg leading-relaxed">
+              「システム39」は、お客様との共創を肝とし、従来の「持ち帰り型開発」で生じがちな認識のズレやブラックボックス化の問題を解消します。このサービスは、SIerとお客様が双方に満足できる「幸せなシステム開発」の象徴であり、サービス提供開始から10周年を迎え、これまでの対応件数は1750件以上と豊富な経験と実績を積み重ねています。
+            </p>
+            <div class="grid gap-6 md:grid-cols-3">
+              <div class="rounded-lg bg-white bg-opacity-20 p-6">
+                <div class="text-3xl font-bold">1750+</div>
+                <div class="text-sm opacity-90">対応件数</div>
+              </div>
+              <div class="rounded-lg bg-white bg-opacity-20 p-6">
+                <div class="text-3xl font-bold">10年</div>
+                <div class="text-sm opacity-90">サービス提供期間</div>
+              </div>
+              <div class="rounded-lg bg-white bg-opacity-20 p-6">
+                <div class="text-3xl font-bold">40+</div>
+                <div class="text-sm opacity-90">認定資格取得者</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ScrollAnimation>
+
+    <!-- お問い合わせ -->
+    <section class="text-center">
+      <div class="rounded-subtle bg-light p-12">
+        <h2 class="mb-6 text-3xl font-bold text-main">システム39について</h2>
+        <p class="mx-auto mb-8 max-w-2xl text-lg text-gray-600">
+          システム39についての詳細情報や、ご相談がございましたら、お気軽にお問い合わせください。
+        </p>
+        <a
+          href="/contact"
+          class="inline-block rounded-full bg-main px-8 py-4 font-bold text-white transition-colors duration-300 hover:bg-secondary"
+        >
+          お問い合わせはこちら
+        </a>
+      </div>
+    </section>
+  </div>
+</UnderPageLayout>

@@ -50,7 +50,7 @@
 <Dialog
   open={isOpen}
   class={clsx(
-    "invisible fixed inset-0 z-40 overflow-y-auto bg-white opacity-0 transition-[opacity,visibility] duration-500 [&.open]:visible [&.open]:opacity-100",
+    "invisible fixed inset-0 z-[60] overflow-y-auto bg-white opacity-0 transition-[opacity,visibility] duration-500 [&.open]:visible [&.open]:opacity-100",
     isOpen && "open"
   )}
   static
@@ -76,15 +76,15 @@
 
 <Portal>
   <button
-    class="fixed right-8 top-8 z-50 flex h-12 w-12 flex-col items-center justify-center gap-1 text-black md:hidden"
+    class="fixed right-6 top-6 z-50 flex h-14 w-14 flex-col items-center justify-center gap-1 text-white md:hidden"
     on:click={toggle}
   >
     <span
-      class="absolute inset-0 m-auto h-0.5 w-6 -translate-y-2 transform-gpu bg-current duration-500 [&.open]:translate-y-0 [&.open]:rotate-45"
+      class="absolute inset-0 m-auto h-1 w-7 -translate-y-2 transform-gpu bg-current duration-500 [&.open]:translate-y-0 [&.open]:rotate-45"
       class:open={isOpen}
     />
     <span
-      class="absolute inset-0 m-auto h-0.5 w-6 translate-y-2 transform-gpu bg-current duration-500 [&.open]:translate-y-0 [&.open]:-rotate-45"
+      class="absolute inset-0 m-auto h-1 w-7 translate-y-2 transform-gpu bg-current duration-500 [&.open]:translate-y-0 [&.open]:-rotate-45"
       class:open={isOpen}
     />
   </button>
