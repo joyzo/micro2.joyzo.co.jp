@@ -21,3 +21,7 @@ pnpm-debug.log*
 .DS_Store
 design-samples/AMANATION/AMANATION.mov
 .vercel
+
+# Design samples and site images
+design-samples/
+サイト画像/
