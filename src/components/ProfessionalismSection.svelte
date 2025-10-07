@@ -232,7 +232,7 @@
     
     setTimeout(() => {
       isFaceRotating = false;
-    }, 1000);
+    }, 800);
   }
 
   // ドラッグ開始
@@ -380,12 +380,18 @@
                 <div class="professionalism-item">
                   <!-- 基本情報（常に表示） -->
                   <div class="basic-info">
-                    <div class="mb-2 flex items-center justify-between">
-                      <span class="text-lg font-semibold text-gray-700">
+                    <div class="mb-4 text-center">
+                      <div class="text-2xl font-bold text-gray-800 mb-2" style="letter-spacing: -0.06em; white-space: nowrap;">
                         {face.item.title}
-                      </span>
-                      <span class="font-english text-sm font-black text-gray-400 tracking-wider">
+                      </div>
+                      <div class="font-english text-lg font-black text-gray-600 tracking-wider">
                         {face.item.alphabet}
+                      </div>
+                    </div>
+                    <!-- ID装飾 -->
+                    <div class="id-decoration">
+                      <span class="font-english font-black opacity-30 id-color-{faceIndex}" style="font-size: 12em;">
+                        {face.item.id}
                       </span>
                     </div>
                   </div>
@@ -399,7 +405,7 @@
                       </h3>
                       
                       <!-- ディスクリプション -->
-                      <p class="text-sm text-gray-500 leading-relaxed">
+                      <p class="text-sm text-gray-700 leading-relaxed">
                         {face.item.description}
                       </p>
                     </div>
@@ -525,7 +531,7 @@
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: grab;
     user-select: none;
   }
@@ -568,13 +574,17 @@
   }
 
   .cube-face:hover {
-    transform: scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05) translateZ(10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cube-face.selected {
-    border-color: #3b82f6;
-    box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4);
+    transform: scale(1.08) translateZ(15px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .face-content {
@@ -591,15 +601,26 @@
   .professionalism-item {
     padding: 24px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid #e2e8f0;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     max-width: 320px;
     width: 100%;
+    backdrop-filter: blur(10px);
   }
 
   .basic-info {
     transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .id-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
   }
 
   .detailed-info {
@@ -737,11 +758,19 @@
     }
   }
 
-  /* アニメーション強化 */
-  .cube-face:nth-child(1) { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
-  .cube-face:nth-child(2) { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
-  .cube-face:nth-child(3) { background: linear-gradient(135deg, #fef7ff 0%, #fce7f3 100%); }
-  .cube-face:nth-child(4) { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
-  .cube-face:nth-child(5) { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
-  .cube-face:nth-child(6) { background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%); }
+  /* 力強くかつ抑えめのトーンの色設定 */
+  .cube-face:nth-child(1) { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+  .cube-face:nth-child(2) { background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%); }
+  .cube-face:nth-child(3) { background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%); }
+  .cube-face:nth-child(4) { background: linear-gradient(135deg, #14532d 0%, #166534 100%); }
+  .cube-face:nth-child(5) { background: linear-gradient(135deg, #a16207 0%, #ca8a04 100%); }
+  .cube-face:nth-child(6) { background: linear-gradient(135deg, #7c2d12 0%, #dc2626 100%); }
+
+  /* ID装飾の色設定（各面の背景色と同系色の薄め） */
+  .id-color-0 { color: #64748b; } /* グレー系の薄め */
+  .id-color-1 { color: #60a5fa; } /* ブルー系の薄め */
+  .id-color-2 { color: #fb923c; } /* オレンジ系の薄め */
+  .id-color-3 { color: #4ade80; } /* グリーン系の薄め */
+  .id-color-4 { color: #fbbf24; } /* イエロー系の薄め */
+  .id-color-5 { color: #f87171; } /* レッド系の薄め */
 </style>
