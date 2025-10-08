@@ -666,6 +666,14 @@
     -webkit-tap-highlight-color: transparent; /* iOS のタップハイライトを無効化 */
   }
 
+  /* 各面の色設定 */
+  .cube-face:nth-child(1) { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+  .cube-face:nth-child(2) { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+  .cube-face:nth-child(3) { background: linear-gradient(135deg, #45b7d1, #96c93d); }
+  .cube-face:nth-child(4) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .cube-face:nth-child(5) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .cube-face:nth-child(6) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
   .cube-face:hover {
     transform: scale(1.05) translateZ(10px);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
