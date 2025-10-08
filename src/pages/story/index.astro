@@ -329,7 +329,7 @@ import ScrollAnimation from "@components/ScrollAnimation.svelte";
                   システム39をはじめとするジョイゾーのサービスについて、詳しい説明やお客様事例、導入効果などを紹介するサービス特化型のサイトです。
                 </p>
                 <a
-                  href="https://services.joyzo.co.jp"
+                  href={import.meta.env.PUBLIC_SERVICE_SITE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex items-center rounded-full bg-main px-6 py-3 font-bold text-white transition-colors duration-300 hover:bg-secondary"

@@ -23,7 +23,7 @@
 
         <div class="flex flex-col gap-4 pt-6 sm:flex-row">
           <a
-            href="https://joyzo.co.jp"
+            href="https://service.joyzo.co.jp"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center rounded-none bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"

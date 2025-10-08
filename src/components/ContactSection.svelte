@@ -49,9 +49,7 @@
           まずはお話ししましょう。きっと何かが見えてきます。
         </p>
         <a
-          href="https://form.run/@joyzo-contact"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/contact"
           class="inline-flex items-center rounded-none bg-gray-800 px-8 py-4 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
         >
           お話しを始める
@@ -77,7 +75,7 @@
       <p class="text-lg text-gray-600">
         サービスに関するご相談は
         <a
-          href="https://joyzo.co.jp"
+          href="https://service.joyzo.co.jp"
           target="_blank"
           rel="noopener noreferrer"
           class="font-semibold text-gray-700 underline transition-all duration-300 hover:no-underline"

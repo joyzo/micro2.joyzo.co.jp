@@ -89,7 +89,7 @@
         会社概要を見る
       </Button>
       <Button
-        href="https://joyzo.co.jp"
+        href="https://service.joyzo.co.jp"
         target="_blank"
         variant="primary"
         size="lg"

@@ -11,6 +11,9 @@ import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
   site: import.meta.env.PUBLIC_SITE_URL,
+  env: {
+    PUBLIC_SERVICE_SITE_URL: import.meta.env.PUBLIC_SERVICE_SITE_URL || "https://service.joyzo.co.jp",
+  },
   integrations: [
     preact(),
     tailwind(),

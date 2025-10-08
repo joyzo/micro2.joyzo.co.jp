@@ -133,7 +133,7 @@
         会社概要を見る
       </a>
       <a
-        href="https://joyzo.co.jp"
+        href="https://service.joyzo.co.jp"
         target="_blank"
         rel="noopener noreferrer"
         class="rounded-none bg-gray-800 px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
