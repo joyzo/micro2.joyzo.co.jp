@@ -186,6 +186,9 @@
   function handleCubeClick() {
     if (isRotating || isDragging || isFaceRotating) return;
     
+    // 選択状態をリセット
+    selectedFaceIndex = null;
+    
     const directions = ['left', 'right', 'up', 'down'];
     const randomDirection = directions[Math.floor(Math.random() * directions.length)];
     if (randomDirection) {
@@ -275,6 +278,19 @@
     
     setTimeout(() => {
       isFaceRotating = false;
+      
+      // 正面表示後、3秒後に斜めの状態に戻す
+      setTimeout(() => {
+        if (selectedFaceIndex === faceIndex && !isRotating && !isDragging && !isFaceRotating) {
+          // 斜め俯瞰の角度に戻す
+          currentRotation = { x: -15, y: 45 };
+          
+          // 自動回転を再開
+          if (autoRotate) {
+            startAutoRotate();
+          }
+        }
+      }, 3000);
     }, 800);
   }
 
@@ -354,6 +370,9 @@
     if (!isDragging) return;
     
     isDragging = false;
+    
+    // 選択状態をリセット（ドラッグ操作後は斜めの状態に戻す）
+    selectedFaceIndex = null;
     
     // 自動回転を再開
     if (autoRotate) {

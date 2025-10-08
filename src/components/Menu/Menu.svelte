@@ -50,23 +50,32 @@
 <Dialog
   open={isOpen}
   class={clsx(
-    "invisible fixed inset-0 z-[60] overflow-y-auto bg-white opacity-0 transition-[opacity,visibility] duration-500 [&.open]:visible [&.open]:opacity-100",
+    "invisible fixed inset-0 z-[60] overflow-y-auto bg-gray-900/95 backdrop-blur-sm opacity-0 transition-[opacity,visibility] duration-500 [&.open]:visible [&.open]:opacity-100",
     isOpen && "open"
   )}
   static
 >
   <nav class="h-full">
-    <ul class="flex h-full flex-col justify-center gap-8 py-16">
+    <ul class="flex flex-col gap-6 py-8 px-6">
       {#each links as link}
         <li
           class="flex justify-center [&.hidden-desktop]:sm:hidden"
           class:hidden-desktop={link.hiddenDesktop}
         >
-          <a class="flex flex-col px-8 py-6 text-center hover:bg-gray-50 transition-colors duration-300" href={link.href}>
-            <span class="font-bold text-3xl sm:text-4xl text-black mb-2"
-              >{link.mainLabel}</span
-            >
-            <span class="text-lg sm:text-xl text-gray-600">{link.subLabel}</span>
+          <a 
+            class="group flex flex-col items-center px-8 py-4 text-center transition-all duration-300 hover:scale-105" 
+            href={link.href}
+            on:click={close}
+          >
+            <span class="font-english font-bold text-3xl sm:text-4xl text-white mb-2 group-hover:text-gray-200 transition-colors duration-300">
+              {link.mainLabel}
+            </span>
+            <span class="text-base sm:text-lg text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+              {link.subLabel}
+            </span>
+            
+            <!-- 下線アニメーション -->
+            <div class="mt-3 h-0.5 w-0 bg-white group-hover:w-full transition-all duration-500 ease-out"></div>
           </a>
         </li>
       {/each}
