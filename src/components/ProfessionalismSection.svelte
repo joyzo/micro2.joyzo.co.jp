@@ -440,11 +440,11 @@
     </div>
 
     <!-- 3Dキューブコンテナ -->
-    <div class="cube-container mb-16">
+    <div class="cube-container mb-16" style="perspective: 1000px; perspective-origin: center center; -webkit-perspective: 1000px; -webkit-perspective-origin: center center;">
       <div class="cube-wrapper">
         <div 
           class="cube {isRotating ? 'rotating' : ''} {isDragging ? 'dragging' : ''} {isFaceRotating ? 'face-rotating' : ''}"
-          style="transform: rotateX({currentRotation.x}deg) rotateY({currentRotation.y}deg);"
+          style="transform: rotateX({currentRotation.x}deg) rotateY({currentRotation.y}deg); transform-style: preserve-3d; -webkit-transform-style: preserve-3d;"
           on:click={handleCubeClick}
           on:mousedown={handleDragStart}
           on:touchstart={handleTouchStart}
@@ -457,7 +457,7 @@
           {#each cubeFaces as face, faceIndex}
             <div 
               class="cube-face {selectedFaceIndex === faceIndex ? 'selected' : ''}"
-              style="transform: rotateX({face.rotation.x}deg) rotateY({face.rotation.y}deg) translateZ(200px);"
+              style="transform: rotateX({face.rotation.x}deg) rotateY({face.rotation.y}deg) translateZ(200px); backface-visibility: hidden; -webkit-backface-visibility: hidden;"
               on:click={(e) => handleFaceClick(faceIndex, e)}
               on:touchstart={handleTouchStart}
               on:touchend={(e) => handleTouchEnd(e, faceIndex)}
@@ -601,12 +601,14 @@
 
   /* 3Dキューブスタイル */
   .cube-container {
-    perspective: 1000px;
-    perspective-origin: center center;
+    perspective: 1000px !important;
+    perspective-origin: center center !important;
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-perspective: 1000px !important;
+    -webkit-perspective-origin: center center !important;
   }
 
   .cube-wrapper {
@@ -619,12 +621,13 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
+    transform-style: preserve-3d !important;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: grab;
     user-select: none;
     touch-action: manipulation; /* モバイルでのタッチ操作を最適化 */
     -webkit-tap-highlight-color: transparent; /* iOS のタップハイライトを無効化 */
+    -webkit-transform-style: preserve-3d !important;
   }
 
   .cube:hover {
@@ -659,11 +662,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    backface-visibility: hidden;
+    backface-visibility: hidden !important;
     cursor: pointer;
     transition: all 0.3s ease;
     touch-action: manipulation; /* モバイルでのタッチ操作を最適化 */
     -webkit-tap-highlight-color: transparent; /* iOS のタップハイライトを無効化 */
+    -webkit-backface-visibility: hidden !important;
   }
 
   /* 各面の色設定 */
