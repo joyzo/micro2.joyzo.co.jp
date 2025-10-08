@@ -142,20 +142,6 @@
       </a>
     </div>
 
-    <!-- マニフェストリンク -->
-    <div
-      class="opacity-0 transition-all delay-700 duration-1000"
-      class:opacity-100={showContent}
-      class:translate-y-0={showContent}
-      class:translate-y-8={!showContent}
-    >
-      <a
-        href="/aboutus"
-        class="inline-block text-xl font-medium text-gray-500 transition-colors duration-300 hover:text-black"
-      >
-        JOYZO Manifesto をもっと見る →
-      </a>
-    </div>
   </div>
 
   <!-- スクロールインジケータ -->

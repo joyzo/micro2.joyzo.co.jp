@@ -229,14 +229,6 @@
             </div>
           </div>
 
-          <div class={isVisible ? "opacity-100" : "opacity-0"}>
-            <a
-              href="/aboutus"
-              class="inline-block text-lg text-gray-500 transition-colors duration-300 hover:text-black"
-            >
-              JOYZO Manifesto をもっと見る →
-            </a>
-          </div>
         </div>
       </div>
     </div>
