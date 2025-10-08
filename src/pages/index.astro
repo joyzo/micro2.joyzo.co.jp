@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import CorporateHeroSection from "@components/CorporateHeroSection.svelte";
+import AnniversarySection from "@components/AnniversarySection.svelte";
 import VisionSection from "@components/VisionSection.svelte";
 import ManifestoSection from "@components/ManifestoSection.svelte";
 import PartnersSection from "@components/PartnersSection.svelte";
@@ -13,21 +14,24 @@ import ContactSection from "@components/ContactSection.svelte";
   <!-- 1. コーポレートヒーローセクション -->
   <CorporateHeroSection client:load />
   
-  <!-- 2. 会社ビジョンセクション -->
+  <!-- 2. 15周年記念PRセクション -->
+  <AnniversarySection client:load />
+  
+  <!-- 3. 会社ビジョンセクション -->
   <VisionSection client:load />
   
-  <!-- 3. マニフェスト一覧セクション -->
+  <!-- 4. マニフェスト一覧セクション -->
   <ManifestoSection client:load />
   
-  <!-- 4. 実績・パートナーセクション -->
+  <!-- 5. 実績・パートナーセクション -->
   <PartnersSection client:load />
   
-  <!-- 5. 採用バナー -->
+  <!-- 6. 採用バナー -->
   <RecruitBanner client:load />
   
-  <!-- 6. ストーリー・メディアセクション -->
+  <!-- 7. ストーリー・メディアセクション -->
   <StoryMediaSection client:load />
   
-  <!-- 7. お問い合わせセクション -->
+  <!-- 8. お問い合わせセクション -->
   <ContactSection client:load />
 </Layout>

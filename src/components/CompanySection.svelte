@@ -3,10 +3,10 @@
 </script>
 
 <ScrollAnimation
-  trigger="top 85%"
-  duration={0.8}
-  stagger={0.15}
-  y={40}
+  trigger="top 95%"
+  duration={0.6}
+  stagger={0.1}
+  y={30}
   opacity={0}
 >
   <section id="company-section" class="company-section py-20">

@@ -80,6 +80,8 @@
   // ドラッグ操作の管理
   let isDragging = false;
   let lastMousePosition = { x: 0, y: 0 };
+  let touchStartTime = 0;
+  let touchStartPosition = { x: 0, y: 0 };
 
   // 面の選択状態管理
   let selectedFaceIndex: number | null = null;
@@ -208,6 +210,47 @@
     rotateToFace(faceIndex);
   }
 
+  // タッチ開始（タップとドラッグを区別）
+  function handleTouchStart(event: TouchEvent) {
+    touchStartTime = Date.now();
+    const touch = event.touches[0];
+    touchStartPosition = { x: touch.clientX, y: touch.clientY };
+    lastMousePosition = { x: touch.clientX, y: touch.clientY };
+  }
+
+  // タッチ終了（タップ判定）
+  function handleTouchEnd(event: TouchEvent, faceIndex?: number) {
+    const touchEndTime = Date.now();
+    const touchDuration = touchEndTime - touchStartTime;
+    
+    // タップ判定（200ms以内で移動距離が小さい場合）
+    if (touchDuration < 200) {
+      const touch = event.changedTouches[0];
+      const moveDistance = Math.sqrt(
+        Math.pow(touch.clientX - touchStartPosition.x, 2) + 
+        Math.pow(touch.clientY - touchStartPosition.y, 2)
+      );
+      
+      // 移動距離が10px以内ならタップと判定
+      if (moveDistance < 10) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if (faceIndex !== undefined) {
+          // 面のタップ
+          handleFaceClick(faceIndex, event);
+        } else {
+          // キューブ全体のタップ
+          handleCubeClick();
+        }
+        return;
+      }
+    }
+    
+    // ドラッグ終了処理
+    handleDragEnd();
+  }
+
   // 指定された面を正面に回転
   function rotateToFace(faceIndex: number) {
     if (isFaceRotating) return;
@@ -239,6 +282,12 @@
   function handleDragStart(event: MouseEvent | TouchEvent) {
     if (isRotating || isFaceRotating) return;
     
+    // タッチイベントの場合はタップ判定のため、ドラッグ開始を遅延
+    if ('touches' in event) {
+      // タッチ開始時の処理は handleTouchStart で行う
+      return;
+    }
+    
     isDragging = true;
     
     // 自動回転を一時停止
@@ -246,14 +295,31 @@
       clearInterval(autoRotateInterval);
     }
     
-    // マウス/タッチ位置を取得
-    const clientX = 'touches' in event ? event.touches[0]?.clientX || 0 : event.clientX;
-    const clientY = 'touches' in event ? event.touches[0]?.clientY || 0 : event.clientY;
+    // マウス位置を取得
+    const clientX = event.clientX;
+    const clientY = event.clientY;
     
     lastMousePosition = { x: clientX, y: clientY };
     
     // イベントのデフォルト動作を防ぐ
     event.preventDefault();
+  }
+
+  // ドラッグ開始（タッチ用）
+  function handleTouchDragStart(event: TouchEvent) {
+    if (isRotating || isFaceRotating) return;
+    
+    // 少し遅延してからドラッグ開始判定
+    setTimeout(() => {
+      if (Date.now() - touchStartTime > 100) { // 100ms以上経過したらドラッグと判定
+        isDragging = true;
+        
+        // 自動回転を一時停止
+        if (autoRotateInterval) {
+          clearInterval(autoRotateInterval);
+        }
+      }
+    }, 100);
   }
 
   // ドラッグ中
@@ -362,7 +428,9 @@
           style="transform: rotateX({currentRotation.x}deg) rotateY({currentRotation.y}deg);"
           on:click={handleCubeClick}
           on:mousedown={handleDragStart}
-          on:touchstart={handleDragStart}
+          on:touchstart={handleTouchStart}
+          on:touchmove={handleTouchDragStart}
+          on:touchend={(e) => handleTouchEnd(e)}
           role="button"
           tabindex="0"
           on:keydown={(e) => e.key === 'Enter' && handleCubeClick()}
@@ -372,6 +440,8 @@
               class="cube-face {selectedFaceIndex === faceIndex ? 'selected' : ''}"
               style="transform: rotateX({face.rotation.x}deg) rotateY({face.rotation.y}deg) translateZ(200px);"
               on:click={(e) => handleFaceClick(faceIndex, e)}
+              on:touchstart={handleTouchStart}
+              on:touchend={(e) => handleTouchEnd(e, faceIndex)}
               role="button"
               tabindex="0"
               on:keydown={(e) => e.key === 'Enter' && handleFaceClick(faceIndex, e)}
@@ -381,10 +451,10 @@
                   <!-- 基本情報（常に表示） -->
                   <div class="basic-info">
                     <div class="mb-4 text-center">
-                      <div class="text-2xl font-bold text-white mb-2" style="letter-spacing: -0.06em; white-space: nowrap;">
+                      <div class="text-2xl font-bold text-gray-900 mb-2" style="letter-spacing: -0.06em; white-space: nowrap;">
                         {face.item.title}
                       </div>
-                      <div class="font-english text-lg font-black text-gray-200 tracking-wider">
+                      <div class="font-english text-lg font-black text-gray-700 tracking-wider">
                         {face.item.alphabet}
                       </div>
                     </div>
@@ -534,6 +604,8 @@
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: grab;
     user-select: none;
+    touch-action: manipulation; /* モバイルでのタッチ操作を最適化 */
+    -webkit-tap-highlight-color: transparent; /* iOS のタップハイライトを無効化 */
   }
 
   .cube:hover {
@@ -571,6 +643,8 @@
     backface-visibility: hidden;
     cursor: pointer;
     transition: all 0.3s ease;
+    touch-action: manipulation; /* モバイルでのタッチ操作を最適化 */
+    -webkit-tap-highlight-color: transparent; /* iOS のタップハイライトを無効化 */
   }
 
   .cube-face:hover {
