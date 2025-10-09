@@ -3,7 +3,7 @@
 </script>
 
 <section class="contact-section py-24">
-  <div class="container mx-auto max-w-4xl px-4">
+  <div class="mx-auto max-w-none sm:max-w-4xl px-4">
     <!-- メッセージ性のあるキャッチコピー -->
     <div class="mb-20 text-center">
       <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl">

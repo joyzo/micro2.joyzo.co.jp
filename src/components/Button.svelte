@@ -12,13 +12,13 @@
 
   const variantClasses = {
     primary:
-      "bg-gray-800 text-white shadow-sm hover:bg-gray-700 focus-visible:ring-gray-800",
+      "bg-theme-primary text-white shadow-sm hover:bg-theme-primary-dark focus-visible:ring-theme-primary",
     secondary:
-      "bg-gray-100 text-black shadow-sm hover:bg-gray-200 focus-visible:ring-gray-500",
+      "bg-theme-hover text-theme-text shadow-sm hover:bg-theme-border focus-visible:ring-theme-secondary",
     outline:
-      "border border-gray-300 bg-white text-black shadow-sm hover:bg-gray-50 focus-visible:ring-gray-500",
-    ghost: "text-black hover:bg-gray-100 focus-visible:ring-gray-500",
-    link: "text-gray-800 underline-offset-4 hover:underline focus-visible:ring-gray-800",
+      "border border-theme-border bg-theme-background-secondary text-theme-text shadow-sm hover:bg-theme-background focus-visible:ring-theme-secondary",
+    ghost: "text-theme-text hover:bg-theme-hover focus-visible:ring-theme-secondary",
+    link: "text-theme-primary underline-offset-4 hover:underline focus-visible:ring-theme-primary",
   };
 
   const sizeClasses = {

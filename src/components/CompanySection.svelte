@@ -10,7 +10,7 @@
   opacity={0}
 >
   <section id="company-section" class="company-section py-20">
-    <div class="container mx-auto px-6 md:px-4">
+    <div class="mx-auto max-w-none sm:max-w-7xl px-4">
       <div class="mb-16 text-center">
         <h2
           class="md:text-8xl lg:text-9xl mb-6 font-english text-5xl font-bold text-main sm:text-6xl leading-[0.9] md:leading-[0.95]"
@@ -30,7 +30,7 @@
         />
       </div>
 
-      <div class="mx-auto max-w-4xl space-y-8">
+      <div class="mx-auto max-w-none sm:max-w-4xl space-y-8">
         <!-- 基本情報 -->
         <div
           class="transform rounded-lg border border-white/20 bg-white/80 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-xl"
@@ -203,15 +203,15 @@
           class="transform rounded-lg border border-white/20 bg-accent/90 p-8 text-white backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-xl"
           data-scroll-animate
         >
-          <div class="flex items-start space-x-6">
+          <div class="flex flex-col items-center space-y-6 md:flex-row md:items-start md:space-y-0 md:space-x-6">
             <div class="flex-shrink-0">
               <img
                 src="/daihyou.png"
                 alt="代表取締役社長 四宮 靖隆"
-                class="h-24 w-24 rounded-lg border-2 border-white object-cover"
+                class="h-32 w-32 md:h-56 md:w-56 lg:h-64 lg:w-64 rounded-lg border-2 border-white object-cover"
               />
             </div>
-            <div class="flex-1">
+            <div class="flex-1 text-center md:text-left">
               <h3 class="mb-6 text-2xl font-bold">代表メッセージ</h3>
               <p class="mb-4 text-sm leading-relaxed">
                 株式会社ジョイゾーは、2010年12月に私、代表取締役社長の四宮靖隆が設立しました。私の仕事観は「仕事は、自分の人生を楽しくイキイキさせるもの」であるというものです。ITを導入すること（SI）は働く人を楽しくさせるものであるべきだという信念から、2010年にジョイゾーを起業しました。

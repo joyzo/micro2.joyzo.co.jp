@@ -1,6 +1,22 @@
 /* Interフォントの読み込み */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/* CSS変数のデフォルト値（デフォルトテーマ：ブルー） */
+:root {
+  --color-primary: #1240d6;
+  --color-primary-dark: #0f3399;
+  --color-secondary: #3B82F6;
+  --color-accent: #de4a37;
+  --color-background: #F8FAFC;
+  --color-background-secondary: #FFFFFF;
+  --color-text: #1E293B;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  --color-border: #E2E8F0;
+  --color-hover: #F1F5F9;
+  --color-heading: #333d70; /* 見出し用の色 */
+}
+
 * {
   @apply tracking-xl;
   font-family: "Zen Kaku Gothic Antique", "Noto Sans JP", sans-serif;
@@ -12,9 +28,228 @@
 }
 
 body {
-  background: #fafafa;
+  background: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
   @apply w-full;
+}
+
+/* テーマ対応のユーティリティクラス */
+.bg-theme-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-theme-primary-dark {
+  background-color: var(--color-primary-dark);
+}
+
+.bg-theme-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-theme-accent {
+  background-color: var(--color-accent);
+}
+
+.bg-theme-background {
+  background-color: var(--color-background);
+}
+
+.bg-theme-background-secondary {
+  background-color: var(--color-background-secondary);
+}
+
+.text-theme-primary {
+  color: var(--color-primary);
+}
+
+.text-theme-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-theme-muted {
+  color: var(--color-text-muted);
+}
+
+.text-theme-heading {
+  color: var(--color-heading);
+}
+
+.border-theme {
+  border-color: var(--color-border);
+}
+
+.hover-theme:hover {
+  background-color: var(--color-hover);
+}
+
+/* ヘッダー用のテーマ対応クラス */
+.header-theme {
+  background-color: var(--color-primary);
+  border-bottom-color: var(--color-border);
+}
+
+.header-theme .text-white {
+  color: var(--color-background-secondary) !important;
+}
+
+.header-theme .hover\:text-gray-300:hover {
+  color: var(--color-text-muted) !important;
+}
+
+/* フッター用のテーマ対応クラス */
+.footer-theme {
+  background-color: var(--color-primary-dark);
+}
+
+.footer-theme .text-white {
+  color: #ffffff !important;
+}
+
+.footer-theme .text-gray-300 {
+  color: #d1d5db !important;
+}
+
+.footer-theme .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.footer-theme .border-gray-700 {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.footer-theme .hover\:text-white:hover {
+  color: #ffffff !important;
+}
+
+/* フッター内のリンクのホバー効果を改善 */
+.footer-theme a {
+  transition: color 0.2s ease;
+}
+
+.footer-theme a:hover {
+  color: #ffffff !important;
+}
+
+/* text-mainクラスをテーマ対応に */
+.text-main {
+  color: var(--color-heading) !important;
+}
+
+/* 英語見出し用のテーマ対応クラス - より高い優先度で適用 */
+body .text-gray-900 {
+  color: var(--color-text) !important;
+}
+
+body .text-gray-700 {
+  color: var(--color-text-secondary) !important;
+}
+
+/* フッター以外のtext-gray-400をテーマ対応 */
+body .text-gray-400 {
+  color: var(--color-text-muted) !important;
+}
+
+/* フッター内のtext-gray-400は既存のスタイルを維持 */
+.footer-theme .text-gray-400 {
+  color: var(--color-text-muted) !important;
+}
+
+/* ボタン用のテーマ対応クラス */
+.bg-gray-800 {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-gray-700 {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--color-hover) !important;
+}
+
+.bg-gray-200 {
+  background-color: var(--color-border) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--color-background) !important;
+}
+
+.border-gray-300 {
+  border-color: var(--color-border) !important;
+}
+
+/* ストーリーページのボタン用 */
+.bg-green-500 {
+  background-color: var(--color-accent) !important;
+}
+
+.bg-green-600 {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-green-700 {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.bg-blue-500 {
+  background-color: var(--color-secondary) !important;
+}
+
+.bg-blue-600 {
+  background-color: var(--color-primary) !important;
+}
+
+/* テーマスイッチャーのボタン用 */
+.bg-blue-100 {
+  background-color: var(--color-hover) !important;
+}
+
+.text-blue-800 {
+  color: var(--color-primary) !important;
+}
+
+/* テーマ対応のボタンクラス */
+.bg-theme-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-theme-primary-dark {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.bg-theme-hover {
+  background-color: var(--color-hover) !important;
+}
+
+.bg-theme-border {
+  background-color: var(--color-border) !important;
+}
+
+.bg-theme-background {
+  background-color: var(--color-background) !important;
+}
+
+.bg-theme-background-secondary {
+  background-color: var(--color-background-secondary) !important;
+}
+
+.border-theme-border {
+  border-color: var(--color-border) !important;
+}
+
+.text-theme-text {
+  color: var(--color-text) !important;
+}
+
+.focus-visible\:ring-theme-primary:focus-visible {
+  --tw-ring-color: var(--color-primary) !important;
+}
+
+.focus-visible\:ring-theme-secondary:focus-visible {
+  --tw-ring-color: var(--color-secondary) !important;
 }

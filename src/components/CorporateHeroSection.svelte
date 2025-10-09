@@ -101,7 +101,7 @@
 {#if showOpening}
   <div class="flex min-h-screen items-center justify-center bg-white px-4">
     <div
-      class="relative flex h-32 w-full max-w-4xl items-center justify-center"
+      class="relative flex h-32 w-full max-w-none sm:max-w-4xl items-center justify-center"
     >
       <!-- 左側のテキスト -->
       <div
@@ -120,7 +120,7 @@
 
       <!-- 中央のシンボル -->
       <div
-        class="absolute left-1/2 -translate-x-1/2 transform text-[2.5rem] font-black text-gray-600 transition-all duration-500 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {openingPhase ===
+        class="absolute left-1/2 -translate-x-1/2 transform text-[2.5rem] font-black text-theme-heading transition-all duration-500 ease-linear sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {openingPhase ===
         3
           ? 'animate-fade-out'
           : ''} {isRotating ? 'animate-rotate-symbol' : ''}"
@@ -151,7 +151,7 @@
         style="width: 45%;"
       >
         <div
-          class="tracking-tighter font-heading text-[2.5rem] font-black text-gray-600 transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
+          class="tracking-tighter font-heading text-[2.5rem] font-black text-theme-heading transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
             ? 'opacity-100'
             : 'opacity-0'} {isRightChanging
             ? 'animate-slot-rollup-right'
@@ -167,7 +167,7 @@
   <section
     class="relative flex min-h-screen items-center justify-center bg-white pt-16 md:pt-20"
   >
-    <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-4">
+    <div class="relative z-10 mx-auto max-w-none sm:max-w-7xl px-4">
       <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 左側：ENJOY YOUR WORLD -->
         <div class="order-1 lg:order-1">
@@ -185,10 +185,10 @@
                   ? 'animate-slot-final-2'
                   : 'opacity-0'}"
               >
-                <span class="font-heading text-black">YOUR</span>
+                <span class="font-heading text-theme-heading">YOUR</span>
               </h1>
               <h1
-                class="tracking-tighter font-heading text-[3.5rem] font-black leading-[0.85] text-gray-600 md:text-[5rem] lg:text-[7rem] xl:text-[8rem] md:leading-[0.9] {isVisible
+                class="tracking-tighter font-heading text-[3.5rem] font-black leading-[0.85] text-theme-heading md:text-[5rem] lg:text-[7rem] xl:text-[8rem] md:leading-[0.9] {isVisible
                   ? 'animate-slot-final-3'
                   : 'opacity-0'}"
               >

@@ -3,10 +3,10 @@
 </script>
 
 <section class="anniversary-section py-24">
-  <div class="container mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <div class="grid items-center gap-12 lg:gap-16 lg:grid-cols-2">
       <!-- テキストコンテンツ -->
-      <div class="space-y-6 lg:space-y-8 order-2 lg:order-1">
+      <div class="space-y-6 lg:space-y-8 order-2 lg:order-2">
         <div class="space-y-4 lg:space-y-6">
           <h2
             class="tracking-tighter font-heading text-4xl font-black leading-tight text-gray-900 md:text-5xl lg:text-6xl"
@@ -54,7 +54,7 @@
       </div>
 
       <!-- 15周年ロゴ -->
-      <div class="relative order-1 lg:order-2">
+      <div class="relative order-1 lg:order-1">
         <div class="relative overflow-hidden rounded-2xl shadow-xl bg-black p-6 lg:p-8">
           <img
             src="/images/season/logo_15th.png"

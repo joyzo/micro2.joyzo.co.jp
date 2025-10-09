@@ -3,7 +3,7 @@
 </script>
 
 <section class="vision-section py-24">
-  <div class="container mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <div class="grid items-center gap-16 lg:grid-cols-2">
       <!-- テキストコンテンツ -->
       <div class="space-y-8">

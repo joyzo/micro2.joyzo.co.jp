@@ -20,22 +20,16 @@
 </script>
 
 <section class="partners-section py-24">
-  <div class="container mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <!-- タイトル -->
     <div class="mb-20 text-center">
       <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl">
-        共に歩むパートナー
+        地域貢献活動
       </h2>
-      <p class="text-xl text-gray-600">
-        信頼できるパートナーと共に、お客様のDXをサポートしています
-      </p>
     </div>
 
     <!-- 地域活動 -->
     <div class="mb-20">
-      <h3 class="mb-12 text-center text-3xl font-bold text-gray-900">
-        地域活動
-      </h3>
       <div class="grid gap-8 md:grid-cols-3">
         {#each activities as activity}
           <div

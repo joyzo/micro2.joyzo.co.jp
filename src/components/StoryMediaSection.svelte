@@ -48,7 +48,7 @@
 </script>
 
 <section class="story-media-section py-24">
-  <div class="container mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <!-- タイトル -->
     <div class="mb-20 text-center">
       <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl">
