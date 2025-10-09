@@ -55,7 +55,7 @@
 
       <!-- 15周年ロゴ -->
       <div class="relative order-1 lg:order-1">
-        <div class="relative overflow-hidden rounded-2xl shadow-xl bg-black p-6 lg:p-8">
+        <div class="relative overflow-hidden rounded-2xl shadow-xl bg-white p-6 lg:p-8">
           <img
             src="/images/season/logo_15th.png"
             alt="JOYZO 15周年記念ロゴ"
