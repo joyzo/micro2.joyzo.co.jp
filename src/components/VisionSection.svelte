@@ -45,7 +45,7 @@
           </a>
           <a
             href="/company"
-            class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
+            class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 bg-white px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
           >
             会社概要を見る
           </a>
@@ -71,7 +71,7 @@
 
 <style>
   .vision-section {
-    background: #fafafa;
+    /* background: #fafafa; */
     position: relative;
   }
 </style>

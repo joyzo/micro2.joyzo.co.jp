@@ -90,7 +90,7 @@
 
 <style>
   .contact-section {
-    background: #ffffff;
+    /* background: #ffffff; */
     position: relative;
   }
 </style>

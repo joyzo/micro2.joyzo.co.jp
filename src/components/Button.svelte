@@ -16,7 +16,7 @@
     secondary:
       "bg-theme-hover text-theme-text shadow-sm hover:bg-theme-border focus-visible:ring-theme-secondary",
     outline:
-      "border border-theme-border bg-theme-background-secondary text-theme-text shadow-sm hover:bg-theme-background focus-visible:ring-theme-secondary",
+      "border border-theme-border bg-white text-theme-text shadow-sm hover:bg-gray-50 focus-visible:ring-theme-secondary",
     ghost: "text-theme-text hover:bg-theme-hover focus-visible:ring-theme-secondary",
     link: "text-theme-primary underline-offset-4 hover:underline focus-visible:ring-theme-primary",
   };

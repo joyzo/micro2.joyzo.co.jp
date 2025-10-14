@@ -99,7 +99,7 @@
 </script>
 
 {#if showOpening}
-  <div class="flex min-h-screen items-center justify-center bg-white px-4">
+  <div class="flex min-h-screen items-center justify-center bg-white/80 px-4">
     <div
       class="relative flex h-32 w-full max-w-none sm:max-w-4xl items-center justify-center"
     >
@@ -165,7 +165,7 @@
   </div>
 {:else}
   <section
-    class="relative flex min-h-screen items-center justify-center bg-white pt-16 md:pt-20"
+    class="relative flex min-h-screen items-center justify-center bg-white/80 pt-16 md:pt-20"
   >
     <div class="relative z-10 mx-auto max-w-none sm:max-w-7xl px-4">
       <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">
@@ -214,7 +214,7 @@
             >
               <a
                 href="/company"
-                class="rounded-none border-2 border-black px-8 py-4 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
+                class="rounded-none border-2 border-black bg-white px-8 py-4 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
               >
                 会社概要を見る
               </a>

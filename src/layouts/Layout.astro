@@ -77,6 +77,19 @@ const description = props.description ?? BASE_DESCRIPTION;
       // import "@global/smoothScroll"; // スクロール処理の競合を避けるため完全に無効化
     </script>
     
+    <!-- 波の背景アニメーション -->
+    <script>
+      import "@utils/waveBackground";
+      
+      // DOMContentLoaded後に波の背景を初期化
+      document.addEventListener('DOMContentLoaded', () => {
+        if ((window as any).WaveBackground) {
+          const waveBackground = new (window as any).WaveBackground();
+          waveBackground.init();
+        }
+      });
+    </script>
+    
     <!-- テーマ初期化スクリプト -->
     <script>
       // URLパラメータからテーマを取得して適用
@@ -92,8 +105,9 @@ const description = props.description ?? BASE_DESCRIPTION;
         
         const themes = {
           default: {
-            primary: '#1240d6',
-            primaryDark: '#0f3399',
+            primary: '#2e4db4',
+            // primaryDark: '#0f3399',
+            primaryDark: '#2e4db4',
             secondary: '#3B82F6',
             accent: '#de4a37',
             background: '#F8FAFC',
@@ -103,7 +117,8 @@ const description = props.description ?? BASE_DESCRIPTION;
             textMuted: '#64748B',
             border: '#E2E8F0',
             hover: '#F1F5F9',
-            heading: '#333d70',
+            // heading: '#333d70',
+            heading: '#2e4db4',
           },
           black: {
             primary: '#000000',
@@ -120,8 +135,9 @@ const description = props.description ?? BASE_DESCRIPTION;
             heading: '#001F3F',
           },
           blue: {
-            primary: '#1240d6',
-            primaryDark: '#0f3399',
+            primary: '#2e4db4',
+            // primaryDark: '#0f3399',
+            primaryDark: '#2e4db4',
             secondary: '#3B82F6',
             accent: '#de4a37',
             background: '#F8FAFC',
@@ -131,7 +147,8 @@ const description = props.description ?? BASE_DESCRIPTION;
             textMuted: '#64748B',
             border: '#E2E8F0',
             hover: '#F1F5F9',
-            heading: '#333d70',
+            // heading: '#333d70',
+            heading: '#2e4db4',
           },
           pink: {
             primary: '#BE185D',
