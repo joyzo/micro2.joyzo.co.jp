@@ -174,7 +174,7 @@
 
 <style>
   .partners-section {
-    background: #fafafa;
+    /* background: #fafafa; */
     position: relative;
   }
 

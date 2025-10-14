@@ -46,7 +46,7 @@
           </a>
           <a
             href="/story"
-            class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
+            class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 bg-white px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
           >
             ストーリーを見る
           </a>
@@ -69,7 +69,7 @@
 
 <style>
   .anniversary-section {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    /* background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); */
     position: relative;
   }
   

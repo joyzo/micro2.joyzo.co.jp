@@ -3,7 +3,7 @@
 
 /* CSS変数のデフォルト値（デフォルトテーマ：ブルー） */
 :root {
-  --color-primary: #1240d6;
+  --color-primary: #2e4db4;
   --color-primary-dark: #0f3399;
   --color-secondary: #3B82F6;
   --color-accent: #de4a37;
@@ -31,6 +31,11 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* トップページの背景を透明にして波背景を見えるようにする */
+body.wave-background-active {
+  background: transparent;
 }
 
 img {

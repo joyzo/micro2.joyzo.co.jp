@@ -128,7 +128,7 @@
     >
       <a
         href="/company"
-        class="rounded-none border-2 border-black px-12 py-5 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
+        class="rounded-none border-2 border-black bg-white px-12 py-5 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
       >
         会社概要を見る
       </a>

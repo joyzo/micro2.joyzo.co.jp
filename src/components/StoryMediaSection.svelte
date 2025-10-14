@@ -215,7 +215,7 @@
 
 <style>
   .story-media-section {
-    background: #fafafa;
+    /* background: #fafafa; */
     position: relative;
   }
 </style>

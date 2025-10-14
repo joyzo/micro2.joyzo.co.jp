@@ -84,7 +84,7 @@
         href="/company"
         variant="outline"
         size="lg"
-        className="border-2 border-black text-black hover:bg-black hover:text-white px-12 py-5 rounded-none font-semibold text-lg"
+        className="border-2 border-black text-black bg-white hover:bg-black hover:text-white px-12 py-5 rounded-none font-semibold text-lg"
       >
         会社概要を見る
       </Button>
