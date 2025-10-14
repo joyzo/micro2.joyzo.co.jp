@@ -1,6 +1,4 @@
 ---
-import "@styles/global.css";
-
 import { SEO } from "astro-seo";
 
 import Menu from "@components/Menu/Menu.astro";
@@ -41,7 +39,9 @@ const description = props.description ?? BASE_DESCRIPTION;
         },
       }}
       extend={{
-        link: [{ rel: "icon", href: "/favicon.ico" }],
+        link: [
+          { rel: "icon", href: "/favicon.ico" }
+        ],
 
         meta: [
           { name: "viewport", content: "width=device-width" },
@@ -259,3 +259,7 @@ const description = props.description ?? BASE_DESCRIPTION;
     </script>
   </body>
 </html>
+
+<style>
+  @import "/src/styles/global.css";
+</style>

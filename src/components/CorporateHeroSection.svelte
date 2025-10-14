@@ -99,7 +99,7 @@
 </script>
 
 {#if showOpening}
-  <div class="flex min-h-screen items-center justify-center bg-white/80 px-4">
+  <div class="flex min-h-screen items-center justify-center px-4" style="background-color: rgba(255, 255, 255, 0.66);">
     <div
       class="relative flex h-32 w-full max-w-none sm:max-w-4xl items-center justify-center"
     >
@@ -165,7 +165,8 @@
   </div>
 {:else}
   <section
-    class="relative flex min-h-screen items-center justify-center bg-white/80 pt-16 md:pt-20"
+    class="relative flex min-h-screen items-center justify-center pt-16 md:pt-20"
+    style="background-color: rgba(255, 255, 255, 0.66);"
   >
     <div class="relative z-10 mx-auto max-w-none sm:max-w-7xl px-4">
       <div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16">

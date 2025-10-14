@@ -51,48 +51,48 @@ class WaveBackground {
 
           /* 2. SVGのアニメーション定義 (フワフワした動き) - パフォーマンス最適化 */
           @keyframes wave-move-slow {
-              0% { transform: translate3d(8%, 3%, 0) rotate(0deg); }
-              50% { transform: translate3d(-3%, -3%, 0) rotate(1deg); }
-              100% { transform: translate3d(8%, 3%, 0) rotate(0deg); }
+              0% { transform: translate3d(4%, 3%, 0) rotate(0deg); }
+              50% { transform: translate3d(-1.5%, -3%, 0) rotate(1deg); }
+              100% { transform: translate3d(4%, 3%, 0) rotate(0deg); }
           }
 
           @keyframes wave-move-medium {
-              0% { transform: translate3d(-3%, -3%, 0) rotate(-0.5deg); }
-              50% { transform: translate3d(8%, 3%, 0) rotate(0.5deg); }
-              100% { transform: translate3d(-3%, -3%, 0) rotate(-0.5deg); }
+              0% { transform: translate3d(-1.5%, -3%, 0) rotate(-0.5deg); }
+              50% { transform: translate3d(4%, 3%, 0) rotate(0.5deg); }
+              100% { transform: translate3d(-1.5%, -3%, 0) rotate(-0.5deg); }
           }
 
           @keyframes wave-move-fast {
-              0% { transform: translate3d(12%, 6%, 0) rotate(0.8deg); }
-              50% { transform: translate3d(-6%, -3%, 0) rotate(-0.8deg); }
-              100% { transform: translate3d(12%, 6%, 0) rotate(0.8deg); }
+              0% { transform: translate3d(6%, 6%, 0) rotate(0.8deg); }
+              50% { transform: translate3d(-3%, -3%, 0) rotate(-0.8deg); }
+              100% { transform: translate3d(6%, 6%, 0) rotate(0.8deg); }
           }
 
           /* 上部グループ用のアニメーション（逆方向） */
           @keyframes wave-move-slow-reverse {
-              0% { transform: translate3d(-8%, -3%, 0) rotate(0deg); }
-              50% { transform: translate3d(3%, 3%, 0) rotate(-1deg); }
-              100% { transform: translate3d(-8%, -3%, 0) rotate(0deg); }
+              0% { transform: translate3d(-4%, -3%, 0) rotate(0deg); }
+              50% { transform: translate3d(1.5%, 3%, 0) rotate(-1deg); }
+              100% { transform: translate3d(-4%, -3%, 0) rotate(0deg); }
           }
 
           @keyframes wave-move-medium-reverse {
-              0% { transform: translate3d(3%, 3%, 0) rotate(0.5deg); }
-              50% { transform: translate3d(-8%, -3%, 0) rotate(-0.5deg); }
-              100% { transform: translate3d(3%, 3%, 0) rotate(0.5deg); }
+              0% { transform: translate3d(1.5%, 3%, 0) rotate(0.5deg); }
+              50% { transform: translate3d(-4%, -3%, 0) rotate(-0.5deg); }
+              100% { transform: translate3d(1.5%, 3%, 0) rotate(0.5deg); }
           }
 
           @keyframes wave-move-fast-reverse {
-              0% { transform: translate3d(-12%, -6%, 0) rotate(-0.8deg); }
-              50% { transform: translate3d(6%, 3%, 0) rotate(0.8deg); }
-              100% { transform: translate3d(-12%, -6%, 0) rotate(-0.8deg); }
+              0% { transform: translate3d(-6%, -6%, 0) rotate(-0.8deg); }
+              50% { transform: translate3d(3%, 3%, 0) rotate(0.8deg); }
+              100% { transform: translate3d(-6%, -6%, 0) rotate(-0.8deg); }
           }
 
           /* SVGのスタイル - 2つのグループに対応 */
           .wave-svg {
               position: absolute;
-              left: -20vw; /* 画面幅の20%分左にずらして端が見えないように */
-              width: 120%; /* 画面幅より20%大きくして余裕を持たせる */
-              min-width: 4000px; /* 横幅を大幅に拡張 */
+              left: -50vw; /* 画面幅の50%分左にずらして端が絶対に見えないように */
+              width: 250%; /* 画面幅の2.5倍にしてより十分な余白を確保 */
+              min-width: 10000px; /* 横幅をさらに拡張して小さい画面でも安全 */
               min-height: 150vh;
               will-change: transform;
               backface-visibility: hidden;
@@ -101,17 +101,19 @@ class WaveBackground {
 
           /* 下部グループ */
           .wave-svg-bottom {
-              bottom: -80vh; /* さらに下に配置して画面からはみ出す */
+              bottom: -200vh; /* さらに下に配置して画面からはみ出す */
               left: auto; /* 左側の位置を自動調整 */
-              right: -20vw; /* 右側により大きく配置 */
+              right: -90vw; /* 下部グループをより右にずらす */
               height: 100vh; /* 高さを調整 */
-              transform: rotate(-5deg); /* 左右反転を削除、回転のみ */
+              transform: rotate(23deg); /* 23度回転 */
               transform-origin: right bottom; /* 右下を基準点にして回転 */
+              top: auto; /* 上部位置を自動調整 */
           }
 
           /* 上部グループ */
           .wave-svg-top {
               top: -20vh; /* 画面上部からはみ出るように配置 */
+              left: -70vw; /* 上部グループをもっと左にずらす */
               height: 120vh;
               transform: none; /* パス形状で左右反転済み */
               transform-origin: center;
@@ -179,14 +181,14 @@ class WaveBackground {
       // 下部グループのSVG（右側に寄せた形状に対応）
       const bottomSvg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
       bottomSvg.setAttribute('class', 'wave-svg wave-svg-bottom');
-      bottomSvg.setAttribute('viewBox', '0 0 2000 500'); // 横幅を拡張
+      bottomSvg.setAttribute('viewBox', '0 0 3000 500'); // 横幅を1.5倍に拡張（2000→3000）
       bottomSvg.setAttribute('preserveAspectRatio', 'xMinYMin meet');
 
-      // 下部グループの波のデータ（右側に寄せた形状）
+      // 下部グループの波のデータ（右側に寄せた形状、1.5倍に拡大）
       const bottomWaves: { id: string; initialD: string }[] = [
-          { id: 'wave1', initialD: "M800,450 C 1000,300 1200,480 1400,300 S1600,200 2000,150 C 1800, 700 1200, 700 800, 450 Z" },
-          { id: 'wave2', initialD: "M700,400 C 900,250 1100,400 1300,250 S1500,100 1900,50 C 1700, 650 1100, 650 700, 400 Z" },
-          { id: 'wave3', initialD: "M600,350 C 800,200 1000,350 1200,200 S1400,0 1800,0 C 1600, 600 1000, 600 600, 350 Z" }
+          { id: 'wave1', initialD: "M1200,450 C 1500,300 1800,480 2100,300 S2400,200 3000,150 C 2700, 700 1800, 700 1200, 450 Z" },
+          { id: 'wave2', initialD: "M1050,400 C 1350,250 1650,400 1950,250 S2250,100 2850,50 C 2550, 650 1650, 650 1050, 400 Z" },
+          { id: 'wave3', initialD: "M900,350 C 1200,200 1500,350 1800,200 S2100,0 2700,0 C 2400, 600 1500, 600 900, 350 Z" }
       ];
 
       this.wavePaths = bottomWaves.map(wave => {
@@ -201,14 +203,14 @@ class WaveBackground {
       // 上部グループのSVG（異なる形状とパターン）
       const topSvg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
       topSvg.setAttribute('class', 'wave-svg wave-svg-top');
-      topSvg.setAttribute('viewBox', '0 0 1500 500');
+      topSvg.setAttribute('viewBox', '0 0 2250 500'); // 横幅を1.5倍に拡張（1500→2250）
       topSvg.setAttribute('preserveAspectRatio', 'xMinYMin meet');
 
-      // 上部グループの波のデータ（左右反転した形状）
+      // 上部グループの波のデータ（左右反転した形状、1.5倍に拡大）
       const topWaves: { id: string; initialD: string }[] = [
-          { id: 'topWave1', initialD: "M1500,0 C 1400,120 1200,30 1000,80 S700,150 300,120 C 500, 0 1100, 0 1500, 0 Z" },
-          { id: 'topWave2', initialD: "M1500,30 C 1350,180 1100,60 900,110 S600,200 200,170 C 400, 30 1000, 30 1500, 30 Z" },
-          { id: 'topWave3', initialD: "M1500,60 C 1300,240 1000,90 800,140 S500,250 100,220 C 300, 60 900, 60 1500, 60 Z" }
+          { id: 'topWave1', initialD: "M2250,0 C 2100,120 1800,30 1500,80 S1050,150 450,120 C 750, 0 1650, 0 2250, 0 Z" },
+          { id: 'topWave2', initialD: "M2250,30 C 2025,180 1650,60 1350,110 S900,200 300,170 C 600, 30 1500, 30 2250, 30 Z" },
+          { id: 'topWave3', initialD: "M2250,60 C 1950,240 1500,90 1200,140 S750,250 150,220 C 450, 60 1350, 60 2250, 60 Z" }
       ];
 
       this.topWavePaths = topWaves.map(wave => {
@@ -261,28 +263,28 @@ class WaveBackground {
    * @param {number} scrollOffset - 補間後のスクロールオフセット
    */
   private _updateBottomWaves(scrollOffset: number): void {
-      // #wave1 の形状を更新（右下に配置、スクロールで動きを明確に）
-      const d1 = `M${800 + scrollOffset * 0.6},${450 + scrollOffset * 1.0} 
-                  C ${1000 + scrollOffset * 0.7},${300 + scrollOffset * 1.5} ${1200 + scrollOffset * 0.5},${480 + scrollOffset * 0.8} 
-                  ${1400 + scrollOffset * 0.6},300 
-                  S${1600 + scrollOffset * 0.5},200 ${2000 + scrollOffset * 0.7},${150 + scrollOffset * 2.0} 
-                  C ${1800 + scrollOffset * 0.6}, 700 ${1200 + scrollOffset * 0.5}, 700 ${800 + scrollOffset * 0.6}, ${450 + scrollOffset * 1.0} Z`;
+      // #wave1 の形状を更新（右下に配置、スクロールで動きを明確に、1.5倍座標）
+      const d1 = `M${1200 + scrollOffset * 0.6},${450 + scrollOffset * 1.0} 
+                  C ${1500 + scrollOffset * 0.7},${300 + scrollOffset * 1.5} ${1800 + scrollOffset * 0.5},${480 + scrollOffset * 0.8} 
+                  ${2100 + scrollOffset * 0.6},300 
+                  S${2400 + scrollOffset * 0.5},200 ${3000 + scrollOffset * 0.7},${150 + scrollOffset * 2.0} 
+                  C ${2700 + scrollOffset * 0.6}, 700 ${1800 + scrollOffset * 0.5}, 700 ${1200 + scrollOffset * 0.6}, ${450 + scrollOffset * 1.0} Z`;
       this.wave1.setAttribute('d', d1.replace(/\s+/g, ' ').trim());
 
-      // #wave2 の形状を更新
-      const d2 = `M${700 + scrollOffset * 0.7},${400 + scrollOffset * 0.8} 
-                  C ${900 + scrollOffset * 0.6},${250 + scrollOffset * 1.8} ${1100 + scrollOffset * 0.5},${400 + scrollOffset * 1.0} 
-                  ${1300 + scrollOffset * 0.6},250 
-                  S${1500 + scrollOffset * 0.5},100 ${1900 + scrollOffset * 0.6},${50 + scrollOffset * 1.6} 
-                  C ${1700 + scrollOffset * 0.5}, 650 ${1100 + scrollOffset * 0.6}, 650 ${700 + scrollOffset * 0.7}, ${400 + scrollOffset * 0.8} Z`;
+      // #wave2 の形状を更新（1.5倍座標）
+      const d2 = `M${1050 + scrollOffset * 0.7},${400 + scrollOffset * 0.8} 
+                  C ${1350 + scrollOffset * 0.6},${250 + scrollOffset * 1.8} ${1650 + scrollOffset * 0.5},${400 + scrollOffset * 1.0} 
+                  ${1950 + scrollOffset * 0.6},250 
+                  S${2250 + scrollOffset * 0.5},100 ${2850 + scrollOffset * 0.6},${50 + scrollOffset * 1.6} 
+                  C ${2550 + scrollOffset * 0.5}, 650 ${1650 + scrollOffset * 0.6}, 650 ${1050 + scrollOffset * 0.7}, ${400 + scrollOffset * 0.8} Z`;
       this.wave2.setAttribute('d', d2.replace(/\s+/g, ' ').trim());
       
-      // #wave3 の形状を更新 (最も手前で大きく動く)
-      const d3 = `M${600 + scrollOffset * 0.8},${350 + scrollOffset * 0.7} 
-                  C ${800 + scrollOffset * 0.5},${200 + scrollOffset * 1.6} ${1000 + scrollOffset * 0.6},${350 + scrollOffset * 1.2} 
-                  ${1200 + scrollOffset * 0.5},200 
-                  S${1400 + scrollOffset * 0.6},0 ${1800 + scrollOffset * 0.5},${0 + scrollOffset * 2.5} 
-                  C ${1600 + scrollOffset * 0.6}, 600 ${1000 + scrollOffset * 0.5}, 600 ${600 + scrollOffset * 0.8}, ${350 + scrollOffset * 0.7} Z`;
+      // #wave3 の形状を更新 (最も手前で大きく動く、1.5倍座標)
+      const d3 = `M${900 + scrollOffset * 0.8},${350 + scrollOffset * 0.7} 
+                  C ${1200 + scrollOffset * 0.5},${200 + scrollOffset * 1.6} ${1500 + scrollOffset * 0.6},${350 + scrollOffset * 1.2} 
+                  ${1800 + scrollOffset * 0.5},200 
+                  S${2100 + scrollOffset * 0.6},0 ${2700 + scrollOffset * 0.5},${0 + scrollOffset * 2.5} 
+                  C ${2400 + scrollOffset * 0.6}, 600 ${1500 + scrollOffset * 0.5}, 600 ${900 + scrollOffset * 0.8}, ${350 + scrollOffset * 0.7} Z`;
       this.wave3.setAttribute('d', d3.replace(/\s+/g, ' ').trim());
   }
 
@@ -294,28 +296,28 @@ class WaveBackground {
       // 上部グループは逆方向に動く（負の値を使用、より強く反応）
       const reverseOffset = -scrollOffset * 1.2;
 
-      // #topWave1 の形状を更新（左右反転した形状、より強く反応）
-      const d1 = `M1500,${0 + reverseOffset * 0.5} 
-                  C 1400,${120 + reverseOffset * 0.8} 1200,${30 + reverseOffset * 1.0} 
-                  1000,80 
-                  S700,150 300,${120 + reverseOffset * 0.4} 
-                  C 500, 0 1100, 0 1500, ${0 + reverseOffset * 0.5} Z`;
+      // #topWave1 の形状を更新（左右反転した形状、より強く反応、1.5倍座標）
+      const d1 = `M2250,${0 + reverseOffset * 0.5} 
+                  C 2100,${120 + reverseOffset * 0.8} 1800,${30 + reverseOffset * 1.0} 
+                  1500,80 
+                  S1050,150 450,${120 + reverseOffset * 0.4} 
+                  C 750, 0 1650, 0 2250, ${0 + reverseOffset * 0.5} Z`;
       this.topWave1.setAttribute('d', d1.replace(/\s+/g, ' ').trim());
 
-      // #topWave2 の形状を更新
-      const d2 = `M1500,${30 + reverseOffset * 0.6} 
-                  C 1350,${180 + reverseOffset * 0.9} 1100,${60 + reverseOffset * 0.8} 
-                  900,110 
-                  S600,200 200,${170 + reverseOffset * 0.5} 
-                  C 400, 30 1000, 30 1500, ${30 + reverseOffset * 0.6} Z`;
+      // #topWave2 の形状を更新（1.5倍座標）
+      const d2 = `M2250,${30 + reverseOffset * 0.6} 
+                  C 2025,${180 + reverseOffset * 0.9} 1650,${60 + reverseOffset * 0.8} 
+                  1350,110 
+                  S900,200 300,${170 + reverseOffset * 0.5} 
+                  C 600, 30 1500, 30 2250, ${30 + reverseOffset * 0.6} Z`;
       this.topWave2.setAttribute('d', d2.replace(/\s+/g, ' ').trim());
       
-      // #topWave3 の形状を更新
-      const d3 = `M1500,${60 + reverseOffset * 0.7} 
-                  C 1300,${240 + reverseOffset * 0.6} 1000,${90 + reverseOffset * 0.9} 
-                  800,140 
-                  S500,250 100,${220 + reverseOffset * 0.3} 
-                  C 300, 60 900, 60 1500, ${60 + reverseOffset * 0.7} Z`;
+      // #topWave3 の形状を更新（1.5倍座標）
+      const d3 = `M2250,${60 + reverseOffset * 0.7} 
+                  C 1950,${240 + reverseOffset * 0.6} 1500,${90 + reverseOffset * 0.9} 
+                  1200,140 
+                  S750,250 150,${220 + reverseOffset * 0.3} 
+                  C 450, 60 1350, 60 2250, ${60 + reverseOffset * 0.7} Z`;
       this.topWave3.setAttribute('d', d3.replace(/\s+/g, ' ').trim());
   }
 
