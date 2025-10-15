@@ -91,10 +91,10 @@ img {
   background-color: var(--color-hover);
 }
 
-/* ヘッダー用のテーマ対応クラス */
-.header-theme {
+/* ヘッダー用のテーマ対応クラス - 最高優先度で適用 */
+html body .header-theme {
   background-color: var(--color-primary) !important;
-  border-bottom-color: var(--color-border);
+  border-bottom-color: var(--color-border) !important;
 }
 
 .header-theme .text-white {
