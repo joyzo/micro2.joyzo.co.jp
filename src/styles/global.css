@@ -93,7 +93,7 @@ img {
 
 /* ヘッダー用のテーマ対応クラス */
 .header-theme {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary) !important;
   border-bottom-color: var(--color-border);
 }
 
@@ -168,6 +168,15 @@ body .text-gray-400 {
   background-color: var(--color-primary) !important;
 }
 
+/* 青色ボタン用のクラス */
+.bg-blue-600 {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-blue-700 {
+  background-color: var(--color-primary-dark) !important;
+}
+
 .bg-gray-700 {
   background-color: var(--color-primary-dark) !important;
 }
@@ -203,10 +212,6 @@ body .text-gray-400 {
 
 .bg-blue-500 {
   background-color: var(--color-secondary) !important;
-}
-
-.bg-blue-600 {
-  background-color: var(--color-primary) !important;
 }
 
 /* テーマスイッチャーのボタン用 */
