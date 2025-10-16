@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
 import prefetch from "@astrojs/prefetch";
 import svelte from "@astrojs/svelte";
-import image from "@astrojs/image";
+// import image from "@astrojs/image"; // 非推奨のためコメントアウト
 import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
@@ -27,7 +27,7 @@ export default defineConfig({
       ...(import.meta.env.DEV && { enabled: false }),
     }),
     svelte({}),
-    image(),
+    // image(), // 非推奨のためコメントアウト
     partytown({
       config: {
         forward: ["dataLayer.push"],

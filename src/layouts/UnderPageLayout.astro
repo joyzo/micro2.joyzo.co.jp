@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+// import { Picture } from "@astrojs/image/components"; // 非推奨のためコメントアウト
 
 import Layout from "./Layout.astro";
 
@@ -20,10 +20,8 @@ const imageFileName = mainLabel.toLowerCase().replace(/\s+/g, "");
 
 <Layout {...props}>
   <div class="relative min-h-[50vh] mt-16 md:mt-20">
-    <Picture
+    <img
       src={import(`../images/${imageFileName}.png`)}
-      widths={[400, 800, 1200, 1600, 2000]}
-      sizes="100vw"
       loading="eager"
       width={1440}
       height={320}

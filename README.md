@@ -103,7 +103,15 @@ npm run build
 - `CompanySection.svelte` - 会社概要セクション
 - `CareersSection.svelte` - 採用情報セクション
 
-## Vercel へのデプロイ
+## デプロイについて
+
+### 本番環境へのデプロイ
+
+⚠️ **重要: 本番環境へのデプロイについて**  
+本番環境へのデプロイは、**必ず承諾を得てから実行しなければなりません**。  
+詳細な手順については `DEPLOYMENT.md` を参照してください。
+
+### Vercel へのデプロイ（開発/テスト環境）
 
 [Vercel Platform](https://vercel.com/new)から簡単にデプロイが可能です。
 
