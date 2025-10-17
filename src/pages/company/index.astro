@@ -10,30 +10,144 @@ import CompanySection from "@components/CompanySection.svelte";
   subLabel="会社概要"
 >
   <div class="mx-auto max-w-6xl space-y-20">
-    <!-- 企業理念セクション -->
-    <section>
-      <div class="mb-16 text-center">
-        <h2 class="mb-6 font-english text-4xl font-bold text-main leading-[0.9] md:leading-[0.95]">
-          PHILOSOPHY
-        </h2>
-        <p class="text-xl text-gray-600">企業理念</p>
-      </div>
-
-      <div
-        class="rounded-subtle bg-gradient-to-r from-main to-secondary p-6 md:p-12 text-center text-white -mx-6 md:mx-0"
-      >
-        <h3 class="mb-8 text-3xl font-bold">ENJOY YOUR WORLD.</h3>
-        <p class="mx-auto max-w-4xl text-lg leading-relaxed mb-6">
-          私たちの企業理念「ENJOY YOUR WORLD.」は、「世界の隅々まで、エンジニアリングの楽しさを届ける」ことを追求することで、お客様だけでなく、私たち自身の業務改善も加速させるという強い思いが込められています。
-        </p>
-        <p class="mx-auto max-w-4xl text-lg leading-relaxed">
-          システムは単に作ることが目的ではなく、お客様がそのシステムを有効活用し、働く人々の手助けとなることが真の目的です。私たちは、お客様と「一つのチーム」としてシステムを作り上げ、その過程すらも共に楽しむ関係性を大切にしています。
-        </p>
-      </div>
-    </section>
-
     <!-- 会社概要セクション -->
     <CompanySection client:only="svelte" />
+
+    <!-- 会社の歴史セクション -->
+    <section>
+      <div class="mb-16 text-center">
+        <h2 class="mb-6 font-english text-4xl font-bold text-main leading-[0.9] md:leading-[0.95]">HISTORY</h2>
+        <p class="text-xl text-gray-600">kintoneとともに歩んできた</p>
+      </div>
+
+      <div class="rounded-subtle border border-gray-100 bg-white p-6 md:p-8 shadow-lg -mx-6 md:mx-0">
+        <div class="mx-auto max-w-5xl">
+          <!-- 年表ルーラー -->
+          <div class="relative">
+            <!-- デスクトップ用：中央の線 -->
+            <div class="absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 bg-gradient-to-b from-main via-secondary to-accent md:block"></div>
+            
+            <!-- モバイル用：左側の線 -->
+            <div class="absolute left-8 top-0 h-full w-1 bg-gradient-to-b from-main via-secondary to-accent md:hidden"></div>
+            
+            <!-- 年表項目 -->
+            <div class="space-y-12">
+              <!-- 2010年 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左右交互配置 -->
+                <div class="hidden flex-1 pr-8 text-right md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">株式会社ジョイゾー設立</h3>
+                    <p class="text-gray-700">
+                      「仕事は人生を楽しくイキイキさせるもの」という理念のもと、ジョイゾーを設立。ITを導入することで働く人を楽しくさせるという信念からスタートしました。
+                    </p>
+                  </div>
+                </div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-main text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">2010</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block"></div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">株式会社ジョイゾー設立</h3>
+                    <p class="text-gray-700 text-sm">
+                      「仕事は人生を楽しくイキイキさせるもの」という理念のもと、ジョイゾーを設立。ITを導入することで働く人を楽しくさせるという信念からスタートしました。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2011年 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左側 -->
+                <div class="hidden flex-1 pr-8 md:block"></div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">2011</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">kintoneとの出会い</h3>
+                    <p class="text-gray-700">
+                      サイボウズの「kintone」に出会い、SIerビジネスを根本から変えられる可能性に懸け、リリースと同時にkintone専業SIを事業として開始。
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">kintoneとの出会い</h3>
+                    <p class="text-gray-700 text-sm">
+                      サイボウズの「kintone」に出会い、SIerビジネスを根本から変えられる可能性に懸け、リリースと同時にkintone専業SIを事業として開始。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2014年 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左側 -->
+                <div class="hidden flex-1 pr-8 text-right md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">システム39のリリース</h3>
+                    <p class="text-gray-700">
+                      お客様の目の前で業務システムを作り上げていく「対面開発」という手法を、どこよりも先駆けて取り入れました。
+                    </p>
+                  </div>
+                </div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">2014</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block"></div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">システム39のリリース</h3>
+                    <p class="text-gray-700 text-sm">
+                      お客様の目の前で業務システムを作り上げていく「対面開発」という手法を、どこよりも先駆けて取り入れました。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 現在 -->
+              <div class="relative flex items-center">
+                <!-- デスクトップ用：左側 -->
+                <div class="hidden flex-1 pr-8 md:block"></div>
+                <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-main text-white font-bold shadow-lg md:h-16 md:w-16">
+                  <span class="text-sm md:text-base">現在</span>
+                </div>
+                <!-- デスクトップ用：右側 -->
+                <div class="hidden flex-1 pl-8 md:block">
+                  <div class="inline-block">
+                    <h3 class="mb-2 text-xl font-bold text-main">1750社を超える実績</h3>
+                    <p class="text-gray-700">
+                      cybozu公認SIパートナーとして、kintone認定資格取得者40名を超えるスペシャリスト集団に成長。「システム39」を通じて1750を超えるお客様の課題解決に取り組み、新しいSIの形を世に広げています。
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- モバイル用：右側固定 -->
+                <div class="flex-1 pl-4 md:hidden">
+                  <div>
+                    <h3 class="mb-2 text-lg font-bold text-main">1750社を超える実績</h3>
+                    <p class="text-gray-700 text-sm">
+                      cybozu公認SIパートナーとして、kintone認定資格取得者40名を超えるスペシャリスト集団に成長。「システム39」を通じて1750を超えるお客様の課題解決に取り組み、新しいSIの形を世に広げています。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 事業内容詳細セクション -->
     <section>
@@ -169,29 +283,6 @@ import CompanySection from "@components/CompanySection.svelte";
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div
-                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary"
-                >
-                  <svg
-                    class="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-medium">営業時間</p>
-                  <p class="text-sm text-gray-600">平日 9:00〜18:00</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -223,29 +314,6 @@ import CompanySection from "@components/CompanySection.svelte";
                 </div>
               </div>
 
-              <div class="flex items-start space-x-4">
-                <div
-                  class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-main"
-                >
-                  <svg
-                    class="h-4 w-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-medium">定休日</p>
-                  <p class="text-sm text-gray-600">土日祝日</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

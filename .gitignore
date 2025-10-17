@@ -26,3 +26,6 @@ design-samples/AMANATION/AMANATION.mov
 # Design samples and site images
 design-samples/
 サイト画像/
+
+# Office photos (HEIC source files - too large for git)
+public/images/joy-office-photos/
