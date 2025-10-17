@@ -10,6 +10,7 @@
         <div class="space-y-4 lg:space-y-6">
           <h2
             class="tracking-tighter font-heading text-4xl font-black leading-tight text-gray-900 md:text-5xl lg:text-6xl"
+            style="letter-spacing: -0.05em;"
           >
             CELEBRATING 15 YEARS
           </h2>

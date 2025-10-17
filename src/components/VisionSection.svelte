@@ -10,6 +10,7 @@
         <div class="space-y-6">
           <h2
             class="tracking-tighter font-heading text-5xl font-black leading-tight text-gray-900 md:text-6xl"
+            style="letter-spacing: -0.05em;"
           >
             ENJOY YOUR WORLD.
           </h2>
@@ -56,12 +57,12 @@
       <div class="relative">
         <div class="relative overflow-hidden rounded-2xl shadow-xl">
           <img
-            src="/images/top/about.png"
-            alt="社員・顧客・チームの雰囲気"
+            src="/images/joyster.png"
+            alt="能取湖の風景"
             class="h-96 w-full object-cover"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"
+            class="absolute inset-0 gradient-overlay"
           />
         </div>
       </div>
@@ -71,7 +72,31 @@
 
 <style>
   .vision-section {
-    /* background: #fafafa; */
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
     position: relative;
+  }
+
+  .gradient-overlay {
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.08) 0%, rgba(99, 102, 241, 0.05) 25%, rgba(79, 70, 229, 0.12) 50%, rgba(67, 56, 202, 0.06) 75%, rgba(55, 48, 163, 0.10) 100%);
+    background-size: 400% 400%;
+    animation: seamlessGradientFlow 12s ease-in-out infinite;
+  }
+
+  @keyframes seamlessGradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 </style>

@@ -14,6 +14,7 @@
       <div class="mb-16 text-center">
         <h2
           class="md:text-8xl lg:text-9xl mb-6 font-english text-5xl font-bold text-main sm:text-6xl leading-[0.9] md:leading-[0.95]"
+          style="letter-spacing: -0.05em;"
           data-scroll-animate
         >
           COMPANY

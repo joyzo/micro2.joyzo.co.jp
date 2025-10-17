@@ -56,6 +56,7 @@
       <AnimatedText
         text={currentCopy}
         className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight tracking-tighter font-heading"
+        style="letter-spacing: -0.05em;"
         delay={0.03}
         duration={1.2}
       />

@@ -16,12 +16,15 @@ const { mainLabel, subLabel, ...props } = Astro.props;
 
 // 画像ファイル名を生成（スペースを削除して小文字に）
 const imageFileName = mainLabel.toLowerCase().replace(/\s+/g, "");
+
+// 画像パスを生成
+const imagePath = `/images/${imageFileName}.png`;
 ---
 
 <Layout {...props}>
   <div class="relative min-h-[50vh] mt-16 md:mt-20">
     <img
-      src={import(`../images/${imageFileName}.png`)}
+      src={imagePath}
       loading="eager"
       width={1440}
       height={320}

@@ -33,6 +33,7 @@
       <div class="text-center lg:text-left">
         <h2
           class="mb-6 font-heading text-4xl font-black text-white md:text-5xl lg:text-6xl leading-tight"
+          style="letter-spacing: -0.08em;"
         >
           <span
             class="transition-all duration-500"

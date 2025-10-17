@@ -154,7 +154,7 @@
             class="md:text-7xl lg:text-8xl xl:text-9xl font-heading text-5xl font-bold leading-tight"
             class:text-blue-900={index % 2 === 0}
             class:text-blue-800={index % 2 === 1}
-            style="letter-spacing: 0.02em;"
+            style="letter-spacing: -0.05em;"
           >
             {message.catch}
           </h2>

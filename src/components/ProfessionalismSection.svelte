@@ -433,7 +433,7 @@
   <div class="mx-auto max-w-none sm:max-w-7xl px-4">
     <!-- セクションヘッダー -->
     <div class="mb-20 text-center">
-      <h2 class="mb-6 font-english text-5xl font-black text-gray-900 md:text-6xl leading-[0.9] md:leading-[0.95]">
+      <h2 class="mb-6 font-english text-5xl font-black text-gray-900 md:text-6xl leading-[0.9] md:leading-[0.95]" style="letter-spacing: -0.05em;">
         PROFESSIONALISM
       </h2>
       <p class="text-xl text-gray-600">JOYZOのメンバーが大切にする価値観</p>

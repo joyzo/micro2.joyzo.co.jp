@@ -34,6 +34,7 @@
     <div class="mb-16">
       <h1
         class="tracking-tighter md:text-8xl lg:text-9xl mb-8 font-heading text-6xl font-black leading-[0.9] md:leading-tight"
+        style="letter-spacing: -0.05em;"
       >
         <span
           class="transition-all duration-500"
@@ -49,6 +50,7 @@
       <div class="mb-8">
         <h2
           class="mb-4 font-heading text-3xl font-bold leading-tight md:text-4xl lg:text-5xl"
+          style="letter-spacing: -0.08em;"
         >
           <span
             class="transition-all delay-200 duration-700"
@@ -193,8 +195,8 @@
         <div class="relative order-2 lg:order-1">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="/images/aboutus.png"
-              alt="JOYZOの働き方"
+              src="/images/office/joy-office-001.jpg"
+              alt="JOYZOの働き方 - 快適なオフィス環境"
               class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
               loading="lazy"
             />

@@ -79,6 +79,7 @@
     <div class="mb-16">
       <h1
         class="md:text-8xl lg:text-9xl tracking-tighter font-heading text-6xl font-black leading-tight"
+        style="letter-spacing: -0.05em;"
       >
         <div class="flex items-center justify-center gap-8">
           <!-- 左側のキーワード -->

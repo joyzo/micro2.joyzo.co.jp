@@ -6,7 +6,7 @@
   <div class="mx-auto max-w-none sm:max-w-4xl px-4">
     <!-- メッセージ性のあるキャッチコピー -->
     <div class="mb-20 text-center">
-      <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl">
+      <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl" style="letter-spacing: -0.05em;">
         お話ししませんか？
       </h2>
       <p class="mb-8 text-2xl text-gray-600">
