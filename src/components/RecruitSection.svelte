@@ -167,8 +167,8 @@
         <div class="relative">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="/images/company.jpg"
-              alt="JOYZOのオフィス"
+              src="/images/office/joy-office-002.jpg"
+              alt="世界の隅々までエンジニアリングの楽しさを届ける"
               class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
               loading="lazy"
             />
