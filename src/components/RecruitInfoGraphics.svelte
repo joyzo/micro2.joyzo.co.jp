@@ -170,7 +170,7 @@
   <div class="max-w-7xl mx-auto pt-8">
     
     <!-- 全体をくくる角丸枠 -->
-    <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-200">
+    <div class="bg-white p-8 shadow-lg border border-gray-200" style="border-radius: 0.25em;">
 
       <!-- メイングリッドコンテナ (3列基調) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -181,7 +181,7 @@
               <div class="growth-container">
                   <!-- 20%の数字 -->
                   <div class="growth-value">
-                      <span class="text-[12rem] font-extrabold" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1;">0%</span>
+                      <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.1em;">0%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
@@ -190,8 +190,10 @@
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
           <div class="p-6 relative flex flex-col justify-center text-center" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="text-[10rem] font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0年</div>
-              <p class="text-lg text-gray-500 mt-2">15年〜</p>
+              <div class="flex items-baseline justify-center mt-4">
+                  <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0</span>
+                  <span class="text-4xl font-black ml-2" style="color: var(--color-primary-blue);">年</span>
+              </div>
           </div>
           
           <!-- 3. 男女比 (女性66% 男性34%) -->
@@ -201,14 +203,17 @@
               <div class="flex w-full h-16 rounded-lg overflow-hidden shadow-lg border border-gray-200">
                   <!-- 女性 (66%) -->
                   <div id="gender-female-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-purple);">
-                      <span class="text-2xl font-black text-white whitespace-nowrap"><span id="gender-female">0</span></span>
+                      <span class="text-2xl font-black text-white whitespace-nowrap">
+                          <span class="text-lg">女性</span> <span id="gender-female">0</span>
+                      </span>
                   </div>
                   <!-- 男性 (34%) -->
                   <div id="gender-male-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                       <span class="text-2xl font-black text-white whitespace-nowrap"><span id="gender-male">0</span></span>
+                       <span class="text-2xl font-black text-white whitespace-nowrap">
+                           <span class="text-lg">男性</span> <span id="gender-male">0</span>
+                       </span>
                   </div>
               </div>
-              <p class="text-lg text-gray-500 mt-2">女性 66% : 男性 34%</p>
           </div>
 
           <!-- 4. 中途新卒 (新卒40% 中途60%) -->
@@ -218,14 +223,17 @@
               <div class="flex w-full h-12 rounded-lg overflow-hidden shadow-lg border border-gray-200 mb-2">
                   <!-- 中途 (60%) -->
                   <div id="mid-career-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                      <span class="text-xl font-bold text-white whitespace-nowrap"><span id="mid-career">0</span></span>
+                      <span class="text-xl font-bold text-white whitespace-nowrap">
+                          <span class="text-sm">中途</span> <span id="mid-career">0</span>
+                      </span>
                   </div>
                   <!-- 新卒 (40%) -->
                   <div id="new-grad-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-cyan);">
-                       <span class="text-xl font-bold text-white whitespace-nowrap"><span id="new-grad">0</span></span>
+                       <span class="text-xl font-bold text-white whitespace-nowrap">
+                           <span class="text-sm">新卒</span> <span id="new-grad">0</span>
+                       </span>
                   </div>
               </div>
-              <p class="text-md text-gray-500 mt-2">中途 60% : 新卒 40%</p>
           </div>
 
           <!-- 5. 年齢構成 (円グラフ) - 残りのスペースを使って配置 -->
