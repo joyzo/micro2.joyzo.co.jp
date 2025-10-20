@@ -126,10 +126,10 @@
   const setupAnimations = () => {
       
       // 1. 創業年数 (15年)
-      animateValue(document.getElementById('founding-years'), 0, 15, DURATION, '年');
+      animateValue(document.getElementById('founding-years'), 0, 15, DURATION, '', 0);
 
       // 2. 業績成長率 (約20%) - 小数点なし
-      animateValue(document.getElementById('growth-rate'), 0, 20, DURATION, '%', 0);
+      animateValue(document.getElementById('growth-rate'), 0, 20, DURATION, '', 0);
 
       // 3. 男女比
       animateValue(document.getElementById('gender-female'), 0, 66, DURATION, '%');
@@ -201,7 +201,7 @@
                   <!-- 20%の数字 -->
                   <div class="growth-value">
                       <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0</span>
-                      <span class="text-[12rem] font-extrabold tracking-tighter" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em; font-size: 0.6em;">%</span>
+                      <span class="text-[12rem] font-extrabold tracking-tighter" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em; font-size: 0.8em;">%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
@@ -212,7 +212,7 @@
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
               <div class="mt-4">
                   <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
-                  <span class="text-[10rem] font-black tracking-tighter" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em; font-size: 0.6em;">年</span>
+                  <span class="text-[10rem] font-black tracking-tighter" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em; font-size: 0.8em;">年</span>
               </div>
           </div>
           
