@@ -209,58 +209,63 @@
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
           <div class="p-6 relative flex flex-col justify-center text-center" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="flex items-baseline justify-center mt-4">
-                  <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
-                  <span class="text-4xl font-black ml-2" style="color: var(--color-primary-blue);">年</span>
-              </div>
+              <div class="text-[10rem] font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0年</div>
           </div>
           
-          <!-- 3. 男女比 (女性66% 男性34%) -->
-          <div class="p-6 relative lg:col-span-2 flex flex-col justify-center" style="animation-delay: 0.2s;">
-              <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-4">男女比</h3>
+          <!-- 3-5. 男女比、中途新卒、年齢構成を横並びで配置 -->
+          <div class="p-6 relative lg:col-span-3 flex flex-col lg:flex-row gap-6" style="animation-delay: 0.2s;">
               
-              <div class="flex w-full h-16 rounded-lg overflow-hidden shadow-lg border border-gray-200">
-                  <!-- 女性 (66%) -->
-                  <div id="gender-female-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-purple);">
-                      <span class="text-2xl font-black text-white whitespace-nowrap">
-                          <span class="text-lg">女性</span> <span id="gender-female">0</span>
-                      </span>
+              <!-- 左側: 男女比と中途新卒を縦に並べる -->
+              <div class="lg:w-1/2 flex flex-col gap-6">
+                  
+                  <!-- 男女比 -->
+                  <div class="flex flex-col justify-center">
+                      <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-4">男女比</h3>
+                      <div class="flex w-full h-16 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+                          <!-- 女性 (66%) -->
+                          <div id="gender-female-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-purple);">
+                              <span class="text-2xl font-black text-white whitespace-nowrap">
+                                  <span class="text-lg">女性</span> <span id="gender-female">0</span>
+                              </span>
+                          </div>
+                          <!-- 男性 (34%) -->
+                          <div id="gender-male-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
+                               <span class="text-2xl font-black text-white whitespace-nowrap">
+                                   <span class="text-lg">男性</span> <span id="gender-male">0</span>
+                               </span>
+                          </div>
+                      </div>
                   </div>
-                  <!-- 男性 (34%) -->
-                  <div id="gender-male-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                       <span class="text-2xl font-black text-white whitespace-nowrap">
-                           <span class="text-lg">男性</span> <span id="gender-male">0</span>
-                       </span>
+
+                  <!-- 中途新卒 -->
+                  <div class="flex flex-col justify-center">
+                      <h3 class="text-xl font-black tracking-wider text-gray-900 mb-4">中途新卒</h3>
+                      <div class="flex w-full h-12 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+                          <!-- 中途 (60%) -->
+                          <div id="mid-career-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
+                              <span class="text-xl font-bold text-white whitespace-nowrap">
+                                  <span class="text-sm">中途</span> <span id="mid-career">0</span>
+                              </span>
+                          </div>
+                          <!-- 新卒 (40%) -->
+                          <div id="new-grad-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-cyan);">
+                               <span class="text-xl font-bold text-white whitespace-nowrap">
+                                   <span class="text-sm">新卒</span> <span id="new-grad">0</span>
+                               </span>
+                          </div>
+                      </div>
+                  </div>
+                  
+              </div>
+
+              <!-- 右側: 年齢構成 -->
+              <div class="lg:w-1/2 flex flex-col items-center justify-center">
+                  <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-6">年齢構成</h3>
+                  <div class="relative w-80 h-80">
+                      <svg id="age-pie-chart" viewBox="0 0 200 200" class="w-full h-full"></svg>
                   </div>
               </div>
-          </div>
-
-          <!-- 4. 中途新卒 (新卒40% 中途60%) -->
-          <div class="p-6 relative flex flex-col justify-center" style="animation-delay: 0.3s;">
-              <h3 class="text-xl font-black tracking-wider text-gray-900 mb-4">中途新卒</h3>
               
-              <div class="flex w-full h-12 rounded-lg overflow-hidden shadow-lg border border-gray-200 mb-2">
-                  <!-- 中途 (60%) -->
-                  <div id="mid-career-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                      <span class="text-xl font-bold text-white whitespace-nowrap">
-                          <span class="text-sm">中途</span> <span id="mid-career">0</span>
-                      </span>
-                  </div>
-                  <!-- 新卒 (40%) -->
-                  <div id="new-grad-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-cyan);">
-                       <span class="text-xl font-bold text-white whitespace-nowrap">
-                           <span class="text-sm">新卒</span> <span id="new-grad">0</span>
-                       </span>
-                  </div>
-              </div>
-          </div>
-
-          <!-- 5. 年齢構成 (円グラフ) - 残りのスペースを使って配置 -->
-          <div class="p-6 relative lg:col-span-3 flex flex-col items-center" style="animation-delay: 0.4s;">
-              <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-6">年齢構成</h3>
-              <div class="relative w-80 h-80">
-                  <svg id="age-pie-chart" viewBox="0 0 200 200" class="w-full h-full"></svg>
-              </div>
           </div>
           
       </div>
