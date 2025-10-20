@@ -199,9 +199,9 @@
               <h3 class="text-3xl font-black tracking-wider text-gray-900 mb-6">業績成長率</h3>
               <div class="growth-container">
                   <!-- 20%の数字 -->
-                  <div class="growth-value">
+                  <div class="growth-value" style="white-space: nowrap;">
                       <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0</span>
-                      <span class="text-[12rem] font-extrabold tracking-tighter" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em; font-size: 0.8em;">%</span>
+                      <span class="text-[12rem] font-extrabold tracking-tighter" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
@@ -210,9 +210,9 @@
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
           <div class="p-6 relative flex flex-col justify-center text-center lg:col-span-1" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="mt-4">
+              <div class="mt-4" style="white-space: nowrap;">
                   <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
-                  <span class="text-[10rem] font-black tracking-tighter" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em; font-size: 0.8em;">年</span>
+                  <span class="text-[10rem] font-black tracking-tighter" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">年</span>
               </div>
           </div>
           
