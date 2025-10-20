@@ -30,7 +30,7 @@
           
           let displayValue = (progress * (end - start) + start).toFixed(decimalPlaces);
           
-          element.textContent = parseFloat(displayValue).toLocaleString(undefined, {
+          element.textContent = parseFloat(displayValue).toLocaleString('ja-JP', {
               minimumFractionDigits: decimalPlaces,
               maximumFractionDigits: decimalPlaces
           }) + suffix;
@@ -38,7 +38,7 @@
           if (progress < 1) {
               window.requestAnimationFrame(step);
           } else {
-              element.textContent = end.toLocaleString(undefined, {
+              element.textContent = end.toLocaleString('ja-JP', {
                   minimumFractionDigits: decimalPlaces,
                   maximumFractionDigits: decimalPlaces
               }) + suffix;
@@ -176,13 +176,9 @@
           <div class="info-card p-6 rounded-3xl relative lg:col-span-2 flex flex-col justify-center items-center text-center" style="min-height: 300px; animation-delay: 0s;">
               <h3 class="text-3xl font-black tracking-wider text-gray-900 mb-6">業績成長率</h3>
               <div class="growth-container">
-                  <!-- 波紋アニメーション -->
-                  <div class="growth-pulse" style="animation-delay: 0s;"></div>
-                  <div class="growth-pulse" style="animation-delay: 0.5s;"></div>
-                  <div class="growth-pulse" style="animation-delay: 1s; border-color: var(--color-accent-cyan);"></div>
                   <!-- 20%の数字 -->
                   <div class="growth-value">
-                      <span class="text-8xl font-extrabold" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1;">0%</span>
+                      <span class="text-9xl font-extrabold" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1;">0%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
@@ -191,7 +187,7 @@
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
           <div class="info-card p-6 rounded-3xl relative flex flex-col justify-center text-center" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="text-7xl font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0年</div>
+              <div class="text-8xl font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0年</div>
               <p class="text-lg text-gray-500 mt-2">15年〜</p>
           </div>
           
@@ -309,10 +305,6 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
   }
-  @keyframes pulseRing {
-      0% { transform: scale(0.3); opacity: 0.8; }
-      80%, 100% { transform: scale(1.5); opacity: 0; }
-  }
   .growth-container {
       position: relative;
       width: 150px;
@@ -320,17 +312,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-  }
-  .growth-pulse {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      border: 5px solid var(--color-accent-purple);
-      border-radius: 50%;
-      animation: pulseRing 2s cubic-bezier(0.24, 0, 0.38, 0.99) infinite;
   }
   .growth-value {
       z-index: 10;
