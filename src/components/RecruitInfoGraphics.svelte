@@ -168,65 +168,68 @@
 <div class="p-4 md:p-12">
 
   <div class="max-w-7xl mx-auto pt-8">
+    
+    <!-- 全体をくくる角丸枠 -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-200">
 
       <!-- メイングリッドコンテナ (3列基調) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
           <!-- 1. 業績成長率 (約20%以上) - 最も大きくダイナミックに -->
-          <div class="info-card p-6 rounded-3xl relative lg:col-span-2 flex flex-col justify-center items-center text-center" style="min-height: 300px; animation-delay: 0s;">
+          <div class="p-6 relative lg:col-span-2 flex flex-col justify-center items-center text-center" style="min-height: 300px; animation-delay: 0s;">
               <h3 class="text-3xl font-black tracking-wider text-gray-900 mb-6">業績成長率</h3>
               <div class="growth-container">
                   <!-- 20%の数字 -->
                   <div class="growth-value">
-                      <span class="text-9xl font-extrabold" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1;">0%</span>
+                      <span class="text-[12rem] font-extrabold" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1;">0%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
           </div>
 
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
-          <div class="info-card p-6 rounded-3xl relative flex flex-col justify-center text-center" style="animation-delay: 0.1s;">
+          <div class="p-6 relative flex flex-col justify-center text-center" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="text-8xl font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0年</div>
+              <div class="text-[10rem] font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0年</div>
               <p class="text-lg text-gray-500 mt-2">15年〜</p>
           </div>
           
           <!-- 3. 男女比 (女性66% 男性34%) -->
-          <div class="info-card p-6 rounded-3xl relative lg:col-span-2 flex flex-col justify-center" style="animation-delay: 0.2s;">
+          <div class="p-6 relative lg:col-span-2 flex flex-col justify-center" style="animation-delay: 0.2s;">
               <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-4">男女比</h3>
               
               <div class="flex w-full h-16 rounded-lg overflow-hidden shadow-lg border border-gray-200">
                   <!-- 女性 (66%) -->
                   <div id="gender-female-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-purple);">
-                      <span class="text-2xl font-black text-white whitespace-nowrap"><span id="gender-female">0</span>%</span>
+                      <span class="text-2xl font-black text-white whitespace-nowrap"><span id="gender-female">0</span></span>
                   </div>
                   <!-- 男性 (34%) -->
                   <div id="gender-male-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                       <span class="text-2xl font-black text-white whitespace-nowrap"><span id="gender-male">0</span>%</span>
+                       <span class="text-2xl font-black text-white whitespace-nowrap"><span id="gender-male">0</span></span>
                   </div>
               </div>
               <p class="text-lg text-gray-500 mt-2">女性 66% : 男性 34%</p>
           </div>
 
           <!-- 4. 中途新卒 (新卒40% 中途60%) -->
-          <div class="info-card p-6 rounded-3xl relative flex flex-col justify-center" style="animation-delay: 0.3s;">
+          <div class="p-6 relative flex flex-col justify-center" style="animation-delay: 0.3s;">
               <h3 class="text-xl font-black tracking-wider text-gray-900 mb-4">中途新卒</h3>
               
               <div class="flex w-full h-12 rounded-lg overflow-hidden shadow-lg border border-gray-200 mb-2">
                   <!-- 中途 (60%) -->
                   <div id="mid-career-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                      <span class="text-xl font-bold text-white whitespace-nowrap"><span id="mid-career">0</span>%</span>
+                      <span class="text-xl font-bold text-white whitespace-nowrap"><span id="mid-career">0</span></span>
                   </div>
                   <!-- 新卒 (40%) -->
                   <div id="new-grad-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-cyan);">
-                       <span class="text-xl font-bold text-white whitespace-nowrap"><span id="new-grad">0</span>%</span>
+                       <span class="text-xl font-bold text-white whitespace-nowrap"><span id="new-grad">0</span></span>
                   </div>
               </div>
               <p class="text-md text-gray-500 mt-2">中途 60% : 新卒 40%</p>
           </div>
 
           <!-- 5. 年齢構成 (円グラフ) - 残りのスペースを使って配置 -->
-          <div class="info-card p-6 rounded-3xl relative lg:col-span-3 flex flex-col md:flex-row justify-between items-center" style="animation-delay: 0.4s;">
+          <div class="p-6 relative lg:col-span-3 flex flex-col md:flex-row justify-between items-center" style="animation-delay: 0.4s;">
               <div class="md:w-1/2 flex flex-col items-center mb-6 md:mb-0">
                   <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-4">年齢構成</h3>
                   <div class="relative w-64 h-64">
@@ -238,25 +241,27 @@
                   <ul class="space-y-4 text-xl">
                       <li class="flex items-center">
                           <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-20s);"></span>
-                          <span class="font-semibold text-gray-700">20代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-20s);"><span class="age-percentage" data-value="48.3">0.0</span>%</span>
+                          <span class="font-semibold text-gray-700">20代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-20s);"><span class="age-percentage" data-value="48.3">0.0</span></span>
                       </li>
                       <li class="flex items-center">
                           <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-30s);"></span>
-                          <span class="font-semibold text-gray-700">30代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-30s);"><span class="age-percentage" data-value="10.3">0.0</span>%</span>
+                          <span class="font-semibold text-gray-700">30代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-30s);"><span class="age-percentage" data-value="10.3">0.0</span></span>
                       </li>
                       <li class="flex items-center">
                           <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-40s);"></span>
-                          <span class="font-semibold text-gray-700">40代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-40s);"><span class="age-percentage" data-value="31.0">0.0</span>%</span>
+                          <span class="font-semibold text-gray-700">40代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-40s);"><span class="age-percentage" data-value="31.0">0.0</span></span>
                       </li>
                       <li class="flex items-center">
                           <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-50s-plus);"></span>
-                          <span class="font-semibold text-gray-700">50代以上:</span> <span class="ml-3 font-extrabold" style="color: var(--color-50s-plus);"><span class="age-percentage" data-value="10.3">0.0</span>%</span>
+                          <span class="font-semibold text-gray-700">50代以上:</span> <span class="ml-3 font-extrabold" style="color: var(--color-50s-plus);"><span class="age-percentage" data-value="10.3">0.0</span></span>
                       </li>
                   </ul>
               </div>
           </div>
           
       </div>
+      
+    </div>
   </div>
   
 </div>
@@ -274,22 +279,6 @@
       --color-30s: #9333EA; /* 紫系 */
       --color-40s: #10B981; /* 緑系 */
       --color-50s-plus: #F59E0B; /* オレンジ系 */
-  }
-  .info-card {
-      background-color: white;
-      border: 1px solid #E5E7EB; 
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.5s ease;
-      transform: translateY(30px);
-      opacity: 0;
-      animation: fadeIn 0.8s forwards;
-      animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  /* カードのホバーエフェクト */
-  .info-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* フェードインアニメーション */
@@ -318,9 +307,4 @@
       animation: dynamicGrowth 1s ease-out forwards;
   }
 
-  /* 円グラフのパスアニメーション */
-  .circle-chart-segment {
-      transition: opacity 0.8s ease-out;
-      opacity: 0;
-  }
 </style>

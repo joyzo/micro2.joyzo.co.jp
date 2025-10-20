@@ -197,20 +197,6 @@
     <!-- 数字からみたジョイゾー -->
     <div class="mb-20">
       <div class="mx-auto max-w-6xl">
-        <h3
-          class="mb-12 font-heading text-3xl font-bold text-gray-800 md:text-4xl text-center"
-        >
-          <span
-            class="transition-all delay-1000 duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
-          >
-            数字からみたジョイゾー
-          </span>
-        </h3>
-        
         <RecruitInfoGraphics client:load />
       </div>
     </div>
