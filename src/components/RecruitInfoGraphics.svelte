@@ -87,6 +87,25 @@
           svgElement.appendChild(path);
           paths.push(path);
 
+          // ラベルを追加
+          const midAngle: number = (startAngle + endAngle) / 2;
+          const midRad: number = midAngle * Math.PI / 180;
+          const labelRadius: number = radius * 0.7; // 円の中心から70%の位置にラベルを配置
+          const labelX: number = centerX + labelRadius * Math.cos(midRad);
+          const labelY: number = centerY + labelRadius * Math.sin(midRad);
+
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', labelX.toString());
+          text.setAttribute('y', labelY.toString());
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('dominant-baseline', 'middle');
+          text.setAttribute('fill', 'white');
+          text.setAttribute('font-size', '12');
+          text.setAttribute('font-weight', 'bold');
+          text.textContent = item.label;
+          text.style.opacity = '0';
+          svgElement.appendChild(text);
+
           currentAngle = endAngle;
       });
 
@@ -94,6 +113,11 @@
       paths.forEach((path, index) => {
           setTimeout(() => {
               path.style.opacity = '1';
+              // ラベルも同時にフェードイン
+              const texts = svgElement.querySelectorAll('text');
+              if (texts[index]) {
+                  texts[index].style.opacity = '1';
+              }
           }, index * 100 + 500); 
       });
   };
@@ -144,11 +168,6 @@
           // DOM描画後にアニメーション開始
           setTimeout(() => {
               animatePieChart(agePieChartSvg, ageData);
-              document.querySelectorAll('.age-percentage').forEach(el => {
-                  const targetValue = parseFloat((el as HTMLElement).getAttribute('data-value') || '0');
-                  // 小数点第一位まで表示 (1)
-                  animateValue(el as HTMLElement, 0, targetValue, DURATION, '%', 1); 
-              });
           }, 500); 
       }
 
@@ -181,7 +200,7 @@
               <div class="growth-container">
                   <!-- 20%の数字 -->
                   <div class="growth-value">
-                      <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.1em;">0%</span>
+                      <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
@@ -191,7 +210,7 @@
           <div class="p-6 relative flex flex-col justify-center text-center" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
               <div class="flex items-baseline justify-center mt-4">
-                  <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1;">0</span>
+                  <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
                   <span class="text-4xl font-black ml-2" style="color: var(--color-primary-blue);">年</span>
               </div>
           </div>
@@ -237,33 +256,10 @@
           </div>
 
           <!-- 5. 年齢構成 (円グラフ) - 残りのスペースを使って配置 -->
-          <div class="p-6 relative lg:col-span-3 flex flex-col md:flex-row justify-between items-center" style="animation-delay: 0.4s;">
-              <div class="md:w-1/2 flex flex-col items-center mb-6 md:mb-0">
-                  <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-4">年齢構成</h3>
-                  <div class="relative w-64 h-64">
-                      <svg id="age-pie-chart" viewBox="0 0 200 200" class="w-full h-full"></svg>
-                  </div>
-              </div>
-              <div class="md:w-1/2 md:pl-8">
-                  <!-- 人数と合計行を削除し、パーセンテージのみに簡略化 -->
-                  <ul class="space-y-4 text-xl">
-                      <li class="flex items-center">
-                          <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-20s);"></span>
-                          <span class="font-semibold text-gray-700">20代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-20s);"><span class="age-percentage" data-value="48.3">0.0</span></span>
-                      </li>
-                      <li class="flex items-center">
-                          <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-30s);"></span>
-                          <span class="font-semibold text-gray-700">30代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-30s);"><span class="age-percentage" data-value="10.3">0.0</span></span>
-                      </li>
-                      <li class="flex items-center">
-                          <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-40s);"></span>
-                          <span class="font-semibold text-gray-700">40代:</span> <span class="ml-3 font-extrabold" style="color: var(--color-40s);"><span class="age-percentage" data-value="31.0">0.0</span></span>
-                      </li>
-                      <li class="flex items-center">
-                          <span class="w-4 h-4 rounded-full mr-3" style="background-color: var(--color-50s-plus);"></span>
-                          <span class="font-semibold text-gray-700">50代以上:</span> <span class="ml-3 font-extrabold" style="color: var(--color-50s-plus);"><span class="age-percentage" data-value="10.3">0.0</span></span>
-                      </li>
-                  </ul>
+          <div class="p-6 relative lg:col-span-3 flex flex-col items-center" style="animation-delay: 0.4s;">
+              <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-6">年齢構成</h3>
+              <div class="relative w-80 h-80">
+                  <svg id="age-pie-chart" viewBox="0 0 200 200" class="w-full h-full"></svg>
               </div>
           </div>
           
