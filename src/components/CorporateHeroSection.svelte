@@ -383,23 +383,7 @@
     margin-bottom: 1rem;
   }
 
-  .animate-wave-slide-in {
-    animation: wave-slide-in 0.6s ease-out;
-  }
-
-  .animate-scale-in {
-    animation: scale-in 0.6s ease-out;
-  }
-
   .animate-rotate-symbol {
     animation: rotate-symbol 0.5s ease-in-out;
-  }
-
-  .animate-delay-800 {
-    animation-delay: 0.8s;
-  }
-
-  .animate-delay-1000 {
-    animation-delay: 1s;
   }
 </style>

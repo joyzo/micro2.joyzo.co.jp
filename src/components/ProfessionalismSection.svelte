@@ -571,10 +571,10 @@
         一人ひとりがこれらのプロフェッショナリズムを胸に、お客様と共に価値あるシステムを創り上げています。
       </p>
       
-      <!-- aboutusへの導線 -->
+      <!-- aboutjoyzoへの導線 -->
       <div class="inline-block">
         <a
-          href="/aboutus"
+          href="/aboutjoyzo"
           class="inline-flex items-center justify-center rounded-none bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
         >
           ジョイゾーのことをもっと詳しく
@@ -727,7 +727,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
 

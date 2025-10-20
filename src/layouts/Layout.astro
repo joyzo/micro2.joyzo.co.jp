@@ -1,5 +1,4 @@
 ---
-import { SEO } from "astro-seo";
 import "../styles/global.css";
 
 import Menu from "@components/Menu/Menu.astro";
@@ -27,29 +26,27 @@ const description = props.description ?? BASE_DESCRIPTION;
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <SEO
-      title={title}
-      description={description}
-      noindex={props.noindex ?? false}
-      charset="UTF-8"
-      openGraph={{
-        basic: {
-          title,
-          type: "website",
-          image: `${import.meta.env.PUBLIC_SITE_URL}/og.png`,
-        },
-      }}
-      extend={{
-        link: [
-          { rel: "icon", href: "/favicon.ico" }
-        ],
-
-        meta: [
-          { name: "viewport", content: "width=device-width" },
-          { name: "twitter:card", content: "summary_large_image" },
-        ],
-      }}
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {props.noindex && <meta name="robots" content="noindex" />}
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={`${import.meta.env.PUBLIC_SITE_URL}/og.png`} />
+    <meta property="og:url" content={Astro.url} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${import.meta.env.PUBLIC_SITE_URL}/og.png`} />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

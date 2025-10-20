@@ -16,9 +16,9 @@
 
   const links = [
     {
-      mainLabel: "ABOUT",
+      mainLabel: "ABOUT JOYZO",
       subLabel: "ジョイゾーとは",
-      href: "/aboutus",
+      href: "/aboutjoyzo",
     },
     {
       mainLabel: "COMPANY",

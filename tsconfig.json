@@ -1,11 +1,10 @@
 {
-  "extends": "astro/tsconfigs/strictest",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "importsNotUsedAsValues": "remove",
     "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],

@@ -1,8 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import RecruitInfoGraphics from "./RecruitInfoGraphics.svelte";
 
   let isVisible = false;
   let showContent = false;
+  let activeTab = 'new-graduate-se';
+
+  function setActiveTab(tab: string) {
+    activeTab = tab;
+  }
 
   onMount(() => {
     setTimeout(() => {
@@ -188,6 +194,27 @@
       </div>
     </div>
 
+    <!-- 数字からみたジョイゾー -->
+    <div class="mb-20">
+      <div class="mx-auto max-w-6xl">
+        <h3
+          class="mb-12 font-heading text-3xl font-bold text-gray-800 md:text-4xl text-center"
+        >
+          <span
+            class="transition-all delay-1000 duration-700"
+            class:opacity-100={showContent}
+            class:opacity-0={!showContent}
+            class:translate-y-0={showContent}
+            class:translate-y-8={!showContent}
+          >
+            数字からみたジョイゾー
+          </span>
+        </h3>
+        
+        <RecruitInfoGraphics client:load />
+      </div>
+    </div>
+
     <!-- 働き方の魅力 -->
     <div class="mb-20">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -220,7 +247,7 @@
             class="mb-8 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
           >
             <span
-              class="transition-all delay-1000 duration-700"
+              class="transition-all delay-1300 duration-700"
               class:opacity-100={showContent}
               class:opacity-0={!showContent}
               class:translate-y-0={showContent}
@@ -232,7 +259,7 @@
 
           <div class="space-y-6 text-lg leading-relaxed text-gray-700">
             <p
-              class="delay-1100 transition-all duration-700"
+              class="delay-1400 transition-all duration-700"
               class:opacity-100={showContent}
               class:opacity-0={!showContent}
               class:translate-y-0={showContent}
@@ -242,7 +269,7 @@
             </p>
 
             <p
-              class="delay-1200 transition-all duration-700"
+              class="delay-1500 transition-all duration-700"
               class:opacity-100={showContent}
               class:opacity-0={!showContent}
               class:translate-y-0={showContent}
@@ -259,12 +286,12 @@
 
     <!-- 社内の雰囲気 -->
     <div class="mb-20">
-      <div class="mx-auto max-w-4xl">
+      <div class="mx-auto max-w-6xl">
         <h3
           class="mb-8 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
         >
           <span
-            class="delay-1300 transition-all duration-700"
+            class="delay-1600 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
@@ -274,9 +301,12 @@
           </span>
         </h3>
 
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <!-- テキストコンテンツ -->
+          <div>
         <div class="space-y-6 text-lg leading-relaxed text-gray-700">
           <p
-            class="delay-1400 transition-all duration-700"
+                class="delay-1700 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
@@ -288,7 +318,7 @@
           </p>
 
           <p
-            class="delay-1500 transition-all duration-700"
+                class="delay-1800 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
@@ -299,6 +329,31 @@
             />
             みんなが楽しく働けるように、当社では働くメンバー全員がお互いの「楽しく働く」を理解し合う相互理解が重要だと考えています。
           </p>
+            </div>
+          </div>
+
+          <!-- 画像 -->
+          <div class="relative">
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src="/images/recruit_002.jpg"
+                alt="JOYZOの社内の雰囲気"
+                class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
+                loading="lazy"
+              />
+              <!-- オーバーレイ効果 -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"
+              />
+            </div>
+            <!-- 装飾的な要素 -->
+            <div
+              class="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-gray-800 opacity-60"
+            />
+            <div
+              class="absolute -bottom-4 -left-4 h-6 w-6 rounded-full bg-gray-600 opacity-40"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -310,7 +365,7 @@
           class="mb-8 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
         >
           <span
-            class="delay-1600 transition-all duration-700"
+            class="delay-1900 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
@@ -322,7 +377,7 @@
 
         <div class="space-y-6 text-lg leading-relaxed text-gray-700">
           <p
-            class="delay-1700 transition-all duration-700"
+            class="delay-2000 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
@@ -342,135 +397,459 @@
         class="mb-12 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
       >
         <span
-          class="delay-1800 transition-all duration-700"
+          class="delay-2100 transition-all duration-700"
           class:opacity-100={showContent}
           class:opacity-0={!showContent}
           class:translate-y-0={showContent}
           class:translate-y-8={!showContent}
         >
-          採用情報
+          募集要項
         </span>
       </h3>
 
-      <!-- システムエンジニア -->
-      <div class="mx-auto mb-16 max-w-4xl">
-        <div class="rounded-none border border-gray-200 bg-white p-8 shadow-lg">
-          <h4 class="mb-6 font-heading text-2xl font-bold text-gray-800">
-            中途採用 システムエンジニア
-          </h4>
+      <!-- タブナビゲーション -->
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-8">
+          <div class="flex flex-wrap justify-center gap-2 border-b border-gray-200">
+            <button
+              class="px-4 py-3 text-sm font-semibold text-gray-600 transition-colors duration-300 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-1"
+              class:border-gray-800={activeTab === 'new-graduate-se'}
+              class:text-gray-800={activeTab === 'new-graduate-se'}
+              on:click={() => setActiveTab('new-graduate-se')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white bg-blue-600 rounded">新卒採用</span>
+              <span>システム39エンジニア</span>
+            </button>
+            <button
+              class="px-4 py-3 text-sm font-semibold text-gray-600 transition-colors duration-300 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-1"
+              class:border-gray-800={activeTab === 'mid-career-se'}
+              class:text-gray-800={activeTab === 'mid-career-se'}
+              on:click={() => setActiveTab('mid-career-se')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white bg-green-600 rounded">中途採用</span>
+              <span>システム39エンジニア</span>
+            </button>
+            <button
+              class="px-4 py-3 text-sm font-semibold text-gray-600 transition-colors duration-300 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-1"
+              class:border-gray-800={activeTab === 'mid-career-kintone'}
+              class:text-gray-800={activeTab === 'mid-career-kintone'}
+              on:click={() => setActiveTab('mid-career-kintone')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white bg-green-600 rounded">中途採用</span>
+              <span>kintoneカスタマイズ開発エンジニア</span>
+            </button>
+            <button
+              class="px-4 py-3 text-sm font-semibold text-gray-600 transition-colors duration-300 hover:text-gray-800 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-1"
+              class:border-gray-800={activeTab === 'mid-career-cs'}
+              class:text-gray-800={activeTab === 'mid-career-cs'}
+              on:click={() => setActiveTab('mid-career-cs')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white bg-green-600 rounded">中途採用</span>
+              <span>カスタマーサポート</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- タブコンテンツ -->
+        <div class="mx-auto max-w-6xl">
+          <!-- 新卒採用 システム39エンジニア -->
+          {#if activeTab === 'new-graduate-se'}
+            <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
+              <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-blue-600 rounded">新卒採用</span>
+                <span>システム39エンジニア</span>
+              </h4>
 
           <div class="mb-6 space-y-4 text-gray-700">
             <p>
-              kintoneを活用したシステム開発やカスタマイズ、プラグイン開発を行っていただきます。<br
-              />
-              お客様との直接対話を通じて、業務改善の提案から実装まで一貫して携わることができます。
+                  弊社の対面開発サービス「システム39」をご担当いただきます。<br>
+                  2時間×3回のお打ち合わせの中で、お客様の現状と業務のお悩みを丁寧なカウンセリングを通してお伺いしたうえで、kintoneでお客様の目の前で業務システムを作り上げ、課題解決と事業の成長につなげています。<br>
+                  <br>
+                  この手法は弊社が先駆けとして10年前より提供を始め、これまでに対応件数1500件以上という豊富な経験を誇っています。<br>
+                  直接お客様に関わることができ、さまざまな業界や業種のシステムの知識・経験を積むことができます。<br>
+                  <br>
+                  その他、自社サービス（Joboco、ジョイゾーオリジナルkintoneプラグイン）各種サポート業務についても行っていただきます。
             </p>
           </div>
 
-          <div class="grid gap-6 md:grid-cols-2">
-            <div>
-              <h5 class="mb-3 font-bold text-gray-800">応募資格</h5>
-              <ul class="space-y-2 text-sm text-gray-700">
-                <li>
-                  •
-                  チームワークを大切にし、顧客、社員と一緒に楽しく働くことに喜びを感じられる方
-                </li>
-                <li>• お客様との良好な関係構築を目指す方</li>
-                <li>
-                  •
-                  技術的な課題に対して好奇心を持ち、新しい知識を積極的に学ぶ意欲がある方
-                </li>
-              </ul>
+              <!-- 応募資格 -->
+              <div class="mb-8">
+                <h5 class="mb-3 font-bold text-gray-800">応募資格</h5>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li>
+                    • <strong>チームワークを大切にし、顧客、社員と一緒に楽しく働くことに喜びを感じられる方</strong>
+                  </li>
+                  <li>• <strong>IT/エンジニアリングの力を信じ、ジョイゾーならではの新たな価値を追求したい方</strong></li>
+                  <li>• <strong>学歴不問</strong></li>
+                  <li>• <strong>2026年3月に卒業（修了）見込みで、2026年4月に入社が可能な方</strong></li>
+                </ul>
+              </div>
+
+              <!-- その他の情報 -->
+              <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">雇用区分</h5>
+                  <p class="text-sm text-gray-700"><strong>正社員</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">給与</h5>
+                  <ul class="text-sm text-gray-700">
+                    <li><strong>月給：22万円〜</strong></li>
+                    <li><strong>昇給：年1回</strong></li>
+                    <li><strong>賞与：年1回（決算賞与）</strong></li>
+                    <li><strong>試用期間：6ヶ月</strong>（条件などは変わりません）</li>
+                  </ul>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">採用人数</h5>
+                  <p class="text-sm text-gray-700"><strong>若干名</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">選考プロセス</h5>
+                  <ul class="text-sm text-gray-700">
+                    <li><strong>STEP1：書類選考</strong></li>
+                    <li><strong>STEP2：個別面接・小論文</strong></li>
+                    <li><strong>STEP3：内定</strong></li>
+                    <li><strong>試用期間：6ヶ月</strong>（条件などは変わりません）</li>
+                  </ul>
+                  <p class="text-sm text-gray-700">※個別面接は複数回実施します<br>※上記は変更となる可能性もございます。</p>
+                </div>
+
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">勤務地</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>勤務地詳細：</strong><br>
+                    <strong>東京都江東区東陽4-10-4東陽町SHビル７階</strong><br>
+                    ※派遣・常駐はありません。<br>
+                    <br>
+                    <strong>アクセス：</strong><br>
+                    <strong>メトロ東西線「東陽町」駅より徒歩3分</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">勤務時間</h5>
+                  <p class="text-sm text-gray-700"><strong>9:00〜18:00</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">待遇・福利厚生</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>保険：</strong><br>
+                    <strong>各種社会保険完備</strong><br>
+                    <br>
+                    <strong>諸手当：</strong><br>
+                    <strong>交通費一律支給<br>リモートワーク手当<br>住宅手当<br>ワーケーション手当</strong><br>
+                    <br>
+                    <strong>福利厚生：</strong><br>
+                    <strong>社員旅行<br>図書購入補助</strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-8 text-center">
+                <a
+                  href="https://joyzo.form.kintoneapp.com/public/5885214b168fb12a984fa301ff2dbf7d433b0715c7ecf849a6d5128771d7eeae#/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-lg bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+                >
+                  応募する
+                </a>
+              </div>
             </div>
+          {/if}
 
-            <div>
-              <h5 class="mb-3 font-bold text-gray-800">雇用区分</h5>
-              <p class="text-sm text-gray-700">正社員</p>
+          <!-- 中途採用 システム39エンジニア -->
+          {#if activeTab === 'mid-career-se'}
+            <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
+              <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-green-600 rounded">中途採用</span>
+                <span>システム39エンジニア</span>
+              </h4>
 
-              <h5 class="mb-3 mt-4 font-bold text-gray-800">給与</h5>
-              <p class="text-sm text-gray-700">
-                450万円〜700万円※ご経験・スキルを考慮して決定いたします。
-              </p>
+              <div class="mb-6 space-y-4 text-gray-700">
+                <p>
+                  弊社の対面開発サービス「システム39」をご担当いただきます。<br>
+                  2時間×3回のお打ち合わせの中で、お客様の現状と業務のお悩みを丁寧なカウンセリングを通してお伺いしたうえで、kintoneでお客様の目の前で業務システムを作り上げ、課題解決と事業の成長につなげています。<br>
+                  <br>
+                  この手法は弊社が先駆けとして10年前より提供を始め、これまでに対応件数1500件以上という豊富な経験を誇っています。<br>
+                  直接お客様に関わることができ、さまざまな業界や業種のシステムの知識・経験を積むことができます。<br>
+                  <br>
+                  その他、自社サービス（Joboco、ジョイゾーオリジナルkintoneプラグイン）各種サポート業務についても行っていただきます。
+                </p>
+              </div>
 
-              <h5 class="mb-3 mt-4 font-bold text-gray-800">勤務地</h5>
-              <p class="text-sm text-gray-700">
-                東京都江東区東陽4-10-4東陽町SHビル７階<br />
-                メトロ東西線「東陽町」駅より徒歩3分
-              </p>
-            </div>
-          </div>
+              <!-- 応募資格 -->
+              <div class="mb-8">
+                <h5 class="mb-3 font-bold text-gray-800">応募資格</h5>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li>
+                    • <strong>チームワークを大切にし、顧客、社員と一緒に楽しく働くことに喜びを感じられる方</strong>
+                  </li>
+                  <li>• <strong>情報システム担当としての３年以上の経験</strong></li>
+                  <li>• <strong>受託開発のプロジェクトマネジメント経験</strong></li>
+                </ul>
+                <p class="text-sm text-gray-700">※kintoneアプリデザインスペシャリスト資格保持者優遇</p>
+              </div>
+
+              <!-- その他の情報 -->
+              <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">雇用区分</h5>
+                  <p class="text-sm text-gray-700"><strong>正社員</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">給与</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>350万円〜600万円</strong><br>
+                    ※ご経験・スキルを考慮して決定いたします。<br>
+                    <br>
+                    <strong>給与体系：年俸制</strong><br>
+                    <strong>給与改定：随時</strong><br>
+                    <strong>賞与：年1回（決算賞与）</strong><br>
+                    <strong>試用期間：6ヶ月（条件などは変わりません）</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">採用人数</h5>
+                  <p class="text-sm text-gray-700"><strong>若干名</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">選考プロセス</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>STEP1：書類選考</strong><br>
+                    <strong>STEP2：個別面接（複数回実施することもあります）</strong><br>
+                    <strong>STEP3：内定</strong><br>
+                    ※上記は変更となる可能性もございます。
+                  </p>
+                </div>
+
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">勤務地</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>勤務地詳細：</strong><br>
+                    <strong>東京都江東区東陽4-10-4東陽町SHビル７階</strong><br>
+                    ※派遣・常駐はありません。<br>
+                    <br>
+                    <strong>アクセス：</strong><br>
+                    <strong>メトロ東西線「東陽町」駅より徒歩3分</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">勤務時間</h5>
+                  <p class="text-sm text-gray-700"><strong>9:00〜18:00</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">待遇・福利厚生</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>保険：</strong><br>
+                    <strong>各種社会保険完備</strong><br>
+                    <br>
+                    <strong>諸手当：</strong><br>
+                    <strong>交通費一律支給<br>リモートワーク手当<br>住宅手当<br>ワーケーション手当</strong><br>
+                    <br>
+                    <strong>福利厚生：</strong><br>
+                    <strong>社員旅行<br>図書購入補助</strong>
+                  </p>
+                </div>
+              </div>
 
           <div class="mt-8 text-center">
             <a
-              href="https://form.run/@joyzo-recruit"
+                  href="https://form.kintoneapp.com/public/form/show/f00000d8477cf27e1146169e5b2fb38d8e0fc13bb34d4f490f8f87365fd4b8e6#/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center rounded-none bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+                  class="inline-flex items-center rounded-lg bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
             >
               応募する
             </a>
           </div>
         </div>
-      </div>
+          {/if}
 
-      <!-- カスタマーサポート -->
-      <div class="mx-auto mb-16 max-w-4xl">
-        <div class="rounded-none border border-gray-200 bg-white p-8 shadow-lg">
-          <h4 class="mb-6 font-heading text-2xl font-bold text-gray-800">
-            中途採用 カスタマーサポート
-          </h4>
+          <!-- 中途採用 kintoneカスタマイズ開発エンジニア -->
+          {#if activeTab === 'mid-career-kintone'}
+            <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
+              <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-green-600 rounded">中途採用</span>
+                <span>kintoneカスタマイズ開発エンジニア</span>
+              </h4>
 
-          <div class="mb-6 space-y-4 text-gray-700">
-            <p>
-              kintoneプラグインや自社SaaS製品のサポート業務を行っていただきます。<br
-              />
-              顧客からの問い合わせ対応と解決策の提供、ナレッジベースやブログ記事の執筆など顧客のビジネス成長を促す価値提供を行う業務です。
-            </p>
-          </div>
+              <div class="mb-6 space-y-4 text-gray-700">
+                <p>
+                  JavaScriptを使い、kintoneを基盤としたシステム開発や自社で提供しているkintoneプラグインの開発を行っていただきます。<br>
+                  kintone以外にもAWSのサービス(Lambda、API Gateway、AWS IoT)を使った開発にも多数関わっていただきます。
+                </p>
+              </div>
 
-          <div class="grid gap-6 md:grid-cols-2">
-            <div>
-              <h5 class="mb-3 font-bold text-gray-800">応募資格</h5>
-              <ul class="space-y-2 text-sm text-gray-700">
-                <li>
-                  •
-                  チームワークを大切にし、顧客、社員と一緒に楽しく働くことに喜びを感じられる方
-                </li>
-                <li>• お客様との良好な関係構築を目指す方</li>
-                <li>
-                  •
-                  技術的な課題に対して好奇心を持ち、新しい知識を積極的に学ぶ意欲がある方
-                </li>
-              </ul>
+              <!-- 応募資格 -->
+              <div class="mb-8">
+                <h5 class="mb-3 font-bold text-gray-800">応募資格</h5>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li>
+                    • <strong>チームワークを大切にし、顧客、社員と一緒に楽しく働くことに喜びを感じられる方</strong>
+                  </li>
+                  <li>• <strong>情報システム担当としての３年以上の経験</strong></li>
+                  <li>• <strong>受託開発のプロジェクトマネジメント経験</strong></li>
+                </ul>
+                <p class="text-sm text-gray-700">※kintoneアプリデザインスペシャリスト資格保持者優遇</p>
+              </div>
+
+              <!-- その他の情報 -->
+              <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">雇用区分</h5>
+                  <p class="text-sm text-gray-700"><strong>正社員</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">給与</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>350万円〜600万円</strong><br>
+                    ※ご経験・スキルを考慮して決定いたします。<br>
+                    <br>
+                    <strong>給与体系：年俸制</strong><br>
+                    <strong>給与改定：随時</strong><br>
+                    <strong>賞与：年1回（決算賞与）</strong><br>
+                    <strong>試用期間：6ヶ月（条件などは変わりません）</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">採用人数</h5>
+                  <p class="text-sm text-gray-700"><strong>若干名</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">選考プロセス</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>STEP1：書類選考</strong><br>
+                    <strong>STEP2：個別面接（複数回実施することもあります）</strong><br>
+                    <strong>STEP3：内定</strong><br>
+                    ※上記は変更となる可能性もございます。
+                  </p>
+                </div>
+
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">勤務地</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>勤務地詳細：</strong><br>
+                    <strong>東京都江東区東陽4-10-4東陽町SHビル７階</strong><br>
+                    ※派遣・常駐はありません。<br>
+                    <br>
+                    <strong>アクセス：</strong><br>
+                    <strong>メトロ東西線「東陽町」駅より徒歩3分</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">勤務時間</h5>
+                  <p class="text-sm text-gray-700"><strong>9:00〜18:00</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">待遇・福利厚生</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>保険：</strong><br>
+                    <strong>各種社会保険完備</strong><br>
+                    <br>
+                    <strong>諸手当：</strong><br>
+                    <strong>交通費一律支給<br>リモートワーク手当<br>住宅手当<br>ワーケーション手当</strong><br>
+                    <br>
+                    <strong>福利厚生：</strong><br>
+                    <strong>社員旅行<br>図書購入補助</strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-8 text-center">
+                <a
+                  href="https://form.kintoneapp.com/public/form/show/f00000d8477cf27e1146169e5b2fb38d8e0fc13bb34d4f490f8f87365fd4b8e6#/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-lg bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+                >
+                  応募する
+                </a>
+              </div>
             </div>
+          {/if}
 
-            <div>
-              <h5 class="mb-3 font-bold text-gray-800">雇用区分</h5>
-              <p class="text-sm text-gray-700">正社員</p>
+          <!-- 中途採用 カスタマーサポート -->
+          {#if activeTab === 'mid-career-cs'}
+            <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
+              <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-green-600 rounded">中途採用</span>
+                <span>カスタマーサポート</span>
+              </h4>
 
-              <h5 class="mb-3 mt-4 font-bold text-gray-800">給与</h5>
-              <p class="text-sm text-gray-700">
-                380万円〜500万円※ご経験・スキルを考慮して決定いたします。
-              </p>
+              <div class="mb-6 space-y-4 text-gray-700">
+                <p>
+                  kintoneプラグインや自社SaaS製品のサポート業務を行っていただきます。<br>
+                  顧客からの問い合わせ対応と解決策の提供、ナレッジベースやブログ記事の執筆など顧客のビジネス成長を促す価値提供を行う業務です。
+                </p>
+              </div>
 
-              <h5 class="mb-3 mt-4 font-bold text-gray-800">勤務地</h5>
-              <p class="text-sm text-gray-700">
-                東京都江東区東陽4-10-4東陽町SHビル７階<br />
-                メトロ東西線「東陽町」駅より徒歩3分
-              </p>
+              <!-- 応募資格 -->
+              <div class="mb-8">
+                <h5 class="mb-3 font-bold text-gray-800">応募資格</h5>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li>
+                    • <strong>チームワークを大切にし、顧客、社員と一緒に楽しく働くことに喜びを感じられる方</strong>
+                  </li>
+                  <li>• <strong>お客様との良好な関係構築を目指す方</strong></li>
+                  <li>• <strong>技術的な課題に対して好奇心を持ち、新しい知識を積極的に学ぶ意欲がある方</strong></li>
+                </ul>
+              </div>
+
+              <!-- その他の情報 -->
+              <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">雇用区分</h5>
+                  <p class="text-sm text-gray-700"><strong>正社員</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">給与</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>380万円〜500万円</strong><br>
+                    ※ご経験・スキルを考慮して決定いたします。<br>
+                    <br>
+                    <strong>給与体系：固定残業制</strong><br>
+                    <strong>給与改定：随時</strong><br>
+                    <strong>賞与：年1回（決算賞与）</strong><br>
+                    <strong>試用期間：6ヶ月（条件などは変わりません）</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">採用人数</h5>
+                  <p class="text-sm text-gray-700"><strong>若干名</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">選考プロセス</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>STEP1：書類選考</strong><br>
+                    <strong>STEP2：個別面接（複数回実施することもあります）</strong><br>
+                    <strong>STEP3：内定</strong><br>
+                    ※上記は変更となる可能性もございます。
+                  </p>
+                </div>
+
+                <div>
+                  <h5 class="mb-3 font-bold text-gray-800">勤務地</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>勤務地詳細：</strong><br>
+                    <strong>東京都江東区東陽4-10-4東陽町SHビル７階</strong><br>
+                    ※派遣・常駐はありません。<br>
+                    <br>
+                    <strong>アクセス：</strong><br>
+                    <strong>メトロ東西線「東陽町」駅より徒歩3分</strong>
+                  </p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">勤務時間</h5>
+                  <p class="text-sm text-gray-700"><strong>9:00〜18:00</strong></p>
+
+                  <h5 class="mb-3 mt-4 font-bold text-gray-800">待遇・福利厚生</h5>
+                  <p class="text-sm text-gray-700">
+                    <strong>保険：</strong><br>
+                    <strong>各種社会保険完備</strong><br>
+                    <br>
+                    <strong>諸手当：</strong><br>
+                    <strong>交通費一律支給<br>リモートワーク手当<br>住宅手当<br>ワーケーション手当</strong><br>
+                    <br>
+                    <strong>福利厚生：</strong><br>
+                    <strong>社員旅行<br>図書購入補助</strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-8 text-center">
+                <a
+                  href="https://form.kintoneapp.com/public/form/show/f00000d8477cf27e1146169e5b2fb38d8e0fc13bb34d4f490f8f87365fd4b8e6#/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center rounded-lg bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+                >
+                  応募する
+                </a>
+              </div>
             </div>
-          </div>
-
-          <div class="mt-8 text-center">
-            <a
-              href="https://form.run/@joyzo-recruit"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center rounded-none bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
-            >
-              応募する
-            </a>
-          </div>
+          {/if}
         </div>
       </div>
     </div>
@@ -479,16 +858,16 @@
     <div class="mb-20">
       <div class="flex flex-col items-center justify-center gap-6 sm:flex-row">
         <a
-          href="https://form.run/@joyzo-recruit"
+          href="https://form.kintoneapp.com/public/form/show/f00000d8477cf27e1146169e5b2fb38d8e0fc13bb34d4f490f8f87365fd4b8e6#/"
           target="_blank"
           rel="noopener noreferrer"
-          class="rounded-none border-2 border-gray-800 px-12 py-5 text-lg font-semibold text-gray-800 transition-colors duration-300 hover:bg-gray-800 hover:text-white"
+          class="rounded-lg border-2 border-gray-800 px-12 py-5 text-lg font-semibold text-gray-800 transition-colors duration-300 hover:bg-gray-800 hover:text-white"
         >
           カジュアル面談に申し込む
         </a>
         <a
           href="/company"
-          class="rounded-none bg-gray-800 px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+          class="rounded-lg bg-gray-800 px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
         >
           会社概要を見る
         </a>
