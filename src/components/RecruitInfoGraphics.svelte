@@ -200,7 +200,8 @@
               <div class="growth-container">
                   <!-- 20%の数字 -->
                   <div class="growth-value">
-                      <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0<span style="font-size: 0.4em;">%</span></span>
+                      <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0</span>
+                      <span style="font-size: 0.6em; color: var(--color-accent-purple);">%</span>
                   </div>
               </div>
               <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
@@ -209,7 +210,10 @@
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
           <div class="p-6 relative flex flex-col justify-center text-center lg:col-span-1" style="animation-delay: 0.1s;">
               <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="text-[10rem] font-black tracking-tighter mt-4" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0<span style="font-size: 0.4em;">年</span></div>
+              <div class="mt-4">
+                  <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
+                  <span style="font-size: 0.6em; color: var(--color-primary-blue);">年</span>
+              </div>
           </div>
           
           <!-- 3-5. 男女比、中途新卒、年齢構成を横並びで配置 -->
