@@ -236,28 +236,58 @@
             </span>
           </h3>
 
-          <div class="space-y-6 text-lg leading-relaxed text-gray-700">
-            <p
-              class="delay-1400 transition-all duration-700"
-              class:opacity-100={showContent}
-              class:opacity-0={!showContent}
-              class:translate-y-0={showContent}
-              class:translate-y-8={!showContent}
-            >
-              JOYZOでは"下請け案件"は一切受けていません。お客様との"直接取引案件"のみなので、受注から開発、納品まですべての工程に関わることができます。またサブスクリプションモデルの自社サービスも行っていますので、SI開発だけでなくWebサービス開発にも携わることができます。
-            </p>
+          <div class="space-y-10 text-lg leading-relaxed text-gray-700">
+            <div class="pl-6 border-l-2 border-blue-200">
+              <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
+                <span
+                  class="delay-1400 transition-all duration-700"
+                  class:opacity-100={showContent}
+                  class:opacity-0={!showContent}
+                  class:translate-y-0={showContent}
+                  class:translate-y-8={!showContent}
+                >
+                  一気通貫で携わるシステム開発
+                </span>
+              </h4>
+              <p
+                class="delay-1400 transition-all duration-700"
+                class:opacity-100={showContent}
+                class:opacity-0={!showContent}
+                class:translate-y-0={showContent}
+                class:translate-y-8={!showContent}
+              >
+                JOYZOでは"下請け案件"は一切受けていません。お客様との"直接取引案件"のみなので、受注から開発、納品まですべての工程に関わることができます。またサブスクリプションモデルの自社サービスも行っていますので、SI開発だけでなくWebサービス開発にも携わることができます。<br
+                />
+                お客様に価値を届ける。その一点でシステム開発の上流から下流、そしてビジネスサイドまで一気通貫で携わることが可能です。
+              </p>
+            </div>
 
-            <p
-              class="delay-1500 transition-all duration-700"
-              class:opacity-100={showContent}
-              class:opacity-0={!showContent}
-              class:translate-y-0={showContent}
-              class:translate-y-8={!showContent}
-            >
-              またジョイゾーでは、リアルとリモートの良さを活かした柔軟な働き方を実践しています。東京オフィスを中心に対面での信頼関係を大切にしつつ、リモートワークも自由に選択可能。<br
-              />
-              全国各地でフルリモート勤務するメンバーもおり、クラウドツールを活用してスムーズに連携しています。仕事だけでなく、ライフスタイルや大切にしたいことに合わせた働き方ができる環境です。
-            </p>
+            <div class="pl-6 border-l-2 border-green-200">
+              <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
+                <span
+                  class="delay-1500 transition-all duration-700"
+                  class:opacity-100={showContent}
+                  class:opacity-0={!showContent}
+                  class:translate-y-0={showContent}
+                  class:translate-y-8={!showContent}
+                >
+                  多様なライフスタイルに寄り添う働き方
+                </span>
+              </h4>
+              <p
+                class="delay-1500 transition-all duration-700"
+                class:opacity-100={showContent}
+                class:opacity-0={!showContent}
+                class:translate-y-0={showContent}
+                class:translate-y-8={!showContent}
+              >
+                またジョイゾーでは、リアルとリモートの良さを活かした柔軟な働き方を実践しています。東京オフィスを中心に対面での信頼関係を大切にしつつ、リモートワークもオプションとして選択可能です。<br
+                />
+                当社では、全国各地でフルリモート勤務するメンバーやワーキングマザー・ファザーをはじめ、多様なライフスタイルを持つメンバーが活躍しています。<br
+                />
+                社員一人ひとりの成長をベースに、ライフスタイルに寄り添う多様で柔軟な働き方を実現できる環境を一緒に作りあげられる、そんな環境です。
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -283,31 +313,56 @@
         <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <!-- テキストコンテンツ -->
           <div>
-        <div class="space-y-6 text-lg leading-relaxed text-gray-700">
-          <p
+        <div class="space-y-10 text-lg leading-relaxed text-gray-700">
+          <div class="pl-6 border-l-2 border-gray-300">
+            <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
+              <span
+                class="delay-1700 transition-all duration-700"
+                class:opacity-100={showContent}
+                class:opacity-0={!showContent}
+                class:translate-y-0={showContent}
+                class:translate-y-8={!showContent}
+              >
+                自律と成長を大切にする組織創り
+              </span>
+            </h4>
+            <p
                 class="delay-1700 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
             class:translate-y-8={!showContent}
           >
-            すべての案件が直接取引なので、社員は、お客様の顔が見える環境で、お客様の役に立っているという充実感を得ながら、生き生きと働いています。<br
+            「ENJOY YOUR WORLD.」を経営理念として掲げる当社では、何よりもメンバーの「自律と成長」を大切にした組織創りを進めています。<br
             />
-            受注から納品まで、一人に委ねられる領域は大きいのですが、社員同士が励まし合い、助け合い、楽しさを共有することで、社内には明るくアグレッシブなムードができ上がっています。
+            また当社では働くメンバー同士がお互いの「成長し楽しく働く」を理解し合う相互理解が重要だと考えています。
           </p>
+          </div>
 
-          <p
+          <div class="pl-6 border-l-2 border-gray-400">
+            <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
+              <span
+                class="delay-1800 transition-all duration-700"
+                class:opacity-100={showContent}
+                class:opacity-0={!showContent}
+                class:translate-y-0={showContent}
+                class:translate-y-8={!showContent}
+              >
+                プロとして認め合える環境づくり
+              </span>
+            </h4>
+            <p
                 class="delay-1800 transition-all duration-700"
             class:opacity-100={showContent}
             class:opacity-0={!showContent}
             class:translate-y-0={showContent}
             class:translate-y-8={!showContent}
           >
-            また「ENJOY YOUR
-            WORLD.」を経営理念として掲げる当社では、何よりもメンバーの「自律と成長」を大切にした組織づくりを進めています。<br
+            そして、相互理解を実現する為にまず必要なのは「一人一人の自律」と「成長したい意欲」。メンバー各々が自身の責任を全うし、自身を磨き続けること。<br
             />
-            みんなが楽しく働けるように、当社では働くメンバー全員がお互いの「楽しく働く」を理解し合う相互理解が重要だと考えています。
+            互いをプロとして認め合える環境をみんなで創ることで、コミュニケーションは自然と活発になり、相互理解が深まって共感し合いながら楽しく働くことができます。
           </p>
+          </div>
             </div>
           </div>
 
