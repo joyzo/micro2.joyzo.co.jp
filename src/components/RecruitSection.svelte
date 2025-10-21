@@ -403,7 +403,7 @@
               class:text-gray-800={activeTab === 'new-graduate-se'}
               on:click={() => setActiveTab('new-graduate-se')}
             >
-              <span class="inline-block px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-full shadow-sm">新卒採用</span>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #2563eb;">新卒採用</span>
               <span class="text-left text-base">システム39エンジニア</span>
             </button>
             <button
@@ -412,7 +412,7 @@
               class:text-gray-800={activeTab === 'mid-career-se'}
               on:click={() => setActiveTab('mid-career-se')}
             >
-              <span class="inline-block px-3 py-1 text-xs font-bold text-white bg-green-600 rounded-full shadow-sm">中途採用</span>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
               <span class="text-left text-base">システム39エンジニア</span>
             </button>
             <button
@@ -421,7 +421,7 @@
               class:text-gray-800={activeTab === 'mid-career-kintone'}
               on:click={() => setActiveTab('mid-career-kintone')}
             >
-              <span class="inline-block px-3 py-1 text-xs font-bold text-white bg-green-600 rounded-full shadow-sm">中途採用</span>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
               <span class="text-left text-base">kintoneカスタマイズ開発エンジニア</span>
             </button>
             <button
@@ -430,7 +430,7 @@
               class:text-gray-800={activeTab === 'mid-career-cs'}
               on:click={() => setActiveTab('mid-career-cs')}
             >
-              <span class="inline-block px-3 py-1 text-xs font-bold text-white bg-green-600 rounded-full shadow-sm">中途採用</span>
+              <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
               <span class="text-left text-base">カスタマーサポート</span>
             </button>
           </div>
@@ -442,7 +442,7 @@
           {#if activeTab === 'new-graduate-se'}
             <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
               <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
-                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-blue-600 rounded">新卒採用</span>
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white rounded" style="background-color: #2563eb;">新卒採用</span>
                 <span>システム39エンジニア</span>
               </h4>
 
@@ -543,7 +543,7 @@
           {#if activeTab === 'mid-career-se'}
             <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
               <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
-                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-green-600 rounded">中途採用</span>
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white rounded" style="background-color: #16a34a;">中途採用</span>
                 <span>システム39エンジニア</span>
               </h4>
 
@@ -646,7 +646,7 @@
           {#if activeTab === 'mid-career-kintone'}
             <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
               <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
-                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-green-600 rounded">中途採用</span>
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white rounded" style="background-color: #16a34a;">中途採用</span>
                 <span>kintoneカスタマイズ開発エンジニア</span>
               </h4>
 
@@ -744,7 +744,7 @@
           {#if activeTab === 'mid-career-cs'}
             <div class="rounded-lg border border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
               <h4 class="mb-6 font-heading text-3xl font-bold text-gray-800 flex flex-col items-start gap-2">
-                <span class="inline-block px-3 py-1 text-sm font-bold text-white bg-green-600 rounded">中途採用</span>
+                <span class="inline-block px-3 py-1 text-sm font-bold text-white rounded" style="background-color: #16a34a;">中途採用</span>
                 <span>カスタマーサポート</span>
               </h4>
 
