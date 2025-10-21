@@ -387,6 +387,7 @@
               class="px-6 py-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-start gap-2 rounded-t-lg hover:shadow-sm cursor-pointer"
               class:border-gray-800={activeTab === 'new-graduate-se'}
               class:text-gray-800={activeTab === 'new-graduate-se'}
+              class:bg-blue-50={activeTab === 'new-graduate-se'}
               on:click={() => setActiveTab('new-graduate-se')}
             >
               <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #2563eb;">新卒採用</span>
@@ -396,6 +397,7 @@
               class="px-6 py-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-start gap-2 rounded-t-lg hover:shadow-sm cursor-pointer"
               class:border-gray-800={activeTab === 'mid-career-se'}
               class:text-gray-800={activeTab === 'mid-career-se'}
+              class:bg-green-50={activeTab === 'mid-career-se'}
               on:click={() => setActiveTab('mid-career-se')}
             >
               <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
@@ -405,6 +407,7 @@
               class="px-6 py-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-start gap-2 rounded-t-lg hover:shadow-sm cursor-pointer"
               class:border-gray-800={activeTab === 'mid-career-kintone'}
               class:text-gray-800={activeTab === 'mid-career-kintone'}
+              class:bg-green-50={activeTab === 'mid-career-kintone'}
               on:click={() => setActiveTab('mid-career-kintone')}
             >
               <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
@@ -414,6 +417,7 @@
               class="px-6 py-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-start gap-2 rounded-t-lg hover:shadow-sm cursor-pointer"
               class:border-gray-800={activeTab === 'mid-career-cs'}
               class:text-gray-800={activeTab === 'mid-career-cs'}
+              class:bg-green-50={activeTab === 'mid-career-cs'}
               on:click={() => setActiveTab('mid-career-cs')}
             >
               <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
