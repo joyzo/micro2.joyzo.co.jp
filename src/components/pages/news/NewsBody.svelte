@@ -17,16 +17,18 @@
     class="mt-4 text-sm font-bold"
   />
 
-  <div class="mx-auto mt-14 max-w-xs lg:max-w-md">
-    <MicroCMSPicture
-      src={content.thumbnail.url}
-      widths={[320, 640, 960]}
-      width={320}
-      height={320}
-      sizes="20rem"
-      alt=""
-    />
-  </div>
+  {#if content.thumbnail?.url}
+    <div class="mx-auto mt-14 max-w-xs lg:max-w-md">
+      <MicroCMSPicture
+        src={content.thumbnail.url}
+        widths={[320, 640, 960]}
+        width={320}
+        height={320}
+        sizes="20rem"
+        alt=""
+      />
+    </div>
+  {/if}
 
   <div
     class="prose mx-auto mt-20 max-w-[50ch] prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg sm:px-16 [&_*]:text-main"
