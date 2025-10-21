@@ -6,6 +6,10 @@ import VisionSection from "@components/VisionSection.svelte";
 import ProfessionalismSection from "@components/ProfessionalismSection.svelte";
 import RecruitBanner from "@components/RecruitBanner.svelte";
 import ContactSection from "@components/ContactSection.svelte";
+import { getLatestNews } from "@libs/microcms";
+
+// microCMSから最新のニュース記事を取得
+const news = await getLatestNews();
 ---
 
 <Layout>
@@ -25,6 +29,8 @@ import ContactSection from "@components/ContactSection.svelte";
   <!-- 6. 採用バナー -->
   <RecruitBanner client:load />
   
+  <!-- 7. ストーリー・メディアセクション -->
+  <StoryMediaSection client:load blogs={news} />
   
   <!-- 8. お問い合わせセクション -->
   <ContactSection client:load />

@@ -1,5 +1,8 @@
-<script>
+<script lang="ts">
   import ScrollAnimation from "./ScrollAnimation.svelte";
+  import type { CompanyPage } from "../types/microcms/pages";
+
+  export let companyData: CompanyPage;
 </script>
 
 <ScrollAnimation
