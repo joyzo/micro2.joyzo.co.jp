@@ -1,6 +1,10 @@
 ---
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import CompanySection from "@components/CompanySection.svelte";
+import { getCompanyPage } from "@libs/microcms";
+
+// microCMSから会社概要データを取得
+const companyData = await getCompanyPage();
 ---
 
 <UnderPageLayout
@@ -33,7 +37,7 @@ import CompanySection from "@components/CompanySection.svelte";
     </section>
 
     <!-- 会社概要セクション -->
-    <CompanySection client:only="svelte" />
+    <CompanySection client:only="svelte" companyData={companyData} />
 
     <!-- 事業内容詳細セクション -->
     <section>

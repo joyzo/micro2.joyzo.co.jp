@@ -8,6 +8,10 @@ import PartnersSection from "@components/PartnersSection.svelte";
 import RecruitBanner from "@components/RecruitBanner.svelte";
 import StoryMediaSection from "@components/StoryMediaSection.svelte";
 import ContactSection from "@components/ContactSection.svelte";
+import { getLatestNews } from "@libs/microcms";
+
+// microCMSから最新のニュース記事を取得
+const news = await getLatestNews();
 ---
 
 <Layout>
@@ -30,7 +34,7 @@ import ContactSection from "@components/ContactSection.svelte";
   <RecruitBanner client:load />
   
   <!-- 7. ストーリー・メディアセクション -->
-  <StoryMediaSection client:load />
+  <StoryMediaSection client:load blogs={news} />
   
   <!-- 8. お問い合わせセクション -->
   <ContactSection client:load />

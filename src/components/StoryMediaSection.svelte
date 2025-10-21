@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Blog } from "../types/microcms/blogs";
+
   // メディアデータ
   const mediaLinks = [
     {
@@ -21,30 +23,50 @@
     },
   ];
 
-  // 最新記事データ
-  const latestArticles = [
-    {
-      title: "kintoneで作る業務効率化システム",
-      description: "お客様の課題を解決した事例をご紹介します。",
-      date: "2024.01.15",
-      image: "/images/top/about.png",
-      url: "https://note.com/joyzo/article1",
-    },
-    {
-      title: "JOYZOの働き方改革",
-      description: "私たちが実践しているリモートワークの工夫について。",
-      date: "2024.01.10",
-      image: "/images/top/image_001.jpg",
-      url: "https://note.com/joyzo/article2",
-    },
-    {
-      title: "kintone認定資格取得のコツ",
-      description: "効率的な学習方法と試験対策のポイントを解説。",
-      date: "2024.01.05",
-      image: "/images/company.jpg",
-      url: "https://note.com/joyzo/article3",
-    },
-  ];
+  // microCMSから取得したブログデータを受け取る
+  export let blogs: Blog[] = [];
+
+  // 日付フォーマット関数
+  function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ja-JP', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).replace(/\//g, '.');
+  }
+
+  // HTMLタグを除去してプレーンテキストに変換（改行を保持）
+  function stripHtml(html: string): string {
+    return html
+      .replace(/<br\s*\/?>/gi, '\n') // <br>タグを改行に変換
+      .replace(/<\/p>/gi, '\n') // </p>タグを改行に変換
+      .replace(/<[^>]*>/g, '') // その他のHTMLタグを除去
+      .replace(/&nbsp;/g, ' ') // &nbsp;をスペースに変換
+      .replace(/&amp;/g, '&') // &amp;を&に変換
+      .replace(/&lt;/g, '<') // &lt;を<に変換
+      .replace(/&gt;/g, '>') // &gt;を>に変換
+      .replace(/&quot;/g, '"') // &quot;を"に変換
+      .replace(/&#39;/g, "'") // &#39;を'に変換
+      .replace(/\n\s*\n/g, '\n') // 連続する改行を1つに
+      .trim();
+  }
+
+  // テキストを指定文字数で切り詰める
+  function truncateText(text: string, maxLength: number = 100): string {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  }
+
+  // 画像URLを取得（複数のフィールド名に対応）
+  function getImageUrl(blog: Blog): string | null {
+    return blog.thumbnail?.url || blog.eyecatch?.url || blog.image?.url || null;
+  }
+
+  // 記事URLを取得（複数のフィールド名に対応）
+  function getArticleUrl(blog: Blog): string {
+    return blog.articleUrl || blog.url || blog.link || '#';
+  }
 </script>
 
 <section class="story-media-section py-24">
@@ -156,9 +178,9 @@
         最新記事
       </h3>
       <div class="grid gap-8 md:grid-cols-3">
-        {#each latestArticles as article}
+        {#each blogs as blog, index}
           <a
-            href={article.url}
+            href={getArticleUrl(blog)}
             target="_blank"
             rel="noopener noreferrer"
             class="article-card group block"
@@ -167,20 +189,28 @@
               class="overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-lg"
             >
               <div class="h-48 bg-gradient-to-br from-gray-100 to-gray-200">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+                {#if getImageUrl(blog)}
+                  <img
+                    src={getImageUrl(blog)}
+                    alt={blog.title}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                {:else}
+                  <div class="flex h-full w-full items-center justify-center text-gray-400">
+                    <svg class="h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                {/if}
               </div>
               <div class="p-6">
                 <h4
                   class="mb-3 font-bold text-gray-900 transition-colors duration-300 group-hover:text-gray-700"
                 >
-                  {article.title}
+                  {blog.title}
                 </h4>
-                <p class="mb-3 text-sm text-gray-600">{article.description}</p>
-                <div class="text-xs text-gray-500">{article.date}</div>
+                <p class="mb-3 text-sm text-gray-600 whitespace-pre-line">{truncateText(stripHtml(blog.content))}</p>
+                <div class="text-xs text-gray-500">{formatDate(blog.release_date)}</div>
               </div>
             </div>
           </a>

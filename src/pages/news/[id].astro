@@ -1,5 +1,5 @@
 ---
-import type { News } from "src/types/microcms/news";
+import type { Blog } from "src/types/microcms/blogs";
 
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import { client } from "@libs/microcms";
@@ -7,7 +7,7 @@ import NewsBody from "@components/pages/news/NewsBody.svelte";
 import { processContent } from "src/utils/processContent";
 
 export const getStaticPaths = async () => {
-  const { contents: news } = await client.getList<News>({
+  const { contents: news } = await client.getList<Blog>({
     endpoint: "news",
     queries: { limit: 10, fields: "id" },
   });
@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
 const { id } = Astro.params;
 if (!id) throw new Error("id is required");
 
-const content = await client.getListDetail<News>({
+const content = await client.getListDetail<Blog>({
   endpoint: "news",
   contentId: id,
 });

@@ -8,3 +8,12 @@ export type Page = {
   metaDescription?: string;
   publishedAt?: string;
 };
+
+export type CompanyPage = {
+  title: string;
+  subtitle: string;
+  content1: string;
+  content2: string;
+  publishedAt?: string;
+  updatedAt?: string;
+};
