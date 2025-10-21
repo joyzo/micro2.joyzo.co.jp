@@ -4,7 +4,6 @@ import type { Blog } from "src/types/microcms/blogs";
 
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import { client } from "@libs/microcms";
-// import { Picture } from "@astrojs/image/components"; // 非推奨のためコメントアウト
 import FormattedDate from "@components/FormattedDate.svelte";
 import Pagination from "@components/Pagination/Pagination.astro";
 
@@ -52,14 +51,12 @@ const { contents: news } = await client.getList<Blog>({
             <a href={`/news/${id}`} class="flex">
               {imageUrl && (
                 <div class="mr-4 w-1/3 max-w-[10rem] flex-none sm:mr-8 lg:mr-12">
-                  <Picture
+                  <img
                     src={imageUrl}
-                    widths={[320, 640, 960]}
-                    aspectRatio={1}
                     width={320}
                     height={320}
-                    sizes="20rem"
                     alt=""
+                    class="h-full w-full object-cover"
                   />
                 </div>
               )}
