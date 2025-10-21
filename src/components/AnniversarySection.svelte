@@ -3,13 +3,14 @@
 </script>
 
 <section class="anniversary-section py-24">
-  <div class="container mx-auto max-w-6xl px-4">
+  <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <div class="grid items-center gap-12 lg:gap-16 lg:grid-cols-2">
       <!-- テキストコンテンツ -->
-      <div class="space-y-6 lg:space-y-8 order-2 lg:order-1">
+      <div class="space-y-6 lg:space-y-8 order-2 lg:order-2">
         <div class="space-y-4 lg:space-y-6">
           <h2
             class="tracking-tighter font-heading text-4xl font-black leading-tight text-gray-900 md:text-5xl lg:text-6xl"
+            style="letter-spacing: -0.05em;"
           >
             CELEBRATING 15 YEARS
           </h2>
@@ -46,7 +47,7 @@
           </a>
           <a
             href="/story"
-            class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
+            class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 bg-white px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
           >
             ストーリーを見る
           </a>
@@ -54,8 +55,8 @@
       </div>
 
       <!-- 15周年ロゴ -->
-      <div class="relative order-1 lg:order-2">
-        <div class="relative overflow-hidden rounded-2xl shadow-xl bg-black p-6 lg:p-8">
+      <div class="relative order-1 lg:order-1">
+        <div class="relative overflow-hidden rounded-2xl shadow-xl bg-white p-6 lg:p-8">
           <img
             src="/images/season/logo_15th.png"
             alt="JOYZO 15周年記念ロゴ"
@@ -69,7 +70,7 @@
 
 <style>
   .anniversary-section {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    /* background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); */
     position: relative;
   }
   

@@ -23,7 +23,7 @@
         { surfer: 's004', side: 'right', scrollTrigger: 0.8, delay: 600 }
       ]
     },
-    'aboutus': {
+    'aboutjoyzo': {
       positions: [
         { surfer: 's005', side: 'left', scrollTrigger: 0.05, delay: 0 },
         { surfer: 's001', side: 'right', scrollTrigger: 0.5, delay: 300 },
@@ -75,7 +75,7 @@
     // URLからページ名を取得
     const path = window.location.pathname;
     if (path === '/') currentPage = 'index';
-    else if (path.startsWith('/aboutus')) currentPage = 'aboutus';
+    else if (path.startsWith('/aboutjoyzo')) currentPage = 'aboutjoyzo';
     else if (path.startsWith('/company')) currentPage = 'company';
     else if (path.startsWith('/contact')) currentPage = 'contact';
     else if (path.startsWith('/recruit')) currentPage = 'recruit';

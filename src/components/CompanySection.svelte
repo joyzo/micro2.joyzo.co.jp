@@ -13,10 +13,11 @@
   opacity={0}
 >
   <section id="company-section" class="company-section py-20">
-    <div class="container mx-auto px-6 md:px-4">
+    <div class="mx-auto max-w-none sm:max-w-7xl px-4">
       <div class="mb-16 text-center">
         <h2
           class="md:text-8xl lg:text-9xl mb-6 font-english text-5xl font-bold text-main sm:text-6xl leading-[0.9] md:leading-[0.95]"
+          style="letter-spacing: -0.05em;"
           data-scroll-animate
         >
           COMPANY
@@ -33,7 +34,7 @@
         />
       </div>
 
-      <div class="mx-auto max-w-4xl space-y-8">
+      <div class="mx-auto max-w-none sm:max-w-4xl space-y-8">
         <!-- 基本情報 -->
         <div
           class="transform rounded-lg border border-white/20 bg-white/80 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-xl"
@@ -73,6 +74,12 @@
                 >サイボウズ製品に対するコンサルティング・システム開発、<br />kintoneプラグインの開発/販売</span
               >
             </div>
+            <div
+              class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-gray-200 pb-3"
+            >
+              <span class="font-medium text-gray-700 mb-1 md:mb-0">適格請求書発行事業者登録番号</span>
+              <span class="md:text-right">T1010601040500</span>
+            </div>
           </div>
         </div>
 
@@ -100,53 +107,23 @@
           </div>
         </div>
 
-        <!-- 主たる取引先 -->
+        <!-- お客様 -->
         <div
           class="transform rounded-lg border border-white/20 bg-white/80 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-xl"
           data-scroll-animate
         >
-          <h3 class="mb-6 text-2xl font-bold text-main">主たる取引先</h3>
-          <div class="grid gap-4 md:grid-cols-2">
-            <div class="space-y-3">
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">サイボウズ株式会社</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">株式会社さくら事務所</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">株式会社星野リゾート</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">三菱ふそうトラック・バス株式会社</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">株式会社八芳園</span>
-              </div>
-            </div>
-            <div class="space-y-3">
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">株式会社GENDA</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">茨城県庁</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm">Suntory Trading Hong Kong</span>
-              </div>
-              <div class="flex items-center space-x-3">
-                <div class="h-2 w-2 rounded-full bg-main"></div>
-                <span class="text-sm text-gray-500">（50音順、敬称略）</span>
-              </div>
-            </div>
+          <h3 class="mb-6 text-2xl font-bold text-main">お客様</h3>
+          <div class="relative overflow-hidden rounded-2xl shadow-xl">
+            <img
+              src="/images/achievements-img.jpg"
+              alt="お客様実績"
+              class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
+              loading="lazy"
+            />
+            <!-- オーバーレイ効果 -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"
+            />
           </div>
         </div>
 
@@ -201,42 +178,6 @@
           </div>
         </div>
 
-        <!-- 代表メッセージ -->
-        <div
-          class="transform rounded-lg border border-white/20 bg-accent/90 p-8 text-white backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-xl"
-          data-scroll-animate
-        >
-          <div class="flex items-start space-x-6">
-            <div class="flex-shrink-0">
-              <img
-                src="/daihyou.png"
-                alt="代表取締役社長 四宮 靖隆"
-                class="h-24 w-24 rounded-lg border-2 border-white object-cover"
-              />
-            </div>
-            <div class="flex-1">
-              <h3 class="mb-6 text-2xl font-bold">代表メッセージ</h3>
-              <p class="mb-4 text-sm leading-relaxed">
-                株式会社ジョイゾーは、2010年12月に私、代表取締役社長の四宮靖隆が設立しました。私の仕事観は「仕事は、自分の人生を楽しくイキイキさせるもの」であるというものです。ITを導入すること（SI）は働く人を楽しくさせるものであるべきだという信念から、2010年にジョイゾーを起業しました。
-              </p>
-              <p class="mb-4 text-sm leading-relaxed">
-                SIerの役割は、単に依頼通りのシステムを作る会社ではありません。お客様の課題を深く理解し、最適なソリューションを提供することこそが、真の価値だと考えます。お客様は業務のプロ、私たちはITのプロとして、対等な立場で一つのチームとなり、業務課題の解決に向けて協力することが理想です。
-              </p>
-              <p class="mb-4 text-sm leading-relaxed">
-                私たちは創業当初から「価値に対してお金をいただく」というポリシーを大切にしており、「人月」に依存しない料金体系を採用しています。かつてSIer業界が抱えていた「人月商売」「見えにくい下請け業務」「価値提供を意識しにくいシステム開発」といった旧来の慣習からの脱却を図ってきました。
-              </p>
-              <p class="mb-4 text-sm leading-relaxed">
-                2011年にサイボウズ社がリリースした業務改善プラットフォーム「kintone」に出会ったとき、私は「これならSIerビジネスを根本から変えられるかもしれない！」という雷に打たれたような感動を覚えました。kintoneは、私が描く「幸せなシステム開発」を実現するためのツールとして、ジョイゾーの挑戦を支える存在となっています。
-              </p>
-              <p class="mb-4 text-sm leading-relaxed">
-                人口減少が進む日本では、すでに様々な業界で「軋み」が発生しています。こうした中で、SIerにいま最も求められているものは、クラウドサービスを武器にすばやくシステム設計を進め、より多くの企業・組織の生産性向上に貢献することです。ジョイゾーはkintoneを活用した定額制対面開発「システム39」を通じ、1750を超えるお客様の課題解決と向き合ってまいりました。
-              </p>
-              <div class="text-right">
-                <p class="font-bold">代表取締役社長 四宮 靖隆</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>

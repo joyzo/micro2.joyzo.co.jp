@@ -79,6 +79,7 @@
     <div class="mb-16">
       <h1
         class="md:text-8xl lg:text-9xl tracking-tighter font-heading text-6xl font-black leading-tight"
+        style="letter-spacing: -0.05em;"
       >
         <div class="flex items-center justify-center gap-8">
           <!-- 左側のキーワード -->
@@ -128,7 +129,7 @@
     >
       <a
         href="/company"
-        class="rounded-none border-2 border-black px-12 py-5 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
+        class="rounded-none border-2 border-black bg-white px-12 py-5 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
       >
         会社概要を見る
       </a>

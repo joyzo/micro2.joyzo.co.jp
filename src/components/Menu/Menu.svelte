@@ -16,9 +16,9 @@
 
   const links = [
     {
-      mainLabel: "ABOUT",
+      mainLabel: "ABOUT JOYZO",
       subLabel: "ジョイゾーとは",
-      href: "/aboutus",
+      href: "/aboutjoyzo",
     },
     {
       mainLabel: "COMPANY",
@@ -85,7 +85,7 @@
 
 <Portal>
   <button
-    class="fixed right-4 top-2 z-50 flex h-12 w-12 flex-col items-center justify-center gap-1 text-white md:hidden"
+    class="fixed right-4 top-2 z-[70] flex h-12 w-12 flex-col items-center justify-center gap-1 text-white md:hidden"
     on:click={toggle}
   >
     <span

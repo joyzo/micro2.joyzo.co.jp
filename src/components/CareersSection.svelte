@@ -21,7 +21,7 @@
   >
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
-        <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-main font-english mb-6 animate-on-scroll">
+        <h2 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-main font-english mb-6 animate-on-scroll" style="letter-spacing: -0.05em;">
           <AnimatedText 
             text="CAREERS" 
             type="scale" 

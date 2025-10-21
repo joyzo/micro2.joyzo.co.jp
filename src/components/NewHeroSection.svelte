@@ -56,6 +56,7 @@
       <AnimatedText
         text={currentCopy}
         className="text-6xl md:text-8xl lg:text-9xl font-bold leading-tight tracking-tighter font-heading"
+        style="letter-spacing: -0.05em;"
         delay={0.03}
         duration={1.2}
       />
@@ -84,7 +85,7 @@
         href="/company"
         variant="outline"
         size="lg"
-        className="border-2 border-black text-black hover:bg-black hover:text-white px-12 py-5 rounded-none font-semibold text-lg"
+        className="border-2 border-black text-black bg-white hover:bg-black hover:text-white px-12 py-5 rounded-none font-semibold text-lg"
       >
         会社概要を見る
       </Button>

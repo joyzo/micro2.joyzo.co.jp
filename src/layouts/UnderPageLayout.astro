@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+// import { Picture } from "@astrojs/image/components"; // 非推奨のためコメントアウト
 
 import Layout from "./Layout.astro";
 
@@ -16,14 +16,15 @@ const { mainLabel, subLabel, ...props } = Astro.props;
 
 // 画像ファイル名を生成（スペースを削除して小文字に）
 const imageFileName = mainLabel.toLowerCase().replace(/\s+/g, "");
+
+// 画像パスを生成
+const imagePath = `/images/${imageFileName}.png`;
 ---
 
 <Layout {...props}>
   <div class="relative min-h-[50vh] mt-16 md:mt-20">
-    <Picture
-      src={import(`../images/${imageFileName}.png`)}
-      widths={[400, 800, 1200, 1600, 2000]}
-      sizes="100vw"
+    <img
+      src={imagePath}
       loading="eager"
       width={1440}
       height={320}
@@ -43,7 +44,7 @@ const imageFileName = mainLabel.toLowerCase().replace(/\s+/g, "");
       </h1>
     </div>
   </div>
-  <div class="container py-16 sm:py-24 lg:py-32 px-6 md:px-4">
+  <div class="mx-auto py-16 sm:py-24 lg:py-32 max-w-none sm:max-w-7xl px-4">
     <slot />
   </div>
 </Layout>

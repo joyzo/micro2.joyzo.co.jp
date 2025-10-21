@@ -430,10 +430,10 @@
 </script>
 
 <section class="professionalism-section py-24 bg-gray-50">
-  <div class="container mx-auto max-w-7xl px-6 md:px-4">
+  <div class="mx-auto max-w-none sm:max-w-7xl px-4">
     <!-- セクションヘッダー -->
     <div class="mb-20 text-center">
-      <h2 class="mb-6 font-english text-5xl font-black text-gray-900 md:text-6xl leading-[0.9] md:leading-[0.95]">
+      <h2 class="mb-6 font-english text-5xl font-black text-gray-900 md:text-6xl leading-[0.9] md:leading-[0.95]" style="letter-spacing: -0.05em;">
         PROFESSIONALISM
       </h2>
       <p class="text-xl text-gray-600">JOYZOのメンバーが大切にする価値観</p>
@@ -564,39 +564,42 @@
       </div>
     </div>
 
-    <!-- プロフェッショナリズム一覧（参考用） -->
-    <div class="mb-12">
-      <h3 class="mb-6 text-center text-2xl font-bold text-gray-800">9つのプロフェッショナリズム</h3>
-      <div class="grid gap-4 md:grid-cols-3">
-        {#each professionalisms as item}
-          <div class="text-center p-4 bg-white rounded-lg shadow-sm">
-            <div class="font-english text-xs font-black text-gray-400 mb-1">
-              {item.alphabet}
-            </div>
-            <div class="text-sm font-semibold text-gray-700 mb-1">
-              {item.title}
-            </div>
-            <div class="text-xs text-gray-500">
-              {item.message}
-            </div>
-          </div>
-        {/each}
-      </div>
-    </div>
-
     <!-- フッター -->
     <div class="text-center">
-      <p class="text-gray-600">
+      <p class="text-gray-600 mb-8">
         これらは私たちが日々の仕事で大切にしている価値観です。<br>
         一人ひとりがこれらのプロフェッショナリズムを胸に、お客様と共に価値あるシステムを創り上げています。
       </p>
+      
+      <!-- aboutjoyzoへの導線 -->
+      <div class="inline-block">
+        <a
+          href="/aboutjoyzo"
+          class="inline-flex items-center justify-center rounded-none bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+        >
+          ジョイゾーのことをもっと詳しく
+          <svg
+            class="ml-2 h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .professionalism-section {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    /* background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); */
   }
 
   /* 3Dキューブスタイル */
@@ -724,7 +727,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
 

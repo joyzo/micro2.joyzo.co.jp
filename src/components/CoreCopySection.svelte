@@ -109,6 +109,7 @@
     <h2
       id="core-copy-heading"
       class="md:text-8xl lg:text-9xl tracking-tighter mb-8 font-heading text-5xl font-black leading-none text-white"
+      style="letter-spacing: -0.05em;"
     >
       ENJOY YOUR WORLD.
     </h2>

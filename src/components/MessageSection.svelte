@@ -33,7 +33,7 @@
   <section
     class="relative flex h-screen items-center overflow-hidden"
     class:bg-white={!isAlternate}
-    class:bg-blue-900={isAlternate}
+    class:bg-theme-accent={isAlternate}
     style="z-index: {10 - index};"
   >
     <!-- デバッグ情報（開発時のみ表示） -->
@@ -60,7 +60,7 @@
       {#each particles as particle}
         <div
           class="animate-on-scroll absolute h-1 w-1 rounded-full opacity-0 transition-all duration-1000 ease-out"
-          class:bg-blue-400={!isAlternate}
+          class:bg-theme-accent={!isAlternate}
           class:bg-white={isAlternate}
           style="
             left: {particle.x}%; 
@@ -81,7 +81,7 @@
             class="tracking-tighter font-heading font-bold leading-[0.85] md:leading-tight"
             style="font-size: clamp(4rem, 10vw, 12rem); letter-spacing: -0.05em;"
             class:text-white={isAlternate}
-            class:text-blue-900={!isAlternate}
+            class:text-theme-accent={!isAlternate}
           >
             <AnimatedText
               text={message.catch}
@@ -100,7 +100,7 @@
           <p
             class="mx-auto max-w-4xl text-xl leading-relaxed md:text-2xl lg:text-3xl"
             class:text-white={isAlternate}
-            class:text-blue-900={!isAlternate}
+            class:text-theme-accent={!isAlternate}
           >
             <AnimatedText
               text={message.lead}
@@ -140,8 +140,8 @@
               href={message.cta.url}
               class="inline-flex transform items-center rounded-lg px-8 py-4 font-bold transition-all duration-300 hover:scale-105 hover:shadow-lg"
               class:bg-white={isAlternate}
-              class:bg-blue-900={!isAlternate}
-              class:text-blue-900={isAlternate}
+              class:bg-theme-accent={!isAlternate}
+              class:text-theme-accent={isAlternate}
               class:text-white={!isAlternate}
             >
               <span>{message.cta.text}</span>
@@ -180,28 +180,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* マーカーの光沢効果 */
-  .bg-gradient-to-b {
-    background: linear-gradient(to bottom, #60a5fa, #3b82f6, #1d4ed8);
-  }
-
-  /* パルスアニメーション */
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.4;
-      transform: scale(1.05);
-    }
-  }
-
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    will-change: transform, opacity;
-  }
+  /* マーカーの光沢効果とパルスアニメーションは削除 */
 
   /* アニメーション要素の最適化 */
   .transform {
