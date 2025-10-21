@@ -218,13 +218,6 @@
               class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"
             />
           </div>
-          <!-- 装飾的な要素 -->
-          <div
-            class="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-gray-800 opacity-60"
-          />
-          <div
-            class="absolute -bottom-4 -left-4 h-6 w-6 rounded-full bg-gray-600 opacity-40"
-          />
         </div>
 
         <!-- テキストコンテンツ -->
@@ -332,13 +325,6 @@
                 class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
-            <!-- 装飾的な要素 -->
-            <div
-              class="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-gray-800 opacity-60"
-            />
-            <div
-              class="absolute -bottom-4 -left-4 h-6 w-6 rounded-full bg-gray-600 opacity-40"
-            />
           </div>
         </div>
       </div>
