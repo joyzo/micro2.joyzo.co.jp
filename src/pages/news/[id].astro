@@ -23,7 +23,7 @@ const content = await client.getListDetail<Blog>({
   contentId: id,
 });
 
-content.body = processContent(content.body);
+content.content = processContent(content.content || '');
 ---
 
 <UnderPageLayout mainLabel="NEWS" subLabel="お知らせ" title="お知らせ">
