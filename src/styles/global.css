@@ -263,3 +263,8 @@ body .text-gray-400 {
 .focus-visible\:ring-theme-secondary:focus-visible {
   --tw-ring-color: var(--color-secondary) !important;
 }
+
+/* カスタムピンク色（#daa7b5） */
+.bg-custom-pink {
+  background-color: #daa7b5 !important;
+}
