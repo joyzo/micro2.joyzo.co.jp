@@ -1,6 +1,11 @@
 import * as cheerio from "cheerio";
 
 export const processContent = (content: string) => {
+  // contentがundefined、null、または空文字列の場合は空文字列を返す
+  if (!content || typeof content !== 'string') {
+    return '';
+  }
+  
   const $ = cheerio.load(content, {}, false);
 
   $("h3").each((_, elem) => {
