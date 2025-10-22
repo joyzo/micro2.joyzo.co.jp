@@ -31,7 +31,7 @@ const { contents: news } = await client.getList<Blog>({
   queries: {
     limit: 10,
     offset: page.start,
-    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date",
+    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,category,categories,tag,type,status",
     orders: "-release_date",
   },
 });
@@ -43,34 +43,110 @@ const { contents: news } = await client.getList<Blog>({
   title="お知らせ"
   noindex={page.currentPage !== 1}
 >
-  <ul class="mx-auto grid max-w-2xl grid-cols-1 gap-5 sm:gap-8 lg:gap-16">
+  <ul class="mx-auto grid max-w-2xl grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
     {
-      news.map(({ id, title, eyecatch, thumbnail, image, createdAt, publishedAt, release_date }) => {
+      news.map(({ id, title, eyecatch, thumbnail, image, createdAt, publishedAt, release_date, tags, category, categories, tag, type, status }) => {
         const imageUrl = eyecatch?.url || thumbnail?.url || image?.url;
         return (
           <li>
             <a href={`/news/${id}`} class="flex">
-              {imageUrl && (
-                <div class="mr-4 w-1/3 max-w-[10rem] flex-none sm:mr-8 lg:mr-12">
-                  <Picture
+              {imageUrl ? (
+                <div class="mr-4 w-1/3 max-w-[10rem] flex-none sm:mr-8 lg:mr-12 aspect-square">
+                  <img
                     src={imageUrl}
-                    widths={[320, 640, 960]}
-                    aspectRatio={1}
-                    width={320}
-                    height={320}
-                    sizes="20rem"
-                    alt=""
+                    alt={title}
+                    class="h-full w-full object-contain rounded-lg"
                   />
                 </div>
+              ) : (
+                <div class="mr-4 w-1/3 max-w-[10rem] flex-none sm:mr-8 lg:mr-12"></div>
               )}
               <div class="sm:justify flex flex-1 flex-col justify-between sm:justify-center sm:gap-6">
-                <h2 class="line-clamp-3 text-sm leading-relaxed sm:text-lg">
+                <h2 class="line-clamp-3 text-sm leading-relaxed sm:text-lg hover:underline transition-all duration-200">
                   {title}
                 </h2>
-                <FormattedDate
-                  class="font-english text-xs sm:text-sm"
-                  date={release_date || publishedAt || createdAt}
-                />
+                <div class="flex items-center gap-2">
+                  <FormattedDate
+                    class="font-english text-xs sm:text-sm"
+                    date={release_date || publishedAt || createdAt}
+                  />
+                  {(() => {
+                    // タグデータの処理
+                    let displayTags = [];
+                    
+                    if (tags) {
+                      if (Array.isArray(tags)) {
+                        // 配列の場合
+                        displayTags = tags.map(tag => {
+                          if (typeof tag === 'string') {
+                            return tag;
+                          } else if (tag && typeof tag === 'object') {
+                            return tag.name || tag.label || tag.value || tag;
+                          }
+                          return tag;
+                        });
+                      } else if (typeof tags === 'object') {
+                        // オブジェクトの場合（単一選択）
+                        displayTags = [tags.name || tags.label || tags.value || tags];
+                      } else if (typeof tags === 'string') {
+                        // 文字列の場合
+                        displayTags = [tags];
+                      }
+                    }
+                    
+                    // 他のフィールドもチェック
+                    const checkField = (field) => {
+                      if (!field) return [];
+                      if (Array.isArray(field)) {
+                        return field.map(item => {
+                          if (typeof item === 'string') return item;
+                          if (item && typeof item === 'object') {
+                            return item.name || item.label || item.value || item.id || item;
+                          }
+                          return item;
+                        });
+                      } else if (typeof field === 'object') {
+                        return [field.name || field.label || field.value || field.id || field];
+                      } else if (typeof field === 'string') {
+                        return [field];
+                      }
+                      return [];
+                    };
+                    
+                    if (displayTags.length === 0) {
+                      displayTags = checkField(tag) || checkField(category) || checkField(categories) || checkField(type) || checkField(status);
+                    }
+                    
+                    return displayTags.length > 0 ? (
+                      <span class="inline-flex items-center gap-1">
+                        {displayTags.map((tag, index) => {
+                          const getTagColor = (tagText) => {
+                            const tag = tagText.toLowerCase();
+                            if (tag === 'update' || tag === 'アップデート') return 'bg-green-600';
+                            if (tag === 'news' || tag === 'お知らせ') return 'bg-blue-600';
+                            if (tag === 'event' || tag === 'イベント') return 'bg-purple-600';
+                            if (tag === 'release' || tag === 'リリース') return 'bg-orange-600';
+                            if (tag === 'maintenance' || tag === 'メンテナンス') return 'bg-red-600';
+                            if (tag === 'media' || tag === 'メディア') return 'bg-cyan-600';
+                            // 部分一致のチェック（完全一致でない場合）
+                            if (tag.includes('update') && !tag.includes('news')) return 'bg-green-600';
+                            if (tag.includes('news') && !tag.includes('update')) return 'bg-blue-600';
+                            if (tag.includes('event')) return 'bg-purple-600';
+                            if (tag.includes('release')) return 'bg-orange-600';
+                            if (tag.includes('maintenance')) return 'bg-red-600';
+                            if (tag.includes('media')) return 'bg-cyan-600';
+                            return 'bg-gray-600'; // デフォルト色
+                          };
+                          return (
+                            <span key={index} class={`${getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded`}>
+                              {tag}
+                            </span>
+                          );
+                        })}
+                      </span>
+                    ) : null;
+                  })()}
+                </div>
               </div>
             </a>
           </li>

@@ -38,6 +38,7 @@ export const getLatestNews = async (): Promise<Blog[]> => {
       queries: {
         limit: 3,
         orders: "-release_date", // リリース日の降順（最新順）
+        fields: "id,title,content,overview,release_date,publishedAt,createdAt,thumbnail,eyecatch,image,tag",
       },
     });
     return response.contents as Blog[];

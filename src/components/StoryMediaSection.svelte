@@ -23,8 +23,8 @@
     },
   ];
 
-  // microCMSから取得したブログデータを受け取る
-  export let blogs: Blog[] = [];
+  // microCMSから取得したニュースデータを受け取る
+  export let news: Blog[] = [];
 
   // 日付フォーマット関数
   function formatDate(dateString: string): string {
@@ -178,11 +178,9 @@
         最新記事
       </h3>
       <div class="grid gap-8 md:grid-cols-3">
-        {#each blogs as blog, index}
+        {#each news as blog, index}
           <a
-            href={getArticleUrl(blog)}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/news/${blog.id}`}
             class="article-card group block"
           >
             <div
@@ -209,8 +207,57 @@
                 >
                   {blog.title}
                 </h4>
-                <p class="mb-3 text-sm text-gray-600 whitespace-pre-line">{truncateText(stripHtml(blog.content))}</p>
-                <div class="text-xs text-gray-500">{formatDate(blog.release_date)}</div>
+                <p class="mb-3 text-sm text-gray-600 whitespace-pre-line">{blog.overview || truncateText(stripHtml(blog.content))}</p>
+                <div class="flex items-center gap-2">
+                  <div class="text-xs text-gray-500">{formatDate(blog.release_date)}</div>
+                  {#if blog.tag}
+                    {@const displayTags = (() => {
+                      let tags = [];
+                      if (Array.isArray(blog.tag)) {
+                        tags = blog.tag.map(tag => {
+                          if (typeof tag === 'string') {
+                            return tag;
+                          } else if (tag && typeof tag === 'object') {
+                            return tag.name || tag.label || tag.value || tag.id || tag;
+                          }
+                          return tag;
+                        });
+                      } else if (typeof blog.tag === 'object') {
+                        tags = [blog.tag.name || blog.tag.label || blog.tag.value || blog.tag.id || blog.tag];
+                      } else if (typeof blog.tag === 'string') {
+                        tags = [blog.tag];
+                      }
+                      return tags;
+                    })()}
+                    
+                    {#if displayTags.length > 0}
+                      <span class="inline-flex items-center gap-1">
+                        {#each displayTags as tag}
+                          {@const getTagColor = (tagText) => {
+                            const tag = tagText.toLowerCase();
+                            if (tag === 'update' || tag === 'アップデート') return 'bg-green-600';
+                            if (tag === 'news' || tag === 'お知らせ') return 'bg-blue-600';
+                            if (tag === 'event' || tag === 'イベント') return 'bg-purple-600';
+                            if (tag === 'release' || tag === 'リリース') return 'bg-orange-600';
+                            if (tag === 'maintenance' || tag === 'メンテナンス') return 'bg-red-600';
+                            if (tag === 'media' || tag === 'メディア') return 'bg-cyan-600';
+                            // 部分一致のチェック（完全一致でない場合）
+                            if (tag.includes('update') && !tag.includes('news')) return 'bg-green-600';
+                            if (tag.includes('news') && !tag.includes('update')) return 'bg-blue-600';
+                            if (tag.includes('event')) return 'bg-purple-600';
+                            if (tag.includes('release')) return 'bg-orange-600';
+                            if (tag.includes('maintenance')) return 'bg-red-600';
+                            if (tag.includes('media')) return 'bg-cyan-600';
+                            return 'bg-gray-600'; // デフォルト色
+                          }}
+                          <span class="{getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded">
+                            {tag}
+                          </span>
+                        {/each}
+                      </span>
+                    {/if}
+                  {/if}
+                </div>
               </div>
             </div>
           </a>
@@ -218,9 +265,7 @@
       </div>
       <div class="mt-8 text-center">
         <a
-          href="https://note.com/joyzo"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/news/1"
           class="inline-flex items-center font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900"
         >
           もっと記事を見る

@@ -9,7 +9,7 @@ import { processContent } from "src/utils/processContent";
 export const getStaticPaths = async () => {
   const { contents: news } = await client.getList<Blog>({
     endpoint: "news",
-    queries: { limit: 10, fields: "id" },
+    queries: { limit: 100, fields: "id" },
   });
 
   return news.map((news) => ({ params: { id: news.id } }));
@@ -18,12 +18,15 @@ export const getStaticPaths = async () => {
 const { id } = Astro.params;
 if (!id) throw new Error("id is required");
 
-const content = await client.getListDetail<Blog>({
+const content = await client.get<Blog>({
   endpoint: "news",
   contentId: id,
+  queries: { fields: "id,title,content,release_date,publishedAt,createdAt,tag" }
 });
 
-content.body = processContent(content.body);
+if (content.content) {
+  content.content = processContent(content.content);
+}
 ---
 
 <UnderPageLayout mainLabel="NEWS" subLabel="お知らせ" title="お知らせ">
