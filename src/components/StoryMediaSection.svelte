@@ -202,62 +202,74 @@
                 {/if}
               </div>
               <div class="p-6">
+                <!-- タグと日付をタイトルの上に配置 -->
+                <div class="mb-3 flex items-center gap-2">
+                  <div class="flex items-center gap-2">
+                    {#if blog.tag}
+                      {@const displayTags = (() => {
+                        let tags = [];
+                        if (Array.isArray(blog.tag)) {
+                          tags = blog.tag.map(tag => {
+                            if (typeof tag === 'string') {
+                              return tag;
+                            } else if (tag && typeof tag === 'object') {
+                              return tag.name || tag.label || tag.value || tag.id || tag;
+                            }
+                            return tag;
+                          });
+                        } else if (typeof blog.tag === 'object') {
+                          tags = [blog.tag.name || blog.tag.label || blog.tag.value || blog.tag.id || blog.tag];
+                        } else if (typeof blog.tag === 'string') {
+                          tags = [blog.tag];
+                        }
+                        return tags;
+                      })()}
+                      
+                      {#if displayTags.length > 0}
+                        <span class="inline-flex items-center gap-1">
+                          {#each displayTags as tag}
+                            {@const getTagColor = (tagText) => {
+                              const tag = tagText.toLowerCase().trim();
+                              // 完全一致を最優先
+                              if (tag === 'update') return 'bg-emerald-600';
+                              if (tag === 'news') return 'bg-blue-600';
+                              if (tag === 'event') return 'bg-purple-600';
+                              if (tag === 'release') return 'bg-orange-600';
+                              if (tag === 'maintenance') return 'bg-red-600';
+                              if (tag === 'media') return 'bg-cyan-600';
+                              // 日本語の完全一致
+                              if (tag === 'アップデート') return 'bg-emerald-600';
+                              if (tag === 'お知らせ') return 'bg-blue-600';
+                              if (tag === 'イベント') return 'bg-purple-600';
+                              if (tag === 'リリース') return 'bg-orange-600';
+                              if (tag === 'メンテナンス') return 'bg-red-600';
+                              if (tag === 'メディア') return 'bg-cyan-600';
+                              // 部分一致（除外条件付き）
+                              if (tag.includes('update') && !tag.includes('news')) return 'bg-emerald-600';
+                              if (tag.includes('news') && !tag.includes('update')) return 'bg-blue-600';
+                              if (tag.includes('event')) return 'bg-purple-600';
+                              if (tag.includes('release')) return 'bg-orange-600';
+                              if (tag.includes('maintenance')) return 'bg-red-600';
+                              if (tag.includes('media')) return 'bg-cyan-600';
+                              return 'bg-gray-600'; // デフォルト色
+                            }}
+                            <span class="{getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded">
+                              {tag}
+                            </span>
+                          {/each}
+                        </span>
+                      {/if}
+                    {/if}
+                  </div>
+                  <div class="text-xs text-gray-500">{formatDate(blog.release_date)}</div>
+                </div>
+                
                 <h4
                   class="mb-3 font-bold text-gray-900 transition-colors duration-300 group-hover:text-gray-700"
                 >
                   {blog.title}
                 </h4>
-                <p class="mb-3 text-sm text-gray-600 whitespace-pre-line">{blog.overview || truncateText(stripHtml(blog.content))}</p>
-                <div class="flex items-center gap-2">
-                  <div class="text-xs text-gray-500">{formatDate(blog.release_date)}</div>
-                  {#if blog.tag}
-                    {@const displayTags = (() => {
-                      let tags = [];
-                      if (Array.isArray(blog.tag)) {
-                        tags = blog.tag.map(tag => {
-                          if (typeof tag === 'string') {
-                            return tag;
-                          } else if (tag && typeof tag === 'object') {
-                            return tag.name || tag.label || tag.value || tag.id || tag;
-                          }
-                          return tag;
-                        });
-                      } else if (typeof blog.tag === 'object') {
-                        tags = [blog.tag.name || blog.tag.label || blog.tag.value || blog.tag.id || blog.tag];
-                      } else if (typeof blog.tag === 'string') {
-                        tags = [blog.tag];
-                      }
-                      return tags;
-                    })()}
-                    
-                    {#if displayTags.length > 0}
-                      <span class="inline-flex items-center gap-1">
-                        {#each displayTags as tag}
-                          {@const getTagColor = (tagText) => {
-                            const tag = tagText.toLowerCase();
-                            if (tag === 'update' || tag === 'アップデート') return 'bg-green-600';
-                            if (tag === 'news' || tag === 'お知らせ') return 'bg-blue-600';
-                            if (tag === 'event' || tag === 'イベント') return 'bg-purple-600';
-                            if (tag === 'release' || tag === 'リリース') return 'bg-orange-600';
-                            if (tag === 'maintenance' || tag === 'メンテナンス') return 'bg-red-600';
-                            if (tag === 'media' || tag === 'メディア') return 'bg-cyan-600';
-                            // 部分一致のチェック（完全一致でない場合）
-                            if (tag.includes('update') && !tag.includes('news')) return 'bg-green-600';
-                            if (tag.includes('news') && !tag.includes('update')) return 'bg-blue-600';
-                            if (tag.includes('event')) return 'bg-purple-600';
-                            if (tag.includes('release')) return 'bg-orange-600';
-                            if (tag.includes('maintenance')) return 'bg-red-600';
-                            if (tag.includes('media')) return 'bg-cyan-600';
-                            return 'bg-gray-600'; // デフォルト色
-                          }}
-                          <span class="{getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded">
-                            {tag}
-                          </span>
-                        {/each}
-                      </span>
-                    {/if}
-                  {/if}
-                </div>
+                <p class="text-sm text-gray-600 whitespace-pre-line">{blog.overview || truncateText(stripHtml(blog.content))}</p>
               </div>
             </div>
           </a>

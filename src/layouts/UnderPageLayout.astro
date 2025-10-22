@@ -18,7 +18,7 @@ const { mainLabel, subLabel, ...props } = Astro.props;
 const imageFileName = mainLabel.toLowerCase().replace(/\s+/g, "");
 
 // 画像パスを生成
-const imagePath = `/images/${imageFileName}.png`;
+const imagePath = `/images/${imageFileName}.jpg`;
 ---
 
 <Layout {...props}>
@@ -29,7 +29,8 @@ const imagePath = `/images/${imageFileName}.png`;
       width={1440}
       height={320}
       alt=""
-      class="absolute inset-0 h-full w-full object-cover object-center"
+      class="absolute inset-0 h-full w-full object-cover"
+      style="object-position: 60% 55%;"
     />
     <div
       class="relative flex h-full w-full items-center justify-center bg-black/20"
