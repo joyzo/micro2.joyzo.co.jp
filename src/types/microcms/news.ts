@@ -2,6 +2,6 @@ import type { MicroCMSImage } from "microcms-js-sdk";
 
 export type News = {
   title: string;
-  thumbnail: MicroCMSImage;
+  thumbnail?: MicroCMSImage;
   body: string;
 };
