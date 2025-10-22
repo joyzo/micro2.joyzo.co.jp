@@ -31,7 +31,7 @@ const news = await getLatestNews();
   <RecruitBanner client:load />
   
   <!-- 7. ストーリー・メディアセクション -->
-  <StoryMediaSection client:load blogs={news} />
+  <StoryMediaSection client:load news={news} />
   
   <!-- 8. お問い合わせセクション -->
   <ContactSection client:load />
