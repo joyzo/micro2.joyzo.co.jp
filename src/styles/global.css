@@ -19,7 +19,10 @@
 
 * {
   @apply tracking-xl;
-  font-family: "Zen Kaku Gothic Antique", "Noto Sans JP", sans-serif;
+  /* M PLUS 1pフォントに変更（元: Zen Kaku Gothic Antique） */
+  font-family: "M PLUS 1p", "Noto Sans JP", sans-serif;
+  /* 元のZen Kaku Gothic Antique設定（戻し用） */
+  /* font-family: "Zen Kaku Gothic Antique", "Noto Sans JP", sans-serif; */
 }
 
 /* Interフォント用のletter-spacingをリセット */

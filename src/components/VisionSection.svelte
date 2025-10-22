@@ -58,7 +58,7 @@
         <div class="relative overflow-hidden rounded-2xl shadow-xl">
           <img
             src="/images/joyster.png"
-            alt="能取湖の風景"
+            alt="JOYZO"
             class="h-96 w-full object-cover"
           />
           <div

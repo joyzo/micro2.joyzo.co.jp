@@ -47,9 +47,14 @@ module.exports = {
         subtle: "0.25rem", // 4px
       },
       fontFamily: {
-        serif: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
-        english: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
-        sans: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
+        // M PLUS 1pフォントに変更（元: Zen Kaku Gothic Antique）
+        serif: ["M PLUS 1p", "Noto Sans JP", "sans-serif"],
+        english: ["M PLUS 1p", "Noto Sans JP", "sans-serif"],
+        sans: ["M PLUS 1p", "Noto Sans JP", "sans-serif"],
+        // 元のZen Kaku Gothic Antique設定（戻し用）
+        // serif: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
+        // english: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
+        // sans: ["Zen Kaku Gothic Antique", "Noto Sans JP", "sans-serif"],
         heading: [
           "Inter",
           "system-ui",

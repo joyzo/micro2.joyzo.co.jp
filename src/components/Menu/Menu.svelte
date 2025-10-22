@@ -21,14 +21,25 @@
       href: "/aboutjoyzo",
     },
     {
+      mainLabel: "RECRUIT",
+      subLabel: "採用情報",
+      href: "/recruit",
+    },
+    {
       mainLabel: "COMPANY",
       subLabel: "会社概要",
       href: "/company",
     },
     {
-      mainLabel: "RECRUIT",
-      subLabel: "採用情報",
-      href: "/recruit",
+      mainLabel: "NEWS",
+      subLabel: "お知らせ",
+      href: "/news",
+    },
+    {
+      mainLabel: "SERVICE",
+      subLabel: "サービス",
+      href: "https://service.joyzo.co.jp/",
+      external: true,
     },
     {
       mainLabel: "CONTACT",
@@ -66,10 +77,19 @@
             class="group flex flex-col items-center px-8 py-4 text-center transition-all duration-300 hover:scale-105" 
             href={link.href}
             on:click={close}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
           >
-            <span class="font-english font-bold text-3xl sm:text-4xl text-white mb-2 group-hover:text-gray-200 transition-colors duration-300">
-              {link.mainLabel}
-            </span>
+            <div class="flex items-center gap-2">
+              <span class="font-english font-bold text-3xl sm:text-4xl text-white mb-2 group-hover:text-gray-200 transition-colors duration-300">
+                {link.mainLabel}
+              </span>
+              {#if link.external}
+                <svg class="h-6 w-6 text-white group-hover:text-gray-200 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              {/if}
+            </div>
             <span class="text-base sm:text-lg text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
               {link.subLabel}
             </span>

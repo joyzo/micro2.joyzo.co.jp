@@ -50,8 +50,13 @@ const description = props.description ?? BASE_DESCRIPTION;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" rel="stylesheet" /></noscript>
+    <!-- M PLUS 1pフォントの読み込み（元: Zen Kaku Gothic Antique） -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;200;300;400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;200;300;400;500;700;800;900&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- 元のZen Kaku Gothic Antiqueフォント（戻し用） -->
+    <!-- <link rel="preload" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap" rel="stylesheet" /></noscript> -->
 
     {import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID && <GA4 />}
   </head>
