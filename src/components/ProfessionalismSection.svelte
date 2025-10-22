@@ -440,7 +440,7 @@
     </div>
 
     <!-- 3Dキューブコンテナ -->
-    <div class="cube-container mb-16" style="perspective: 1000px; perspective-origin: center center; -webkit-perspective: 1000px; -webkit-perspective-origin: center center;">
+    <div class="cube-container my-20" style="perspective: 1000px; perspective-origin: center center; -webkit-perspective: 1000px; -webkit-perspective-origin: center center;">
       <div class="cube-wrapper">
         <div 
           class="cube {isRotating ? 'rotating' : ''} {isDragging ? 'dragging' : ''} {isFaceRotating ? 'face-rotating' : ''}"
@@ -616,8 +616,8 @@
 
   .cube-wrapper {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 360px;
+    height: 360px;
   }
 
   .cube {

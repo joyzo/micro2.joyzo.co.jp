@@ -55,11 +55,11 @@
 
       <!-- 背景画像 -->
       <div class="relative">
-        <div class="relative overflow-hidden rounded-2xl shadow-xl">
+        <div class="relative rounded-2xl shadow-xl p-8">
           <img
             src="/images/joyster.png"
             alt="JOYZO"
-            class="h-96 w-full object-cover"
+            class="h-96 w-full object-contain"
           />
           <div
             class="absolute inset-0 gradient-overlay"

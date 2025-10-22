@@ -1,0 +1,160 @@
+---
+import type { Blog } from "src/types/microcms/blogs";
+import UnderPageLayout from "@layouts/UnderPageLayout.astro";
+import { client } from "@libs/microcms";
+import FormattedDate from "@components/FormattedDate.svelte";
+
+// 1ページ目のニュースを取得（フォールバック処理）
+const { contents: news } = await client.getList<Blog>({
+  endpoint: "news",
+  queries: {
+    limit: 10,
+    offset: 0, // 1ページ目なので offset は 0
+    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,tag",
+    orders: "-release_date",
+  },
+});
+---
+
+<UnderPageLayout
+  mainLabel="NEWS"
+  subLabel="お知らせ"
+  title="お知らせ"
+>
+  <ul class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
+    {
+      news.map(({ id, title, eyecatch, thumbnail, image, createdAt, publishedAt, release_date, tags, tag }) => {
+        const imageUrl = eyecatch?.url || thumbnail?.url || image?.url;
+        return (
+          <li class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
+            <a href={`/news/${id}`} class="flex px-8 py-4">
+              {imageUrl ? (
+                <div class="mr-6 w-1/3 max-w-[10rem] flex-none sm:mr-10 lg:mr-14 aspect-[4/3]">
+                  <img
+                    src={imageUrl}
+                    alt={title}
+                    class="h-full w-full object-contain rounded-lg"
+                  />
+                </div>
+              ) : (
+                <div class="mr-6 w-1/3 max-w-[10rem] flex-none sm:mr-10 lg:mr-14 aspect-[4/3]"></div>
+              )}
+              <div class="sm:justify flex flex-1 flex-col justify-between sm:justify-center sm:gap-3">
+                <!-- タグと日付をタイトルの上に配置 -->
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-2">
+                    {(() => {
+                      // タグデータの処理
+                      let displayTags = [];
+                      
+                      if (tags) {
+                        if (Array.isArray(tags)) {
+                          // 配列の場合
+                          displayTags = tags.map(tag => {
+                            if (typeof tag === 'string') {
+                              return tag;
+                            } else if (tag && typeof tag === 'object') {
+                              return (tag as any).name || (tag as any).label || (tag as any).value || tag;
+                            }
+                            return tag;
+                          });
+                        } else if (typeof tags === 'object') {
+                          // オブジェクトの場合（単一選択）
+                          displayTags = [(tags as any).name || (tags as any).label || (tags as any).value || tags];
+                        } else if (typeof tags === 'string') {
+                          // 文字列の場合
+                          displayTags = [tags];
+                        }
+                      }
+                      
+                      // 他のフィールドもチェック
+                      const checkField = (field: any) => {
+                        if (!field) return [];
+                        if (Array.isArray(field)) {
+                          return field.map(item => {
+                            if (typeof item === 'string') return item;
+                            if (item && typeof item === 'object') {
+                              return item.name || item.label || item.value || item.id || item;
+                            }
+                            return item;
+                          });
+                        } else if (typeof field === 'object') {
+                          return [field.name || field.label || field.value || field.id || field];
+                        } else if (typeof field === 'string') {
+                          return [field];
+                        }
+                        return [];
+                      };
+                      
+                      if (displayTags.length === 0) {
+                        displayTags = checkField(tag);
+                      }
+                      
+                      return displayTags.length > 0 ? (
+                        <span class="inline-flex items-center gap-1">
+                          {displayTags.map((tag, index) => {
+                            const getTagColor = (tagText: any) => {
+                              const tag = tagText.toLowerCase().trim();
+                              // 完全一致を最優先
+                              if (tag === 'update') return 'bg-emerald-600';
+                              if (tag === 'news') return 'bg-blue-600';
+                              if (tag === 'event') return 'bg-purple-600';
+                              if (tag === 'release') return 'bg-orange-600';
+                              if (tag === 'maintenance') return 'bg-red-600';
+                              if (tag === 'media') return 'bg-cyan-600';
+                              // 日本語の完全一致
+                              if (tag === 'アップデート') return 'bg-emerald-600';
+                              if (tag === 'お知らせ') return 'bg-blue-600';
+                              if (tag === 'イベント') return 'bg-purple-600';
+                              if (tag === 'リリース') return 'bg-orange-600';
+                              if (tag === 'メンテナンス') return 'bg-red-600';
+                              if (tag === 'メディア') return 'bg-cyan-600';
+                              // 部分一致（除外条件付き）
+                              if (tag.includes('update') && !tag.includes('news')) return 'bg-emerald-600';
+                              if (tag.includes('news') && !tag.includes('update')) return 'bg-blue-600';
+                              if (tag.includes('event')) return 'bg-purple-600';
+                              if (tag.includes('release')) return 'bg-orange-600';
+                              if (tag.includes('maintenance')) return 'bg-red-600';
+                              if (tag.includes('media')) return 'bg-cyan-600';
+                              return 'bg-gray-600'; // デフォルト色
+                            };
+                            return (
+                              <span class={`${getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded`}>
+                                {tag}
+                              </span>
+                            );
+                          })}
+                        </span>
+                      ) : null;
+                    })()}
+                  </div>
+                  <FormattedDate
+                    class="font-english text-xs sm:text-sm"
+                    date={release_date || publishedAt || createdAt}
+                  />
+                </div>
+                
+                <h2 class="line-clamp-3 text-sm leading-relaxed sm:text-lg hover:underline transition-all duration-200">
+                  {title}
+                </h2>
+              </div>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  <!-- ページネーションリンク（1ページ目なので2ページ目へのリンクのみ） -->
+  <div class="mt-16 sm:mt-24 lg:mt-32 flex justify-center">
+    <a 
+      href="/news/2" 
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
+    >
+      次のページ
+      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </div>
+</UnderPageLayout>
