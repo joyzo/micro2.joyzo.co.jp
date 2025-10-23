@@ -331,96 +331,45 @@ const companyData = await getCompanyPage();
       </div>
     </section>
 
-    <!-- 事業内容詳細セクション -->
+    <!-- サービスバナーセクション -->
     <section>
       <div class="mb-16 text-center">
         <h2 class="mb-6 font-english text-4xl font-bold text-main">SERVICES</h2>
         <p class="text-xl text-gray-600">事業内容</p>
       </div>
 
-      <div class="grid gap-8 md:grid-cols-3">
-        <div
-          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
+      <div class="relative overflow-hidden rounded-2xl shadow-xl transition-all duration-300 hover:scale-105">
+        <a
+          href="https://service.joyzo.co.jp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block"
         >
-          <div
-            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-main"
-          >
-            <svg
-              class="h-8 w-8 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+          <img
+            src="/images/banner_service.png"
+            alt="JOYZOサービス - kintoneで業務改善"
+            class="h-auto w-full object-cover"
+            loading="lazy"
+          />
+          <!-- 外部リンクアイコン -->
+          <div class="absolute top-4 right-4">
+            <div class="rounded-full bg-white/90 p-2 shadow-lg">
+              <svg
+                class="h-5 w-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
                 stroke-width="2"
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              ></path>
-            </svg>
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </div>
           </div>
-          <h3 class="mb-4 text-center text-xl font-bold text-main">
-            SI/業務改善
-          </h3>
-          <p class="text-center leading-relaxed text-gray-600">
-            対面開発、伴走サポートで現場目線の業務改善を支援します
-          </p>
-        </div>
-
-        <div
-          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
-        >
-          <div
-            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary"
-          >
-            <svg
-              class="h-8 w-8 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="mb-4 text-center text-xl font-bold text-main">
-            kintone開発
-          </h3>
-          <p class="text-center leading-relaxed text-gray-600">
-            kintone SIのプロとしてカスタマイズ開発とプラグインを提供しています
-          </p>
-        </div>
-
-        <div
-          class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg"
-        >
-          <div
-            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent"
-          >
-            <svg
-              class="h-8 w-8 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              ></path>
-            </svg>
-          </div>
-          <h3 class="mb-4 text-center text-xl font-bold text-main">
-            DX人材育成
-          </h3>
-          <p class="text-center leading-relaxed text-gray-600">
-            教育プログラムや定期アドバイザリメニューなどをラインナップ
-          </p>
-        </div>
+        </a>
       </div>
     </section>
 

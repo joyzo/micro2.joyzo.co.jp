@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import CorporateHeroSection from "@components/CorporateHeroSection.svelte";
 import AnniversarySection from "@components/AnniversarySection.svelte";
+import ImageSlideshow from "@components/ImageSlideshow.svelte";
 import VisionSection from "@components/VisionSection.svelte";
 import ProfessionalismSection from "@components/ProfessionalismSection.svelte";
 import RecruitBanner from "@components/RecruitBanner.svelte";
@@ -20,10 +21,13 @@ const news = await getLatestNews();
   <!-- 2. 15周年記念PRセクション -->
   <AnniversarySection client:load />
   
-  <!-- 3. 会社ビジョンセクション -->
+  <!-- 3. 画像スライドショー -->
+  <ImageSlideshow client:load />
+  
+  <!-- 4. 会社ビジョンセクション -->
   <VisionSection client:load />
   
-  <!-- 4. プロフェッショナリズムキューブセクション -->
+  <!-- 5. プロフェッショナリズムキューブセクション -->
   <ProfessionalismSection client:load />
   
   

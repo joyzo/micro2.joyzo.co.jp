@@ -1,0 +1,28 @@
+# デプロイ除外設定ファイル
+# このファイルに記載されたファイルやディレクトリはデプロイ時に除外されます
+# パスは dist フォルダからの相対パスで指定してください
+
+# 開発用ファイル
+*.log
+*.tmp
+*.temp
+
+# テストファイル
+test/
+tests/
+*.test.*
+
+# 設定ファイル（必要に応じて）
+.env
+# config.local.*
+
+# 特定のディレクトリ
+images/joy-office-photos/
+
+# 特定のファイル
+# README.md
+# CHANGELOG.md
+
+# ワイルドカード使用例
+# *.backup
+# temp_*

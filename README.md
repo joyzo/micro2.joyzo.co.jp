@@ -105,10 +105,61 @@ npm run build
 
 ## デプロイについて
 
-### 本番環境へのデプロイ
+### SFTP デプロイ（本番環境）
 
 ⚠️ **重要: 本番環境へのデプロイについて**  
-本番環境へのデプロイは、**必ず承諾を得てから実行しなければなりません**。  
+本番環境へのデプロイは、**必ず承諾を得てから実行しなければなりません**。
+
+#### 環境変数の設定
+
+`.env.local` ファイルを作成し、以下の情報を設定してください：
+
+```bash
+SFTP_HOST=サーバーのホスト名
+SFTP_PORT=22
+SFTP_USER=ユーザー名
+SFTP_PASSWORD=パスワード
+# または SSH鍵認証を使用
+SFTP_PRIVATE_KEY_PATH=~/.ssh/id_rsa
+SFTP_REMOTE_PATH=/path/to/remote/directory
+```
+
+#### デプロイコマンド
+
+```bash
+# 全ファイルをデプロイ
+npm run deploy:production
+
+# 画像ファイルのみデプロイ
+npm run deploy:images
+
+# 画像ファイル以外をデプロイ
+npm run deploy:no-images
+
+# 特定ファイルをデプロイ
+npm run deploy:specific logo.png
+npm run deploy:specific images/company.jpg
+npm run deploy:specific _astro/
+```
+
+#### 新機能
+
+**差分アップロード**: ファイルのハッシュ値を比較し、変更されたファイルのみをアップロードします。初回は全ファイル、2回目以降は変更分のみアップロードされるため、デプロイ時間が大幅に短縮されます。
+
+**ファイル除外機能**: `.deployignore` ファイルでアップロードを除外するファイルやディレクトリを指定できます。
+
+**デプロイモード選択**:
+- `images-only`: 画像ファイル（jpg, png, gif, svg等）のみアップロード
+- `no-images`: 画像ファイル以外（HTML, CSS, JS等）のみアップロード  
+- `specific`: 指定したファイルやディレクトリのみアップロード
+
+```bash
+# .deployignore の例
+*.log
+*.tmp
+images/joy-office-photos/
+```
+
 詳細な手順については `DEPLOYMENT.md` を参照してください。
 
 ### Vercel へのデプロイ（開発/テスト環境）

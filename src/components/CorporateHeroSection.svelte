@@ -277,18 +277,31 @@
               class="mb-8 flex flex-col items-start justify-start gap-4 sm:flex-row"
             >
               <a
-                href="/company"
+                href="/aboutjoyzo"
                 class="rounded-none border-2 border-black bg-white px-8 py-4 text-lg font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
               >
-                会社概要を見る
+                about JOYZO
               </a>
               <a
                 href="https://service.joyzo.co.jp"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="rounded-none bg-gray-800 px-8 py-4 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+                class="rounded-none bg-gray-800 px-8 py-4 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700 flex items-center gap-2"
               >
                 サービスを見る
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
               </a>
             </div>
           </div>
