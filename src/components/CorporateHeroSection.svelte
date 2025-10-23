@@ -5,9 +5,13 @@
   let showOpening = true;
   let leftWord = "ENJOY";
   let rightWord = "";
+  let prevLeftWord = "";
+  let prevRightWord = "";
   let centerSymbol = "?";
   let isLeftChanging = false;
   let isRightChanging = false;
+  let isLeftSlidingUp = false;
+  let isRightSlidingUp = false;
   let isVisible = false;
   let isFadedOut = false; // フェイドアウト完了フラグ
   let isRotating = false; // ?から×への回転アニメーション用
@@ -46,18 +50,51 @@
 
         keywordInterval = setInterval(() => {
           if (isLeftTurn) {
-            isLeftChanging = true;
-            setTimeout(() => {
+            // 前の左側テキストを上にスライドしてフェードアウト + 新しい左側テキストを同時にスライドイン
+            if (leftWord) {
+              prevLeftWord = leftWord; // 前のテキストを保存
               pairIndex = (pairIndex + 1) % keywordPairs.length;
-              leftWord = keywordPairs[pairIndex]?.left || "";
-              setTimeout(() => (isLeftChanging = false), 200);
-            }, 50);
+              leftWord = keywordPairs[pairIndex]?.left || ""; // 即座に新しいテキストに変更
+              isLeftSlidingUp = true;
+              isLeftChanging = true;
+              setTimeout(() => {
+                isLeftSlidingUp = false;
+                setTimeout(() => {
+                  isLeftChanging = false;
+                  prevLeftWord = ""; // 前のテキストをクリア
+                }, 200); // 少し遅らせて確実に次の要素が表示されてからクリア
+              }, 1000);
+            } else {
+              // 最初の左側テキスト
+              isLeftChanging = true;
+              setTimeout(() => {
+                pairIndex = (pairIndex + 1) % keywordPairs.length;
+                leftWord = keywordPairs[pairIndex]?.left || "";
+                setTimeout(() => (isLeftChanging = false), 1200);
+              }, 50);
+            }
           } else {
-            isRightChanging = true;
-            setTimeout(() => {
-              rightWord = keywordPairs[pairIndex]?.right || "";
-              setTimeout(() => (isRightChanging = false), 200);
-            }, 50);
+            // 前の右側テキストを上にスライドしてフェードアウト + 新しい右側テキストを同時にスライドイン
+            if (rightWord) {
+              prevRightWord = rightWord; // 前のテキストを保存
+              rightWord = keywordPairs[pairIndex]?.right || ""; // 即座に新しいテキストに変更
+              isRightSlidingUp = true;
+              isRightChanging = true;
+              setTimeout(() => {
+                isRightSlidingUp = false;
+                setTimeout(() => {
+                  isRightChanging = false;
+                  prevRightWord = ""; // 前のテキストをクリア
+                }, 200); // 少し遅らせて確実に次の要素が表示されてからクリア
+              }, 1000);
+            } else {
+              // 最初の右側テキスト
+              isRightChanging = true;
+              setTimeout(() => {
+                rightWord = keywordPairs[pairIndex]?.right || "";
+                setTimeout(() => (isRightChanging = false), 1200);
+              }, 50);
+            }
           }
 
           isLeftTurn = !isLeftTurn;
@@ -80,7 +117,7 @@
               }, 1000);
             }, 500);
           }
-        }, 600); // 元のスピードに戻す
+        }, 1200); // アニメーション時間と統一
       }, 2500);
     };
 
@@ -108,6 +145,19 @@
         class="absolute left-0 flex items-center justify-end overflow-hidden"
         style="width: 45%;"
       >
+        <!-- 前のテキスト（上にスライドしてフェードアウト） -->
+        {#if prevLeftWord}
+          <div
+            class="absolute tracking-tighter font-heading text-[2.5rem] font-black text-black sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftSlidingUp
+              ? 'animate-slot-slide-up-left'
+              : ''}"
+            style="opacity: {isLeftSlidingUp ? 1 : 0};"
+          >
+            {prevLeftWord}
+          </div>
+        {/if}
+        
+        <!-- 現在のテキスト（下からスライドイン） -->
         <div
           class="tracking-tighter font-heading text-[2.5rem] font-black text-black transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isLeftChanging
             ? 'animate-slot-rollup-left'
@@ -150,6 +200,19 @@
         class="absolute right-0 flex items-center justify-start overflow-hidden"
         style="width: 45%;"
       >
+        <!-- 前のテキスト（上にスライドしてフェードアウト） -->
+        {#if prevRightWord}
+          <div
+            class="absolute tracking-tighter font-heading text-[2.5rem] font-black text-theme-heading sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {isRightSlidingUp
+              ? 'animate-slot-slide-up-right'
+              : ''}"
+            style="opacity: {isRightSlidingUp ? 1 : 0};"
+          >
+            {prevRightWord}
+          </div>
+        {/if}
+        
+        <!-- 現在のテキスト（下からスライドイン） -->
         <div
           class="tracking-tighter font-heading text-[2.5rem] font-black text-theme-heading transition-all duration-500 ease-out sm:text-[3rem] md:text-[4rem] lg:text-[5rem] {rightWord
             ? 'opacity-100'
@@ -237,15 +300,9 @@
 {/if}
 
 <style>
-  @keyframes slot-rollup-left {
+  @keyframes slot-slide-up-left {
     0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    80% {
+      transform: translateY(0);
       opacity: 1;
     }
     100% {
@@ -254,20 +311,42 @@
     }
   }
 
-  @keyframes slot-rollup-right {
+  @keyframes slot-slide-up-right {
     0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    80% {
+      transform: translateY(0);
       opacity: 1;
     }
     100% {
       transform: translateY(-100%);
       opacity: 0;
+    }
+  }
+
+  @keyframes slot-rollup-left {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slot-rollup-right {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 
@@ -353,12 +432,20 @@
     }
   }
 
+  .animate-slot-slide-up-left {
+    animation: slot-slide-up-left 1.0s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-slot-slide-up-right {
+    animation: slot-slide-up-right 1.0s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .animate-slot-rollup-left {
-    animation: slot-rollup-left 0.6s ease-out;
+    animation: slot-rollup-left 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-slot-rollup-right {
-    animation: slot-rollup-right 0.6s ease-out;
+    animation: slot-rollup-right 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-slot-final-1 {

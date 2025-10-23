@@ -9,7 +9,7 @@
   y={40}
   opacity={0}
 >
-  <section id="about-section" class="bg-white py-20">
+  <section id="about-section" class="bg-white py-20" style="display: none;">
     <div class="container mx-auto px-4">
       <div class="mb-16 text-center">
         <h2
