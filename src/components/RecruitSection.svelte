@@ -542,6 +542,26 @@
       </div>
     </div>
 
+    <!-- CTAボタン（カジュアル面談セクション直後） -->
+    <div class="mb-20">
+      <div class="flex flex-col items-center justify-center gap-6 sm:flex-row">
+        <a
+          href="https://form.kintoneapp.com/public/form/show/f00000d8477cf27e1146169e5b2fb38d8e0fc13bb34d4f490f8f87365fd4b8e6#/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border-2 border-gray-800 px-12 py-5 text-lg font-semibold text-gray-800 transition-colors duration-300 hover:bg-gray-800 hover:text-white"
+        >
+          カジュアル面談に申し込む
+        </a>
+        <a
+          href="/company"
+          class="rounded-lg bg-gray-800 px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+        >
+          会社概要を見る
+        </a>
+      </div>
+    </div>
+
     <!-- Wantedly CTA バナー 1 -->
     <div class="wantedly-cta-section mb-20">
       <div 
