@@ -13,6 +13,10 @@ config({ path: '.env.local' });
 
 const sftp = new SftpClient();
 
+// コマンドライン引数の解析
+const args = process.argv.slice(2);
+const skipImages = args.includes('--no-image') || args.includes('no-image');
+
 // 環境変数の取得
 const {
   SFTP_HOST,
@@ -76,6 +80,12 @@ async function uploadDirectory(localPath, remotePath) {
     const remoteItemPath = `${remotePath}/${item}`;
     const stats = await stat(localItemPath);
     
+    // 画像スキップオプションが有効な場合、imagesフォルダをスキップ
+    if (skipImages && item === 'images' && stats.isDirectory()) {
+      console.log(`⏭️  画像フォルダをスキップ: ${item}`);
+      continue;
+    }
+    
     if (stats.isDirectory()) {
       console.log(`📁 ディレクトリ作成: ${remoteItemPath}`);
       try {
@@ -109,6 +119,9 @@ async function deploy() {
     console.log('');
     console.log(`📡 接続先: ${SFTP_USER}@${SFTP_HOST}:${SFTP_PORT}`);
     console.log(`📂 アップロード先: ${SFTP_REMOTE_PATH}`);
+    if (skipImages) {
+      console.log('🖼️  画像スキップモード: imagesフォルダをアップロードしません');
+    }
     console.log('');
 
     // SFTP接続
