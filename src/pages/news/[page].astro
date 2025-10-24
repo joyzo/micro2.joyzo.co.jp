@@ -1,50 +1,64 @@
 ---
-import type { GetStaticPaths, Page } from "astro";
+import type { GetStaticPaths } from "astro";
 import type { Blog } from "src/types/microcms/blogs";
-
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import { client } from "@libs/microcms";
 import FormattedDate from "@components/FormattedDate.svelte";
-import Pagination from "@components/Pagination/Pagination.astro";
 
-export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const { totalCount } = await client.getList<Blog>({
     endpoint: "news",
     queries: { limit: 0 },
   });
 
-  return paginate(
-    Array.from({ length: totalCount }).map(() => ({})),
-    { pageSize: 10 }
-  );
+  const pageSize = 10;
+  const totalPages = Math.ceil(totalCount / pageSize);
+  
+  // 1ページ目以降のパスを生成
+  const paths = [];
+  for (let page = 1; page <= totalPages; page++) {
+    paths.push({
+      params: { page: page.toString() },
+      props: { pageNumber: page }
+    });
+  }
+
+  return paths;
 };
 
 export interface Props {
-  page: Page;
+  pageNumber: number;
 }
 
-const { page } = Astro.props;
+const { pageNumber } = Astro.props;
 
-const { contents: news } = await client.getList<Blog>({
+const pageSize = 10;
+const offset = (pageNumber - 1) * pageSize;
+
+const { contents: news, totalCount } = await client.getList<Blog>({
   endpoint: "news",
   queries: {
-    limit: 10,
-    offset: page.start,
-    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,category,categories,tag,type,status",
+    limit: pageSize,
+    offset: offset,
+    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,tag",
     orders: "-release_date",
   },
 });
+
+const totalPages = Math.ceil(totalCount / pageSize);
+const hasNextPage = pageNumber < totalPages;
+const hasPrevPage = pageNumber > 1;
 ---
 
 <UnderPageLayout
   mainLabel="NEWS"
   subLabel="お知らせ"
   title="お知らせ"
-  noindex={page.currentPage !== 1}
+  noindex={pageNumber === 1 ? false : true}
 >
   <ul class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
     {
-      news.map(({ id, title, eyecatch, thumbnail, image, createdAt, publishedAt, release_date, tags, category, categories, tag, type, status }) => {
+      news.map(({ id, title, eyecatch, thumbnail, image, createdAt, publishedAt, release_date, tags, tag }) => {
         const imageUrl = eyecatch?.url || thumbnail?.url || image?.url;
         return (
           <li class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
@@ -75,13 +89,13 @@ const { contents: news } = await client.getList<Blog>({
                             if (typeof tag === 'string') {
                               return tag;
                             } else if (tag && typeof tag === 'object') {
-                              return tag.name || tag.label || tag.value || tag;
+                              return (tag as any).name || (tag as any).label || (tag as any).value || tag;
                             }
                             return tag;
                           });
                         } else if (typeof tags === 'object') {
                           // オブジェクトの場合（単一選択）
-                          displayTags = [tags.name || tags.label || tags.value || tags];
+                          displayTags = [(tags as any).name || (tags as any).label || (tags as any).value || tags];
                         } else if (typeof tags === 'string') {
                           // 文字列の場合
                           displayTags = [tags];
@@ -89,7 +103,7 @@ const { contents: news } = await client.getList<Blog>({
                       }
                       
                       // 他のフィールドもチェック
-                      const checkField = (field) => {
+                      const checkField = (field: any) => {
                         if (!field) return [];
                         if (Array.isArray(field)) {
                           return field.map(item => {
@@ -108,13 +122,13 @@ const { contents: news } = await client.getList<Blog>({
                       };
                       
                       if (displayTags.length === 0) {
-                        displayTags = checkField(tag) || checkField(category) || checkField(categories) || checkField(type) || checkField(status);
+                        displayTags = checkField(tag);
                       }
                       
                       return displayTags.length > 0 ? (
                         <span class="inline-flex items-center gap-1">
                           {displayTags.map((tag, index) => {
-                            const getTagColor = (tagText) => {
+                            const getTagColor = (tagText: any) => {
                               const tag = tagText.toLowerCase().trim();
                               // 完全一致を最優先
                               if (tag === 'update') return 'bg-emerald-600';
@@ -140,7 +154,7 @@ const { contents: news } = await client.getList<Blog>({
                               return 'bg-gray-600'; // デフォルト色
                             };
                             return (
-                              <span key={index} class={`${getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded`}>
+                              <span class={`${getTagColor(tag)} text-white text-xs font-bold px-2 py-1 rounded`}>
                                 {tag}
                               </span>
                             );
@@ -166,5 +180,34 @@ const { contents: news } = await client.getList<Blog>({
     }
   </ul>
 
-  <Pagination class="mt-16 sm:mt-24 lg:mt-32" page={page} />
+  <!-- ページネーション -->
+  <div class="mt-16 sm:mt-24 lg:mt-32 flex justify-center items-center gap-4">
+    {hasPrevPage && (
+      <a 
+        href={pageNumber === 2 ? "/news/" : `/news/${pageNumber - 1}`}
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        前のページ
+      </a>
+    )}
+    
+    <span class="text-sm text-gray-500">
+      {pageNumber} / {totalPages}
+    </span>
+    
+    {hasNextPage && (
+      <a 
+        href={`/news/${pageNumber + 1}`}
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
+      >
+        次のページ
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    )}
+  </div>
 </UnderPageLayout>

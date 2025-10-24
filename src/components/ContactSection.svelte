@@ -1,19 +1,64 @@
 <script lang="ts">
-  // お問い合わせセクションのコンポーネント
+  import { onMount } from "svelte";
+
+  let isVisible = false;
+  let sectionElement: HTMLElement;
+
+  onMount(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            isVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionElement) {
+      observer.observe(sectionElement);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 </script>
 
-<section class="contact-section py-24">
+<section bind:this={sectionElement} class="contact-section py-24">
   <div class="mx-auto max-w-none sm:max-w-4xl px-4">
     <!-- メッセージ性のあるキャッチコピー -->
-    <div class="mb-20 text-center">
+    <div 
+      class="mb-20 text-center transition-all duration-700"
+      class:opacity-100={isVisible}
+      class:opacity-0={!isVisible}
+      class:translate-y-0={isVisible}
+      class:translate-y-8={!isVisible}
+    >
       <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl" style="letter-spacing: -0.05em;">
         お話ししませんか？
       </h2>
-      <p class="mb-8 text-2xl text-gray-600">
+      <p 
+        class="mb-8 text-2xl text-gray-600 transition-all duration-700 delay-200"
+        class:opacity-100={isVisible}
+        class:opacity-0={!isVisible}
+        class:translate-y-0={isVisible}
+        class:translate-y-8={!isVisible}
+      >
         あなたのアイデアや課題を聞かせてください。<br />
         きっと一緒に解決策を見つけられるはずです。
       </p>
-      <div class="mx-auto max-w-2xl">
+      <div 
+        class="mx-auto max-w-2xl transition-all duration-700 delay-300"
+        class:opacity-100={isVisible}
+        class:opacity-0={!isVisible}
+        class:translate-y-0={isVisible}
+        class:translate-y-8={!isVisible}
+      >
         <p class="text-lg leading-relaxed text-gray-700">
           サービスに関するご質問、採用に関するお問い合わせ、<br />
           または「こんなことできるかな？」という相談まで、<br />
@@ -23,7 +68,13 @@
     </div>
 
     <!-- メインお問い合わせカード -->
-    <div class="mb-16 rounded-2xl bg-white p-12 shadow-lg">
+    <div 
+      class="mb-16 rounded-2xl bg-white p-12 shadow-lg transition-all duration-700 delay-400"
+      class:opacity-100={isVisible}
+      class:opacity-0={!isVisible}
+      class:translate-y-0={isVisible}
+      class:translate-y-8={!isVisible}
+    >
       <div class="text-center">
         <div
           class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-100"

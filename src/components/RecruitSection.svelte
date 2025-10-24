@@ -5,24 +5,156 @@
   let isVisible = false;
   let showContent = false;
   let activeTab = 'new-graduate-se';
+  let heroSection: HTMLElement;
+  let contentSection: HTMLElement;
+  
+  // 各セクションのアニメーション状態
+  let companySectionVisible = false;
+  let workStyleSectionVisible = false;
+  let atmosphereSectionVisible = false;
+  let casualInterviewSectionVisible = false;
+  let recruitInfoSectionVisible = false;
 
   function setActiveTab(tab: string) {
     activeTab = tab;
   }
 
   onMount(() => {
+    // ヒーローセクションは自動表示（より早めに表示）
     setTimeout(() => {
       isVisible = true;
-    }, 300);
+    }, 100);
 
-    setTimeout(() => {
-      showContent = true;
-    }, 800);
+    // 各セクション用のIntersection Observer
+    const createSectionObserver = (callback: () => void) => {
+      return new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              callback();
+            }
+          });
+        },
+        { 
+          threshold: 0.2, // 20%がビューポートに入ったときに発動
+          rootMargin: '0px 0px -50px 0px' // 下部50px手前で発動
+        }
+      );
+    };
+
+    // 会社紹介セクション（より早めに発動）
+    const companyObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            showContent = true;
+          }
+        });
+      },
+      { 
+        threshold: 0, // 要素が少しでもビューポートに入ったら発動
+        rootMargin: '0px 0px 50px 0px' // 下部50px手前で発動（より早め）
+      }
+    );
+
+    // 働き方の魅力セクション（後半セクション用）
+    const workStyleObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            workStyleSectionVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.1, // 10%で発動（モバイル対応）
+        rootMargin: '0px 0px -50px 0px' // 下部50px手前で発動
+      }
+    );
+
+    // 社内の雰囲気セクション（後半セクション用）
+    const atmosphereObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            atmosphereSectionVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.1, // 10%で発動（モバイル対応）
+        rootMargin: '0px 0px -50px 0px' // 下部50px手前で発動
+      }
+    );
+
+    // カジュアル面談セクション（後半セクション用）
+    const casualInterviewObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            casualInterviewSectionVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.1, // 10%で発動（モバイル対応）
+        rootMargin: '0px 0px -50px 0px' // 下部50px手前で発動
+      }
+    );
+
+    // 採用情報セクション（後半セクション用）
+    const recruitInfoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            recruitInfoSectionVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.1, // 10%で発動（モバイル対応）
+        rootMargin: '0px 0px -50px 0px' // 下部50px手前で発動
+      }
+    );
+
+    // 各セクションを監視
+    if (contentSection) {
+      companyObserver.observe(contentSection);
+    }
+
+    const workStyleSection = document.querySelector('.work-style-section');
+    if (workStyleSection) {
+      workStyleObserver.observe(workStyleSection);
+    }
+
+    const atmosphereSection = document.querySelector('.atmosphere-section');
+    if (atmosphereSection) {
+      atmosphereObserver.observe(atmosphereSection);
+    }
+
+    const casualInterviewSection = document.querySelector('.casual-interview-section');
+    if (casualInterviewSection) {
+      casualInterviewObserver.observe(casualInterviewSection);
+    }
+
+    const recruitInfoSection = document.querySelector('.recruit-info-section');
+    if (recruitInfoSection) {
+      recruitInfoObserver.observe(recruitInfoSection);
+    }
+
+    return () => {
+      companyObserver.disconnect();
+      workStyleObserver.disconnect();
+      atmosphereObserver.disconnect();
+      casualInterviewObserver.disconnect();
+      recruitInfoObserver.disconnect();
+    };
   });
 </script>
 
 <!-- ヒーローセクション -->
 <section
+  bind:this={heroSection}
   class="relative flex min-h-screen items-center justify-center overflow-hidden bg-black"
 >
   <!-- 背景画像 -->
@@ -60,10 +192,10 @@
         >
           <span
             class="transition-all delay-200 duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
+            class:opacity-100={isVisible}
+            class:opacity-0={!isVisible}
+            class:translate-y-0={isVisible}
+            class:translate-y-8={!isVisible}
           >
             お客様と共に『価値』を創るプロフェッショナルへ。
           </span>
@@ -75,10 +207,10 @@
       >
         <span
           class="delay-400 transition-all duration-700"
-          class:opacity-100={showContent}
-          class:opacity-0={!showContent}
-          class:translate-y-0={showContent}
-          class:translate-y-8={!showContent}
+          class:opacity-100={isVisible}
+          class:opacity-0={!isVisible}
+          class:translate-y-0={isVisible}
+          class:translate-y-8={!isVisible}
         >
           仕事を楽しむ姿でチームを活気づけ、社会を変える。<br />
           そんな働き方をしてみませんか？
@@ -89,7 +221,7 @@
 </section>
 
 <!-- メインコンテンツセクション -->
-<section class="bg-white py-20">
+<section bind:this={contentSection} class="bg-white py-20">
   <div class="mx-auto max-w-6xl px-6 md:px-4">
     <!-- 会社紹介セクション -->
     <div class="mb-20">
@@ -124,26 +256,6 @@
             </p>
           </div>
 
-          <!-- ミッション -->
-          <div
-            class="mb-8 rounded-lg border-l-4 border-gray-800 bg-gray-50 p-6"
-          >
-            <h4 class="mb-3 font-heading text-lg font-bold text-gray-800">
-              ミッション
-            </h4>
-            <p class="leading-relaxed text-gray-700">
-              <span
-                class="delay-750 transition-all duration-700"
-                class:opacity-100={showContent}
-                class:opacity-0={!showContent}
-                class:translate-y-0={showContent}
-                class:translate-y-8={!showContent}
-              >
-                人生を楽しくしたいと願っている人のために、その手段としてのエンジニアリングの可能性を示唆し、価値観の変化によって社会に新しい波を広げる。
-              </span>
-            </p>
-          </div>
-
           <div class="space-y-6 text-lg leading-relaxed text-gray-700">
             <p
               class="delay-800 transition-all duration-700"
@@ -173,8 +285,8 @@
         <div class="relative">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="/images/office/joy-office-002.jpg"
-              alt="世界の隅々までエンジニアリングの楽しさを届ける"
+              src="/images/photo_39_03.jpg"
+              alt="チームワークでシステム開発に取り組む様子"
               class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
               loading="lazy"
             />
@@ -183,13 +295,6 @@
               class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"
             />
           </div>
-          <!-- 装飾的な要素 -->
-          <div
-            class="absolute -right-4 -top-4 h-8 w-8 rounded-full bg-gray-800 opacity-60"
-          />
-          <div
-            class="absolute -bottom-4 -left-4 h-6 w-6 rounded-full bg-gray-600 opacity-40"
-          />
         </div>
       </div>
     </div>
@@ -202,7 +307,7 @@
     </div>
 
     <!-- 働き方の魅力 -->
-    <div class="mb-20">
+    <div class="work-style-section mb-20">
       <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <!-- 画像 -->
         <div class="relative order-2 lg:order-1">
@@ -226,11 +331,11 @@
             class="mb-8 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
           >
             <span
-              class="transition-all delay-1300 duration-700"
-              class:opacity-100={showContent}
-              class:opacity-0={!showContent}
-              class:translate-y-0={showContent}
-              class:translate-y-8={!showContent}
+              class="transition-all delay-300 duration-700"
+              class:opacity-100={workStyleSectionVisible}
+              class:opacity-0={!workStyleSectionVisible}
+              class:translate-y-0={workStyleSectionVisible}
+              class:translate-y-8={!workStyleSectionVisible}
             >
               JOYZOの働き方の魅力
             </span>
@@ -240,21 +345,21 @@
             <div class="pl-6 border-l-2 border-blue-200">
               <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
                 <span
-                  class="delay-1400 transition-all duration-700"
-                  class:opacity-100={showContent}
-                  class:opacity-0={!showContent}
-                  class:translate-y-0={showContent}
-                  class:translate-y-8={!showContent}
+                  class="delay-400 transition-all duration-700"
+                  class:opacity-100={workStyleSectionVisible}
+                  class:opacity-0={!workStyleSectionVisible}
+                  class:translate-y-0={workStyleSectionVisible}
+                  class:translate-y-8={!workStyleSectionVisible}
                 >
                   一気通貫で携わるシステム開発
                 </span>
               </h4>
               <p
-                class="delay-1400 transition-all duration-700"
-                class:opacity-100={showContent}
-                class:opacity-0={!showContent}
-                class:translate-y-0={showContent}
-                class:translate-y-8={!showContent}
+                class="delay-400 transition-all duration-700"
+                class:opacity-100={workStyleSectionVisible}
+                class:opacity-0={!workStyleSectionVisible}
+                class:translate-y-0={workStyleSectionVisible}
+                class:translate-y-8={!workStyleSectionVisible}
               >
                 JOYZOでは"下請け案件"は一切受けていません。お客様との"直接取引案件"のみなので、受注から開発、納品まですべての工程に関わることができます。またサブスクリプションモデルの自社サービスも行っていますので、SI開発だけでなくWebサービス開発にも携わることができます。<br
                 />
@@ -265,21 +370,21 @@
             <div class="pl-6 border-l-2 border-green-200">
               <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
                 <span
-                  class="delay-1500 transition-all duration-700"
-                  class:opacity-100={showContent}
-                  class:opacity-0={!showContent}
-                  class:translate-y-0={showContent}
-                  class:translate-y-8={!showContent}
+                  class="delay-500 transition-all duration-700"
+                  class:opacity-100={workStyleSectionVisible}
+                  class:opacity-0={!workStyleSectionVisible}
+                  class:translate-y-0={workStyleSectionVisible}
+                  class:translate-y-8={!workStyleSectionVisible}
                 >
                   多様なライフスタイルに寄り添う働き方
                 </span>
               </h4>
               <p
-                class="delay-1500 transition-all duration-700"
-                class:opacity-100={showContent}
-                class:opacity-0={!showContent}
-                class:translate-y-0={showContent}
-                class:translate-y-8={!showContent}
+                class="delay-500 transition-all duration-700"
+                class:opacity-100={workStyleSectionVisible}
+                class:opacity-0={!workStyleSectionVisible}
+                class:translate-y-0={workStyleSectionVisible}
+                class:translate-y-8={!workStyleSectionVisible}
               >
                 またジョイゾーでは、リアルとリモートの良さを活かした柔軟な働き方を実践しています。東京オフィスを中心に対面での信頼関係を大切にしつつ、リモートワークもオプションとして選択可能です。<br
                 />
@@ -294,17 +399,17 @@
     </div>
 
     <!-- 社内の雰囲気 -->
-    <div class="mb-20">
+    <div class="atmosphere-section mb-20">
       <div class="mx-auto max-w-6xl">
         <h3
           class="mb-8 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
         >
           <span
-            class="delay-1600 transition-all duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
+            class="delay-300 transition-all duration-700"
+            class:opacity-100={atmosphereSectionVisible}
+            class:opacity-0={!atmosphereSectionVisible}
+            class:translate-y-0={atmosphereSectionVisible}
+            class:translate-y-8={!atmosphereSectionVisible}
           >
             社内の雰囲気
           </span>
@@ -317,21 +422,21 @@
           <div class="pl-6 border-l-2 border-gray-300">
             <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
               <span
-                class="delay-1700 transition-all duration-700"
-                class:opacity-100={showContent}
-                class:opacity-0={!showContent}
-                class:translate-y-0={showContent}
-                class:translate-y-8={!showContent}
+                class="delay-400 transition-all duration-700"
+                class:opacity-100={atmosphereSectionVisible}
+                class:opacity-0={!atmosphereSectionVisible}
+                class:translate-y-0={atmosphereSectionVisible}
+                class:translate-y-8={!atmosphereSectionVisible}
               >
                 自律と成長を大切にする組織創り
               </span>
             </h4>
             <p
-                class="delay-1700 transition-all duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
+                class="delay-400 transition-all duration-700"
+            class:opacity-100={atmosphereSectionVisible}
+            class:opacity-0={!atmosphereSectionVisible}
+            class:translate-y-0={atmosphereSectionVisible}
+            class:translate-y-8={!atmosphereSectionVisible}
           >
             「ENJOY YOUR WORLD.」を経営理念として掲げる当社では、何よりもメンバーの「自律と成長」を大切にした組織創りを進めています。<br
             />
@@ -342,21 +447,21 @@
           <div class="pl-6 border-l-2 border-gray-400">
             <h4 class="mb-5 font-heading text-xl font-bold text-gray-800">
               <span
-                class="delay-1800 transition-all duration-700"
-                class:opacity-100={showContent}
-                class:opacity-0={!showContent}
-                class:translate-y-0={showContent}
-                class:translate-y-8={!showContent}
+                class="delay-500 transition-all duration-700"
+                class:opacity-100={atmosphereSectionVisible}
+                class:opacity-0={!atmosphereSectionVisible}
+                class:translate-y-0={atmosphereSectionVisible}
+                class:translate-y-8={!atmosphereSectionVisible}
               >
                 プロとして認め合える環境づくり
               </span>
             </h4>
             <p
-                class="delay-1800 transition-all duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
+                class="delay-500 transition-all duration-700"
+            class:opacity-100={atmosphereSectionVisible}
+            class:opacity-0={!atmosphereSectionVisible}
+            class:translate-y-0={atmosphereSectionVisible}
+            class:translate-y-8={!atmosphereSectionVisible}
           >
             そして、相互理解を実現する為にまず必要なのは「一人一人の自律」と「成長したい意欲」。メンバー各々が自身の責任を全うし、自身を磨き続けること。<br
             />
@@ -386,49 +491,129 @@
     </div>
 
     <!-- カジュアル面談 -->
-    <div class="mb-20">
-      <div class="mx-auto max-w-4xl">
+    <div class="casual-interview-section mb-20">
+      <div class="mx-auto max-w-6xl">
         <h3
           class="mb-8 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
         >
           <span
-            class="delay-1900 transition-all duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
+            class="delay-300 transition-all duration-700"
+            class:opacity-100={casualInterviewSectionVisible}
+            class:opacity-0={!casualInterviewSectionVisible}
+            class:translate-y-0={casualInterviewSectionVisible}
+            class:translate-y-8={!casualInterviewSectionVisible}
           >
             カジュアル面談
           </span>
         </h3>
 
-        <div class="space-y-6 text-lg leading-relaxed text-gray-700">
-          <p
-            class="delay-2000 transition-all duration-700"
-            class:opacity-100={showContent}
-            class:opacity-0={!showContent}
-            class:translate-y-0={showContent}
-            class:translate-y-8={!showContent}
-          >
-            弊社では、応募を検討されている方に向けて、気軽にご参加いただけるカジュアル面談を実施しています。<br
-            />
-            面談では、JOYZOの事業内容や働き方について詳しくお話しし、あなたのキャリアプランや希望についてもお聞かせください。
+        <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <!-- テキストコンテンツ -->
+          <div class="space-y-6 text-lg leading-relaxed text-gray-700">
+            <p
+              class="delay-400 transition-all duration-700"
+              class:opacity-100={casualInterviewSectionVisible}
+              class:opacity-0={!casualInterviewSectionVisible}
+              class:translate-y-0={casualInterviewSectionVisible}
+              class:translate-y-8={!casualInterviewSectionVisible}
+            >
+              弊社では、応募を検討されている方に向けて、気軽にご参加いただけるカジュアル面談を実施しています。<br
+              />
+              面談では、JOYZOの事業内容や働き方について詳しくお話しし、あなたのキャリアプランや希望についてもお聞かせください。
+            </p>
+          </div>
+
+          <!-- 画像 -->
+          <div class="relative">
+            <div class="relative overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src="/images/casual-interview.jpg"
+                alt="JOYZOのカジュアル面談の様子"
+                class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
+                loading="lazy"
+              />
+              <!-- オーバーレイ効果 -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTAボタン（カジュアル面談セクション直後） -->
+    <div class="mb-20">
+      <div class="flex flex-col items-center justify-center gap-6 sm:flex-row">
+        <a
+          href="https://form.kintoneapp.com/public/form/show/f00000d8477cf27e1146169e5b2fb38d8e0fc13bb34d4f490f8f87365fd4b8e6#/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border-2 border-gray-800 px-12 py-5 text-lg font-semibold text-gray-800 transition-colors duration-300 hover:bg-gray-800 hover:text-white"
+        >
+          カジュアル面談に申し込む
+        </a>
+        <a
+          href="/company"
+          class="rounded-lg bg-gray-800 px-12 py-5 text-lg font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+        >
+          会社概要を見る
+        </a>
+      </div>
+    </div>
+
+    <!-- Wantedly CTA バナー 1 -->
+    <div class="wantedly-cta-section mb-20">
+      <div 
+        class="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white shadow-xl transition-all duration-700 delay-600"
+        class:opacity-100={casualInterviewSectionVisible}
+        class:opacity-0={!casualInterviewSectionVisible}
+        class:translate-y-0={casualInterviewSectionVisible}
+        class:translate-y-8={!casualInterviewSectionVisible}
+      >
+        <div class="relative z-10">
+          <h3 class="mb-4 text-2xl font-bold md:text-3xl">
+            ジョイゾーで働く仲間を探しています
+          </h3>
+          <p class="mb-6 text-lg opacity-90">
+            実際の社員の声や会社の雰囲気をWantedlyでチェック！
           </p>
+          <a
+            href="https://www.wantedly.com/companies/joyzo/stories"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-600 transition-all duration-300 hover:bg-gray-100 hover:scale-105"
+          >
+            Wantedlyで見る
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- 採用情報 -->
-    <div class="mb-20">
+    <div class="recruit-info-section mb-20">
       <h3
         class="mb-12 font-heading text-3xl font-bold text-gray-800 md:text-4xl"
       >
         <span
-          class="delay-2100 transition-all duration-700"
-          class:opacity-100={showContent}
-          class:opacity-0={!showContent}
-          class:translate-y-0={showContent}
-          class:translate-y-8={!showContent}
+          class="delay-300 transition-all duration-700"
+          class:opacity-100={recruitInfoSectionVisible}
+          class:opacity-0={!recruitInfoSectionVisible}
+          class:translate-y-0={recruitInfoSectionVisible}
+          class:translate-y-8={!recruitInfoSectionVisible}
         >
           募集要項
         </span>
@@ -437,7 +622,8 @@
       <!-- タブナビゲーション -->
       <div class="mx-auto max-w-6xl">
         <div class="mb-8">
-          <div class="flex flex-wrap justify-start gap-1 border-b border-gray-200">
+          <!-- デスクトップ用のタブレイアウト -->
+          <div class="hidden md:flex flex-wrap justify-start gap-1 border-b border-gray-200">
             <button
               class="px-6 py-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-b-2 border-transparent hover:border-gray-300 flex flex-col items-start gap-2 rounded-t-lg hover:shadow-sm cursor-pointer"
               class:border-gray-800={activeTab === 'new-graduate-se'}
@@ -477,6 +663,50 @@
             >
               <span class="inline-block px-3 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
               <span class="text-left text-base">カスタマーサポート</span>
+            </button>
+          </div>
+
+          <!-- モバイル用の2段組ボタンメニュー -->
+          <div class="md:hidden grid grid-cols-2 gap-3">
+            <button
+              class="p-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-2 rounded-lg hover:shadow-sm cursor-pointer"
+              class:border-gray-800={activeTab === 'new-graduate-se'}
+              class:text-gray-800={activeTab === 'new-graduate-se'}
+              class:bg-blue-50={activeTab === 'new-graduate-se'}
+              on:click={() => setActiveTab('new-graduate-se')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #2563eb;">新卒採用</span>
+              <span class="text-center text-sm">システム39エンジニア</span>
+            </button>
+            <button
+              class="p-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-2 rounded-lg hover:shadow-sm cursor-pointer"
+              class:border-gray-800={activeTab === 'mid-career-se'}
+              class:text-gray-800={activeTab === 'mid-career-se'}
+              class:bg-green-50={activeTab === 'mid-career-se'}
+              on:click={() => setActiveTab('mid-career-se')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
+              <span class="text-center text-sm">システム39エンジニア</span>
+            </button>
+            <button
+              class="p-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-2 rounded-lg hover:shadow-sm cursor-pointer"
+              class:border-gray-800={activeTab === 'mid-career-kintone'}
+              class:text-gray-800={activeTab === 'mid-career-kintone'}
+              class:bg-green-50={activeTab === 'mid-career-kintone'}
+              on:click={() => setActiveTab('mid-career-kintone')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
+              <span class="text-center text-sm">kintoneカスタマイズ開発エンジニア</span>
+            </button>
+            <button
+              class="p-4 text-sm font-semibold text-gray-600 transition-all duration-300 hover:text-gray-800 hover:bg-gray-50 border-2 border-transparent hover:border-gray-300 flex flex-col items-center gap-2 rounded-lg hover:shadow-sm cursor-pointer"
+              class:border-gray-800={activeTab === 'mid-career-cs'}
+              class:text-gray-800={activeTab === 'mid-career-cs'}
+              class:bg-green-50={activeTab === 'mid-career-cs'}
+              on:click={() => setActiveTab('mid-career-cs')}
+            >
+              <span class="inline-block px-2 py-1 text-xs font-bold text-white rounded-full shadow-sm" style="background-color: #16a34a;">中途採用</span>
+              <span class="text-center text-sm">カスタマーサポート</span>
             </button>
           </div>
         </div>
@@ -881,6 +1111,47 @@
               </div>
             </div>
           {/if}
+        </div>
+      </div>
+    </div>
+
+    <!-- Wantedly CTA バナー 2 -->
+    <div class="wantedly-cta-section mb-20">
+      <div 
+        class="relative overflow-hidden bg-gradient-to-r from-green-600 to-teal-600 p-8 text-center text-white shadow-xl transition-all duration-700 delay-800"
+        class:opacity-100={recruitInfoSectionVisible}
+        class:opacity-0={!recruitInfoSectionVisible}
+        class:translate-y-0={recruitInfoSectionVisible}
+        class:translate-y-8={!recruitInfoSectionVisible}
+      >
+        <div class="relative z-10">
+          <h3 class="mb-4 text-2xl font-bold md:text-3xl">
+            あなたのキャリア、一緒に考えませんか？
+          </h3>
+          <p class="mb-6 text-lg opacity-90">
+            社員のリアルな体験談や働く環境をWantedlyで詳しく見てみよう
+          </p>
+          <a
+            href="https://www.wantedly.com/companies/joyzo/stories"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-green-600 transition-all duration-300 hover:bg-gray-100 hover:scale-105"
+          >
+            Wantedlyで見る
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </div>

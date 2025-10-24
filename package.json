@@ -12,6 +12,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy:production": "npm run build && node scripts/deploy-production.js",
+    "deploy:images": "npm run build && node scripts/deploy-production.js images-only",
+    "deploy:no-images": "npm run build && node scripts/deploy-production.js no-images",
+    "deploy:specific": "npm run build && node scripts/deploy-production.js specific",
     "setup:basic-auth": "node scripts/setup-basic-auth.js",
     "setup:basic-auth-simple": "node scripts/setup-basic-auth-simple.js",
     "remove:basic-auth": "node scripts/remove-basic-auth.js"

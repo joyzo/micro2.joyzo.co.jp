@@ -1,9 +1,36 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import type { Blog } from "../types/microcms/blogs";
-
 
   // microCMSから取得したニュースデータを受け取る
   export let news: Blog[] = [];
+
+  let isVisible = false;
+  let sectionElement: HTMLElement;
+
+  onMount(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            isVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionElement) {
+      observer.observe(sectionElement);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 
   // 日付フォーマット関数
   function formatDate(dateString: string): string {
@@ -48,10 +75,16 @@
   }
 </script>
 
-<section class="story-media-section py-24">
+<section bind:this={sectionElement} class="story-media-section py-24">
   <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <!-- タイトル -->
-    <div class="mb-20 text-center">
+    <div 
+      class="mb-20 text-center transition-all duration-700"
+      class:opacity-100={isVisible}
+      class:opacity-0={!isVisible}
+      class:translate-y-0={isVisible}
+      class:translate-y-8={!isVisible}
+    >
       <h2 class="mb-6 text-5xl font-bold text-gray-900 md:text-6xl" style="letter-spacing: -0.05em;">
         NEWS
       </h2>

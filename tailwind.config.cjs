@@ -30,7 +30,7 @@ module.exports = {
       sm: "-.05em",
       normal: "0",
       lg: ".05em",
-      xl: ".1em",
+      xl: ".05em",
       "2xl": ".15em",
       "3xl": ".2em",
       tight: "-0.5em",

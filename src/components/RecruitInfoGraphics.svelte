@@ -192,50 +192,60 @@
     <div class="bg-white p-8 shadow-lg border border-gray-200" style="border-radius: 0.25em;">
 
       <!-- メイングリッドコンテナ (3列基調) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
 
           <!-- 1. 業績成長率 (約20%以上) - 最も大きくダイナミックに -->
-          <div class="p-6 relative lg:col-span-2 flex flex-col justify-center items-center text-center" style="min-height: 300px; animation-delay: 0s;">
-              <h3 class="text-3xl font-black tracking-wider text-gray-900 mb-6">業績成長率</h3>
+          <div class="p-4 md:p-6 relative lg:col-span-2 flex flex-col justify-center items-center text-center" style="min-height: 250px; animation-delay: 0s;">
+              <h3 class="text-xl md:text-3xl font-black tracking-wider text-gray-900 mb-4 md:mb-6">業績成長率</h3>
               <div class="growth-container">
                   <!-- 20%の数字 -->
                   <div class="growth-value" style="white-space: nowrap;">
-                      <span class="text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0</span>
-                      <span class="text-[6rem] font-extrabold tracking-tighter" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">%</span>
+                      <span class="text-[6rem] md:text-[12rem] font-extrabold tracking-tighter" id="growth-rate" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">0</span>
+                      <span class="text-[3rem] md:text-[6rem] font-extrabold tracking-tighter" style="color: var(--color-accent-purple); line-height: 1; letter-spacing: -0.05em;">%</span>
                   </div>
               </div>
-              <p class="text-xl text-gray-500 mt-4">約20%以上（過去４年の平均）</p>
+              <p class="text-base md:text-xl text-gray-500 mt-2 md:mt-4">約20%以上（過去４年の平均）</p>
+              <div class="mt-4 md:mt-6 p-3 md:p-4 bg-gray-50 border-l-4 border-purple-400">
+                <p class="text-xs md:text-sm text-gray-700 leading-relaxed">
+                  ジョイゾーは、サイボウズ社の『kintone』をはじめとするクラウド技術を軸に来のSI業界の慣習であった"人月"に縛られない開発スタイルで、安定した成長を続けています。
+                </p>
+              </div>
           </div>
 
           <!-- 2. 創業年数 (15年〜) - 小さめに -->
-          <div class="p-6 relative flex flex-col justify-center text-center lg:col-span-1" style="animation-delay: 0.1s;">
-              <h3 class="text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
-              <div class="mt-4" style="white-space: nowrap;">
-                  <span class="text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
-                  <span class="text-[5rem] font-black tracking-tighter" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">年</span>
+          <div class="p-4 md:p-6 relative flex flex-col justify-center text-center lg:col-span-1" style="animation-delay: 0.1s;">
+              <h3 class="text-lg md:text-xl font-black tracking-wider" style="color: var(--color-primary-blue);">創業年数</h3>
+              <div class="mt-2 md:mt-4" style="white-space: nowrap;">
+                  <span class="text-[5rem] md:text-[10rem] font-black tracking-tighter" id="founding-years" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">0</span>
+                  <span class="text-[2.5rem] md:text-[5rem] font-black tracking-tighter" style="color: var(--color-primary-blue); line-height: 1; letter-spacing: -0.05em;">年</span>
+              </div>
+              <div class="mt-4 md:mt-6 p-3 md:p-4 bg-gray-50 border-l-4 border-blue-400">
+                <p class="text-xs md:text-sm text-gray-700 leading-relaxed">
+                  創業以来、お客様と真摯に向き合い、共に価値あるシステムを作り上げることを大切にしてきました。お客様の目の前でシステムを構築する「対面開発」を提供し、対応実績は1,750件を超え、多くのお客様に支持されています。
+                </p>
               </div>
           </div>
           
           <!-- 3-5. 男女比、中途新卒、年齢構成を横並びで配置 -->
-          <div class="p-6 relative lg:col-span-3 flex flex-col lg:flex-row gap-6" style="animation-delay: 0.2s;">
+          <div class="p-4 md:p-6 relative lg:col-span-3 flex flex-col lg:flex-row gap-4 md:gap-6" style="animation-delay: 0.2s;">
               
               <!-- 左側: 男女比と中途新卒を縦に並べる -->
-              <div class="lg:w-1/2 flex flex-col gap-6">
+              <div class="lg:w-1/2 flex flex-col gap-4 md:gap-6">
                   
                   <!-- 男女比 -->
                   <div class="flex flex-col justify-center">
-                      <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-4">男女比</h3>
-                      <div class="flex w-full h-16 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+                      <h3 class="text-lg md:text-2xl font-black tracking-wider text-gray-900 mb-3 md:mb-4">男女比</h3>
+                      <div class="flex w-full h-12 md:h-16 rounded-lg overflow-hidden shadow-lg border border-gray-200">
                           <!-- 女性 (66%) -->
                           <div id="gender-female-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-purple);">
-                              <span class="text-2xl font-black text-white whitespace-nowrap">
-                                  <span class="text-lg">女性</span> <span id="gender-female">0</span>
+                              <span class="text-sm md:text-2xl font-black text-white whitespace-nowrap">
+                                  <span class="text-xs md:text-lg">女性</span> <span id="gender-female">0</span>
                               </span>
                           </div>
                           <!-- 男性 (34%) -->
                           <div id="gender-male-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                               <span class="text-2xl font-black text-white whitespace-nowrap">
-                                   <span class="text-lg">男性</span> <span id="gender-male">0</span>
+                               <span class="text-sm md:text-2xl font-black text-white whitespace-nowrap">
+                                   <span class="text-xs md:text-lg">男性</span> <span id="gender-male">0</span>
                                </span>
                           </div>
                       </div>
@@ -243,18 +253,18 @@
 
                   <!-- 中途新卒 -->
                   <div class="flex flex-col justify-center">
-                      <h3 class="text-xl font-black tracking-wider text-gray-900 mb-4">中途/新卒</h3>
-                      <div class="flex w-full h-12 rounded-lg overflow-hidden shadow-lg border border-gray-200">
+                      <h3 class="text-base md:text-xl font-black tracking-wider text-gray-900 mb-3 md:mb-4">中途/新卒</h3>
+                      <div class="flex w-full h-10 md:h-12 rounded-lg overflow-hidden shadow-lg border border-gray-200">
                           <!-- 中途 (60%) -->
                           <div id="mid-career-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-accent-purple);">
-                              <span class="text-xl font-bold text-white whitespace-nowrap">
-                                  <span class="text-sm">中途</span> <span id="mid-career">0</span>
+                              <span class="text-sm md:text-xl font-bold text-white whitespace-nowrap">
+                                  <span class="text-xs md:text-sm">中途</span> <span id="mid-career">0</span>
                               </span>
                           </div>
                           <!-- 新卒 (40%) -->
                           <div id="new-grad-bar" class="flex items-center justify-center transition-all duration-1500 ease-out" style="width: 0%; background-color: var(--color-primary-blue);">
-                               <span class="text-xl font-bold text-white whitespace-nowrap">
-                                   <span class="text-sm">新卒</span> <span id="new-grad">0</span>
+                               <span class="text-sm md:text-xl font-bold text-white whitespace-nowrap">
+                                   <span class="text-xs md:text-sm">新卒</span> <span id="new-grad">0</span>
                                </span>
                           </div>
                       </div>
@@ -264,12 +274,19 @@
 
               <!-- 右側: 年齢構成 -->
               <div class="lg:w-1/2 flex flex-col items-center justify-center">
-                  <h3 class="text-2xl font-black tracking-wider text-gray-900 mb-6">年齢構成</h3>
-                  <div class="relative w-80 h-80">
+                  <h3 class="text-lg md:text-2xl font-black tracking-wider text-gray-900 mb-4 md:mb-6">年齢構成</h3>
+                  <div class="relative w-64 h-64 md:w-80 md:h-80">
                       <svg id="age-pie-chart" viewBox="0 0 200 200" class="w-full h-full"></svg>
                   </div>
               </div>
               
+          </div>
+          
+          <!-- その他の要素のキャプション -->
+          <div class="lg:col-span-3 mt-4 md:mt-6 p-3 md:p-4 bg-gray-50 border-l-4 border-green-400">
+            <p class="text-xs md:text-sm text-gray-700 leading-relaxed">
+              20代から50代まで幅広い世代が在籍し、新卒・中途がともに活躍しています。異なる経験や価値観を持つメンバーが支え合い、互いに学び合う文化があります。ワーキングマザー・ファザーを含む多様なライフスタイルを持つメンバーが自分らしく成長できる環境を共に作り上げています。
+            </p>
           </div>
           
       </div>
