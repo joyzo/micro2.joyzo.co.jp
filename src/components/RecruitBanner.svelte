@@ -28,12 +28,9 @@
 
   <!-- メインコンテンツ -->
   <div class="relative z-10 mx-auto max-w-6xl px-6 py-20 md:px-4">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <!-- テキストコンテンツ -->
-      <div class="text-center lg:text-left">
+    <div class="text-left">
         <h2
-          class="mb-6 font-heading text-4xl font-black text-white md:text-5xl lg:text-6xl leading-tight"
-          style="letter-spacing: -0.08em;"
+          class="mb-6 font-heading text-4xl font-bold text-white md:text-5xl lg:text-6xl leading-tight"
         >
           <span
             class="transition-all duration-500"
@@ -41,9 +38,10 @@
             class:opacity-0={!isVisible}
             class:translate-y-0={isVisible}
             class:translate-y-8={!isVisible}
+            style="letter-spacing: 0 !important;"
           >
-            お客様と共に『価値』を創る<br />
-            プロフェッショナルへ。
+            お客様と共に<br />
+            『価値』を創るプロフェッショナルへ。
           </span>
         </h2>
 
@@ -89,31 +87,6 @@
             </svg>
           </a>
         </div>
-      </div>
-
-      <!-- 装飾的な要素 -->
-      <div class="hidden lg:block">
-        <div class="relative">
-          <!-- 背景の装飾的な円 -->
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="h-64 w-64 rounded-full border-2 border-white/20"></div>
-            <div class="absolute h-48 w-48 rounded-full border border-white/30"></div>
-            <div class="absolute h-32 w-32 rounded-full border border-white/40"></div>
-          </div>
-          
-          <!-- 中央のテキスト -->
-          <div class="relative z-10 flex h-64 items-center justify-center">
-            <div class="text-center">
-              <div class="font-english text-6xl font-black text-white/80 mb-2">
-                RECRUIT
-              </div>
-              <div class="text-sm text-white/60">
-                一緒に働きませんか？
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>

@@ -4,22 +4,25 @@ import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import { client } from "@libs/microcms";
 import FormattedDate from "@components/FormattedDate.svelte";
 
-// 1ページ目のニュースを取得（フォールバック処理）
-const { contents: news } = await client.getList<Blog>({
+// 1ページ目のニュースを取得
+const { contents: news, totalCount } = await client.getList<Blog>({
   endpoint: "news",
   queries: {
     limit: 10,
-    offset: 0, // 1ページ目なので offset は 0
+    offset: 0,
     fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,tag",
     orders: "-release_date",
   },
 });
+
+const hasNextPage = totalCount > 10;
 ---
 
 <UnderPageLayout
   mainLabel="NEWS"
   subLabel="お知らせ"
   title="お知らせ"
+  noindex={false}
 >
   <ul class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
     {
@@ -145,16 +148,18 @@ const { contents: news } = await client.getList<Blog>({
     }
   </ul>
 
-  <!-- ページネーションリンク（1ページ目なので2ページ目へのリンクのみ） -->
-  <div class="mt-16 sm:mt-24 lg:mt-32 flex justify-center">
-    <a 
-      href="/news/2" 
-      class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
-    >
-      次のページ
-      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </a>
-  </div>
+  <!-- ページネーションリンク（2ページ目へのリンクのみ） -->
+  {hasNextPage && (
+    <div class="mt-16 sm:mt-24 lg:mt-32 flex justify-center">
+      <a 
+        href="/news/2" 
+        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
+      >
+        次のページ
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  )}
 </UnderPageLayout>

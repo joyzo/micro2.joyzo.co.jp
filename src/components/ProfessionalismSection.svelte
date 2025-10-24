@@ -1,6 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
+  // ページタイプを指定するプロップス
+  export let pageType: 'top' | 'recruit' = 'top';
+
   // プロフェッショナリズムデータ
   const professionalisms = [
     {
@@ -566,10 +569,26 @@
 
     <!-- フッター -->
     <div class="text-center">
-      <p class="text-gray-600 mb-8">
-        これらは私たちが日々の仕事で大切にしている価値観です。<br>
-        一人ひとりがこれらのプロフェッショナリズムを胸に、お客様と共に価値あるシステムを創り上げています。
-      </p>
+      {#if pageType === 'recruit'}
+        <!-- リクルートページ用の詳細説明 -->
+        <div class="mb-8 py-4 mx-auto max-w-4xl text-left" style="padding-top: 1em; padding-bottom: 1em;">
+          <p class="text-gray-600 mb-4">
+            「JOYZO Professionalism」は、私たちがプロとして、お客様や仲間との信頼関係を築き、自分自身の成長を最大限に引き出すための、具体的な9つの行動指針です
+          </p>
+          <p class="text-gray-600 mb-4">
+            私たちは「ENJOY YOUR WORLD.（世界の隅々まで、エンジニアリングの楽しさを届ける）」という企業理念を実現するために、「自律」と「成長」という2つの価値観を最も大切にしています。
+          </p>
+          <p class="text-gray-600">
+            技術力だけに偏らず、コミュニケーション能力やビジネスの視点など、複数の「武器」を掛け合わせて、社会で通用する自分だけの強みを築けるのがジョイゾーです。
+          </p>
+        </div>
+      {:else}
+        <!-- トップページ用の従来の説明 -->
+        <p class="text-gray-600 mb-8 py-4" style="padding-top: 1em; padding-bottom: 1em;">
+          これらは私たちが日々の仕事で大切にしている価値観です。<br>
+          一人ひとりがこれらのプロフェッショナリズムを胸に、お客様と共に価値あるシステムを創り上げています。
+        </p>
+      {/if}
       
       <!-- aboutjoyzoへの導線 -->
       <div class="inline-block">
@@ -598,9 +617,6 @@
 </section>
 
 <style>
-  .professionalism-section {
-    /* background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); */
-  }
 
   /* 3Dキューブスタイル */
   .cube-container {

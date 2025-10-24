@@ -3,10 +3,11 @@
 import { config } from 'dotenv';
 import SftpClient from 'ssh2-sftp-client';
 import { readdir, stat } from 'fs/promises';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { join, relative } from 'path';
 import { existsSync } from 'fs';
 import { homedir } from 'os';
+import { createHash } from 'crypto';
 
 // .env.localファイルを読み込み
 config({ path: '.env.local' });
@@ -15,7 +16,59 @@ const sftp = new SftpClient();
 
 // コマンドライン引数の解析
 const args = process.argv.slice(2);
-const skipImages = args.includes('--no-image') || args.includes('no-image');
+const deployMode = args[0] || 'all'; // all, images-only, no-images, specific
+const specificFiles = args.slice(1); // 特定ファイル指定時
+
+// 除外設定を読み込む関数
+function loadIgnorePatterns() {
+  const ignoreFile = '.deployignore';
+  if (!existsSync(ignoreFile)) {
+    return [];
+  }
+  
+  const content = readFileSync(ignoreFile, 'utf-8');
+  return content
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('#'));
+}
+
+// ファイルが除外対象かチェックする関数
+function shouldIgnore(filePath, ignorePatterns) {
+  const relativePath = relative('./dist', filePath);
+  
+  for (const pattern of ignorePatterns) {
+    if (pattern.includes('*')) {
+      const regex = new RegExp(pattern.replace(/\*/g, '.*'));
+      if (regex.test(relativePath)) {
+        return true;
+      }
+    } else {
+      if (relativePath === pattern || relativePath.startsWith(pattern + '/')) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// 画像ファイルかどうかチェック
+function isImageFile(filePath) {
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.heic', '.bmp', '.tiff'];
+  const ext = filePath.toLowerCase().substring(filePath.lastIndexOf('.'));
+  return imageExtensions.includes(ext);
+}
+
+// ファイルハッシュを計算する関数
+function calculateFileHash(filePath) {
+  const content = readFileSync(filePath);
+  return createHash('md5').update(content).digest('hex');
+}
+
+// ハッシュファイルのパスを生成する関数
+function getHashFilePath(filePath) {
+  return filePath + '.hash';
+}
 
 // 環境変数の取得
 const {
@@ -59,11 +112,9 @@ const connectConfig = {
 
 // 認証方法の設定
 if (SFTP_PRIVATE_KEY_PATH && !SFTP_PASSWORD) {
-  // SSH鍵認証
   const keyPath = SFTP_PRIVATE_KEY_PATH.replace('~', homedir());
   connectConfig.privateKey = readFileSync(keyPath);
 } else if (SFTP_PASSWORD) {
-  // パスワード認証
   connectConfig.password = SFTP_PASSWORD;
 } else {
   console.error('❌ エラー: 認証情報が設定されていません。');
@@ -71,8 +122,8 @@ if (SFTP_PRIVATE_KEY_PATH && !SFTP_PASSWORD) {
   process.exit(1);
 }
 
-// ファイルを再帰的にアップロードする関数
-async function uploadDirectory(localPath, remotePath) {
+// ファイルを再帰的にアップロードする関数（差分アップロード対応）
+async function uploadDirectory(localPath, remotePath, ignorePatterns) {
   const items = await readdir(localPath);
   
   for (const item of items) {
@@ -80,10 +131,32 @@ async function uploadDirectory(localPath, remotePath) {
     const remoteItemPath = `${remotePath}/${item}`;
     const stats = await stat(localItemPath);
     
-    // 画像スキップオプションが有効な場合、imagesフォルダをスキップ
-    if (skipImages && item === 'images' && stats.isDirectory()) {
-      console.log(`⏭️  画像フォルダをスキップ: ${item}`);
+    // 除外チェック
+    if (shouldIgnore(localItemPath, ignorePatterns)) {
+      console.log(`⏭️  スキップ: ${item} (除外設定)`);
       continue;
+    }
+    
+    // デプロイモード別のフィルタリング
+    if (deployMode === 'images-only' && !isImageFile(localItemPath)) {
+      console.log(`⏭️  スキップ: ${item} (画像以外)`);
+      continue;
+    }
+    
+    if (deployMode === 'no-images' && isImageFile(localItemPath)) {
+      console.log(`⏭️  スキップ: ${item} (画像ファイル)`);
+      continue;
+    }
+    
+    if (deployMode === 'specific') {
+      const relativePath = relative('./dist', localItemPath);
+      const isTargetFile = specificFiles.some(target => 
+        relativePath.includes(target) || item.includes(target)
+      );
+      if (!isTargetFile) {
+        console.log(`⏭️  スキップ: ${item} (指定ファイル以外)`);
+        continue;
+      }
     }
     
     if (stats.isDirectory()) {
@@ -91,15 +164,53 @@ async function uploadDirectory(localPath, remotePath) {
       try {
         await sftp.mkdir(remoteItemPath, true);
       } catch (error) {
-        if (error.code !== 4) { // ディレクトリが既に存在する場合以外のエラー
+        if (error.code !== 4) {
           throw error;
         }
       }
-      await uploadDirectory(localItemPath, remoteItemPath);
+      await uploadDirectory(localItemPath, remoteItemPath, ignorePatterns);
     } else {
-      console.log(`📄 アップロード: ${item}`);
-      await sftp.put(localItemPath, remoteItemPath);
+      // 差分アップロードチェック
+      const shouldUpload = await shouldUploadFile(localItemPath, remoteItemPath);
+      
+      if (shouldUpload) {
+        console.log(`📄 アップロード: ${item}`);
+        await sftp.put(localItemPath, remoteItemPath);
+        
+        // ハッシュファイルをアップロード
+        const hashFilePath = getHashFilePath(localItemPath);
+        const localHash = calculateFileHash(localItemPath);
+        writeFileSync(hashFilePath, localHash);
+        await sftp.put(hashFilePath, `${remoteItemPath}.hash`);
+        
+        // ローカルのハッシュファイルを削除
+        await import('fs').then(fs => fs.promises.unlink(hashFilePath));
+      } else {
+        console.log(`✅ スキップ: ${item} (変更なし)`);
+      }
     }
+  }
+}
+
+// ファイルをアップロードすべきかチェックする関数
+async function shouldUploadFile(localPath, remotePath) {
+  try {
+    const remoteStats = await sftp.stat(remotePath);
+    if (!remoteStats) {
+      return true;
+    }
+    
+    const remoteHashPath = `${remotePath}.hash`;
+    try {
+      const remoteHash = await sftp.get(remoteHashPath);
+      const localHash = calculateFileHash(localPath);
+      
+      return remoteHash.toString() !== localHash;
+    } catch (error) {
+      return true;
+    }
+  } catch (error) {
+    return true;
   }
 }
 
@@ -107,6 +218,23 @@ async function uploadDirectory(localPath, remotePath) {
 async function deploy() {
   try {
     console.log('🚀 本番環境へのデプロイを開始します...');
+    console.log('');
+    
+    // デプロイモードの表示
+    switch (deployMode) {
+      case 'images-only':
+        console.log('🖼️  デプロイモード: 画像ファイルのみ');
+        break;
+      case 'no-images':
+        console.log('📄 デプロイモード: 画像ファイル以外');
+        break;
+      case 'specific':
+        console.log(`🎯 デプロイモード: 特定ファイル (${specificFiles.join(', ')})`);
+        break;
+      default:
+        console.log('📦 デプロイモード: 全ファイル');
+    }
+    
     console.log('');
     console.log('⚠️  ⚠️  ⚠️  重要警告  ⚠️  ⚠️  ⚠️');
     console.log('本番環境へのデプロイは、必ず承諾を得てから実行してください。');
@@ -119,8 +247,14 @@ async function deploy() {
     console.log('');
     console.log(`📡 接続先: ${SFTP_USER}@${SFTP_HOST}:${SFTP_PORT}`);
     console.log(`📂 アップロード先: ${SFTP_REMOTE_PATH}`);
-    if (skipImages) {
-      console.log('🖼️  画像スキップモード: imagesフォルダをアップロードしません');
+    
+    // 除外設定を読み込み
+    const ignorePatterns = loadIgnorePatterns();
+    if (ignorePatterns.length > 0) {
+      console.log(`🚫 除外設定: ${ignorePatterns.length}個のパターン`);
+      ignorePatterns.forEach(pattern => console.log(`   - ${pattern}`));
+    } else {
+      console.log('🚫 除外設定: なし');
     }
     console.log('');
 
@@ -151,7 +285,7 @@ async function deploy() {
 
     // ファイルアップロード
     console.log('📤 ファイルアップロード開始...');
-    await uploadDirectory(distPath, SFTP_REMOTE_PATH);
+    await uploadDirectory(distPath, SFTP_REMOTE_PATH, ignorePatterns);
     
     console.log('');
     console.log('✅ デプロイ完了！');
@@ -164,12 +298,33 @@ async function deploy() {
     }
     process.exit(1);
   } finally {
-    // SFTP接続を閉じる
     if (sftp.sftp) {
       await sftp.end();
       console.log('🔌 SFTP接続を閉じました');
     }
   }
+}
+
+// 使用方法の表示
+if (args.includes('--help') || args.includes('-h')) {
+  console.log(`
+使用方法:
+  npm run deploy:production [モード] [オプション]
+
+モード:
+  all         全ファイルをアップロード (デフォルト)
+  images-only 画像ファイルのみアップロード
+  no-images   画像ファイル以外をアップロード
+  specific    特定ファイルをアップロード
+
+例:
+  npm run deploy:production                    # 全ファイル
+  npm run deploy:production images-only        # 画像のみ
+  npm run deploy:production no-images          # 画像以外
+  npm run deploy:production specific logo.png  # 特定ファイル
+  npm run deploy:production specific images/  # 特定ディレクトリ
+`);
+  process.exit(0);
 }
 
 // スクリプト実行

@@ -19,18 +19,17 @@ import UnderPageLayout from "@layouts/UnderPageLayout.astro";
       
       <!-- iframeでフォームを埋め込み -->
       <div class="w-full">
+
+
         <iframe
-          src="https://form.kintoneapp.com/public/form/show/ba7a58bafdceba501085baf309cef904c5c2212cb31ae1c27507c2d26948e2ed?iframe=true"
+          id="contact-form-iframe"
+          src="https://joyzo.form.kintoneapp.com/public/corp-contact?iframe=true"
           width="100%"
-          height="800"
+          height="1140"
           frameborder="0"
-          class="rounded-lg border border-gray-200"
+          class="rounded-lg"
           title="お問い合わせフォーム"
         >
-          お使いのブラウザはiframeをサポートしていません。
-          <a href="https://form.kintoneapp.com/public/form/show/ba7a58bafdceba501085baf309cef904c5c2212cb31ae1c27507c2d26948e2ed" target="_blank" rel="noopener noreferrer">
-            こちらからお問い合わせください
-          </a>
         </iframe>
       </div>
     </div>
@@ -38,3 +37,50 @@ import UnderPageLayout from "@layouts/UnderPageLayout.astro";
     
   </div>
 </UnderPageLayout>
+
+<script>
+  // iFrameの高さを動的に調整する関数
+  function adjustIframeHeight() {
+    const iframe = document.getElementById('contact-form-iframe') as HTMLIFrameElement;
+    if (!iframe) return;
+
+    // iFrameが読み込まれた後に実行
+    iframe.onload = function() {
+      try {
+        // iFrame内のコンテンツの高さを取得
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow?.document;
+        const body = iframeDocument?.body;
+        const html = iframeDocument?.documentElement;
+        
+        if (body && html) {
+          // コンテンツの実際の高さを計算
+          const height = Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+          );
+          
+          // iFrameの高さを調整（最小800px、最大2000px）
+          const adjustedHeight = Math.max(800, Math.min(height + 50, 2000));
+          iframe.style.height = adjustedHeight + 'px';
+        }
+      } catch (error) {
+        // クロスオリジンエラーの場合はデフォルトの高さを維持
+        console.log('iFrameの高さ調整でクロスオリジンエラーが発生しました。デフォルトの高さを維持します。');
+      }
+    };
+
+    // ページ読み込み時に実行
+    if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+      iframe.onload?.();
+    }
+  }
+
+  // DOMが読み込まれた後に実行
+  document.addEventListener('DOMContentLoaded', () => adjustIframeHeight());
+  
+  // ページが完全に読み込まれた後にも実行（フォールバック）
+  window.addEventListener('load', () => adjustIframeHeight());
+</script>

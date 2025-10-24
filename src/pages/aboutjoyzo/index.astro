@@ -1,15 +1,14 @@
 ---
-import UnderPageLayout from "@layouts/UnderPageLayout.astro";
+import Layout from "@layouts/Layout.astro";
+import AboutJoyzoHeroSection from "@components/AboutJoyzoHeroSection.svelte";
 import AboutSection from "@components/AboutSection.svelte";
 ---
 
-<UnderPageLayout
-  title="ジョイゾーとは"
-  description="ENJOY YOUR WORLD. ジョイゾーは、DXと働き方の変化を通じて、お客様の世界をより楽しくすることを目指す企業です。"
-  mainLabel="ABOUT JOYZO"
-  subLabel="ジョイゾーとは"
->
-  <div class="mx-auto max-w-6xl space-y-20">
+<Layout>
+  <!-- カスタムヘッダーセクション -->
+  <AboutJoyzoHeroSection client:load />
+  
+  <div class="mx-auto max-w-6xl space-y-20 px-4">
     <!-- MISSIONセクション -->
     <section>
       <div class="mb-16 text-center">
@@ -18,8 +17,14 @@ import AboutSection from "@components/AboutSection.svelte";
       </div>
 
       <div
-        class="rounded-subtle bg-gradient-to-r from-main to-secondary p-6 md:p-12 text-center text-white -mx-6 md:mx-0"
+        class="rounded-subtle bg-gradient-to-r from-main to-secondary p-6 md:p-12 text-center text-white -mx-6 md:mx-0 relative overflow-hidden"
+        style="background-image: url('/images/mission-teamwork.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay;"
       >
+        <!-- 背景オーバーレイ -->
+        <div class="absolute inset-0 bg-gradient-to-r from-main/80 to-secondary/80"></div>
+        
+        <!-- コンテンツ -->
+        <div class="relative z-10">
         <h3 class="mb-8 text-3xl font-bold">世界の隅々まで、エンジニアリングの楽しさを届ける。</h3>
         <p class="mx-auto max-w-4xl text-lg leading-relaxed mb-6">
           私たちは、エンジニアリングの楽しさを世界の隅々まで届けることを目指しています。システム開発は単なる作業ではなく、お客様と共に創り上げる過程そのものを楽しむことが、真の価値創造につながると信じています。
@@ -28,6 +33,7 @@ import AboutSection from "@components/AboutSection.svelte";
           <p class="mb-4">
             この思いを一言にまとめたタグラインが「ENJOY YOUR WORLD.」です。システムは単に作ることが目的ではなく、お客様がそのシステムを有効活用し、働く人々の手助けとなることが真の目的です。私たちは、お客様と「一つのチーム」としてシステムを作り上げ、その過程すらも共に楽しむ関係性を大切にしています。
           </p>
+        </div>
         </div>
       </div>
     </section>
@@ -46,12 +52,12 @@ import AboutSection from "@components/AboutSection.svelte";
         <div class="flex flex-col items-center space-y-6 md:flex-row md:items-start md:space-y-0 md:space-x-6">
           <div class="flex-shrink-0">
             <img
-              src="/daihyou.png"
+              src="/images/shinomiya.jpg"
               alt="代表取締役社長 四宮 靖隆"
-              class="h-32 w-32 md:h-56 md:w-56 lg:h-64 lg:w-64 rounded-lg border-2 border-gray-200 object-cover"
+              class="h-48 w-32 md:h-80 md:w-48 lg:h-96 lg:w-56 rounded-lg border-2 border-gray-200 object-cover"
             />
           </div>
-          <div class="flex-1 text-center md:text-left">
+          <div class="flex-1 text-left">
             <h3 class="mb-6 text-2xl font-bold text-main">代表メッセージ</h3>
             <p class="mb-4 text-gray-700 leading-relaxed">
               <strong>ENJOY YOUR WORLD ― 楽しむ力で、変化を共に。</strong>
@@ -107,6 +113,14 @@ import AboutSection from "@components/AboutSection.svelte";
       <div class="grid gap-8 md:grid-cols-2">
         <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
           <div class="mb-6">
+            <div class="mb-4">
+              <img
+                src="/images/chiikura.jpg"
+                alt="地域クラウド交流会の様子"
+                class="w-full h-48 object-cover rounded-lg"
+                loading="lazy"
+              />
+            </div>
             <h3 class="text-xl font-bold text-main">地域クラウド交流会</h3>
           </div>
           <p class="text-gray-700">
@@ -117,19 +131,37 @@ import AboutSection from "@components/AboutSection.svelte";
 
         <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
           <div class="mb-6">
+            <div class="mb-4">
+              <img
+                src="/images/tigermask_colabo.png"
+                alt="タイガーマスクプロジェクトとのコラボレーション"
+                class="w-full h-48 object-cover rounded-lg"
+                loading="lazy"
+              />
+            </div>
             <h3 class="text-xl font-bold text-main">児童福祉施設への支援</h3>
           </div>
           <p class="text-gray-700">
-            200を超える児童福祉施設にシステム導入支援を提供。子どもたちの成長を支える施設の業務効率化と、職員の働きやすさ向上に取り組んでいます。
+            全国で約4万人、おおよそ400人に1人の子どもたちが社会的養護による支援を受けている現状があります。<br>
+            私たちは養護施設支援を行う7代目タイガーマスクプロジェクトに共感し、児童養護施設への自立支援プログラムを実施しています。ITやAIに関する豊富なノウハウをもとに、実践的なスキル習得や施設職員への支援を実践して参ります。
           </p>
         </div>
 
         <div class="rounded-subtle border border-gray-100 bg-white p-8 shadow-lg">
-          <div class="mb-6 flex items-center space-x-4">
+          <div class="mb-6">
+            <div class="mb-4">
+              <img
+                src="/images/nichidai.jpg"
+                alt="プログラミング教室でのIT教育支援の様子"
+                class="w-full h-48 object-cover rounded-lg"
+                loading="lazy"
+              />
+            </div>
             <h3 class="text-xl font-bold text-main">学校教育へのサポート</h3>
           </div>
           <p class="text-gray-700">
-            300を超える教育機関にIT教育支援を提供。日本大学やキッズプログラミング教室など、次世代の人材育成と教育のデジタル化を支援しています。
+            これからの社会を担う子どもたちに向けて、kintoneや課題解決を題材としたIT教育を実施してきました。<br>
+            高校生へのIT技術を学ぶ授業や地域の子どもたちへ向けた職業体験の実施など、教育の現場に私たちの視点から向き合っています。
           </p>
         </div>
       </div>
@@ -146,8 +178,21 @@ import AboutSection from "@components/AboutSection.svelte";
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <!-- note -->
         <a href="https://note.com/joyzojp" target="_blank" rel="noopener noreferrer" class="block rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
-          <div class="mb-4">
+          <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-bold text-main">note</h3>
+            <svg
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
           </div>
           <p class="text-gray-600 text-sm">
             ジョイゾー全体のPR媒体として、会社の想いや活動を発信しています。
@@ -156,8 +201,21 @@ import AboutSection from "@components/AboutSection.svelte";
 
         <!-- SNS -->
         <a href="https://x.com/joyzojp" target="_blank" rel="noopener noreferrer" class="block rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
-          <div class="mb-4">
+          <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-bold text-main">X</h3>
+            <svg
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
           </div>
           <p class="text-gray-600 text-sm">
             最新情報や社内の様子をリアルタイムで発信しています。
@@ -166,8 +224,21 @@ import AboutSection from "@components/AboutSection.svelte";
 
         <!-- キントマニア -->
         <a href="https://www.joyzo.co.jp/blog/" target="_blank" rel="noopener noreferrer" class="block rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
-          <div class="mb-4">
+          <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-bold text-main">キントマニア</h3>
+            <svg
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
           </div>
           <p class="text-gray-600 text-sm">
             kintone系のテックブログとして、技術的な知見やノウハウを共有しています。
@@ -177,8 +248,21 @@ import AboutSection from "@components/AboutSection.svelte";
 
         <!-- wantedly -->
         <a href="https://www.wantedly.com/companies/joyzo/stories" target="_blank" rel="noopener noreferrer" class="block rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
-          <div class="mb-4">
+          <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-bold text-main">Wantedly</h3>
+            <svg
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
           </div>
           <p class="text-gray-600 text-sm">
             採用情報や会社の雰囲気を、求職者の方に向けて発信しています。
@@ -187,11 +271,24 @@ import AboutSection from "@components/AboutSection.svelte";
 
         <!-- サービスサイト -->
         <a href="https://service.joyzo.co.jp/" target="_blank" rel="noopener noreferrer" class="block rounded-subtle border border-gray-100 bg-white p-6 shadow-lg hover:shadow-xl transition-shadow">
-          <div class="mb-4">
+          <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-bold text-main">サービスサイト</h3>
+            <svg
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
           </div>
           <p class="text-gray-600 text-sm">
-            サービスアピール系のブログで、具体的なサービス内容や事例を紹介しています。
+            ジョイゾーのサービスについてはこちらから
           </p>
         </a>
       </div>
@@ -213,4 +310,4 @@ import AboutSection from "@components/AboutSection.svelte";
       </div>
     </section>
   </div>
-</UnderPageLayout>
+</Layout>

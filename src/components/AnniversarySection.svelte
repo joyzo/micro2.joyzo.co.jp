@@ -1,52 +1,88 @@
 <script lang="ts">
-  // 15周年記念PRセクション
+  import { onMount } from "svelte";
+
+  let isVisible = false;
+  let sectionElement: HTMLElement;
+
+  onMount(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            isVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionElement) {
+      observer.observe(sectionElement);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 </script>
 
-<section class="anniversary-section py-24">
+<section bind:this={sectionElement} class="anniversary-section py-24">
   <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <div class="grid items-center gap-12 lg:gap-16 lg:grid-cols-2">
       <!-- テキストコンテンツ -->
       <div class="space-y-6 lg:space-y-8 order-2 lg:order-2">
         <div class="space-y-4 lg:space-y-6">
           <h2
-            class="tracking-tighter font-heading text-4xl font-black leading-tight text-gray-900 md:text-5xl lg:text-6xl"
+            class="tracking-tighter font-heading text-4xl font-black leading-tight text-gray-900 md:text-5xl lg:text-6xl transition-all duration-700"
+            class:opacity-100={isVisible}
+            class:opacity-0={!isVisible}
+            class:translate-y-0={isVisible}
+            class:translate-y-8={!isVisible}
             style="letter-spacing: -0.05em;"
           >
             CELEBRATING 15 YEARS
           </h2>
-          <p class="text-xl lg:text-2xl text-gray-600">
+          <p 
+            class="text-xl lg:text-2xl text-gray-600 transition-all duration-700 delay-200"
+            class:opacity-100={isVisible}
+            class:opacity-0={!isVisible}
+            class:translate-y-0={isVisible}
+            class:translate-y-8={!isVisible}
+          >
             Thank you for your continued support
           </p>
         </div>
 
-        <p class="text-base lg:text-lg leading-relaxed text-gray-700">
+        <p 
+          class="text-base lg:text-lg leading-relaxed text-gray-700 transition-all duration-700 delay-300"
+          class:opacity-100={isVisible}
+          class:opacity-0={!isVisible}
+          class:translate-y-0={isVisible}
+          class:translate-y-8={!isVisible}
+        >
           ジョイゾーはお陰様で15周年を迎えました。<br />
           これまで支えてくださった皆様への感謝を込めて、<br />
           これからも「ENJOY YOUR WORLD.」を実現していきます。
         </p>
 
-        <div class="flex flex-col gap-3 lg:gap-4 pt-4 lg:pt-6 sm:flex-row">
+        <div 
+          class="flex flex-col gap-3 lg:gap-4 pt-4 lg:pt-6 sm:flex-row transition-all duration-700 delay-400"
+          class:opacity-100={isVisible}
+          class:opacity-0={!isVisible}
+          class:translate-y-0={isVisible}
+          class:translate-y-8={!isVisible}
+        >
           <a
             href="/company"
             class="inline-flex items-center justify-center rounded-none bg-gray-800 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
           >
             会社の歩みを見る
-            <svg
-              class="ml-2 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
           </a>
           <a
-            href="/story"
+            href="/aboutjoyzo"
             class="inline-flex items-center justify-center rounded-none border-2 border-gray-300 bg-white px-8 py-4 font-semibold text-gray-700 transition-colors duration-300 hover:border-gray-400 hover:bg-gray-50"
           >
             ストーリーを見る
@@ -55,7 +91,13 @@
       </div>
 
       <!-- 15周年ロゴ -->
-      <div class="relative order-1 lg:order-1">
+      <div 
+        class="relative order-1 lg:order-1 transition-all duration-700 delay-500"
+        class:opacity-100={isVisible}
+        class:opacity-0={!isVisible}
+        class:translate-y-0={isVisible}
+        class:translate-y-8={!isVisible}
+      >
         <div class="relative overflow-hidden rounded-2xl shadow-xl bg-white p-6 lg:p-8">
           <img
             src="/images/season/logo_15th.png"

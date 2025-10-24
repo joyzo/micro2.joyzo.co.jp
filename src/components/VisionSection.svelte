@@ -1,28 +1,79 @@
 <script lang="ts">
-  // ビジョンセクションのコンポーネント
+  import { onMount } from "svelte";
+
+  let isVisible = false;
+  let sectionElement: HTMLElement;
+
+  onMount(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            isVisible = true;
+          }
+        });
+      },
+      { 
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (sectionElement) {
+      observer.observe(sectionElement);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 </script>
 
-<section class="vision-section py-24">
+<section bind:this={sectionElement} class="vision-section py-24">
   <div class="mx-auto max-w-none sm:max-w-6xl px-4">
     <div class="grid items-center gap-16 lg:grid-cols-2">
       <!-- テキストコンテンツ -->
       <div class="space-y-8">
         <div class="space-y-6">
           <h2
-            class="tracking-tighter font-heading text-5xl font-black leading-tight text-gray-900 md:text-6xl"
+            class="tracking-tighter font-heading text-5xl font-black leading-tight text-gray-900 md:text-6xl transition-all duration-700"
+            class:opacity-100={isVisible}
+            class:opacity-0={!isVisible}
+            class:translate-y-0={isVisible}
+            class:translate-y-8={!isVisible}
             style="letter-spacing: -0.05em;"
           >
             ENJOY YOUR WORLD.
           </h2>
-          <p class="text-2xl text-gray-600">仕事を、生活を、未来を、楽しめ。</p>
+          <p 
+            class="text-2xl text-gray-600 transition-all duration-700 delay-200"
+            class:opacity-100={isVisible}
+            class:opacity-0={!isVisible}
+            class:translate-y-0={isVisible}
+            class:translate-y-8={!isVisible}
+          >
+            仕事を、生活を、未来を、楽しめ。
+          </p>
         </div>
 
-        <p class="text-lg leading-relaxed text-gray-700">
+        <p 
+          class="text-lg leading-relaxed text-gray-700 transition-all duration-700 delay-300"
+          class:opacity-100={isVisible}
+          class:opacity-0={!isVisible}
+          class:translate-y-0={isVisible}
+          class:translate-y-8={!isVisible}
+        >
           きっと、楽しいはずのこと。<br />
           世界をもっと快適に、もっと創造的に。
         </p>
 
-        <div class="flex flex-col gap-4 pt-6 sm:flex-row">
+        <div 
+          class="flex flex-col gap-4 pt-6 sm:flex-row transition-all duration-700 delay-400"
+          class:opacity-100={isVisible}
+          class:opacity-0={!isVisible}
+          class:translate-y-0={isVisible}
+          class:translate-y-8={!isVisible}
+        >
           <a
             href="https://service.joyzo.co.jp"
             target="_blank"
@@ -31,16 +82,16 @@
           >
             サービスを見る
             <svg
-              class="ml-2 h-5 w-5"
+              class="ml-2 h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              stroke-width="2"
             >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
               />
             </svg>
           </a>
@@ -54,17 +105,18 @@
       </div>
 
       <!-- 背景画像 -->
-      <div class="relative">
-        <div class="relative rounded-2xl shadow-xl p-8">
-          <img
-            src="/images/joyster.png"
-            alt="JOYZO"
-            class="h-96 w-full object-contain"
-          />
-          <div
-            class="absolute inset-0 gradient-overlay"
-          />
-        </div>
+      <div 
+        class="relative transition-all duration-700 delay-500"
+        class:opacity-100={isVisible}
+        class:opacity-0={!isVisible}
+        class:translate-y-0={isVisible}
+        class:translate-y-8={!isVisible}
+      >
+        <img
+          src="/images/joyster.png"
+          alt="JOYZO"
+          class="h-96 w-full object-contain"
+        />
       </div>
     </div>
   </div>
@@ -72,31 +124,8 @@
 
 <style>
   .vision-section {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+    background: linear-gradient(135deg, rgba(254, 254, 254, 0.7) 0%, rgba(254, 252, 232, 0.7) 50%, rgba(254, 243, 199, 0.7) 100%);
     position: relative;
   }
 
-  .gradient-overlay {
-    background: linear-gradient(45deg, rgba(59, 130, 246, 0.08) 0%, rgba(99, 102, 241, 0.05) 25%, rgba(79, 70, 229, 0.12) 50%, rgba(67, 56, 202, 0.06) 75%, rgba(55, 48, 163, 0.10) 100%);
-    background-size: 400% 400%;
-    animation: seamlessGradientFlow 12s ease-in-out infinite;
-  }
-
-  @keyframes seamlessGradientFlow {
-    0% {
-      background-position: 0% 50%;
-    }
-    25% {
-      background-position: 100% 50%;
-    }
-    50% {
-      background-position: 100% 100%;
-    }
-    75% {
-      background-position: 0% 100%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 </style>
