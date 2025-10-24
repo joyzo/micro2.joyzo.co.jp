@@ -14,9 +14,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const pageSize = 10;
   const totalPages = Math.ceil(totalCount / pageSize);
   
-  // 2ページ目以降のパスを生成
+  // 1ページ目以降のパスを生成
   const paths = [];
-  for (let page = 2; page <= totalPages; page++) {
+  for (let page = 1; page <= totalPages; page++) {
     paths.push({
       params: { page: page.toString() },
       props: { pageNumber: page }
@@ -54,7 +54,7 @@ const hasPrevPage = pageNumber > 1;
   mainLabel="NEWS"
   subLabel="お知らせ"
   title="お知らせ"
-  noindex={true}
+  noindex={pageNumber === 1 ? false : true}
 >
   <ul class="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
     {
