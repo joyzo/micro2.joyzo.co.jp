@@ -10,7 +10,7 @@
 <div class="mx-auto max-w-5xl">
   <div class="bg-white rounded-lg shadow-sm">
     <!-- タイトル部分（パディング多め） -->
-    <div class="px-24 pt-20 pb-8">
+    <div class="px-4 sm:px-8 md:px-16 lg:px-24 pt-20 pb-8">
       <!-- タグと日付をタイトルの上に配置 -->
       <div class="mb-3 flex items-center justify-start gap-2">
         <div class="flex items-center gap-2">
@@ -82,7 +82,7 @@
     </div>
 
     <!-- 記事内容部分（パディングなしでタイトルと横幅を揃える） -->
-    <div class="px-24 pb-8">
+    <div class="px-4 sm:px-8 md:px-16 lg:px-24 pb-8">
       <div
         class="prose max-w-none mx-auto mt-12 prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg [&_*]:text-main"
       >
