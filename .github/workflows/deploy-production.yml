@@ -1,0 +1,59 @@
+name: Deploy to Production (EC2)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build Astro project
+      run: npm run build
+      
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+        
+    - name: Create release directory
+      run: |
+        RELEASE_DIR="releases/$(date +%Y%m%d%H%M%S)"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} -p ${{ secrets.EC2_PORT }} \
+          "mkdir -p ${{ secrets.EC2_DEPLOY_PATH }}/$RELEASE_DIR"
+        echo "RELEASE_DIR=$RELEASE_DIR" >> $GITHUB_ENV
+        
+    - name: Deploy files to EC2
+      run: |
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p ${{ secrets.EC2_PORT }}" \
+          dist/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_DEPLOY_PATH }}/$RELEASE_DIR/
+          
+    - name: Update symlink
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} -p ${{ secrets.EC2_PORT }} \
+          "cd ${{ secrets.EC2_DEPLOY_PATH }} && ln -sfn $RELEASE_DIR current"
+          
+    - name: Cleanup old releases
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} -p ${{ secrets.EC2_PORT }} \
+          "cd ${{ secrets.EC2_DEPLOY_PATH }}/releases && ls -t | tail -n +6 | xargs -r rm -rf"
+          
+    - name: Health check
+      run: |
+        echo "🚀 Deployment completed successfully!"
+        echo "📅 Release: $RELEASE_DIR"
+        echo "🌐 Site should be available at: http://${{ secrets.EC2_HOST }}"

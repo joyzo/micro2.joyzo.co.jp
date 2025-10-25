@@ -105,68 +105,119 @@ npm run build
 
 ## デプロイについて
 
-### SFTP デプロイ（本番環境）
+### 新しいデプロイシステム
 
-⚠️ **重要: 本番環境へのデプロイについて**  
-本番環境へのデプロイは、**必ず承諾を得てから実行しなければなりません**。
+このプロジェクトでは、GitHub ActionsとローカルCLIの両方でデプロイを管理する新しいシステムを採用しています。
 
-#### 環境変数の設定
+#### デプロイフロー
+- **開発環境 (Vercel)**: `develop`ブランチへのpush → Vercel自動デプロイ
+- **本番環境 (EC2)**: `main`ブランチへのpush/merge → GitHub Actionsで自動デプロイ
+- **ローカルデプロイ**: コマンドラインから任意の環境にデプロイ可能
 
-`.env.local` ファイルを作成し、以下の情報を設定してください：
+#### 主な特徴
+- **リリースディレクトリ方式**: 瞬時の切り替えと簡単なロールバック
+- **自動デプロイ**: GitHub Actionsによる完全自動化
+- **ローカルバックアップ**: 緊急時のローカルデプロイ対応
+- **将来対応**: EC2テストサーバーへの切り替えを想定した設計
 
+### 自動デプロイ（推奨）
+
+#### 開発環境へのデプロイ
 ```bash
-SFTP_HOST=サーバーのホスト名
-SFTP_PORT=22
-SFTP_USER=ユーザー名
-SFTP_PASSWORD=パスワード
-# または SSH鍵認証を使用
-SFTP_PRIVATE_KEY_PATH=~/.ssh/id_rsa
-SFTP_REMOTE_PATH=/path/to/remote/directory
+git checkout develop
+git add .
+git commit -m "Update: 変更内容の説明"
+git push origin develop
 ```
 
-#### デプロイコマンド
-
+#### 本番環境へのデプロイ
 ```bash
-# 全ファイルをデプロイ
+git checkout main
+git merge develop  # または直接mainにpush
+git push origin main
+```
+
+### ローカルデプロイ
+
+#### 本番環境へのデプロイ
+```bash
+# ビルド + デプロイ
+npm run build
 npm run deploy:production
 
-# 画像ファイルのみデプロイ
-npm run deploy:images
-
-# 画像ファイル以外をデプロイ
-npm run deploy:no-images
-
-# 特定ファイルをデプロイ
-npm run deploy:specific logo.png
-npm run deploy:specific images/company.jpg
-npm run deploy:specific _astro/
+# または一括実行
+npm run deploy -- --env production
 ```
 
-#### 新機能
+#### 開発環境へのデプロイ
+```bash
+# ビルド + デプロイ
+npm run build
+npm run deploy:development
 
-**差分アップロード**: ファイルのハッシュ値を比較し、変更されたファイルのみをアップロードします。初回は全ファイル、2回目以降は変更分のみアップロードされるため、デプロイ時間が大幅に短縮されます。
+# または一括実行
+npm run deploy -- --env development
+```
 
-**ファイル除外機能**: `.deployignore` ファイルでアップロードを除外するファイルやディレクトリを指定できます。
+#### ロールバック
+```bash
+# 利用可能なリリース一覧表示
+npm run rollback -- --env production --list
 
-**デプロイモード選択**:
-- `images-only`: 画像ファイル（jpg, png, gif, svg等）のみアップロード
-- `no-images`: 画像ファイル以外（HTML, CSS, JS等）のみアップロード  
-- `specific`: 指定したファイルやディレクトリのみアップロード
+# 直前のバージョンにロールバック
+npm run rollback -- --env production
+
+# 指定バージョンにロールバック
+npm run rollback -- --env production --version 20251024120000
+```
+
+### 初期設定
+
+#### 1. GitHub Secretsの設定
+GitHub リポジトリの **Settings > Secrets and variables > Actions** で以下のSecretsを設定：
+
+**EC2本番環境用:**
+- `EC2_HOST`: EC2サーバーのIPアドレス
+- `EC2_USER`: SSHユーザー名
+- `EC2_SSH_KEY`: SSH秘密鍵
+
+**Vercel開発環境用:**
+- `VERCEL_TOKEN`: Vercel認証トークン
+- `VERCEL_ORG_ID`: VercelオーガニゼーションID
+- `VERCEL_PROJECT_ID`: VercelプロジェクトID
+
+#### 2. ローカル環境の設定
+```bash
+# 環境変数ファイルを作成
+cp env.local.example .env.local
+
+# .env.localを編集して実際の値を設定
+nano .env.local
+```
+
+#### 3. EC2サーバーの初期設定
+```bash
+# デプロイスクリプトをサーバーにアップロード
+scp scripts/setup-ec2-deploy.sh user@your-server:/tmp/
+
+# サーバーに接続して初期設定を実行
+ssh user@your-server
+sudo bash /tmp/setup-ec2-deploy.sh
+```
+
+### 下位互換性
+
+既存のデプロイコマンドは引き続き使用可能です：
 
 ```bash
-# .deployignore の例
-*.log
-*.tmp
-images/joy-office-photos/
+# 旧デプロイコマンド（引き続き使用可能）
+npm run deploy:production:legacy
+npm run deploy:images
+npm run deploy:no-images
+npm run deploy:specific
 ```
 
 詳細な手順については `DEPLOYMENT.md` を参照してください。
-
-### Vercel へのデプロイ（開発/テスト環境）
-
-[Vercel Platform](https://vercel.com/new)から簡単にデプロイが可能です。
-
-リポジトリを紐付け、環境変数を `Environment Variables` に登録しましょう。
 
 ### webhook の設定
 
