@@ -138,6 +138,7 @@
   }
 
   // Derived styles
+  // PC: width-based, Mobile: height-based
   $: leftWidth = expandedSide === "left"
     ? 50 + animationProgress * 50
     : expandedSide === "right"
@@ -147,6 +148,23 @@
     : 50;
 
   $: rightWidth = expandedSide === "right"
+    ? 50 + animationProgress * 50
+    : expandedSide === "left"
+    ? 50 - animationProgress * 50
+    : hoveredSide === "right" ? 75
+    : hoveredSide === "left" ? 25
+    : 50;
+  
+  // Mobile: height-based animation
+  $: leftHeight = expandedSide === "left"
+    ? 50 + animationProgress * 50
+    : expandedSide === "right"
+    ? 50 - animationProgress * 50
+    : hoveredSide === "left" ? 75
+    : hoveredSide === "right" ? 25
+    : 50;
+
+  $: rightHeight = expandedSide === "right"
     ? 50 + animationProgress * 50
     : expandedSide === "left"
     ? 50 - animationProgress * 50
@@ -333,47 +351,17 @@
 </div>
 
 <div 
-  class="fixed inset-0 z-[9999] flex h-screen w-full flex-col overflow-hidden md:flex-row cursor-none"
-  style="filter: blur({blurAmount}px); transition: filter 0.1s linear;"
+  class="fixed inset-0 z-[9999] flex w-full flex-col overflow-hidden md:flex-row cursor-none"
+  style="filter: blur({blurAmount}px); transition: filter 0.1s linear; height: 100dvh;"
 >
-  <!-- Left Side: Corporate Info -->
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <a
-    href="#corporate"
-    class="group relative flex w-full items-center justify-center transition-all duration-500 ease-in-out md:h-full"
-    class:h-1-2={true}
-    style="background-color: {hoveredSide === 'left' ? leftHoverColor : leftBgColor}; width: {leftWidth}%; opacity: {leftOpacity}; transition: width 0.5s ease-out, background-color 0.5s ease-in-out, opacity 0.1s linear;"
-    on:mouseenter={() => handleMouseEnter("left")}
-    on:mouseleave={handleMouseLeave}
-    on:click={handleLeftClick}
-  >
-    <div 
-      class="z-10 flex flex-col items-center text-center text-white transition-all duration-300"
-      style="opacity: {leftContentOpacity};"
-    >
-      <h2 class="text-3xl font-bold tracking-wider md:text-4xl">会社のことを知りたい</h2>
-      <p class="mt-4 text-sm opacity-80 md:text-base">Corporate Information</p>
-      {#if showImages}
-        <div class="mt-6">
-          <img 
-            src="/images/logo_corp.png" 
-            alt="JOYZO Logo" 
-            class="h-16 w-auto object-contain md:h-20"
-          />
-        </div>
-      {/if}
-    </div>
-  </a>
-
-  <!-- Right Side: Service Info -->
+  <!-- Right Side: Service Info (Mobile: top, PC: right) -->
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <a
     href="https://www.joyzo.co.jp/service/"
     target="_blank"
     rel="noopener noreferrer"
-    class="group relative flex w-full items-center justify-center transition-all duration-500 ease-in-out md:h-full"
-    class:h-1-2={true}
-    style="background-color: {hoveredSide === 'right' ? rightHoverColor : rightBgColor}; width: {rightWidth}%; transition: width 0.5s ease-out, background-color 0.5s ease-in-out;"
+    class="group relative flex w-full items-center justify-center transition-all duration-500 ease-in-out order-1 md:order-2 split-right"
+    style="background-color: {hoveredSide === 'right' ? rightHoverColor : rightBgColor}; width: {rightWidth}%; height: {rightHeight}%; transition: width 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-in-out;"
     on:mouseenter={() => handleMouseEnter("right")}
     on:mouseleave={handleMouseLeave}
     on:click={handleRightClick}
@@ -390,6 +378,34 @@
           <img 
             src="/images/top/system39-logo-yokokana.png" 
             alt="システム39" 
+            class="h-16 w-auto object-contain md:h-20"
+          />
+        </div>
+      {/if}
+    </div>
+  </a>
+
+  <!-- Left Side: Corporate Info (Mobile: bottom, PC: left) -->
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <a
+    href="#corporate"
+    class="group relative flex w-full items-center justify-center transition-all duration-500 ease-in-out order-2 md:order-1 split-left"
+    style="background-color: {hoveredSide === 'left' ? leftHoverColor : leftBgColor}; width: {leftWidth}%; height: {leftHeight}%; opacity: {leftOpacity}; transition: width 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-in-out, opacity 0.1s linear;"
+    on:mouseenter={() => handleMouseEnter("left")}
+    on:mouseleave={handleMouseLeave}
+    on:click={handleLeftClick}
+  >
+    <div 
+      class="z-10 flex flex-col items-center text-center text-white transition-all duration-300"
+      style="opacity: {leftContentOpacity};"
+    >
+      <h2 class="text-3xl font-bold tracking-wider md:text-4xl">会社のことを知りたい</h2>
+      <p class="mt-4 text-sm opacity-80 md:text-base">Corporate Information</p>
+      {#if showImages}
+        <div class="mt-6">
+          <img 
+            src="/images/logo_corp.png" 
+            alt="JOYZO Logo" 
             class="h-16 w-auto object-contain md:h-20"
           />
         </div>
@@ -417,13 +433,18 @@
     }
   }
   
-  .h-1-2 {
-    height: 50%;
+  /* Mobile: height-based, PC: width-based */
+  @media (max-width: 767px) {
+    .split-left,
+    .split-right {
+      width: 100% !important;
+    }
   }
   
   @media (min-width: 768px) {
-    .h-1-2 {
-      height: 100%;
+    .split-left,
+    .split-right {
+      height: 100% !important;
     }
   }
   
