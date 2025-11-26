@@ -8,6 +8,7 @@ import ProfessionalismSection from "@components/ProfessionalismSection.svelte";
 import RecruitBanner from "@components/RecruitBanner.svelte";
 import ContactSection from "@components/ContactSection.svelte";
 import StoryMediaSection from "@components/StoryMediaSection.svelte";
+import SplitScreen from "@components/SplitScreen.svelte";
 import { getLatestNews } from "@libs/microcms";
 
 // microCMSから最新のニュース記事を取得
@@ -15,8 +16,11 @@ const news = await getLatestNews();
 ---
 
 <Layout>
+  <SplitScreen client:load slot="before-header" />
   <!-- 1. コーポレートヒーローセクション -->
-  <CorporateHeroSection client:load />
+  <div id="corporate">
+    <CorporateHeroSection client:load />
+  </div>
   
   <!-- 2. 15周年記念PRセクション -->
   <AnniversarySection client:load />
