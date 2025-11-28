@@ -65,19 +65,38 @@
     wave2Delay = 3 + Math.random() * 3; // 3-6秒
     wave3Delay = 6 + Math.random() * 4; // 6-10秒
     
-    // Custom cursor tracking
-    const handleMouseMove = (e: MouseEvent) => {
-      cursorX = e.clientX;
-      cursorY = e.clientY;
-      cursorVisible = true;
-    };
+    // Custom cursor tracking (SplitScreen内のみ)
+    let handleMouseMove: ((e: MouseEvent) => void) | null = null;
+    let handleMouseEnter: (() => void) | null = null;
+    let handleMouseLeave: (() => void) | null = null;
     
-    const handleMouseLeave = () => {
-      cursorVisible = false;
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    // SplitScreen要素が設定された後にイベントリスナーを追加
+    setTimeout(() => {
+      if (splitScreenElement) {
+        handleMouseMove = (e: MouseEvent) => {
+          cursorX = e.clientX;
+          cursorY = e.clientY;
+          // SplitScreen内にいる時だけ表示
+          if (splitScreenElement && splitScreenElement.contains(e.target as Node)) {
+            cursorVisible = true;
+          } else {
+            cursorVisible = false;
+          }
+        };
+        
+        handleMouseEnter = () => {
+          cursorVisible = true;
+        };
+        
+        handleMouseLeave = () => {
+          cursorVisible = false;
+        };
+        
+        splitScreenElement.addEventListener('mousemove', handleMouseMove);
+        splitScreenElement.addEventListener('mouseenter', handleMouseEnter);
+        splitScreenElement.addEventListener('mouseleave', handleMouseLeave);
+      }
+    }, 0);
     
     // タブが非表示になったときにリロード（右側クリック時のみ）
     const handleVisibilityChange = () => {
@@ -274,8 +293,11 @@
     }, 100);
     
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (splitScreenElement && handleMouseMove && handleMouseEnter && handleMouseLeave) {
+        splitScreenElement.removeEventListener('mousemove', handleMouseMove);
+        splitScreenElement.removeEventListener('mouseenter', handleMouseEnter);
+        splitScreenElement.removeEventListener('mouseleave', handleMouseLeave);
+      }
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleWheel);
