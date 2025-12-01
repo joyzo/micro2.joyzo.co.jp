@@ -485,12 +485,79 @@
       <h2 class="text-3xl font-bold tracking-wider md:text-4xl">サービスのことを知りたい</h2>
       <p class="mt-4 text-sm opacity-80 md:text-base">Service Information</p>
       {#if showImages}
-        <div class="mt-6">
-          <img 
-            src="/images/top/system39-logo-yokokana.png" 
-            alt="システム39" 
-            class="h-16 w-auto object-contain md:h-20"
-          />
+        <div class="mt-8 md:mt-10 max-w-80 mx-auto px-4">
+          <div class="grid grid-cols-5 gap-0">
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/system39.png" 
+                alt="システム39" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/custom39.png" 
+                alt="カスタム39" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/eco-system39.png" 
+                alt="エコシステム39" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/support39.png" 
+                alt="サポート39" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/jichitai39.png" 
+                alt="自治体39" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/jcamp.png" 
+                alt="JCAMP" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/joboco.png" 
+                alt="Joboco" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/joy-tomo.png" 
+                alt="JOY-TOMO" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/plugin_autonum.png" 
+                alt="プラグイン自動採番" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <img 
+                src="/images/icon_services/plugin_doodle2.png" 
+                alt="プラグインDoodle2" 
+                class="w-full h-auto object-contain max-h-12 md:max-h-16"
+              />
+            </div>
+          </div>
         </div>
       {/if}
     </div>
@@ -513,11 +580,11 @@
       <h2 class="text-3xl font-bold tracking-wider md:text-4xl">会社のことを知りたい</h2>
       <p class="mt-4 text-sm opacity-80 md:text-base">Corporate Information</p>
       {#if showImages}
-        <div class="mt-6">
+        <div class="mt-8 md:mt-10 flex items-center justify-center max-w-80 mx-auto px-4">
           <img 
             src="/images/logo_corp.png" 
             alt="JOYZO Logo" 
-            class="h-16 w-auto object-contain md:h-20"
+            class="h-20 w-auto object-contain md:h-28"
           />
         </div>
       {/if}
