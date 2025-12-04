@@ -1,9 +1,9 @@
 ---
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
 import CompanySection from "@components/CompanySection.svelte";
-import { getCompanyPage } from "@libs/microcms";
+import { getCompanyPage } from "@libs/kintone";
 
-// microCMSから会社概要データを取得
+// kintoneから会社概要データを取得
 const companyData = await getCompanyPage();
 ---
 

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Blog } from "../types/microcms/blogs";
+  import type { KintoneNews } from "../types/kintone/news";
 
-  // microCMSから取得したニュースデータを受け取る
-  export let news: Blog[] = [];
+  // kintoneから取得したニュースデータを受け取る
+  export let news: KintoneNews[] = [];
 
   let isVisible = false;
   let sectionElement: HTMLElement;
@@ -65,13 +65,13 @@
   }
 
   // 画像URLを取得（複数のフィールド名に対応）
-  function getImageUrl(blog: Blog): string | null {
+  function getImageUrl(blog: KintoneNews): string | null {
     return blog.thumbnail?.url || blog.eyecatch?.url || blog.image?.url || null;
   }
 
   // 記事URLを取得（複数のフィールド名に対応）
-  function getArticleUrl(blog: Blog): string {
-    return blog.articleUrl || blog.url || blog.link || '#';
+  function getArticleUrl(blog: KintoneNews): string {
+    return `/news/${blog.id}`;
   }
 </script>
 

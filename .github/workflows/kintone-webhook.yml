@@ -1,0 +1,99 @@
+name: Kintone Webhook Deploy
+
+on:
+  repository_dispatch:
+    types: [kintone-update]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment (development/production)'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - production
+      app_id:
+        description: 'Kintone App ID'
+        required: false
+        type: string
+      record_id:
+        description: 'Kintone Record ID'
+        required: false
+        type: string
+
+jobs:
+  process-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Process kintone webhook
+      env:
+        KINTONE_BASE_URL: ${{ secrets.KINTONE_BASE_URL }}
+        KINTONE_API_TOKEN: ${{ secrets.KINTONE_API_TOKEN }}
+        KINTONE_NEWS_APP_ID: ${{ secrets.KINTONE_NEWS_APP_ID }}
+        KINTONE_PAGES_APP_ID: ${{ secrets.KINTONE_PAGES_APP_ID }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+        S3_PUBLIC_URL: ${{ secrets.S3_PUBLIC_URL }}
+        WEBHOOK_PAYLOAD: ${{ github.event.client_payload.payload || '{}' }}
+        KINTONE_ENV: ${{ github.event.inputs.environment || github.event.client_payload.environment || 'development' }}
+      run: |
+        node .github/scripts/process-kintone-webhook.js "${{ github.event.client_payload.payload || '{}' }}"
+      
+    - name: Build Astro project
+      env:
+        KINTONE_ENV: ${{ github.event.inputs.environment || github.event.client_payload.environment || 'development' }}
+      run: npm run build
+      
+    - name: Deploy to Development (Vercel)
+      if: github.event.inputs.environment == 'development' || (github.event.client_payload.environment == 'development' && github.event.inputs.environment == '')
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      run: |
+        npm install -g vercel@latest
+        vercel --token $VERCEL_TOKEN \
+               --scope $VERCEL_ORG_ID \
+               --prod=false \
+               --yes
+        
+    - name: Setup SSH for Production
+      if: github.event.inputs.environment == 'production' || (github.event.client_payload.environment == 'production' && github.event.inputs.environment == '')
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+        
+    - name: Deploy to Production (EC2)
+      if: github.event.inputs.environment == 'production' || (github.event.client_payload.environment == 'production' && github.event.inputs.environment == '')
+      run: |
+        RELEASE_DIR="releases/$(date +%Y%m%d%H%M%S)"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} -p ${{ secrets.EC2_PORT }} \
+          "mkdir -p ${{ secrets.EC2_DEPLOY_PATH }}/$RELEASE_DIR"
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p ${{ secrets.EC2_PORT }}" \
+          dist/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_DEPLOY_PATH }}/$RELEASE_DIR/
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} -p ${{ secrets.EC2_PORT }} \
+          "cd ${{ secrets.EC2_DEPLOY_PATH }} && ln -sfn $RELEASE_DIR current"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} -p ${{ secrets.EC2_PORT }} \
+          "cd ${{ secrets.EC2_DEPLOY_PATH }}/releases && ls -t | tail -n +6 | xargs -r rm -rf"
+        
+    - name: Deployment success
+      run: |
+        echo "🚀 Deployment completed successfully!"
+        echo "📋 Environment: ${{ github.event.inputs.environment || github.event.client_payload.environment || 'development' }}"
+

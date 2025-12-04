@@ -1,16 +1,13 @@
 ---
-import type { Blog } from "src/types/microcms/blogs";
+import type { KintoneNews } from "src/types/kintone/news";
 
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
-import { client } from "@libs/microcms";
+import { getNewsList, getNewsDetail } from "@libs/kintone";
 import NewsBody from "@components/pages/news/NewsBody.svelte";
 import { processContent } from "src/utils/processContent";
 
 export const getStaticPaths = async () => {
-  const { contents: news } = await client.getList<Blog>({
-    endpoint: "news",
-    queries: { limit: 100, fields: "id" },
-  });
+  const { contents: news } = await getNewsList(1, 100);
 
   return news.map((news) => ({ params: { id: news.id } }));
 };
@@ -18,11 +15,7 @@ export const getStaticPaths = async () => {
 const { id } = Astro.params;
 if (!id) throw new Error("id is required");
 
-const content = await client.get<Blog>({
-  endpoint: "news",
-  contentId: id,
-  queries: { fields: "id,title,content,release_date,publishedAt,createdAt,tag" }
-});
+const content = await getNewsDetail(id);
 
 if (content.content) {
   content.content = processContent(content.content);

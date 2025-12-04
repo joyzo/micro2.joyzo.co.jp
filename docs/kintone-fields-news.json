@@ -1,0 +1,145 @@
+{
+  "app": {
+    "name": "サイトニュース管理",
+    "description": "サイトのニュース記事を管理するアプリ"
+  },
+  "fields": {
+    "title": {
+      "code": "title",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "タイトル",
+      "required": true,
+      "noLabel": false
+    },
+    "content": {
+      "code": "content",
+      "type": "RICH_TEXT",
+      "label": "本文",
+      "required": true,
+      "noLabel": false
+    },
+    "overview": {
+      "code": "overview",
+      "type": "MULTI_LINE_TEXT",
+      "label": "概要",
+      "required": false,
+      "noLabel": false
+    },
+    "release_date": {
+      "code": "release_date",
+      "type": "DATETIME",
+      "label": "リリース日",
+      "required": true,
+      "noLabel": false
+    },
+    "publishedAt": {
+      "code": "publishedAt",
+      "type": "DATETIME",
+      "label": "公開日",
+      "required": false,
+      "noLabel": false
+    },
+    "thumbnail": {
+      "code": "thumbnail",
+      "type": "FILE",
+      "label": "サムネイル画像",
+      "required": false,
+      "noLabel": false
+    },
+    "eyecatch": {
+      "code": "eyecatch",
+      "type": "FILE",
+      "label": "アイキャッチ画像",
+      "required": false,
+      "noLabel": false
+    },
+    "image": {
+      "code": "image",
+      "type": "FILE",
+      "label": "画像",
+      "required": false,
+      "noLabel": false
+    },
+    "tag": {
+      "code": "tag",
+      "type": "DROP_DOWN",
+      "label": "タグ",
+      "required": false,
+      "noLabel": false,
+      "options": {
+        "ニュース": {
+          "label": "ニュース",
+          "index": 0
+        },
+        "イベント": {
+          "label": "イベント",
+          "index": 1
+        },
+        "リリース": {
+          "label": "リリース",
+          "index": 2
+        },
+        "メンテナンス": {
+          "label": "メンテナンス",
+          "index": 3
+        },
+        "メディア": {
+          "label": "メディア",
+          "index": 4
+        },
+        "アップデート": {
+          "label": "アップデート",
+          "index": 5
+        }
+      }
+    },
+    "publish": {
+      "code": "publish",
+      "type": "CHECK_BOX",
+      "label": "公開",
+      "required": true,
+      "noLabel": false,
+      "options": {
+        "開発": {
+          "label": "開発",
+          "index": 0
+        },
+        "本番": {
+          "label": "本番",
+          "index": 1
+        }
+      }
+    },
+    "microcms_id": {
+      "code": "microcms_id",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "microCMS ID",
+      "required": false,
+      "noLabel": false
+    },
+    "id": {
+      "code": "id",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "投稿ID",
+      "required": true,
+      "noLabel": false,
+      "unique": true
+    }
+  },
+  "views": [
+    {
+      "name": "すべて",
+      "id": "すべて",
+      "index": 0,
+      "type": "LIST",
+      "fields": [
+        "title",
+        "release_date",
+        "publish",
+        "tag"
+      ],
+      "filterCond": "",
+      "sort": "release_date desc"
+    }
+  ]
+}

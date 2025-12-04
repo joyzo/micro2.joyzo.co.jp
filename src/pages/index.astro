@@ -8,9 +8,9 @@ import ProfessionalismSection from "@components/ProfessionalismSection.svelte";
 import RecruitBanner from "@components/RecruitBanner.svelte";
 import ContactSection from "@components/ContactSection.svelte";
 import StoryMediaSection from "@components/StoryMediaSection.svelte";
-import { getLatestNews } from "@libs/microcms";
+import { getLatestNews } from "@libs/kintone";
 
-// microCMSから最新のニュース記事を取得
+// kintoneから最新のニュース記事を取得
 const news = await getLatestNews();
 ---
 

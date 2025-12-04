@@ -1,15 +1,12 @@
 ---
 import type { GetStaticPaths } from "astro";
-import type { Blog } from "src/types/microcms/blogs";
+import type { KintoneNews } from "src/types/kintone/news";
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
-import { client } from "@libs/microcms";
+import { getNewsList } from "@libs/kintone";
 import FormattedDate from "@components/FormattedDate.svelte";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { totalCount } = await client.getList<Blog>({
-    endpoint: "news",
-    queries: { limit: 0 },
-  });
+  const { totalCount } = await getNewsList(1, 0);
 
   const pageSize = 10;
   const totalPages = Math.ceil(totalCount / pageSize);
@@ -33,17 +30,8 @@ export interface Props {
 const { pageNumber } = Astro.props;
 
 const pageSize = 10;
-const offset = (pageNumber - 1) * pageSize;
 
-const { contents: news, totalCount } = await client.getList<Blog>({
-  endpoint: "news",
-  queries: {
-    limit: pageSize,
-    offset: offset,
-    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,tag",
-    orders: "-release_date",
-  },
-});
+const { contents: news, totalCount } = await getNewsList(pageNumber, pageSize);
 
 const totalPages = Math.ceil(totalCount / pageSize);
 const hasNextPage = pageNumber < totalPages;

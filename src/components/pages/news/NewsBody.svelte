@@ -2,9 +2,9 @@
   import FormattedDate from "@components/FormattedDate.svelte";
   import InternalAnchor from "@components/InternalAnchor.svelte";
   import MicroCMSPicture from "@components/MicroCMSPicture.svelte";
-  import type { Blog } from "@types/microcms/blogs";
+  import type { KintoneNews } from "@types/kintone/news";
 
-  export let content: Blog;
+  export let content: KintoneNews;
 </script>
 
 <div class="mx-auto max-w-5xl">

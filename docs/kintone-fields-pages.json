@@ -1,0 +1,114 @@
+{
+  "app": {
+    "name": "固定ページ管理",
+    "description": "サイトの固定ページ（会社概要など）を管理するアプリ"
+  },
+  "fields": {
+    "page_id": {
+      "code": "page_id",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "ページ識別子",
+      "required": true,
+      "noLabel": false,
+      "unique": true
+    },
+    "page_name": {
+      "code": "page_name",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "ページ名",
+      "required": true,
+      "noLabel": false
+    },
+    "title": {
+      "code": "title",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "タイトル",
+      "required": true,
+      "noLabel": false
+    },
+    "subtitle": {
+      "code": "subtitle",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "サブタイトル",
+      "required": false,
+      "noLabel": false
+    },
+    "content1": {
+      "code": "content1",
+      "type": "RICH_TEXT",
+      "label": "本文1",
+      "required": false,
+      "noLabel": false
+    },
+    "content2": {
+      "code": "content2",
+      "type": "RICH_TEXT",
+      "label": "本文2",
+      "required": false,
+      "noLabel": false
+    },
+    "content3": {
+      "code": "content3",
+      "type": "RICH_TEXT",
+      "label": "本文3",
+      "required": false,
+      "noLabel": false
+    },
+    "publish": {
+      "code": "publish",
+      "type": "CHECK_BOX",
+      "label": "公開",
+      "required": true,
+      "noLabel": false,
+      "options": {
+        "開発": {
+          "label": "開発",
+          "index": 0
+        },
+        "本番": {
+          "label": "本番",
+          "index": 1
+        }
+      }
+    },
+    "updatedAt": {
+      "code": "updatedAt",
+      "type": "UPDATED_TIME",
+      "label": "更新日時",
+      "required": false,
+      "noLabel": false
+    },
+    "microcms_id": {
+      "code": "microcms_id",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "microCMS ID",
+      "required": false,
+      "noLabel": false
+    },
+    "id": {
+      "code": "id",
+      "type": "SINGLE_LINE_TEXT",
+      "label": "ページID",
+      "required": true,
+      "noLabel": false,
+      "unique": true
+    }
+  },
+  "views": [
+    {
+      "name": "すべて",
+      "id": "すべて",
+      "index": 0,
+      "type": "LIST",
+      "fields": [
+        "page_id",
+        "page_name",
+        "title",
+        "publish",
+        "updatedAt"
+      ],
+      "filterCond": "",
+      "sort": "page_id asc"
+    }
+  ]
+}

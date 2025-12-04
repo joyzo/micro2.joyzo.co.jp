@@ -1,19 +1,11 @@
 ---
-import type { Blog } from "src/types/microcms/blogs";
+import type { KintoneNews } from "src/types/kintone/news";
 import UnderPageLayout from "@layouts/UnderPageLayout.astro";
-import { client } from "@libs/microcms";
+import { getNewsList } from "@libs/kintone";
 import FormattedDate from "@components/FormattedDate.svelte";
 
 // 1ページ目のニュースを取得
-const { contents: news, totalCount } = await client.getList<Blog>({
-  endpoint: "news",
-  queries: {
-    limit: 10,
-    offset: 0,
-    fields: "id,title,eyecatch,thumbnail,image,createdAt,publishedAt,release_date,tags,tag",
-    orders: "-release_date",
-  },
-});
+const { contents: news, totalCount } = await getNewsList(1, 10);
 
 const hasNextPage = totalCount > 10;
 ---
