@@ -22,7 +22,9 @@
     "deploy:specific": "npm run build && node scripts/deploy-production.js specific",
     "setup:basic-auth": "node scripts/setup-basic-auth.js",
     "setup:basic-auth-simple": "node scripts/setup-basic-auth-simple.js",
-    "remove:basic-auth": "node scripts/remove-basic-auth.js"
+    "remove:basic-auth": "node scripts/remove-basic-auth.js",
+    "deploy:manual": "node scripts/manual-deploy.js",
+    "deploy:manual:prod": "node scripts/manual-deploy.js --prod"
   },
   "dependencies": {
     "@astrojs/partytown": "1.2.2",
